@@ -1,6 +1,6 @@
-# Mars-X
+# Mars-X Game
 
-A top-down 2D pixel-style space flight game built with Python, Cython, SDL2, and Vulkan.
+A 2D top-down space flight game built with Python and SDL2.
 
 ## Requirements
 
@@ -21,88 +21,74 @@ git clone https://github.com/p3nGu1nZz/mars-x.git
 cd mars-x
 ```
 
-1. Run the setup script:
+2. Run the setup script:
 
 ```bash
 # Standard setup
 python setup.py
-
-# Or for development mode
-python setup.py --dev
 ```
 
 This will:
 
 - Create a new virtual environment in the `.venv` directory
 - Install all required dependencies from `requirements.txt`
-- Build the Cython extensions
 - Set up the game in development mode
 
-### Activating the Virtual Environment
+### Building the Executable
 
-After setup is complete, activate the virtual environment:
-
-**Windows:**
+To build a standalone executable:
 
 ```bash
-.venv\Scripts\activate
+python setup.py --build
 ```
 
-**macOS/Linux:**
+This will:
 
-```bash
-source .venv/bin/activate
-```
+- Ensure the virtual environment is set up correctly
+- Compile any Cython modules
+- Build a standalone executable in the `build` directory
+- No manual activation of the environment is required
 
 ## Running the Game
 
-With the virtual environment activated, simply run:
+After building, you can simply run the executable from the `build` directory:
 
 ```bash
-mars-x
+# Windows
+build\mars-x.exe
 ```
 
-That's it! The game will launch immediately.
-
-## Project Structure
-
-- `mars_x/` - Main game package
-  - `engine/` - Game engine components (window management, rendering, input)
-  - `game/` - Game-specific logic and entities
-  - `cython_modules/` - Performance-critical components written in Cython
-  - `assets/` - Game assets (graphics, sounds, etc.)
-
-## Development
-
-### Building Cython Modules
-
-To rebuild the Cython modules after making changes:
-
-```bash
-# Quick rebuild of Cython modules without recreating the environment
-python setup.py --build
-
-# Alternative method (does the same thing but more verbose)
-python setup.py build_ext --inplace
-```
-
-The `--build` command will rebuild all Cython modules in place, which is useful during development when you've made changes to the `.pyx` or `.pxd` files.
-
-### Dependencies
-
-All dependencies are listed in `requirements.txt`:
-
-- PySDL2 - Window management and input handling
-- Vulkan - Graphics rendering
-- Numpy - Mathematical operations
-- Cython - Performance optimization for critical components
-
-## Controls
-
-- W/A/S/D - Move ship
-- Mouse - Aim
-- Escape - Menu/Exit
+- simple wasd controls and escape accesses the settings.
+- Window can be closed by clicking the close button
+- The example displays a red square in a black window it! The game will launch immediately.
 
 ## License
 
-Apache License 2.0
+This dataset is licensed under the Apache License 2.0.
+
+## Citations
+
+Please use the following BibTeX entry to cite this dataset:
+
+```bibtex
+@software{Mars-X,
+  author = {K. Rawson},
+  title = {A simple 2d space game engine writen in python, cython, vulkan and sdl2},
+  year = {2025},
+  howpublished = {\url{https://github.com/p3nGu1nZz/mars-x}},
+  note = {Accessed: 2025-03-11}
+}
+```
+
+## Acknowledgements
+
+Special thanks to our contributors:
+
+- **p3nGu1nZz** - Lead Engineer
+
+## Contact
+
+For questions or support, please contact us at:
+
+- **Email**: <rawsonkara@gmail.com>
+- **Discord**: [Join our Discord](https://discord.gg/2xpqjDUkHD)

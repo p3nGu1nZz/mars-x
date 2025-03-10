@@ -7,15 +7,28 @@ import os
 import sys
 import subprocess
 import re
+import shutil
 from pathlib import Path
-from mars_x.utils.setup_help import print_help  # Use the help function from setup_help.py
+import time
 
 # Path to virtual environment
 VENV_DIR = Path(__file__).resolve().parent / ".venv"
 PROJECT_ROOT = Path(__file__).resolve().parent
+BUILD_DIR = PROJECT_ROOT / "build"
+
+def print_help():
+    print("""
+Mars-X Setup Utility
+--------------------
+Usage: python setup.py [options]
+
+Options:
+  --build     Build the game executable
+  --help      Show this help message and exit
+    """)
+
 
 def find_python_3_12():
-    """Find Python 3.12 using 'py -0p' to list available installations."""
     try:
         output = subprocess.check_output(["py", "-0p"], text=True)
         for line in output.splitlines():
@@ -32,7 +45,6 @@ def find_python_3_12():
         return None
 
 def manage_venv():
-    """Set up and manage the virtual environment."""
     python_3_12_path = find_python_3_12()
     if not python_3_12_path:
         print("Python 3.12 not found. Please install it and try again.")
@@ -77,15 +89,38 @@ def manage_venv():
     else:
         activate_cmd = f"source {VENV_DIR / 'bin' / 'activate'}"
     
-    print(f"\nTo activate the virtual environment, run:\n{activate_cmd}\n")
+    # Updated: Instead of just showing activation instructions, show build instructions
+    print(f"""
+Next steps:
+-----------
+1. To build the game executable:
+   python setup.py --build
+
+2. To activate the virtual environment and develop:
+   {activate_cmd}
+
+3. To get help:
+   python setup.py --help
+""")
 
 def main():
-    """Main entry point."""
     if '--help' in sys.argv or '-h' in sys.argv:
         print_help()
         return
+    
+    if '--build' in sys.argv:
+        # Import the build_game function from the new location
+        try:
+            # Make sure mars_x is in the path
+            sys.path.insert(0, str(PROJECT_ROOT))
+            from mars_x.utils.build_game import build_game
+            build_game()
+        except ImportError as e:
+            print(f"Error importing build_game module: {e}")
+            print("Make sure the mars_x/utils directory exists and contains build_game.py")
+            sys.exit(1)
+        return
         
-    # Manage the virtual environment
     manage_venv()
 
 if __name__ == "__main__":

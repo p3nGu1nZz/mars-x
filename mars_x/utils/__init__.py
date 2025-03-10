@@ -1,9 +1,5 @@
 """
-Mars-X Utilities Package.
-
-This package contains various utility modules and helper functions used
-throughout the Mars-X project, including constants, setup helpers, and
-other common functionality.
+Mars-X utility modules
 """
 
 from .constants import (
@@ -18,7 +14,6 @@ from .constants import (
     GAME_DESCRIPTION
 )
 
-from .setup_help import print_help
 
 # Import version information
 __version__ = GAME_VERSION
