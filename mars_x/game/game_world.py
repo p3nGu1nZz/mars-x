@@ -1,5 +1,5 @@
-import sdl2
-from mars_x.cython_modules import physics
+import logging
+from mars_x.game.player import Player
 
 class GameWorld:
     def __init__(self, renderer):
@@ -7,39 +7,28 @@ class GameWorld:
         self.entities = []
         self.player = None
         self.init_world()
+        logging.info("Game world initialized")
     
     def init_world(self):
-        # Initialize game world
-        # In a real implementation, this would:
-        # - Load level data
-        # - Create entities 
-        # - Set up the player
-        pass
-    
-    def process_input(self, event):
-        # Process input events for the game
-        if event.type == sdl2.SDL_KEYDOWN:
-            if event.key.keysym.sym == sdl2.SDLK_ESCAPE:
-                # Handle escape key
-                pass
-            elif event.key.keysym.sym == sdl2.SDLK_w:
-                # Move forward
-                pass
-            # Handle other keys...
-    
-    def update(self):
-        # Update game state
-        # - Update entity positions using Cython physics
-        # - Handle collisions
-        # - Update game mechanics
-        physics.update_positions(self.entities)
+        """Initialize the game world with entities including the player."""
+        logging.info("Initializing game world...")
         
-        # Process game logic
+        # Create player entity
+        self.player = Player()
+        
+        # Add player to entity list (for future batch processing)
+        self.entities.append(self.player)
+    
+    def update(self, input_manager, delta_time=1/60):
+        """Update game state based on input and game logic."""
+        # Update all entities with the current delta time
         for entity in self.entities:
-            entity.update()
+            if hasattr(entity, 'update'):
+                entity.update(input_manager, delta_time)
     
     def render(self):
-        # Render the game world
-        # In a full implementation, this would use the Vulkan renderer
-        # to draw all entities, backgrounds, effects, etc.
-        pass
+        """Render the game world using the active renderer."""
+        # Let each entity render itself
+        for entity in self.entities:
+            if hasattr(entity, 'render'):
+                entity.render(self.renderer)
