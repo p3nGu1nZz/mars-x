@@ -1232,6 +1232,8 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE_API__mars_x__cython_modules__vector
 /* Early includes */
 #include <math.h>
+#include <stdint.h>
+#include <string.h>
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1490,6 +1492,13 @@ static const char *__pyx_f[] = {
   #define __PYX_FORCE_INIT_THREADS 0
 #endif
 
+/* NoFastGil.proto */
+#define __Pyx_PyGILState_Ensure PyGILState_Ensure
+#define __Pyx_PyGILState_Release PyGILState_Release
+#define __Pyx_FastGIL_Remember()
+#define __Pyx_FastGIL_Forget()
+#define __Pyx_FastGilFuncInit()
+
 /* #### Code section: numeric_typedefs ### */
 /* #### Code section: complex_type_declarations ### */
 /* #### Code section: type_declarations ### */
@@ -1502,7 +1511,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4;
 
-/* "mars_x/cython_modules/vector.pxd":4
+/* "mars_x/cython_modules/vector.pxd":10
  * 
  * # Define Vector structs - renamed to Vec to avoid conflicts with classes
  * cdef struct Vec2:             # <<<<<<<<<<<<<<
@@ -1514,7 +1523,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 {
   double y;
 };
 
-/* "mars_x/cython_modules/vector.pxd":8
+/* "mars_x/cython_modules/vector.pxd":14
  *     double y
  * 
  * cdef struct Vec3:             # <<<<<<<<<<<<<<
@@ -1527,7 +1536,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 {
   double z;
 };
 
-/* "mars_x/cython_modules/vector.pxd":13
+/* "mars_x/cython_modules/vector.pxd":19
  *     double z
  * 
  * cdef struct Vec4:             # <<<<<<<<<<<<<<
@@ -1541,7 +1550,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 {
   double w;
 };
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1556,7 +1565,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1572,7 +1581,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1590,7 +1599,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 {
 
 
 
-/* "mars_x/cython_modules/vector.pyx":291
+/* "mars_x/cython_modules/vector.pyx":333
  * 
  * # Class implementations
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1613,7 +1622,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2;
 
 
-/* "mars_x/cython_modules/vector.pyx":390
+/* "mars_x/cython_modules/vector.pyx":433
  *         return self.length_squared() < 1e-10
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1632,7 +1641,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3;
 
 
-/* "mars_x/cython_modules/vector.pyx":463
+/* "mars_x/cython_modules/vector.pyx":506
  *         return Vector3(self.x, self.y, self.z)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1793,6 +1802,9 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, P
 
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
+
+/* ErrOccurredWithGIL.proto */
+static CYTHON_INLINE int __Pyx_ErrOccurredWithGIL(void);
 
 /* TupleAndListFromArray.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -2271,6 +2283,9 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
 
+/* CIntFromPy.proto */
+static CYTHON_INLINE uint64_t __Pyx_PyInt_As_uint64_t(PyObject *);
+
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
@@ -2346,8 +2361,14 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
 
 /* Module declarations from "libc" */
 
+/* Module declarations from "libc.stdint" */
+
+/* Module declarations from "libc.string" */
+
 /* Module declarations from "mars_x.cython_modules.vector" */
 static double __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(double); /*proto*/
+static double __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(double); /*proto*/
+static double __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(double); /*proto*/
 static PyObject *__pyx_f_6mars_x_14cython_modules_6vector___pyx_unpickle_Vector2__set_state(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, PyObject *); /*proto*/
 static PyObject *__pyx_f_6mars_x_14cython_modules_6vector___pyx_unpickle_Vector3__set_state(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, PyObject *); /*proto*/
 static PyObject *__pyx_f_6mars_x_14cython_modules_6vector___pyx_unpickle_Vector4__set_state(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, PyObject *); /*proto*/
@@ -2558,6 +2579,10 @@ typedef struct {
   #endif
   #ifdef __Pyx_Coroutine_USED
   PyTypeObject *__pyx_CoroutineType;
+  #endif
+  #if CYTHON_USE_MODULE_STATE
+  #endif
+  #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
@@ -3138,6 +3163,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
+#endif
+#if CYTHON_USE_MODULE_STATE
+#endif
+#if CYTHON_USE_MODULE_STATE
 #define __pyx_type_6mars_x_14cython_modules_6vector_Vector2 __pyx_mstate_global->__pyx_type_6mars_x_14cython_modules_6vector_Vector2
 #define __pyx_type_6mars_x_14cython_modules_6vector_Vector3 __pyx_mstate_global->__pyx_type_6mars_x_14cython_modules_6vector_Vector3
 #define __pyx_type_6mars_x_14cython_modules_6vector_Vector4 __pyx_mstate_global->__pyx_type_6mars_x_14cython_modules_6vector_Vector4
@@ -3299,22 +3328,25 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_codeobj__47 __pyx_mstate_global->__pyx_codeobj__47
 /* #### Code section: module_code ### */
 
-/* "mars_x/cython_modules/vector.pyx":11
- * # Fast inverse square root approximation (Quake algorithm variant)
+/* "mars_x/cython_modules/vector.pyx":13
+ * # Fast inverse square root using the classic Quake III algorithm
  * @cython.cdivision(True)
- * cdef double fast_invsqrt(double x):             # <<<<<<<<<<<<<<
- *     """Fast inverse square root approximation."""
+ * cdef double fast_invsqrt(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast inverse square root using the Quake III algorithm with bit manipulation."""
  *     if x <= 0:
  */
 
 static double __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(double __pyx_v_x) {
+  double __pyx_v_half_x;
   double __pyx_v_y;
+  uint64_t __pyx_v_i;
+  uint64_t __pyx_v_magic_number;
   double __pyx_r;
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":13
- * cdef double fast_invsqrt(double x):
- *     """Fast inverse square root approximation."""
+  /* "mars_x/cython_modules/vector.pyx":15
+ * cdef double fast_invsqrt(double x) nogil:
+ *     """Fast inverse square root using the Quake III algorithm with bit manipulation."""
  *     if x <= 0:             # <<<<<<<<<<<<<<
  *         return 0.0
  * 
@@ -3322,19 +3354,19 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(double __pyx
   __pyx_t_1 = (__pyx_v_x <= 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":14
- *     """Fast inverse square root approximation."""
+    /* "mars_x/cython_modules/vector.pyx":16
+ *     """Fast inverse square root using the Quake III algorithm with bit manipulation."""
  *     if x <= 0:
  *         return 0.0             # <<<<<<<<<<<<<<
  * 
- *     # Instead of binary reinterpretation trick, use Newton's method
+ *     cdef double half_x = x * 0.5
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":13
- * cdef double fast_invsqrt(double x):
- *     """Fast inverse square root approximation."""
+    /* "mars_x/cython_modules/vector.pyx":15
+ * cdef double fast_invsqrt(double x) nogil:
+ *     """Fast inverse square root using the Quake III algorithm with bit manipulation."""
  *     if x <= 0:             # <<<<<<<<<<<<<<
  *         return 0.0
  * 
@@ -3342,38 +3374,92 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(double __pyx
   }
 
   /* "mars_x/cython_modules/vector.pyx":18
- *     # Instead of binary reinterpretation trick, use Newton's method
- *     # for quick approximation (more portable in Cython)
- *     cdef double y = 1.0 / sqrt(x)  # Initial approximation             # <<<<<<<<<<<<<<
+ *         return 0.0
  * 
- *     # One Newton iteration for refinement: y = y * (1.5 - 0.5 * x * y * y)
+ *     cdef double half_x = x * 0.5             # <<<<<<<<<<<<<<
+ *     cdef double y = x
+ *     cdef uint64_t i
  */
-  __pyx_v_y = (1.0 / sqrt(__pyx_v_x));
+  __pyx_v_half_x = (__pyx_v_x * 0.5);
 
-  /* "mars_x/cython_modules/vector.pyx":21
+  /* "mars_x/cython_modules/vector.pyx":19
  * 
- *     # One Newton iteration for refinement: y = y * (1.5 - 0.5 * x * y * y)
- *     y = y * (1.5 - 0.5 * x * y * y)             # <<<<<<<<<<<<<<
+ *     cdef double half_x = x * 0.5
+ *     cdef double y = x             # <<<<<<<<<<<<<<
+ *     cdef uint64_t i
+ *     # Define the magic number as a properly typed constant
+ */
+  __pyx_v_y = __pyx_v_x;
+
+  /* "mars_x/cython_modules/vector.pyx":22
+ *     cdef uint64_t i
+ *     # Define the magic number as a properly typed constant
+ *     cdef uint64_t magic_number = <uint64_t>0x5FE6EB50C7B537A9             # <<<<<<<<<<<<<<
+ * 
+ *     # Bit-level hack - convert to integer bits, manipulate, convert back
+ */
+  __pyx_v_magic_number = ((uint64_t)0x5FE6EB50C7B537A9);
+
+  /* "mars_x/cython_modules/vector.pyx":25
+ * 
+ *     # Bit-level hack - convert to integer bits, manipulate, convert back
+ *     memcpy(&i, &y, sizeof(double))             # <<<<<<<<<<<<<<
+ *     i = magic_number - (i >> 1)  # Use the properly typed constant
+ *     memcpy(&y, &i, sizeof(double))
+ */
+  (void)(memcpy((&__pyx_v_i), (&__pyx_v_y), (sizeof(double))));
+
+  /* "mars_x/cython_modules/vector.pyx":26
+ *     # Bit-level hack - convert to integer bits, manipulate, convert back
+ *     memcpy(&i, &y, sizeof(double))
+ *     i = magic_number - (i >> 1)  # Use the properly typed constant             # <<<<<<<<<<<<<<
+ *     memcpy(&y, &i, sizeof(double))
+ * 
+ */
+  __pyx_v_i = (__pyx_v_magic_number - (__pyx_v_i >> 1));
+
+  /* "mars_x/cython_modules/vector.pyx":27
+ *     memcpy(&i, &y, sizeof(double))
+ *     i = magic_number - (i >> 1)  # Use the properly typed constant
+ *     memcpy(&y, &i, sizeof(double))             # <<<<<<<<<<<<<<
+ * 
+ *     # Newton-Raphson iterations for higher precision
+ */
+  (void)(memcpy((&__pyx_v_y), (&__pyx_v_i), (sizeof(double))));
+
+  /* "mars_x/cython_modules/vector.pyx":30
+ * 
+ *     # Newton-Raphson iterations for higher precision
+ *     y = y * (1.5 - (half_x * y * y))  # First iteration             # <<<<<<<<<<<<<<
+ *     y = y * (1.5 - (half_x * y * y))  # Second iteration for better precision
+ * 
+ */
+  __pyx_v_y = (__pyx_v_y * (1.5 - ((__pyx_v_half_x * __pyx_v_y) * __pyx_v_y)));
+
+  /* "mars_x/cython_modules/vector.pyx":31
+ *     # Newton-Raphson iterations for higher precision
+ *     y = y * (1.5 - (half_x * y * y))  # First iteration
+ *     y = y * (1.5 - (half_x * y * y))  # Second iteration for better precision             # <<<<<<<<<<<<<<
  * 
  *     return y
  */
-  __pyx_v_y = (__pyx_v_y * (1.5 - (((0.5 * __pyx_v_x) * __pyx_v_y) * __pyx_v_y)));
+  __pyx_v_y = (__pyx_v_y * (1.5 - ((__pyx_v_half_x * __pyx_v_y) * __pyx_v_y)));
 
-  /* "mars_x/cython_modules/vector.pyx":23
- *     y = y * (1.5 - 0.5 * x * y * y)
+  /* "mars_x/cython_modules/vector.pyx":33
+ *     y = y * (1.5 - (half_x * y * y))  # Second iteration for better precision
  * 
  *     return y             # <<<<<<<<<<<<<<
  * 
- * # Vec2 functions
+ * # Fast approximation of sqrt(x) using the inverse square root
  */
   __pyx_r = __pyx_v_y;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":11
- * # Fast inverse square root approximation (Quake algorithm variant)
+  /* "mars_x/cython_modules/vector.pyx":13
+ * # Fast inverse square root using the classic Quake III algorithm
  * @cython.cdivision(True)
- * cdef double fast_invsqrt(double x):             # <<<<<<<<<<<<<<
- *     """Fast inverse square root approximation."""
+ * cdef double fast_invsqrt(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast inverse square root using the Quake III algorithm with bit manipulation."""
  *     if x <= 0:
  */
 
@@ -3382,7 +3468,261 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(double __pyx
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":26
+/* "mars_x/cython_modules/vector.pyx":37
+ * # Fast approximation of sqrt(x) using the inverse square root
+ * @cython.cdivision(True)
+ * cdef double fast_sqrt(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast square root approximation using inverse square root."""
+ *     if x <= 0:
+ */
+
+static double __pyx_f_6mars_x_14cython_modules_6vector_fast_sqrt(double __pyx_v_x) {
+  double __pyx_r;
+  int __pyx_t_1;
+  double __pyx_t_2;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  #ifdef WITH_THREAD
+  PyGILState_STATE __pyx_gilstate_save;
+  #endif
+
+  /* "mars_x/cython_modules/vector.pyx":39
+ * cdef double fast_sqrt(double x) nogil:
+ *     """Fast square root approximation using inverse square root."""
+ *     if x <= 0:             # <<<<<<<<<<<<<<
+ *         return 0.0
+ *     return x * fast_invsqrt(x)
+ */
+  __pyx_t_1 = (__pyx_v_x <= 0.0);
+  if (__pyx_t_1) {
+
+    /* "mars_x/cython_modules/vector.pyx":40
+ *     """Fast square root approximation using inverse square root."""
+ *     if x <= 0:
+ *         return 0.0             # <<<<<<<<<<<<<<
+ *     return x * fast_invsqrt(x)
+ * 
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "mars_x/cython_modules/vector.pyx":39
+ * cdef double fast_sqrt(double x) nogil:
+ *     """Fast square root approximation using inverse square root."""
+ *     if x <= 0:             # <<<<<<<<<<<<<<
+ *         return 0.0
+ *     return x * fast_invsqrt(x)
+ */
+  }
+
+  /* "mars_x/cython_modules/vector.pyx":41
+ *     if x <= 0:
+ *         return 0.0
+ *     return x * fast_invsqrt(x)             # <<<<<<<<<<<<<<
+ * 
+ * # Fast approximation for sine function - uses Taylor series approximation
+ */
+  __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_x); if (unlikely(__pyx_t_2 == ((double)-1) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_r = (__pyx_v_x * __pyx_t_2);
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/vector.pyx":37
+ * # Fast approximation of sqrt(x) using the inverse square root
+ * @cython.cdivision(True)
+ * cdef double fast_sqrt(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast square root approximation using inverse square root."""
+ *     if x <= 0:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  #ifdef WITH_THREAD
+  __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+  #endif
+  __Pyx_AddTraceback("mars_x.cython_modules.vector.fast_sqrt", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  #ifdef WITH_THREAD
+  __Pyx_PyGILState_Release(__pyx_gilstate_save);
+  #endif
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/vector.pyx":45
+ * # Fast approximation for sine function - uses Taylor series approximation
+ * @cython.cdivision(True)
+ * cdef double fast_sin(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast sine approximation using polynomial."""
+ *     # Normalize angle to [-pi, pi]
+ */
+
+static double __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(double __pyx_v_x) {
+  double __pyx_v_two_pi;
+  double __pyx_v_x2;
+  double __pyx_r;
+  int __pyx_t_1;
+
+  /* "mars_x/cython_modules/vector.pyx":48
+ *     """Fast sine approximation using polynomial."""
+ *     # Normalize angle to [-pi, pi]
+ *     cdef double two_pi = 2.0 * M_PI             # <<<<<<<<<<<<<<
+ *     x = x % two_pi
+ *     if x > M_PI:
+ */
+  __pyx_v_two_pi = (2.0 * M_PI);
+
+  /* "mars_x/cython_modules/vector.pyx":49
+ *     # Normalize angle to [-pi, pi]
+ *     cdef double two_pi = 2.0 * M_PI
+ *     x = x % two_pi             # <<<<<<<<<<<<<<
+ *     if x > M_PI:
+ *         x -= two_pi
+ */
+  __pyx_v_x = fmod(__pyx_v_x, __pyx_v_two_pi);
+
+  /* "mars_x/cython_modules/vector.pyx":50
+ *     cdef double two_pi = 2.0 * M_PI
+ *     x = x % two_pi
+ *     if x > M_PI:             # <<<<<<<<<<<<<<
+ *         x -= two_pi
+ *     elif x < -M_PI:
+ */
+  __pyx_t_1 = (__pyx_v_x > M_PI);
+  if (__pyx_t_1) {
+
+    /* "mars_x/cython_modules/vector.pyx":51
+ *     x = x % two_pi
+ *     if x > M_PI:
+ *         x -= two_pi             # <<<<<<<<<<<<<<
+ *     elif x < -M_PI:
+ *         x += two_pi
+ */
+    __pyx_v_x = (__pyx_v_x - __pyx_v_two_pi);
+
+    /* "mars_x/cython_modules/vector.pyx":50
+ *     cdef double two_pi = 2.0 * M_PI
+ *     x = x % two_pi
+ *     if x > M_PI:             # <<<<<<<<<<<<<<
+ *         x -= two_pi
+ *     elif x < -M_PI:
+ */
+    goto __pyx_L3;
+  }
+
+  /* "mars_x/cython_modules/vector.pyx":52
+ *     if x > M_PI:
+ *         x -= two_pi
+ *     elif x < -M_PI:             # <<<<<<<<<<<<<<
+ *         x += two_pi
+ * 
+ */
+  __pyx_t_1 = (__pyx_v_x < (-M_PI));
+  if (__pyx_t_1) {
+
+    /* "mars_x/cython_modules/vector.pyx":53
+ *         x -= two_pi
+ *     elif x < -M_PI:
+ *         x += two_pi             # <<<<<<<<<<<<<<
+ * 
+ *     # Polynomial approximation (5th order)
+ */
+    __pyx_v_x = (__pyx_v_x + __pyx_v_two_pi);
+
+    /* "mars_x/cython_modules/vector.pyx":52
+ *     if x > M_PI:
+ *         x -= two_pi
+ *     elif x < -M_PI:             # <<<<<<<<<<<<<<
+ *         x += two_pi
+ * 
+ */
+  }
+  __pyx_L3:;
+
+  /* "mars_x/cython_modules/vector.pyx":56
+ * 
+ *     # Polynomial approximation (5th order)
+ *     cdef double x2 = x * x             # <<<<<<<<<<<<<<
+ *     return x * (1.0 - x2 / 6.0 + x2 * x2 / 120.0)
+ * 
+ */
+  __pyx_v_x2 = (__pyx_v_x * __pyx_v_x);
+
+  /* "mars_x/cython_modules/vector.pyx":57
+ *     # Polynomial approximation (5th order)
+ *     cdef double x2 = x * x
+ *     return x * (1.0 - x2 / 6.0 + x2 * x2 / 120.0)             # <<<<<<<<<<<<<<
+ * 
+ * # Fast approximation for cosine function - uses Taylor series approximation
+ */
+  __pyx_r = (__pyx_v_x * ((1.0 - (__pyx_v_x2 / 6.0)) + ((__pyx_v_x2 * __pyx_v_x2) / 120.0)));
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/vector.pyx":45
+ * # Fast approximation for sine function - uses Taylor series approximation
+ * @cython.cdivision(True)
+ * cdef double fast_sin(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast sine approximation using polynomial."""
+ *     # Normalize angle to [-pi, pi]
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/vector.pyx":61
+ * # Fast approximation for cosine function - uses Taylor series approximation
+ * @cython.cdivision(True)
+ * cdef double fast_cos(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast cosine approximation using polynomial."""
+ *     # cos(x) = sin(x + pi/2)
+ */
+
+static double __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(double __pyx_v_x) {
+  double __pyx_r;
+  double __pyx_t_1;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  #ifdef WITH_THREAD
+  PyGILState_STATE __pyx_gilstate_save;
+  #endif
+
+  /* "mars_x/cython_modules/vector.pyx":64
+ *     """Fast cosine approximation using polynomial."""
+ *     # cos(x) = sin(x + pi/2)
+ *     return fast_sin(x + M_PI/2.0)             # <<<<<<<<<<<<<<
+ * 
+ * # Vec2 functions
+ */
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin((__pyx_v_x + (((double)M_PI) / 2.0))); if (unlikely(__pyx_t_1 == ((double)-1) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_r = __pyx_t_1;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/vector.pyx":61
+ * # Fast approximation for cosine function - uses Taylor series approximation
+ * @cython.cdivision(True)
+ * cdef double fast_cos(double x) nogil:             # <<<<<<<<<<<<<<
+ *     """Fast cosine approximation using polynomial."""
+ *     # cos(x) = sin(x + pi/2)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  #ifdef WITH_THREAD
+  __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+  #endif
+  __Pyx_AddTraceback("mars_x.cython_modules.vector.fast_cos", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  #ifdef WITH_THREAD
+  __Pyx_PyGILState_Release(__pyx_gilstate_save);
+  #endif
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/vector.pyx":67
  * 
  * # Vec2 functions
  * cdef Vec2 vec2_create(double x, double y):             # <<<<<<<<<<<<<<
@@ -3394,7 +3734,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_v;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":28
+  /* "mars_x/cython_modules/vector.pyx":69
  * cdef Vec2 vec2_create(double x, double y):
  *     cdef Vec2 v
  *     v.x = x             # <<<<<<<<<<<<<<
@@ -3403,7 +3743,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":29
+  /* "mars_x/cython_modules/vector.pyx":70
  *     cdef Vec2 v
  *     v.x = x
  *     v.y = y             # <<<<<<<<<<<<<<
@@ -3412,7 +3752,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":30
+  /* "mars_x/cython_modules/vector.pyx":71
  *     v.x = x
  *     v.y = y
  *     return v             # <<<<<<<<<<<<<<
@@ -3422,7 +3762,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":26
+  /* "mars_x/cython_modules/vector.pyx":67
  * 
  * # Vec2 functions
  * cdef Vec2 vec2_create(double x, double y):             # <<<<<<<<<<<<<<
@@ -3435,7 +3775,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":32
+/* "mars_x/cython_modules/vector.pyx":73
  *     return v
  * 
  * cdef Vec2 vec2_add(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3447,7 +3787,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":34
+  /* "mars_x/cython_modules/vector.pyx":75
  * cdef Vec2 vec2_add(Vec2 a, Vec2 b):
  *     cdef Vec2 result
  *     result.x = a.x + b.x             # <<<<<<<<<<<<<<
@@ -3456,7 +3796,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x + __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":35
+  /* "mars_x/cython_modules/vector.pyx":76
  *     cdef Vec2 result
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y             # <<<<<<<<<<<<<<
@@ -3465,7 +3805,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y + __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":36
+  /* "mars_x/cython_modules/vector.pyx":77
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y
  *     return result             # <<<<<<<<<<<<<<
@@ -3475,7 +3815,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":32
+  /* "mars_x/cython_modules/vector.pyx":73
  *     return v
  * 
  * cdef Vec2 vec2_add(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3488,7 +3828,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":38
+/* "mars_x/cython_modules/vector.pyx":79
  *     return result
  * 
  * cdef Vec2 vec2_sub(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3500,7 +3840,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":40
+  /* "mars_x/cython_modules/vector.pyx":81
  * cdef Vec2 vec2_sub(Vec2 a, Vec2 b):
  *     cdef Vec2 result
  *     result.x = a.x - b.x             # <<<<<<<<<<<<<<
@@ -3509,7 +3849,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x - __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":41
+  /* "mars_x/cython_modules/vector.pyx":82
  *     cdef Vec2 result
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y             # <<<<<<<<<<<<<<
@@ -3518,7 +3858,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y - __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":42
+  /* "mars_x/cython_modules/vector.pyx":83
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y
  *     return result             # <<<<<<<<<<<<<<
@@ -3528,7 +3868,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":38
+  /* "mars_x/cython_modules/vector.pyx":79
  *     return result
  * 
  * cdef Vec2 vec2_sub(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3541,7 +3881,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":44
+/* "mars_x/cython_modules/vector.pyx":85
  *     return result
  * 
  * cdef Vec2 vec2_mul(Vec2 v, double scalar):             # <<<<<<<<<<<<<<
@@ -3553,7 +3893,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":46
+  /* "mars_x/cython_modules/vector.pyx":87
  * cdef Vec2 vec2_mul(Vec2 v, double scalar):
  *     cdef Vec2 result
  *     result.x = v.x * scalar             # <<<<<<<<<<<<<<
@@ -3562,7 +3902,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":47
+  /* "mars_x/cython_modules/vector.pyx":88
  *     cdef Vec2 result
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar             # <<<<<<<<<<<<<<
@@ -3571,7 +3911,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":48
+  /* "mars_x/cython_modules/vector.pyx":89
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -3581,7 +3921,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":44
+  /* "mars_x/cython_modules/vector.pyx":85
  *     return result
  * 
  * cdef Vec2 vec2_mul(Vec2 v, double scalar):             # <<<<<<<<<<<<<<
@@ -3594,7 +3934,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":51
+/* "mars_x/cython_modules/vector.pyx":92
  * 
  * @cython.cdivision(True)
  * cdef Vec2 vec2_div(Vec2 v, double scalar):             # <<<<<<<<<<<<<<
@@ -3607,7 +3947,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":53
+  /* "mars_x/cython_modules/vector.pyx":94
  * cdef Vec2 vec2_div(Vec2 v, double scalar):
  *     cdef Vec2 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -3617,7 +3957,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_t_1 = (__pyx_v_scalar == 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":54
+    /* "mars_x/cython_modules/vector.pyx":95
  *     cdef Vec2 result
  *     if scalar == 0:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -3626,7 +3966,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":55
+    /* "mars_x/cython_modules/vector.pyx":96
  *     if scalar == 0:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -3635,7 +3975,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":53
+    /* "mars_x/cython_modules/vector.pyx":94
  * cdef Vec2 vec2_div(Vec2 v, double scalar):
  *     cdef Vec2 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -3645,7 +3985,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":57
+  /* "mars_x/cython_modules/vector.pyx":98
  *         result.y = 0
  *     else:
  *         result.x = v.x / scalar             # <<<<<<<<<<<<<<
@@ -3655,7 +3995,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = (__pyx_v_v.x / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":58
+    /* "mars_x/cython_modules/vector.pyx":99
  *     else:
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar             # <<<<<<<<<<<<<<
@@ -3666,7 +4006,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":59
+  /* "mars_x/cython_modules/vector.pyx":100
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -3676,7 +4016,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":51
+  /* "mars_x/cython_modules/vector.pyx":92
  * 
  * @cython.cdivision(True)
  * cdef Vec2 vec2_div(Vec2 v, double scalar):             # <<<<<<<<<<<<<<
@@ -3689,7 +4029,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":61
+/* "mars_x/cython_modules/vector.pyx":102
  *     return result
  * 
  * cdef Vec2 vec2_copy(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3702,7 +4042,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
   double __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":63
+  /* "mars_x/cython_modules/vector.pyx":104
  * cdef Vec2 vec2_copy(Vec2 v):
  *     cdef Vec2 result
  *     result.x = v.x             # <<<<<<<<<<<<<<
@@ -3712,7 +4052,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.x;
   __pyx_v_result.x = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":64
+  /* "mars_x/cython_modules/vector.pyx":105
  *     cdef Vec2 result
  *     result.x = v.x
  *     result.y = v.y             # <<<<<<<<<<<<<<
@@ -3722,7 +4062,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.y;
   __pyx_v_result.y = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":65
+  /* "mars_x/cython_modules/vector.pyx":106
  *     result.x = v.x
  *     result.y = v.y
  *     return result             # <<<<<<<<<<<<<<
@@ -3732,7 +4072,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":61
+  /* "mars_x/cython_modules/vector.pyx":102
  *     return result
  * 
  * cdef Vec2 vec2_copy(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3745,7 +4085,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":67
+/* "mars_x/cython_modules/vector.pyx":108
  *     return result
  * 
  * cdef double vec2_length_squared(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3756,7 +4096,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_length_squared(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_v) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":68
+  /* "mars_x/cython_modules/vector.pyx":109
  * 
  * cdef double vec2_length_squared(Vec2 v):
  *     return v.x * v.x + v.y * v.y             # <<<<<<<<<<<<<<
@@ -3766,7 +4106,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_length_squared(struc
   __pyx_r = ((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":67
+  /* "mars_x/cython_modules/vector.pyx":108
  *     return result
  * 
  * cdef double vec2_length_squared(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3779,7 +4119,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_length_squared(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":70
+/* "mars_x/cython_modules/vector.pyx":111
  *     return v.x * v.x + v.y * v.y
  * 
  * cdef Vec2 vec2_normalize(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3798,46 +4138,46 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "mars_x/cython_modules/vector.pyx":74
+  /* "mars_x/cython_modules/vector.pyx":115
  *     Normalize a vector to unit length using fast inverse square root.
  *     """
  *     cdef double len_sq = v.x * v.x + v.y * v.y             # <<<<<<<<<<<<<<
  *     cdef Vec2 result
- *     cdef double inv_len  # Move declaration to the beginning of function
+ *     cdef double inv_len
  */
   __pyx_v_len_sq = ((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y));
 
-  /* "mars_x/cython_modules/vector.pyx":78
- *     cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":119
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:  # Avoid division by near-zero             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
   __pyx_t_1 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":79
+    /* "mars_x/cython_modules/vector.pyx":120
  * 
  *     if len_sq > 1e-10:  # Avoid division by near-zero
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment             # <<<<<<<<<<<<<<
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function             # <<<<<<<<<<<<<<
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len
  */
-    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 120, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_2;
 
-    /* "mars_x/cython_modules/vector.pyx":80
+    /* "mars_x/cython_modules/vector.pyx":121
  *     if len_sq > 1e-10:  # Avoid division by near-zero
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len             # <<<<<<<<<<<<<<
  *         result.y = v.y * inv_len
  *     else:
  */
     __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":81
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+    /* "mars_x/cython_modules/vector.pyx":122
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len             # <<<<<<<<<<<<<<
  *     else:
@@ -3845,17 +4185,17 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":78
- *     cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":119
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:  # Avoid division by near-zero             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":83
+  /* "mars_x/cython_modules/vector.pyx":124
  *         result.y = v.y * inv_len
  *     else:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -3865,7 +4205,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":84
+    /* "mars_x/cython_modules/vector.pyx":125
  *     else:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -3876,7 +4216,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":86
+  /* "mars_x/cython_modules/vector.pyx":127
  *         result.y = 0
  * 
  *     return result             # <<<<<<<<<<<<<<
@@ -3886,7 +4226,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":70
+  /* "mars_x/cython_modules/vector.pyx":111
  *     return v.x * v.x + v.y * v.y
  * 
  * cdef Vec2 vec2_normalize(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3902,7 +4242,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":88
+/* "mars_x/cython_modules/vector.pyx":129
  *     return result
  * 
  * cdef double vec2_dot(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3913,7 +4253,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_dot(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_a, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_b) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":89
+  /* "mars_x/cython_modules/vector.pyx":130
  * 
  * cdef double vec2_dot(Vec2 a, Vec2 b):
  *     return a.x * b.x + a.y * b.y             # <<<<<<<<<<<<<<
@@ -3923,7 +4263,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_dot(struct __pyx_t_6
   __pyx_r = ((__pyx_v_a.x * __pyx_v_b.x) + (__pyx_v_a.y * __pyx_v_b.y));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":88
+  /* "mars_x/cython_modules/vector.pyx":129
  *     return result
  * 
  * cdef double vec2_dot(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3936,7 +4276,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_dot(struct __pyx_t_6
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":91
+/* "mars_x/cython_modules/vector.pyx":132
  *     return a.x * b.x + a.y * b.y
  * 
  * cdef double vec2_cross(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3947,7 +4287,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_dot(struct __pyx_t_6
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_cross(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_a, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_b) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":92
+  /* "mars_x/cython_modules/vector.pyx":133
  * 
  * cdef double vec2_cross(Vec2 a, Vec2 b):
  *     return a.x * b.y - a.y * b.x             # <<<<<<<<<<<<<<
@@ -3957,7 +4297,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_cross(struct __pyx_t
   __pyx_r = ((__pyx_v_a.x * __pyx_v_b.y) - (__pyx_v_a.y * __pyx_v_b.x));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":91
+  /* "mars_x/cython_modules/vector.pyx":132
  *     return a.x * b.x + a.y * b.y
  * 
  * cdef double vec2_cross(Vec2 a, Vec2 b):             # <<<<<<<<<<<<<<
@@ -3970,7 +4310,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_cross(struct __pyx_t
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":94
+/* "mars_x/cython_modules/vector.pyx":135
  *     return a.x * b.y - a.y * b.x
  * 
  * cdef double vec2_angle(Vec2 v):             # <<<<<<<<<<<<<<
@@ -3981,7 +4321,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_cross(struct __pyx_t
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_angle(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_v) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":95
+  /* "mars_x/cython_modules/vector.pyx":136
  * 
  * cdef double vec2_angle(Vec2 v):
  *     return atan2(v.y, v.x)             # <<<<<<<<<<<<<<
@@ -3991,7 +4331,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_angle(struct __pyx_t
   __pyx_r = atan2(__pyx_v_v.y, __pyx_v_v.x);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":94
+  /* "mars_x/cython_modules/vector.pyx":135
  *     return a.x * b.y - a.y * b.x
  * 
  * cdef double vec2_angle(Vec2 v):             # <<<<<<<<<<<<<<
@@ -4004,12 +4344,12 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec2_angle(struct __pyx_t
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":97
+/* "mars_x/cython_modules/vector.pyx":138
  *     return atan2(v.y, v.x)
  * 
  * cdef Vec2 vec2_rotate(Vec2 v, double angle):             # <<<<<<<<<<<<<<
  *     cdef Vec2 result
- *     cdef double cs = cos(angle)
+ *     # Use our faster sine/cosine approximations
  */
 
 static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cython_modules_6vector_vec2_rotate(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_v, double __pyx_v_angle) {
@@ -4017,36 +4357,42 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   double __pyx_v_cs;
   double __pyx_v_sn;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_r;
+  double __pyx_t_1;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
 
-  /* "mars_x/cython_modules/vector.pyx":99
- * cdef Vec2 vec2_rotate(Vec2 v, double angle):
+  /* "mars_x/cython_modules/vector.pyx":141
  *     cdef Vec2 result
- *     cdef double cs = cos(angle)             # <<<<<<<<<<<<<<
- *     cdef double sn = sin(angle)
+ *     # Use our faster sine/cosine approximations
+ *     cdef double cs = fast_cos(angle)             # <<<<<<<<<<<<<<
+ *     cdef double sn = fast_sin(angle)
  *     result.x = v.x * cs - v.y * sn
  */
-  __pyx_v_cs = cos(__pyx_v_angle);
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_angle); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_v_cs = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":100
- *     cdef Vec2 result
- *     cdef double cs = cos(angle)
- *     cdef double sn = sin(angle)             # <<<<<<<<<<<<<<
+  /* "mars_x/cython_modules/vector.pyx":142
+ *     # Use our faster sine/cosine approximations
+ *     cdef double cs = fast_cos(angle)
+ *     cdef double sn = fast_sin(angle)             # <<<<<<<<<<<<<<
  *     result.x = v.x * cs - v.y * sn
  *     result.y = v.x * sn + v.y * cs
  */
-  __pyx_v_sn = sin(__pyx_v_angle);
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_angle); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_v_sn = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":101
- *     cdef double cs = cos(angle)
- *     cdef double sn = sin(angle)
+  /* "mars_x/cython_modules/vector.pyx":143
+ *     cdef double cs = fast_cos(angle)
+ *     cdef double sn = fast_sin(angle)
  *     result.x = v.x * cs - v.y * sn             # <<<<<<<<<<<<<<
  *     result.y = v.x * sn + v.y * cs
  *     return result
  */
   __pyx_v_result.x = ((__pyx_v_v.x * __pyx_v_cs) - (__pyx_v_v.y * __pyx_v_sn));
 
-  /* "mars_x/cython_modules/vector.pyx":102
- *     cdef double sn = sin(angle)
+  /* "mars_x/cython_modules/vector.pyx":144
+ *     cdef double sn = fast_sin(angle)
  *     result.x = v.x * cs - v.y * sn
  *     result.y = v.x * sn + v.y * cs             # <<<<<<<<<<<<<<
  *     return result
@@ -4054,7 +4400,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = ((__pyx_v_v.x * __pyx_v_sn) + (__pyx_v_v.y * __pyx_v_cs));
 
-  /* "mars_x/cython_modules/vector.pyx":103
+  /* "mars_x/cython_modules/vector.pyx":145
  *     result.x = v.x * cs - v.y * sn
  *     result.y = v.x * sn + v.y * cs
  *     return result             # <<<<<<<<<<<<<<
@@ -4064,20 +4410,23 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":97
+  /* "mars_x/cython_modules/vector.pyx":138
  *     return atan2(v.y, v.x)
  * 
  * cdef Vec2 vec2_rotate(Vec2 v, double angle):             # <<<<<<<<<<<<<<
  *     cdef Vec2 result
- *     cdef double cs = cos(angle)
+ *     # Use our faster sine/cosine approximations
  */
 
   /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("mars_x.cython_modules.vector.vec2_rotate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_pretend_to_initialize(&__pyx_r);
   __pyx_L0:;
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":105
+/* "mars_x/cython_modules/vector.pyx":147
  *     return result
  * 
  * cdef bint vec2_is_zero(Vec2 v):             # <<<<<<<<<<<<<<
@@ -4088,7 +4437,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_f_6mars_x_14cy
 static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_is_zero(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 __pyx_v_v) {
   int __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":106
+  /* "mars_x/cython_modules/vector.pyx":148
  * 
  * cdef bint vec2_is_zero(Vec2 v):
  *     return (v.x * v.x + v.y * v.y) < 1e-10             # <<<<<<<<<<<<<<
@@ -4098,7 +4447,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_is_zero(struct __pyx_t_
   __pyx_r = (((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y)) < 1e-10);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":105
+  /* "mars_x/cython_modules/vector.pyx":147
  *     return result
  * 
  * cdef bint vec2_is_zero(Vec2 v):             # <<<<<<<<<<<<<<
@@ -4111,7 +4460,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_is_zero(struct __pyx_t_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":108
+/* "mars_x/cython_modules/vector.pyx":150
  *     return (v.x * v.x + v.y * v.y) < 1e-10
  * 
  * cdef bint vec2_approx_equal(Vec2 a, Vec2 b, double epsilon):             # <<<<<<<<<<<<<<
@@ -4124,7 +4473,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_approx_equal(struct __p
   double __pyx_v_dy;
   int __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":109
+  /* "mars_x/cython_modules/vector.pyx":151
  * 
  * cdef bint vec2_approx_equal(Vec2 a, Vec2 b, double epsilon):
  *     cdef double dx = a.x - b.x             # <<<<<<<<<<<<<<
@@ -4133,7 +4482,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_approx_equal(struct __p
  */
   __pyx_v_dx = (__pyx_v_a.x - __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":110
+  /* "mars_x/cython_modules/vector.pyx":152
  * cdef bint vec2_approx_equal(Vec2 a, Vec2 b, double epsilon):
  *     cdef double dx = a.x - b.x
  *     cdef double dy = a.y - b.y             # <<<<<<<<<<<<<<
@@ -4142,7 +4491,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_approx_equal(struct __p
  */
   __pyx_v_dy = (__pyx_v_a.y - __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":111
+  /* "mars_x/cython_modules/vector.pyx":153
  *     cdef double dx = a.x - b.x
  *     cdef double dy = a.y - b.y
  *     return (dx * dx + dy * dy) < epsilon * epsilon             # <<<<<<<<<<<<<<
@@ -4152,7 +4501,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_approx_equal(struct __p
   __pyx_r = (((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy)) < (__pyx_v_epsilon * __pyx_v_epsilon));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":108
+  /* "mars_x/cython_modules/vector.pyx":150
  *     return (v.x * v.x + v.y * v.y) < 1e-10
  * 
  * cdef bint vec2_approx_equal(Vec2 a, Vec2 b, double epsilon):             # <<<<<<<<<<<<<<
@@ -4165,7 +4514,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_vec2_approx_equal(struct __p
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":114
+/* "mars_x/cython_modules/vector.pyx":156
  * 
  * # Vector3 functions with Vec3 structs
  * cdef Vec3 vec3_create(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -4177,7 +4526,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_v;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":116
+  /* "mars_x/cython_modules/vector.pyx":158
  * cdef Vec3 vec3_create(double x, double y, double z):
  *     cdef Vec3 v
  *     v.x = x             # <<<<<<<<<<<<<<
@@ -4186,7 +4535,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":117
+  /* "mars_x/cython_modules/vector.pyx":159
  *     cdef Vec3 v
  *     v.x = x
  *     v.y = y             # <<<<<<<<<<<<<<
@@ -4195,7 +4544,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":118
+  /* "mars_x/cython_modules/vector.pyx":160
  *     v.x = x
  *     v.y = y
  *     v.z = z             # <<<<<<<<<<<<<<
@@ -4204,7 +4553,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.z = __pyx_v_z;
 
-  /* "mars_x/cython_modules/vector.pyx":119
+  /* "mars_x/cython_modules/vector.pyx":161
  *     v.y = y
  *     v.z = z
  *     return v             # <<<<<<<<<<<<<<
@@ -4214,7 +4563,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":114
+  /* "mars_x/cython_modules/vector.pyx":156
  * 
  * # Vector3 functions with Vec3 structs
  * cdef Vec3 vec3_create(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -4227,7 +4576,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":121
+/* "mars_x/cython_modules/vector.pyx":163
  *     return v
  * 
  * cdef Vec3 vec3_add(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4239,7 +4588,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":123
+  /* "mars_x/cython_modules/vector.pyx":165
  * cdef Vec3 vec3_add(Vec3 a, Vec3 b):
  *     cdef Vec3 result
  *     result.x = a.x + b.x             # <<<<<<<<<<<<<<
@@ -4248,7 +4597,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x + __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":124
+  /* "mars_x/cython_modules/vector.pyx":166
  *     cdef Vec3 result
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y             # <<<<<<<<<<<<<<
@@ -4257,7 +4606,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y + __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":125
+  /* "mars_x/cython_modules/vector.pyx":167
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y
  *     result.z = a.z + b.z             # <<<<<<<<<<<<<<
@@ -4266,7 +4615,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_a.z + __pyx_v_b.z);
 
-  /* "mars_x/cython_modules/vector.pyx":126
+  /* "mars_x/cython_modules/vector.pyx":168
  *     result.y = a.y + b.y
  *     result.z = a.z + b.z
  *     return result             # <<<<<<<<<<<<<<
@@ -4276,7 +4625,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":121
+  /* "mars_x/cython_modules/vector.pyx":163
  *     return v
  * 
  * cdef Vec3 vec3_add(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4289,7 +4638,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":128
+/* "mars_x/cython_modules/vector.pyx":170
  *     return result
  * 
  * cdef Vec3 vec3_sub(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4301,7 +4650,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":130
+  /* "mars_x/cython_modules/vector.pyx":172
  * cdef Vec3 vec3_sub(Vec3 a, Vec3 b):
  *     cdef Vec3 result
  *     result.x = a.x - b.x             # <<<<<<<<<<<<<<
@@ -4310,7 +4659,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x - __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":131
+  /* "mars_x/cython_modules/vector.pyx":173
  *     cdef Vec3 result
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y             # <<<<<<<<<<<<<<
@@ -4319,7 +4668,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y - __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":132
+  /* "mars_x/cython_modules/vector.pyx":174
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y
  *     result.z = a.z - b.z             # <<<<<<<<<<<<<<
@@ -4328,7 +4677,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_a.z - __pyx_v_b.z);
 
-  /* "mars_x/cython_modules/vector.pyx":133
+  /* "mars_x/cython_modules/vector.pyx":175
  *     result.y = a.y - b.y
  *     result.z = a.z - b.z
  *     return result             # <<<<<<<<<<<<<<
@@ -4338,7 +4687,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":128
+  /* "mars_x/cython_modules/vector.pyx":170
  *     return result
  * 
  * cdef Vec3 vec3_sub(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4351,7 +4700,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":135
+/* "mars_x/cython_modules/vector.pyx":177
  *     return result
  * 
  * cdef Vec3 vec3_mul(Vec3 v, double scalar):             # <<<<<<<<<<<<<<
@@ -4363,7 +4712,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":137
+  /* "mars_x/cython_modules/vector.pyx":179
  * cdef Vec3 vec3_mul(Vec3 v, double scalar):
  *     cdef Vec3 result
  *     result.x = v.x * scalar             # <<<<<<<<<<<<<<
@@ -4372,7 +4721,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":138
+  /* "mars_x/cython_modules/vector.pyx":180
  *     cdef Vec3 result
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar             # <<<<<<<<<<<<<<
@@ -4381,7 +4730,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":139
+  /* "mars_x/cython_modules/vector.pyx":181
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar
  *     result.z = v.z * scalar             # <<<<<<<<<<<<<<
@@ -4390,7 +4739,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_v.z * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":140
+  /* "mars_x/cython_modules/vector.pyx":182
  *     result.y = v.y * scalar
  *     result.z = v.z * scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -4400,7 +4749,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":135
+  /* "mars_x/cython_modules/vector.pyx":177
  *     return result
  * 
  * cdef Vec3 vec3_mul(Vec3 v, double scalar):             # <<<<<<<<<<<<<<
@@ -4413,7 +4762,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":143
+/* "mars_x/cython_modules/vector.pyx":185
  * 
  * @cython.cdivision(True)
  * cdef Vec3 vec3_div(Vec3 v, double scalar):             # <<<<<<<<<<<<<<
@@ -4426,7 +4775,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":145
+  /* "mars_x/cython_modules/vector.pyx":187
  * cdef Vec3 vec3_div(Vec3 v, double scalar):
  *     cdef Vec3 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -4436,7 +4785,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_t_1 = (__pyx_v_scalar == 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":146
+    /* "mars_x/cython_modules/vector.pyx":188
  *     cdef Vec3 result
  *     if scalar == 0:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -4445,7 +4794,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":147
+    /* "mars_x/cython_modules/vector.pyx":189
  *     if scalar == 0:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -4454,7 +4803,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":148
+    /* "mars_x/cython_modules/vector.pyx":190
  *         result.x = 0
  *         result.y = 0
  *         result.z = 0             # <<<<<<<<<<<<<<
@@ -4463,7 +4812,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":145
+    /* "mars_x/cython_modules/vector.pyx":187
  * cdef Vec3 vec3_div(Vec3 v, double scalar):
  *     cdef Vec3 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -4473,7 +4822,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":150
+  /* "mars_x/cython_modules/vector.pyx":192
  *         result.z = 0
  *     else:
  *         result.x = v.x / scalar             # <<<<<<<<<<<<<<
@@ -4483,7 +4832,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = (__pyx_v_v.x / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":151
+    /* "mars_x/cython_modules/vector.pyx":193
  *     else:
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar             # <<<<<<<<<<<<<<
@@ -4492,7 +4841,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":152
+    /* "mars_x/cython_modules/vector.pyx":194
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar
  *         result.z = v.z / scalar             # <<<<<<<<<<<<<<
@@ -4503,7 +4852,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":153
+  /* "mars_x/cython_modules/vector.pyx":195
  *         result.y = v.y / scalar
  *         result.z = v.z / scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -4513,7 +4862,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":143
+  /* "mars_x/cython_modules/vector.pyx":185
  * 
  * @cython.cdivision(True)
  * cdef Vec3 vec3_div(Vec3 v, double scalar):             # <<<<<<<<<<<<<<
@@ -4526,7 +4875,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":155
+/* "mars_x/cython_modules/vector.pyx":197
  *     return result
  * 
  * cdef double vec3_length_squared(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4537,7 +4886,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_length_squared(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_v) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":156
+  /* "mars_x/cython_modules/vector.pyx":198
  * 
  * cdef double vec3_length_squared(Vec3 v):
  *     return v.x * v.x + v.y * v.y + v.z * v.z             # <<<<<<<<<<<<<<
@@ -4547,7 +4896,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_length_squared(struc
   __pyx_r = (((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y)) + (__pyx_v_v.z * __pyx_v_v.z));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":155
+  /* "mars_x/cython_modules/vector.pyx":197
  *     return result
  * 
  * cdef double vec3_length_squared(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4560,7 +4909,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_length_squared(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":158
+/* "mars_x/cython_modules/vector.pyx":200
  *     return v.x * v.x + v.y * v.y + v.z * v.z
  * 
  * cdef Vec3 vec3_normalize(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4579,46 +4928,46 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "mars_x/cython_modules/vector.pyx":162
+  /* "mars_x/cython_modules/vector.pyx":204
  *     Normalize a vector to unit length using fast inverse square root.
  *     """
  *     cdef double len_sq = v.x * v.x + v.y * v.y + v.z * v.z             # <<<<<<<<<<<<<<
  *     cdef Vec3 result
- *     cdef double inv_len  # Move declaration to the beginning of function
+ *     cdef double inv_len
  */
   __pyx_v_len_sq = (((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y)) + (__pyx_v_v.z * __pyx_v_v.z));
 
-  /* "mars_x/cython_modules/vector.pyx":166
- *     cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":208
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
   __pyx_t_1 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":167
+    /* "mars_x/cython_modules/vector.pyx":209
  * 
  *     if len_sq > 1e-10:
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment             # <<<<<<<<<<<<<<
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function             # <<<<<<<<<<<<<<
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len
  */
-    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 209, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_2;
 
-    /* "mars_x/cython_modules/vector.pyx":168
+    /* "mars_x/cython_modules/vector.pyx":210
  *     if len_sq > 1e-10:
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len             # <<<<<<<<<<<<<<
  *         result.y = v.y * inv_len
  *         result.z = v.z * inv_len
  */
     __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":169
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+    /* "mars_x/cython_modules/vector.pyx":211
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len             # <<<<<<<<<<<<<<
  *         result.z = v.z * inv_len
@@ -4626,7 +4975,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":170
+    /* "mars_x/cython_modules/vector.pyx":212
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len
  *         result.z = v.z * inv_len             # <<<<<<<<<<<<<<
@@ -4635,17 +4984,17 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = (__pyx_v_v.z * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":166
- *     cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":208
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":172
+  /* "mars_x/cython_modules/vector.pyx":214
  *         result.z = v.z * inv_len
  *     else:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -4655,7 +5004,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":173
+    /* "mars_x/cython_modules/vector.pyx":215
  *     else:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -4664,7 +5013,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":174
+    /* "mars_x/cython_modules/vector.pyx":216
  *         result.x = 0
  *         result.y = 0
  *         result.z = 0             # <<<<<<<<<<<<<<
@@ -4675,7 +5024,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":175
+  /* "mars_x/cython_modules/vector.pyx":217
  *         result.y = 0
  *         result.z = 0
  *     return result             # <<<<<<<<<<<<<<
@@ -4685,7 +5034,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":158
+  /* "mars_x/cython_modules/vector.pyx":200
  *     return v.x * v.x + v.y * v.y + v.z * v.z
  * 
  * cdef Vec3 vec3_normalize(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4701,7 +5050,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":177
+/* "mars_x/cython_modules/vector.pyx":219
  *     return result
  * 
  * cdef double vec3_dot(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4712,7 +5061,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_dot(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_a, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_b) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":178
+  /* "mars_x/cython_modules/vector.pyx":220
  * 
  * cdef double vec3_dot(Vec3 a, Vec3 b):
  *     return a.x * b.x + a.y * b.y + a.z * b.z             # <<<<<<<<<<<<<<
@@ -4722,7 +5071,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_dot(struct __pyx_t_6
   __pyx_r = (((__pyx_v_a.x * __pyx_v_b.x) + (__pyx_v_a.y * __pyx_v_b.y)) + (__pyx_v_a.z * __pyx_v_b.z));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":177
+  /* "mars_x/cython_modules/vector.pyx":219
  *     return result
  * 
  * cdef double vec3_dot(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4735,7 +5084,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec3_dot(struct __pyx_t_6
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":180
+/* "mars_x/cython_modules/vector.pyx":222
  *     return a.x * b.x + a.y * b.y + a.z * b.z
  * 
  * cdef Vec3 vec3_cross(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4747,7 +5096,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":182
+  /* "mars_x/cython_modules/vector.pyx":224
  * cdef Vec3 vec3_cross(Vec3 a, Vec3 b):
  *     cdef Vec3 result
  *     result.x = a.y * b.z - a.z * b.y             # <<<<<<<<<<<<<<
@@ -4756,7 +5105,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = ((__pyx_v_a.y * __pyx_v_b.z) - (__pyx_v_a.z * __pyx_v_b.y));
 
-  /* "mars_x/cython_modules/vector.pyx":183
+  /* "mars_x/cython_modules/vector.pyx":225
  *     cdef Vec3 result
  *     result.x = a.y * b.z - a.z * b.y
  *     result.y = a.z * b.x - a.x * b.z             # <<<<<<<<<<<<<<
@@ -4765,7 +5114,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = ((__pyx_v_a.z * __pyx_v_b.x) - (__pyx_v_a.x * __pyx_v_b.z));
 
-  /* "mars_x/cython_modules/vector.pyx":184
+  /* "mars_x/cython_modules/vector.pyx":226
  *     result.x = a.y * b.z - a.z * b.y
  *     result.y = a.z * b.x - a.x * b.z
  *     result.z = a.x * b.y - a.y * b.x             # <<<<<<<<<<<<<<
@@ -4774,7 +5123,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = ((__pyx_v_a.x * __pyx_v_b.y) - (__pyx_v_a.y * __pyx_v_b.x));
 
-  /* "mars_x/cython_modules/vector.pyx":185
+  /* "mars_x/cython_modules/vector.pyx":227
  *     result.y = a.z * b.x - a.x * b.z
  *     result.z = a.x * b.y - a.y * b.x
  *     return result             # <<<<<<<<<<<<<<
@@ -4784,7 +5133,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":180
+  /* "mars_x/cython_modules/vector.pyx":222
  *     return a.x * b.x + a.y * b.y + a.z * b.z
  * 
  * cdef Vec3 vec3_cross(Vec3 a, Vec3 b):             # <<<<<<<<<<<<<<
@@ -4797,7 +5146,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":187
+/* "mars_x/cython_modules/vector.pyx":229
  *     return result
  * 
  * cdef Vec3 vec3_copy(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4810,7 +5159,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_r;
   double __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":189
+  /* "mars_x/cython_modules/vector.pyx":231
  * cdef Vec3 vec3_copy(Vec3 v):
  *     cdef Vec3 result
  *     result.x = v.x             # <<<<<<<<<<<<<<
@@ -4820,7 +5169,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.x;
   __pyx_v_result.x = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":190
+  /* "mars_x/cython_modules/vector.pyx":232
  *     cdef Vec3 result
  *     result.x = v.x
  *     result.y = v.y             # <<<<<<<<<<<<<<
@@ -4830,7 +5179,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.y;
   __pyx_v_result.y = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":191
+  /* "mars_x/cython_modules/vector.pyx":233
  *     result.x = v.x
  *     result.y = v.y
  *     result.z = v.z             # <<<<<<<<<<<<<<
@@ -4840,7 +5189,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.z;
   __pyx_v_result.z = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":192
+  /* "mars_x/cython_modules/vector.pyx":234
  *     result.y = v.y
  *     result.z = v.z
  *     return result             # <<<<<<<<<<<<<<
@@ -4850,7 +5199,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":187
+  /* "mars_x/cython_modules/vector.pyx":229
  *     return result
  * 
  * cdef Vec3 vec3_copy(Vec3 v):             # <<<<<<<<<<<<<<
@@ -4863,7 +5212,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":195
+/* "mars_x/cython_modules/vector.pyx":237
  * 
  * # Vec4 functions
  * cdef Vec4 vec4_create(double x, double y, double z, double w):             # <<<<<<<<<<<<<<
@@ -4875,7 +5224,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_v;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":197
+  /* "mars_x/cython_modules/vector.pyx":239
  * cdef Vec4 vec4_create(double x, double y, double z, double w):
  *     cdef Vec4 v
  *     v.x = x             # <<<<<<<<<<<<<<
@@ -4884,7 +5233,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":198
+  /* "mars_x/cython_modules/vector.pyx":240
  *     cdef Vec4 v
  *     v.x = x
  *     v.y = y             # <<<<<<<<<<<<<<
@@ -4893,7 +5242,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":199
+  /* "mars_x/cython_modules/vector.pyx":241
  *     v.x = x
  *     v.y = y
  *     v.z = z             # <<<<<<<<<<<<<<
@@ -4902,7 +5251,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.z = __pyx_v_z;
 
-  /* "mars_x/cython_modules/vector.pyx":200
+  /* "mars_x/cython_modules/vector.pyx":242
  *     v.y = y
  *     v.z = z
  *     v.w = w             # <<<<<<<<<<<<<<
@@ -4911,7 +5260,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_v.w = __pyx_v_w;
 
-  /* "mars_x/cython_modules/vector.pyx":201
+  /* "mars_x/cython_modules/vector.pyx":243
  *     v.z = z
  *     v.w = w
  *     return v             # <<<<<<<<<<<<<<
@@ -4921,7 +5270,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":195
+  /* "mars_x/cython_modules/vector.pyx":237
  * 
  * # Vec4 functions
  * cdef Vec4 vec4_create(double x, double y, double z, double w):             # <<<<<<<<<<<<<<
@@ -4934,7 +5283,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":203
+/* "mars_x/cython_modules/vector.pyx":245
  *     return v
  * 
  * cdef Vec4 vec4_add(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -4946,7 +5295,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":205
+  /* "mars_x/cython_modules/vector.pyx":247
  * cdef Vec4 vec4_add(Vec4 a, Vec4 b):
  *     cdef Vec4 result
  *     result.x = a.x + b.x             # <<<<<<<<<<<<<<
@@ -4955,7 +5304,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x + __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":206
+  /* "mars_x/cython_modules/vector.pyx":248
  *     cdef Vec4 result
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y             # <<<<<<<<<<<<<<
@@ -4964,7 +5313,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y + __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":207
+  /* "mars_x/cython_modules/vector.pyx":249
  *     result.x = a.x + b.x
  *     result.y = a.y + b.y
  *     result.z = a.z + b.z             # <<<<<<<<<<<<<<
@@ -4973,7 +5322,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_a.z + __pyx_v_b.z);
 
-  /* "mars_x/cython_modules/vector.pyx":208
+  /* "mars_x/cython_modules/vector.pyx":250
  *     result.y = a.y + b.y
  *     result.z = a.z + b.z
  *     result.w = a.w + b.w             # <<<<<<<<<<<<<<
@@ -4982,7 +5331,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.w = (__pyx_v_a.w + __pyx_v_b.w);
 
-  /* "mars_x/cython_modules/vector.pyx":209
+  /* "mars_x/cython_modules/vector.pyx":251
  *     result.z = a.z + b.z
  *     result.w = a.w + b.w
  *     return result             # <<<<<<<<<<<<<<
@@ -4992,7 +5341,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":203
+  /* "mars_x/cython_modules/vector.pyx":245
  *     return v
  * 
  * cdef Vec4 vec4_add(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -5005,7 +5354,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":211
+/* "mars_x/cython_modules/vector.pyx":253
  *     return result
  * 
  * cdef Vec4 vec4_sub(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -5017,7 +5366,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":213
+  /* "mars_x/cython_modules/vector.pyx":255
  * cdef Vec4 vec4_sub(Vec4 a, Vec4 b):
  *     cdef Vec4 result
  *     result.x = a.x - b.x             # <<<<<<<<<<<<<<
@@ -5026,7 +5375,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_a.x - __pyx_v_b.x);
 
-  /* "mars_x/cython_modules/vector.pyx":214
+  /* "mars_x/cython_modules/vector.pyx":256
  *     cdef Vec4 result
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y             # <<<<<<<<<<<<<<
@@ -5035,7 +5384,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_a.y - __pyx_v_b.y);
 
-  /* "mars_x/cython_modules/vector.pyx":215
+  /* "mars_x/cython_modules/vector.pyx":257
  *     result.x = a.x - b.x
  *     result.y = a.y - b.y
  *     result.z = a.z - b.z             # <<<<<<<<<<<<<<
@@ -5044,7 +5393,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_a.z - __pyx_v_b.z);
 
-  /* "mars_x/cython_modules/vector.pyx":216
+  /* "mars_x/cython_modules/vector.pyx":258
  *     result.y = a.y - b.y
  *     result.z = a.z - b.z
  *     result.w = a.w - b.w             # <<<<<<<<<<<<<<
@@ -5053,7 +5402,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.w = (__pyx_v_a.w - __pyx_v_b.w);
 
-  /* "mars_x/cython_modules/vector.pyx":217
+  /* "mars_x/cython_modules/vector.pyx":259
  *     result.z = a.z - b.z
  *     result.w = a.w - b.w
  *     return result             # <<<<<<<<<<<<<<
@@ -5063,7 +5412,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":211
+  /* "mars_x/cython_modules/vector.pyx":253
  *     return result
  * 
  * cdef Vec4 vec4_sub(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -5076,7 +5425,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":219
+/* "mars_x/cython_modules/vector.pyx":261
  *     return result
  * 
  * cdef Vec4 vec4_mul(Vec4 v, double scalar):             # <<<<<<<<<<<<<<
@@ -5088,7 +5437,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_result;
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":221
+  /* "mars_x/cython_modules/vector.pyx":263
  * cdef Vec4 vec4_mul(Vec4 v, double scalar):
  *     cdef Vec4 result
  *     result.x = v.x * scalar             # <<<<<<<<<<<<<<
@@ -5097,7 +5446,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":222
+  /* "mars_x/cython_modules/vector.pyx":264
  *     cdef Vec4 result
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar             # <<<<<<<<<<<<<<
@@ -5106,7 +5455,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":223
+  /* "mars_x/cython_modules/vector.pyx":265
  *     result.x = v.x * scalar
  *     result.y = v.y * scalar
  *     result.z = v.z * scalar             # <<<<<<<<<<<<<<
@@ -5115,7 +5464,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.z = (__pyx_v_v.z * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":224
+  /* "mars_x/cython_modules/vector.pyx":266
  *     result.y = v.y * scalar
  *     result.z = v.z * scalar
  *     result.w = v.w * scalar             # <<<<<<<<<<<<<<
@@ -5124,7 +5473,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
   __pyx_v_result.w = (__pyx_v_v.w * __pyx_v_scalar);
 
-  /* "mars_x/cython_modules/vector.pyx":225
+  /* "mars_x/cython_modules/vector.pyx":267
  *     result.z = v.z * scalar
  *     result.w = v.w * scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -5134,7 +5483,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":219
+  /* "mars_x/cython_modules/vector.pyx":261
  *     return result
  * 
  * cdef Vec4 vec4_mul(Vec4 v, double scalar):             # <<<<<<<<<<<<<<
@@ -5147,7 +5496,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":228
+/* "mars_x/cython_modules/vector.pyx":270
  * 
  * @cython.cdivision(True)
  * cdef Vec4 vec4_div(Vec4 v, double scalar):             # <<<<<<<<<<<<<<
@@ -5160,7 +5509,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":230
+  /* "mars_x/cython_modules/vector.pyx":272
  * cdef Vec4 vec4_div(Vec4 v, double scalar):
  *     cdef Vec4 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -5170,7 +5519,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_t_1 = (__pyx_v_scalar == 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":231
+    /* "mars_x/cython_modules/vector.pyx":273
  *     cdef Vec4 result
  *     if scalar == 0:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -5179,7 +5528,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":232
+    /* "mars_x/cython_modules/vector.pyx":274
  *     if scalar == 0:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -5188,7 +5537,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":233
+    /* "mars_x/cython_modules/vector.pyx":275
  *         result.x = 0
  *         result.y = 0
  *         result.z = 0             # <<<<<<<<<<<<<<
@@ -5197,7 +5546,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":234
+    /* "mars_x/cython_modules/vector.pyx":276
  *         result.y = 0
  *         result.z = 0
  *         result.w = 0             # <<<<<<<<<<<<<<
@@ -5206,7 +5555,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.w = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":230
+    /* "mars_x/cython_modules/vector.pyx":272
  * cdef Vec4 vec4_div(Vec4 v, double scalar):
  *     cdef Vec4 result
  *     if scalar == 0:             # <<<<<<<<<<<<<<
@@ -5216,7 +5565,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":236
+  /* "mars_x/cython_modules/vector.pyx":278
  *         result.w = 0
  *     else:
  *         result.x = v.x / scalar             # <<<<<<<<<<<<<<
@@ -5226,7 +5575,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = (__pyx_v_v.x / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":237
+    /* "mars_x/cython_modules/vector.pyx":279
  *     else:
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar             # <<<<<<<<<<<<<<
@@ -5235,7 +5584,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":238
+    /* "mars_x/cython_modules/vector.pyx":280
  *         result.x = v.x / scalar
  *         result.y = v.y / scalar
  *         result.z = v.z / scalar             # <<<<<<<<<<<<<<
@@ -5244,7 +5593,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = (__pyx_v_v.z / __pyx_v_scalar);
 
-    /* "mars_x/cython_modules/vector.pyx":239
+    /* "mars_x/cython_modules/vector.pyx":281
  *         result.y = v.y / scalar
  *         result.z = v.z / scalar
  *         result.w = v.w / scalar             # <<<<<<<<<<<<<<
@@ -5255,7 +5604,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":240
+  /* "mars_x/cython_modules/vector.pyx":282
  *         result.z = v.z / scalar
  *         result.w = v.w / scalar
  *     return result             # <<<<<<<<<<<<<<
@@ -5265,7 +5614,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":228
+  /* "mars_x/cython_modules/vector.pyx":270
  * 
  * @cython.cdivision(True)
  * cdef Vec4 vec4_div(Vec4 v, double scalar):             # <<<<<<<<<<<<<<
@@ -5278,7 +5627,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":242
+/* "mars_x/cython_modules/vector.pyx":284
  *     return result
  * 
  * cdef double vec4_length_squared(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5289,7 +5638,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_length_squared(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_v) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":243
+  /* "mars_x/cython_modules/vector.pyx":285
  * 
  * cdef double vec4_length_squared(Vec4 v):
  *     return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w             # <<<<<<<<<<<<<<
@@ -5299,7 +5648,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_length_squared(struc
   __pyx_r = ((((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y)) + (__pyx_v_v.z * __pyx_v_v.z)) + (__pyx_v_v.w * __pyx_v_v.w));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":242
+  /* "mars_x/cython_modules/vector.pyx":284
  *     return result
  * 
  * cdef double vec4_length_squared(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5312,7 +5661,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_length_squared(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":245
+/* "mars_x/cython_modules/vector.pyx":287
  *     return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w
  * 
  * cdef Vec4 vec4_normalize(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5331,46 +5680,46 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "mars_x/cython_modules/vector.pyx":249
+  /* "mars_x/cython_modules/vector.pyx":291
  *     Normalize a vector to unit length using fast inverse square root.
  *     """
  *     cdef double len_sq = v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w             # <<<<<<<<<<<<<<
  *     cdef Vec4 result
- *     cdef double inv_len  # Move declaration to the beginning of function
+ *     cdef double inv_len
  */
   __pyx_v_len_sq = ((((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y)) + (__pyx_v_v.z * __pyx_v_v.z)) + (__pyx_v_v.w * __pyx_v_v.w));
 
-  /* "mars_x/cython_modules/vector.pyx":253
- *     cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":295
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
   __pyx_t_1 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":254
+    /* "mars_x/cython_modules/vector.pyx":296
  * 
  *     if len_sq > 1e-10:
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment             # <<<<<<<<<<<<<<
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function             # <<<<<<<<<<<<<<
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len
  */
-    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 254, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_2 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 296, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_2;
 
-    /* "mars_x/cython_modules/vector.pyx":255
+    /* "mars_x/cython_modules/vector.pyx":297
  *     if len_sq > 1e-10:
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len             # <<<<<<<<<<<<<<
  *         result.y = v.y * inv_len
  *         result.z = v.z * inv_len
  */
     __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":256
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+    /* "mars_x/cython_modules/vector.pyx":298
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len             # <<<<<<<<<<<<<<
  *         result.z = v.z * inv_len
@@ -5378,7 +5727,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":257
+    /* "mars_x/cython_modules/vector.pyx":299
  *         result.x = v.x * inv_len
  *         result.y = v.y * inv_len
  *         result.z = v.z * inv_len             # <<<<<<<<<<<<<<
@@ -5387,7 +5736,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = (__pyx_v_v.z * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":258
+    /* "mars_x/cython_modules/vector.pyx":300
  *         result.y = v.y * inv_len
  *         result.z = v.z * inv_len
  *         result.w = v.w * inv_len             # <<<<<<<<<<<<<<
@@ -5396,17 +5745,17 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.w = (__pyx_v_v.w * __pyx_v_inv_len);
 
-    /* "mars_x/cython_modules/vector.pyx":253
- *     cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":295
+ *     cdef double inv_len
  * 
  *     if len_sq > 1e-10:             # <<<<<<<<<<<<<<
- *         inv_len = fast_invsqrt(len_sq)  # Now just assignment
+ *         inv_len = fast_invsqrt(len_sq)  # Use our optimized function
  *         result.x = v.x * inv_len
  */
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":260
+  /* "mars_x/cython_modules/vector.pyx":302
  *         result.w = v.w * inv_len
  *     else:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -5416,7 +5765,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   /*else*/ {
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":261
+    /* "mars_x/cython_modules/vector.pyx":303
  *     else:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -5425,7 +5774,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":262
+    /* "mars_x/cython_modules/vector.pyx":304
  *         result.x = 0
  *         result.y = 0
  *         result.z = 0             # <<<<<<<<<<<<<<
@@ -5434,7 +5783,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = 0.0;
 
-    /* "mars_x/cython_modules/vector.pyx":263
+    /* "mars_x/cython_modules/vector.pyx":305
  *         result.y = 0
  *         result.z = 0
  *         result.w = 0             # <<<<<<<<<<<<<<
@@ -5445,7 +5794,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":264
+  /* "mars_x/cython_modules/vector.pyx":306
  *         result.z = 0
  *         result.w = 0
  *     return result             # <<<<<<<<<<<<<<
@@ -5455,7 +5804,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":245
+  /* "mars_x/cython_modules/vector.pyx":287
  *     return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w
  * 
  * cdef Vec4 vec4_normalize(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5471,7 +5820,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":266
+/* "mars_x/cython_modules/vector.pyx":308
  *     return result
  * 
  * cdef double vec4_dot(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -5482,7 +5831,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
 static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_dot(struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_a, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_v_b) {
   double __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":267
+  /* "mars_x/cython_modules/vector.pyx":309
  * 
  * cdef double vec4_dot(Vec4 a, Vec4 b):
  *     return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w             # <<<<<<<<<<<<<<
@@ -5492,7 +5841,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_dot(struct __pyx_t_6
   __pyx_r = ((((__pyx_v_a.x * __pyx_v_b.x) + (__pyx_v_a.y * __pyx_v_b.y)) + (__pyx_v_a.z * __pyx_v_b.z)) + (__pyx_v_a.w * __pyx_v_b.w));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":266
+  /* "mars_x/cython_modules/vector.pyx":308
  *     return result
  * 
  * cdef double vec4_dot(Vec4 a, Vec4 b):             # <<<<<<<<<<<<<<
@@ -5505,7 +5854,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_vec4_dot(struct __pyx_t_6
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":269
+/* "mars_x/cython_modules/vector.pyx":311
  *     return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
  * 
  * cdef Vec4 vec4_copy(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5518,7 +5867,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_r;
   double __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":271
+  /* "mars_x/cython_modules/vector.pyx":313
  * cdef Vec4 vec4_copy(Vec4 v):
  *     cdef Vec4 result
  *     result.x = v.x             # <<<<<<<<<<<<<<
@@ -5528,7 +5877,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.x;
   __pyx_v_result.x = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":272
+  /* "mars_x/cython_modules/vector.pyx":314
  *     cdef Vec4 result
  *     result.x = v.x
  *     result.y = v.y             # <<<<<<<<<<<<<<
@@ -5538,7 +5887,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.y;
   __pyx_v_result.y = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":273
+  /* "mars_x/cython_modules/vector.pyx":315
  *     result.x = v.x
  *     result.y = v.y
  *     result.z = v.z             # <<<<<<<<<<<<<<
@@ -5548,7 +5897,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.z;
   __pyx_v_result.z = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":274
+  /* "mars_x/cython_modules/vector.pyx":316
  *     result.y = v.y
  *     result.z = v.z
  *     result.w = v.w             # <<<<<<<<<<<<<<
@@ -5558,7 +5907,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_t_1 = __pyx_v_v.w;
   __pyx_v_result.w = __pyx_t_1;
 
-  /* "mars_x/cython_modules/vector.pyx":275
+  /* "mars_x/cython_modules/vector.pyx":317
  *     result.z = v.z
  *     result.w = v.w
  *     return result             # <<<<<<<<<<<<<<
@@ -5568,7 +5917,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":269
+  /* "mars_x/cython_modules/vector.pyx":311
  *     return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
  * 
  * cdef Vec4 vec4_copy(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5581,7 +5930,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":278
+/* "mars_x/cython_modules/vector.pyx":320
  * 
  * @cython.cdivision(True)
  * cdef Vec3 vec4_to_vec3(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5595,7 +5944,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   int __pyx_t_1;
   double __pyx_t_2;
 
-  /* "mars_x/cython_modules/vector.pyx":280
+  /* "mars_x/cython_modules/vector.pyx":322
  * cdef Vec3 vec4_to_vec3(Vec4 v):
  *     cdef Vec3 result
  *     if v.w != 0:             # <<<<<<<<<<<<<<
@@ -5605,7 +5954,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_t_1 = (__pyx_v_v.w != 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":281
+    /* "mars_x/cython_modules/vector.pyx":323
  *     cdef Vec3 result
  *     if v.w != 0:
  *         result.x = v.x / v.w             # <<<<<<<<<<<<<<
@@ -5614,7 +5963,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.x = (__pyx_v_v.x / __pyx_v_v.w);
 
-    /* "mars_x/cython_modules/vector.pyx":282
+    /* "mars_x/cython_modules/vector.pyx":324
  *     if v.w != 0:
  *         result.x = v.x / v.w
  *         result.y = v.y / v.w             # <<<<<<<<<<<<<<
@@ -5623,7 +5972,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.y = (__pyx_v_v.y / __pyx_v_v.w);
 
-    /* "mars_x/cython_modules/vector.pyx":283
+    /* "mars_x/cython_modules/vector.pyx":325
  *         result.x = v.x / v.w
  *         result.y = v.y / v.w
  *         result.z = v.z / v.w             # <<<<<<<<<<<<<<
@@ -5632,7 +5981,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
  */
     __pyx_v_result.z = (__pyx_v_v.z / __pyx_v_v.w);
 
-    /* "mars_x/cython_modules/vector.pyx":280
+    /* "mars_x/cython_modules/vector.pyx":322
  * cdef Vec3 vec4_to_vec3(Vec4 v):
  *     cdef Vec3 result
  *     if v.w != 0:             # <<<<<<<<<<<<<<
@@ -5642,7 +5991,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":285
+  /* "mars_x/cython_modules/vector.pyx":327
  *         result.z = v.z / v.w
  *     else:
  *         result.x = v.x             # <<<<<<<<<<<<<<
@@ -5653,7 +6002,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
     __pyx_t_2 = __pyx_v_v.x;
     __pyx_v_result.x = __pyx_t_2;
 
-    /* "mars_x/cython_modules/vector.pyx":286
+    /* "mars_x/cython_modules/vector.pyx":328
  *     else:
  *         result.x = v.x
  *         result.y = v.y             # <<<<<<<<<<<<<<
@@ -5663,7 +6012,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
     __pyx_t_2 = __pyx_v_v.y;
     __pyx_v_result.y = __pyx_t_2;
 
-    /* "mars_x/cython_modules/vector.pyx":287
+    /* "mars_x/cython_modules/vector.pyx":329
  *         result.x = v.x
  *         result.y = v.y
  *         result.z = v.z             # <<<<<<<<<<<<<<
@@ -5675,7 +6024,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/vector.pyx":288
+  /* "mars_x/cython_modules/vector.pyx":330
  *         result.y = v.y
  *         result.z = v.z
  *     return result             # <<<<<<<<<<<<<<
@@ -5685,7 +6034,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":278
+  /* "mars_x/cython_modules/vector.pyx":320
  * 
  * @cython.cdivision(True)
  * cdef Vec3 vec4_to_vec3(Vec4 v):             # <<<<<<<<<<<<<<
@@ -5698,7 +6047,7 @@ static struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 __pyx_f_6mars_x_14cy
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":292
+/* "mars_x/cython_modules/vector.pyx":334
  * # Class implementations
  * cdef class Vector2:
  *     def __init__(self, double x=0.0, double y=0.0):             # <<<<<<<<<<<<<<
@@ -5744,19 +6093,19 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_1__init__(PyObject
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_x);
           if (value) { values[0] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 334, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_y);
           if (value) { values[1] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 334, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 292, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 334, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -5769,19 +6118,19 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_1__init__(PyObject
       }
     }
     if (values[0]) {
-      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L3_error)
+      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 334, __pyx_L3_error)
     } else {
       __pyx_v_x = ((double)0.0);
     }
     if (values[1]) {
-      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L3_error)
+      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 334, __pyx_L3_error)
     } else {
       __pyx_v_y = ((double)0.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, __pyx_nargs); __PYX_ERR(0, 292, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, __pyx_nargs); __PYX_ERR(0, 334, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5811,7 +6160,7 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_1__init__(PyObject
 static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2___init__(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_v_self, double __pyx_v_x, double __pyx_v_y) {
   int __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":293
+  /* "mars_x/cython_modules/vector.pyx":335
  * cdef class Vector2:
  *     def __init__(self, double x=0.0, double y=0.0):
  *         self.x = x             # <<<<<<<<<<<<<<
@@ -5820,7 +6169,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2___init__(struct __
  */
   __pyx_v_self->x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":294
+  /* "mars_x/cython_modules/vector.pyx":336
  *     def __init__(self, double x=0.0, double y=0.0):
  *         self.x = x
  *         self.y = y             # <<<<<<<<<<<<<<
@@ -5829,7 +6178,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2___init__(struct __
  */
   __pyx_v_self->y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":292
+  /* "mars_x/cython_modules/vector.pyx":334
  * # Class implementations
  * cdef class Vector2:
  *     def __init__(self, double x=0.0, double y=0.0):             # <<<<<<<<<<<<<<
@@ -5842,7 +6191,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2___init__(struct __
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":296
+/* "mars_x/cython_modules/vector.pyx":338
  *         self.y = y
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -5878,7 +6227,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":297
+  /* "mars_x/cython_modules/vector.pyx":339
  * 
  *     def __repr__(self):
  *         return f"Vector2({self.x}, {self.y})"             # <<<<<<<<<<<<<<
@@ -5886,7 +6235,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
  *     def __add__(Vector2 self, Vector2 other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_3 = 127;
@@ -5894,9 +6243,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
   __pyx_t_2 += 8;
   __Pyx_GIVEREF(__pyx_kp_u_Vector2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Vector2);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -5908,9 +6257,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -5922,14 +6271,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
   __pyx_t_2 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__2);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u__2);
-  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":296
+  /* "mars_x/cython_modules/vector.pyx":338
  *         self.y = y
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -5950,7 +6299,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_2__repr__(st
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":299
+/* "mars_x/cython_modules/vector.pyx":341
  *         return f"Vector2({self.x}, {self.y})"
  * 
  *     def __add__(Vector2 self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -5969,7 +6318,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_5__add__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 341, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_4__add__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_other));
 
   /* function exit code */
@@ -5992,7 +6341,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_4__add__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":300
+  /* "mars_x/cython_modules/vector.pyx":342
  * 
  *     def __add__(Vector2 self, Vector2 other):
  *         return Vector2(self.x + other.x, self.y + other.y)             # <<<<<<<<<<<<<<
@@ -6000,26 +6349,26 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_4__add__(str
  *     def __sub__(Vector2 self, Vector2 other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 342, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 342, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":299
+  /* "mars_x/cython_modules/vector.pyx":341
  *         return f"Vector2({self.x}, {self.y})"
  * 
  *     def __add__(Vector2 self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -6040,7 +6389,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_4__add__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":302
+/* "mars_x/cython_modules/vector.pyx":344
  *         return Vector2(self.x + other.x, self.y + other.y)
  * 
  *     def __sub__(Vector2 self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -6059,7 +6408,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_7__sub__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__sub__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 302, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 344, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_6__sub__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_other));
 
   /* function exit code */
@@ -6082,7 +6431,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_6__sub__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":303
+  /* "mars_x/cython_modules/vector.pyx":345
  * 
  *     def __sub__(Vector2 self, Vector2 other):
  *         return Vector2(self.x - other.x, self.y - other.y)             # <<<<<<<<<<<<<<
@@ -6090,26 +6439,26 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_6__sub__(str
  *     def __mul__(Vector2 self, double scalar):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":302
+  /* "mars_x/cython_modules/vector.pyx":344
  *         return Vector2(self.x + other.x, self.y + other.y)
  * 
  *     def __sub__(Vector2 self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -6130,7 +6479,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_6__sub__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":305
+/* "mars_x/cython_modules/vector.pyx":347
  *         return Vector2(self.x - other.x, self.y - other.y)
  * 
  *     def __mul__(Vector2 self, double scalar):             # <<<<<<<<<<<<<<
@@ -6151,7 +6500,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_9__mul__(PyO
   __Pyx_RefNannySetupContext("__mul__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   assert(__pyx_arg_scalar); {
-    __pyx_v_scalar = __pyx_PyFloat_AsDouble(__pyx_arg_scalar); if (unlikely((__pyx_v_scalar == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L3_error)
+    __pyx_v_scalar = __pyx_PyFloat_AsDouble(__pyx_arg_scalar); if (unlikely((__pyx_v_scalar == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 347, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6177,7 +6526,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_8__mul__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":306
+  /* "mars_x/cython_modules/vector.pyx":348
  * 
  *     def __mul__(Vector2 self, double scalar):
  *         return Vector2(self.x * scalar, self.y * scalar)             # <<<<<<<<<<<<<<
@@ -6185,26 +6534,26 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_8__mul__(str
  *     def __truediv__(Vector2 self, double scalar):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_scalar)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_scalar)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_scalar)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_scalar)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 348, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":305
+  /* "mars_x/cython_modules/vector.pyx":347
  *         return Vector2(self.x - other.x, self.y - other.y)
  * 
  *     def __mul__(Vector2 self, double scalar):             # <<<<<<<<<<<<<<
@@ -6225,7 +6574,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_8__mul__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":308
+/* "mars_x/cython_modules/vector.pyx":350
  *         return Vector2(self.x * scalar, self.y * scalar)
  * 
  *     def __truediv__(Vector2 self, double scalar):             # <<<<<<<<<<<<<<
@@ -6246,7 +6595,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_11__truediv_
   __Pyx_RefNannySetupContext("__truediv__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   assert(__pyx_arg_scalar); {
-    __pyx_v_scalar = __pyx_PyFloat_AsDouble(__pyx_arg_scalar); if (unlikely((__pyx_v_scalar == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 308, __pyx_L3_error)
+    __pyx_v_scalar = __pyx_PyFloat_AsDouble(__pyx_arg_scalar); if (unlikely((__pyx_v_scalar == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6273,7 +6622,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_10__truediv_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__truediv__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":309
+  /* "mars_x/cython_modules/vector.pyx":351
  * 
  *     def __truediv__(Vector2 self, double scalar):
  *         if scalar == 0:             # <<<<<<<<<<<<<<
@@ -6283,20 +6632,20 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_10__truediv_
   __pyx_t_1 = (__pyx_v_scalar == 0.0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "mars_x/cython_modules/vector.pyx":310
+    /* "mars_x/cython_modules/vector.pyx":352
  *     def __truediv__(Vector2 self, double scalar):
  *         if scalar == 0:
  *             raise ZeroDivisionError("Division by zero")             # <<<<<<<<<<<<<<
  *         return Vector2(self.x / scalar, self.y / scalar)
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 310, __pyx_L1_error)
+    __PYX_ERR(0, 352, __pyx_L1_error)
 
-    /* "mars_x/cython_modules/vector.pyx":309
+    /* "mars_x/cython_modules/vector.pyx":351
  * 
  *     def __truediv__(Vector2 self, double scalar):
  *         if scalar == 0:             # <<<<<<<<<<<<<<
@@ -6305,7 +6654,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_10__truediv_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":311
+  /* "mars_x/cython_modules/vector.pyx":353
  *         if scalar == 0:
  *             raise ZeroDivisionError("Division by zero")
  *         return Vector2(self.x / scalar, self.y / scalar)             # <<<<<<<<<<<<<<
@@ -6315,32 +6664,32 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_10__truediv_
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_scalar == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 311, __pyx_L1_error)
+    __PYX_ERR(0, 353, __pyx_L1_error)
   }
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_scalar)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_scalar)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_v_scalar == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 311, __pyx_L1_error)
+    __PYX_ERR(0, 353, __pyx_L1_error)
   }
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_scalar)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_scalar)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":308
+  /* "mars_x/cython_modules/vector.pyx":350
  *         return Vector2(self.x * scalar, self.y * scalar)
  * 
  *     def __truediv__(Vector2 self, double scalar):             # <<<<<<<<<<<<<<
@@ -6361,7 +6710,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_10__truediv_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":313
+/* "mars_x/cython_modules/vector.pyx":355
  *         return Vector2(self.x / scalar, self.y / scalar)
  * 
  *     def __neg__(self):             # <<<<<<<<<<<<<<
@@ -6395,7 +6744,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_12__neg__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__neg__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":314
+  /* "mars_x/cython_modules/vector.pyx":356
  * 
  *     def __neg__(self):
  *         return Vector2(-self.x, -self.y)             # <<<<<<<<<<<<<<
@@ -6403,26 +6752,26 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_12__neg__(st
  *     cpdef Vector2 copy(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_self->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_self->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":313
+  /* "mars_x/cython_modules/vector.pyx":355
  *         return Vector2(self.x / scalar, self.y / scalar)
  * 
  *     def __neg__(self):             # <<<<<<<<<<<<<<
@@ -6443,7 +6792,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_12__neg__(st
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":316
+/* "mars_x/cython_modules/vector.pyx":358
  *         return Vector2(-self.x, -self.y)
  * 
  *     cpdef Vector2 copy(self):             # <<<<<<<<<<<<<<
@@ -6479,7 +6828,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_15copy)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -6502,11 +6851,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 316, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 358, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6525,7 +6874,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":317
+  /* "mars_x/cython_modules/vector.pyx":359
  * 
  *     cpdef Vector2 copy(self):
  *         return Vector2(self.x, self.y)             # <<<<<<<<<<<<<<
@@ -6533,26 +6882,26 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
  *     cpdef double length_squared(self):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 359, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":316
+  /* "mars_x/cython_modules/vector.pyx":358
  *         return Vector2(-self.x, -self.y)
  * 
  *     cpdef Vector2 copy(self):             # <<<<<<<<<<<<<<
@@ -6624,7 +6973,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_14copy(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6641,7 +6990,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_14copy(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":319
+/* "mars_x/cython_modules/vector.pyx":361
  *         return Vector2(self.x, self.y)
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -6678,7 +7027,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(s
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_17length_squared)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -6700,11 +7049,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(s
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 361, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6723,7 +7072,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(s
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":321
+  /* "mars_x/cython_modules/vector.pyx":363
  *     cpdef double length_squared(self):
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y             # <<<<<<<<<<<<<<
@@ -6733,7 +7082,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(s
   __pyx_r = ((__pyx_v_self->x * __pyx_v_self->x) + (__pyx_v_self->y * __pyx_v_self->y));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":319
+  /* "mars_x/cython_modules/vector.pyx":361
  *         return Vector2(self.x, self.y)
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -6806,8 +7155,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_16length_squ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("length_squared", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -6824,7 +7173,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_16length_squ
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":323
+/* "mars_x/cython_modules/vector.pyx":365
  *         return self.x * self.x + self.y * self.y
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -6863,7 +7212,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_magnitude(struct
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_19magnitude)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -6885,11 +7234,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_magnitude(struct
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 323, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 365, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6908,57 +7257,61 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_magnitude(struct
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":325
+  /* "mars_x/cython_modules/vector.pyx":367
  *     cpdef double magnitude(self):
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
- *         if len_sq == 0:
- *             return 0
+ *         if len_sq < 1e-10:
+ *             return 0.0
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":326
+  /* "mars_x/cython_modules/vector.pyx":368
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
- *         if len_sq == 0:             # <<<<<<<<<<<<<<
- *             return 0
- *         return len_sq * fast_invsqrt(len_sq)
+ *         if len_sq < 1e-10:             # <<<<<<<<<<<<<<
+ *             return 0.0
+ *         # Use x * 1/sqrt(x) instead of sqrt(x)
  */
-  __pyx_t_7 = (__pyx_v_len_sq == 0.0);
+  __pyx_t_7 = (__pyx_v_len_sq < 1e-10);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":327
+    /* "mars_x/cython_modules/vector.pyx":369
  *         cdef double len_sq = self.length_squared()
- *         if len_sq == 0:
- *             return 0             # <<<<<<<<<<<<<<
- *         return len_sq * fast_invsqrt(len_sq)
- * 
+ *         if len_sq < 1e-10:
+ *             return 0.0             # <<<<<<<<<<<<<<
+ *         # Use x * 1/sqrt(x) instead of sqrt(x)
+ *         return 1.0 / fast_invsqrt(len_sq)
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":326
+    /* "mars_x/cython_modules/vector.pyx":368
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
- *         if len_sq == 0:             # <<<<<<<<<<<<<<
- *             return 0
- *         return len_sq * fast_invsqrt(len_sq)
+ *         if len_sq < 1e-10:             # <<<<<<<<<<<<<<
+ *             return 0.0
+ *         # Use x * 1/sqrt(x) instead of sqrt(x)
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":328
- *         if len_sq == 0:
- *             return 0
- *         return len_sq * fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
+  /* "mars_x/cython_modules/vector.pyx":371
+ *             return 0.0
+ *         # Use x * 1/sqrt(x) instead of sqrt(x)
+ *         return 1.0 / fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  * 
  *     cpdef Vector2 normalize(self):
  */
-  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
-  __pyx_r = (__pyx_v_len_sq * __pyx_t_6);
+  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L1_error)
+  if (unlikely(__pyx_t_6 == 0)) {
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    __PYX_ERR(0, 371, __pyx_L1_error)
+  }
+  __pyx_r = (1.0 / __pyx_t_6);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":323
+  /* "mars_x/cython_modules/vector.pyx":365
  *         return self.x * self.x + self.y * self.y
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -7031,8 +7384,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_18magnitude(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("magnitude", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 323, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 365, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7049,8 +7402,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_18magnitude(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":330
- *         return len_sq * fast_invsqrt(len_sq)
+/* "mars_x/cython_modules/vector.pyx":373
+ *         return 1.0 / fast_invsqrt(len_sq)
  * 
  *     cpdef Vector2 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
@@ -7089,7 +7442,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_21normalize)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -7112,11 +7465,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 330, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 373, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7135,18 +7488,18 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":332
+  /* "mars_x/cython_modules/vector.pyx":375
  *     cpdef Vector2 normalize(self):
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
- *         cdef double inv_len  # Move declaration to the beginning of function
+ *         cdef double inv_len
  * 
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 375, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":335
- *         cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":378
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -7155,17 +7508,17 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
   __pyx_t_7 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":336
+    /* "mars_x/cython_modules/vector.pyx":379
  * 
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  *             return Vector2(self.x * inv_len, self.y * inv_len)
  *         return Vector2(0, 0)
  */
-    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 336, __pyx_L1_error)
+    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_6;
 
-    /* "mars_x/cython_modules/vector.pyx":337
+    /* "mars_x/cython_modules/vector.pyx":380
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector2(self.x * inv_len, self.y * inv_len)             # <<<<<<<<<<<<<<
@@ -7173,27 +7526,27 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
  * 
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error);
     __pyx_t_1 = 0;
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":335
- *         cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":378
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -7201,7 +7554,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":338
+  /* "mars_x/cython_modules/vector.pyx":381
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector2(self.x * inv_len, self.y * inv_len)
  *         return Vector2(0, 0)             # <<<<<<<<<<<<<<
@@ -7209,14 +7562,14 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
  *     cpdef double dot(self, Vector2 other):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":330
- *         return len_sq * fast_invsqrt(len_sq)
+  /* "mars_x/cython_modules/vector.pyx":373
+ *         return 1.0 / fast_invsqrt(len_sq)
  * 
  *     cpdef Vector2 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
@@ -7288,7 +7641,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_20normalize(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("normalize", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7305,7 +7658,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_20normalize(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":340
+/* "mars_x/cython_modules/vector.pyx":383
  *         return Vector2(0, 0)
  * 
  *     cpdef double dot(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -7342,7 +7695,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(struct __pyx
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 383, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_23dot)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -7364,11 +7717,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(struct __pyx
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7387,7 +7740,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(struct __pyx
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":341
+  /* "mars_x/cython_modules/vector.pyx":384
  * 
  *     cpdef double dot(self, Vector2 other):
  *         return self.x * other.x + self.y * other.y             # <<<<<<<<<<<<<<
@@ -7397,7 +7750,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(struct __pyx
   __pyx_r = ((__pyx_v_self->x * __pyx_v_other->x) + (__pyx_v_self->y * __pyx_v_other->y));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":340
+  /* "mars_x/cython_modules/vector.pyx":383
  *         return Vector2(0, 0)
  * 
  *     cpdef double dot(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -7471,12 +7824,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 340, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 383, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -7487,7 +7840,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 340, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 383, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7501,7 +7854,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 383, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_22dot(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -7529,8 +7882,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_22dot(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dot", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7547,7 +7900,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_22dot(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":343
+/* "mars_x/cython_modules/vector.pyx":386
  *         return self.x * other.x + self.y * other.y
  * 
  *     cpdef double cross(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -7584,7 +7937,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 343, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_25cross)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -7606,11 +7959,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(struct __p
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7629,7 +7982,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(struct __p
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":344
+  /* "mars_x/cython_modules/vector.pyx":387
  * 
  *     cpdef double cross(self, Vector2 other):
  *         return self.x * other.y - self.y * other.x             # <<<<<<<<<<<<<<
@@ -7639,7 +7992,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(struct __p
   __pyx_r = ((__pyx_v_self->x * __pyx_v_other->y) - (__pyx_v_self->y * __pyx_v_other->x));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":343
+  /* "mars_x/cython_modules/vector.pyx":386
  *         return self.x * other.x + self.y * other.y
  * 
  *     cpdef double cross(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -7713,12 +8066,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "cross") < 0)) __PYX_ERR(0, 343, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "cross") < 0)) __PYX_ERR(0, 386, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -7729,7 +8082,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cross", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 343, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cross", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 386, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7743,7 +8096,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 343, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 386, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_24cross(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -7771,8 +8124,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_24cross(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cross", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_cross(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7789,7 +8142,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_24cross(stru
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":346
+/* "mars_x/cython_modules/vector.pyx":389
  *         return self.x * other.y - self.y * other.x
  * 
  *     cpdef double angle(self):             # <<<<<<<<<<<<<<
@@ -7826,7 +8179,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_angle); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 346, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_angle); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_27angle)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -7848,11 +8201,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(struct __p
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 346, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7871,7 +8224,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(struct __p
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":348
+  /* "mars_x/cython_modules/vector.pyx":391
  *     cpdef double angle(self):
  *         # Returns angle in radians
  *         return atan2(self.y, self.x)             # <<<<<<<<<<<<<<
@@ -7881,7 +8234,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(struct __p
   __pyx_r = atan2(__pyx_v_self->y, __pyx_v_self->x);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":346
+  /* "mars_x/cython_modules/vector.pyx":389
  *         return self.x * other.y - self.y * other.x
  * 
  *     cpdef double angle(self):             # <<<<<<<<<<<<<<
@@ -7953,8 +8306,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_26angle(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("angle", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7971,7 +8324,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_26angle(stru
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":350
+/* "mars_x/cython_modules/vector.pyx":393
  *         return atan2(self.y, self.x)
  * 
  *     cpdef double angle_to(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -8016,7 +8369,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_angle_to); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_angle_to); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_29angle_to)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -8038,11 +8391,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 393, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8061,37 +8414,37 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":352
+  /* "mars_x/cython_modules/vector.pyx":395
  *     cpdef double angle_to(self, Vector2 other):
  *         # Use dot product for cosine of angle, avoiding sqrt
  *         cdef double dot_product = self.dot(other)             # <<<<<<<<<<<<<<
  *         cdef double len1_sq = self.length_squared()
  *         cdef double len2_sq = other.length_squared()
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->dot(__pyx_v_self, __pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->dot(__pyx_v_self, __pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 395, __pyx_L1_error)
   __pyx_v_dot_product = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":353
+  /* "mars_x/cython_modules/vector.pyx":396
  *         # Use dot product for cosine of angle, avoiding sqrt
  *         cdef double dot_product = self.dot(other)
  *         cdef double len1_sq = self.length_squared()             # <<<<<<<<<<<<<<
  *         cdef double len2_sq = other.length_squared()
  *         cdef double cos_angle
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
   __pyx_v_len1_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":354
+  /* "mars_x/cython_modules/vector.pyx":397
  *         cdef double dot_product = self.dot(other)
  *         cdef double len1_sq = self.length_squared()
  *         cdef double len2_sq = other.length_squared()             # <<<<<<<<<<<<<<
  *         cdef double cos_angle
  *         cdef double cross_product
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_other->__pyx_vtab)->length_squared(__pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_other->__pyx_vtab)->length_squared(__pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 397, __pyx_L1_error)
   __pyx_v_len2_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":358
+  /* "mars_x/cython_modules/vector.pyx":401
  *         cdef double cross_product
  * 
  *         if len1_sq == 0 or len2_sq == 0:             # <<<<<<<<<<<<<<
@@ -8109,7 +8462,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":359
+    /* "mars_x/cython_modules/vector.pyx":402
  * 
  *         if len1_sq == 0 or len2_sq == 0:
  *             return 0             # <<<<<<<<<<<<<<
@@ -8119,7 +8472,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":358
+    /* "mars_x/cython_modules/vector.pyx":401
  *         cdef double cross_product
  * 
  *         if len1_sq == 0 or len2_sq == 0:             # <<<<<<<<<<<<<<
@@ -8128,18 +8481,18 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":362
+  /* "mars_x/cython_modules/vector.pyx":405
  * 
  *         # Compute cosine using scaled dot product
  *         cos_angle = dot_product * fast_invsqrt(len1_sq) * fast_invsqrt(len2_sq)             # <<<<<<<<<<<<<<
  * 
  *         # Clamp to avoid numerical errors
  */
-  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len1_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 362, __pyx_L1_error)
-  __pyx_t_9 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len2_sq); if (unlikely(__pyx_t_9 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len1_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 405, __pyx_L1_error)
+  __pyx_t_9 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len2_sq); if (unlikely(__pyx_t_9 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 405, __pyx_L1_error)
   __pyx_v_cos_angle = ((__pyx_v_dot_product * __pyx_t_6) * __pyx_t_9);
 
-  /* "mars_x/cython_modules/vector.pyx":365
+  /* "mars_x/cython_modules/vector.pyx":408
  * 
  *         # Clamp to avoid numerical errors
  *         if cos_angle > 1.0:             # <<<<<<<<<<<<<<
@@ -8149,7 +8502,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
   __pyx_t_7 = (__pyx_v_cos_angle > 1.0);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":366
+    /* "mars_x/cython_modules/vector.pyx":409
  *         # Clamp to avoid numerical errors
  *         if cos_angle > 1.0:
  *             cos_angle = 1.0             # <<<<<<<<<<<<<<
@@ -8158,7 +8511,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
  */
     __pyx_v_cos_angle = 1.0;
 
-    /* "mars_x/cython_modules/vector.pyx":365
+    /* "mars_x/cython_modules/vector.pyx":408
  * 
  *         # Clamp to avoid numerical errors
  *         if cos_angle > 1.0:             # <<<<<<<<<<<<<<
@@ -8168,7 +8521,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     goto __pyx_L6;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":367
+  /* "mars_x/cython_modules/vector.pyx":410
  *         if cos_angle > 1.0:
  *             cos_angle = 1.0
  *         elif cos_angle < -1.0:             # <<<<<<<<<<<<<<
@@ -8178,7 +8531,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
   __pyx_t_7 = (__pyx_v_cos_angle < -1.0);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":368
+    /* "mars_x/cython_modules/vector.pyx":411
  *             cos_angle = 1.0
  *         elif cos_angle < -1.0:
  *             cos_angle = -1.0             # <<<<<<<<<<<<<<
@@ -8187,7 +8540,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
  */
     __pyx_v_cos_angle = -1.0;
 
-    /* "mars_x/cython_modules/vector.pyx":367
+    /* "mars_x/cython_modules/vector.pyx":410
  *         if cos_angle > 1.0:
  *             cos_angle = 1.0
  *         elif cos_angle < -1.0:             # <<<<<<<<<<<<<<
@@ -8197,17 +8550,17 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
   }
   __pyx_L6:;
 
-  /* "mars_x/cython_modules/vector.pyx":371
+  /* "mars_x/cython_modules/vector.pyx":414
  * 
  *         # Use cross product to determine the direction
  *         cross_product = self.cross(other)             # <<<<<<<<<<<<<<
  *         if cross_product < 0:
  *             return -acos(cos_angle)
  */
-  __pyx_t_9 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->cross(__pyx_v_self, __pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L1_error)
+  __pyx_t_9 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->cross(__pyx_v_self, __pyx_v_other, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 414, __pyx_L1_error)
   __pyx_v_cross_product = __pyx_t_9;
 
-  /* "mars_x/cython_modules/vector.pyx":372
+  /* "mars_x/cython_modules/vector.pyx":415
  *         # Use cross product to determine the direction
  *         cross_product = self.cross(other)
  *         if cross_product < 0:             # <<<<<<<<<<<<<<
@@ -8217,7 +8570,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
   __pyx_t_7 = (__pyx_v_cross_product < 0.0);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":373
+    /* "mars_x/cython_modules/vector.pyx":416
  *         cross_product = self.cross(other)
  *         if cross_product < 0:
  *             return -acos(cos_angle)             # <<<<<<<<<<<<<<
@@ -8227,7 +8580,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     __pyx_r = (-acos(__pyx_v_cos_angle));
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":372
+    /* "mars_x/cython_modules/vector.pyx":415
  *         # Use cross product to determine the direction
  *         cross_product = self.cross(other)
  *         if cross_product < 0:             # <<<<<<<<<<<<<<
@@ -8236,7 +8589,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":375
+  /* "mars_x/cython_modules/vector.pyx":418
  *             return -acos(cos_angle)
  *         else:
  *             return acos(cos_angle)             # <<<<<<<<<<<<<<
@@ -8248,7 +8601,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(struct 
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":350
+  /* "mars_x/cython_modules/vector.pyx":393
  *         return atan2(self.y, self.x)
  * 
  *     cpdef double angle_to(self, Vector2 other):             # <<<<<<<<<<<<<<
@@ -8322,12 +8675,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 393, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "angle_to") < 0)) __PYX_ERR(0, 350, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "angle_to") < 0)) __PYX_ERR(0, 393, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -8338,7 +8691,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("angle_to", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 350, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("angle_to", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 393, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8352,7 +8705,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 350, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "other", 0))) __PYX_ERR(0, 393, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_28angle_to(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -8380,8 +8733,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_28angle_to(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("angle_to", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_angle_to(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -8398,12 +8751,12 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_28angle_to(s
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":377
+/* "mars_x/cython_modules/vector.pyx":420
  *             return acos(cos_angle)
  * 
  *     cpdef Vector2 rotate(self, double angle):             # <<<<<<<<<<<<<<
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)
  */
 
 static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_31rotate(PyObject *__pyx_v_self, 
@@ -8424,6 +8777,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   unsigned int __pyx_t_6;
+  double __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -8437,11 +8791,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rotate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 377, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rotate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_31rotate)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_angle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_angle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -8463,11 +8817,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 377, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2))))) __PYX_ERR(0, 420, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8486,81 +8840,83 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":379
+  /* "mars_x/cython_modules/vector.pyx":422
  *     cpdef Vector2 rotate(self, double angle):
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)             # <<<<<<<<<<<<<<
- *         cdef double sn = sin(angle)
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)             # <<<<<<<<<<<<<<
+ *         cdef double sn = fast_sin(angle)
  *         return Vector2(
  */
-  __pyx_v_cs = cos(__pyx_v_angle);
+  __pyx_t_7 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_angle); if (unlikely(__pyx_t_7 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_v_cs = __pyx_t_7;
 
-  /* "mars_x/cython_modules/vector.pyx":380
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)
- *         cdef double sn = sin(angle)             # <<<<<<<<<<<<<<
+  /* "mars_x/cython_modules/vector.pyx":423
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)
+ *         cdef double sn = fast_sin(angle)             # <<<<<<<<<<<<<<
  *         return Vector2(
  *             self.x * cs - self.y * sn,
  */
-  __pyx_v_sn = sin(__pyx_v_angle);
+  __pyx_t_7 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_angle); if (unlikely(__pyx_t_7 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 423, __pyx_L1_error)
+  __pyx_v_sn = __pyx_t_7;
 
-  /* "mars_x/cython_modules/vector.pyx":381
- *         cdef double cs = cos(angle)
- *         cdef double sn = sin(angle)
+  /* "mars_x/cython_modules/vector.pyx":424
+ *         cdef double cs = fast_cos(angle)
+ *         cdef double sn = fast_sin(angle)
  *         return Vector2(             # <<<<<<<<<<<<<<
  *             self.x * cs - self.y * sn,
  *             self.x * sn + self.y * cs
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/vector.pyx":382
- *         cdef double sn = sin(angle)
+  /* "mars_x/cython_modules/vector.pyx":425
+ *         cdef double sn = fast_sin(angle)
  *         return Vector2(
  *             self.x * cs - self.y * sn,             # <<<<<<<<<<<<<<
  *             self.x * sn + self.y * cs
  *         )
  */
-  __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_cs) - (__pyx_v_self->y * __pyx_v_sn))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_cs) - (__pyx_v_self->y * __pyx_v_sn))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/vector.pyx":383
+  /* "mars_x/cython_modules/vector.pyx":426
  *         return Vector2(
  *             self.x * cs - self.y * sn,
  *             self.x * sn + self.y * cs             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_sn) + (__pyx_v_self->y * __pyx_v_cs))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_sn) + (__pyx_v_self->y * __pyx_v_cs))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/vector.pyx":381
- *         cdef double cs = cos(angle)
- *         cdef double sn = sin(angle)
+  /* "mars_x/cython_modules/vector.pyx":424
+ *         cdef double cs = fast_cos(angle)
+ *         cdef double sn = fast_sin(angle)
  *         return Vector2(             # <<<<<<<<<<<<<<
  *             self.x * cs - self.y * sn,
  *             self.x * sn + self.y * cs
  */
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 424, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 424, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2), __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":377
+  /* "mars_x/cython_modules/vector.pyx":420
  *             return acos(cos_angle)
  * 
  *     cpdef Vector2 rotate(self, double angle):             # <<<<<<<<<<<<<<
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)
  */
 
   /* function exit code */
@@ -8631,23 +8987,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 377, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "rotate") < 0)) __PYX_ERR(0, 377, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "rotate") < 0)) __PYX_ERR(0, 420, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_angle = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_angle == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 377, __pyx_L3_error)
+    __pyx_v_angle = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_angle == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("rotate", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 377, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("rotate", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 420, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8683,7 +9039,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_30rotate(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_rotate(__pyx_v_self, __pyx_v_angle, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_rotate(__pyx_v_self, __pyx_v_angle, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8700,7 +9056,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_30rotate(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":386
+/* "mars_x/cython_modules/vector.pyx":429
  *         )
  * 
  *     cpdef bint is_zero(self):             # <<<<<<<<<<<<<<
@@ -8738,7 +9094,7 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero(struct __py
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_zero); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_zero); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector2_33is_zero)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -8760,11 +9116,11 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero(struct __py
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8783,18 +9139,18 @@ static int __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero(struct __py
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":388
+  /* "mars_x/cython_modules/vector.pyx":431
  *     cpdef bint is_zero(self):
  *         """Check if vector is approximately zero"""
  *         return self.length_squared() < 1e-10             # <<<<<<<<<<<<<<
  * 
  * cdef class Vector3:
  */
-  __pyx_t_7 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L1_error)
+  __pyx_t_7 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 431, __pyx_L1_error)
   __pyx_r = (__pyx_t_7 < 1e-10);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":386
+  /* "mars_x/cython_modules/vector.pyx":429
  *         )
  * 
  *     cpdef bint is_zero(self):             # <<<<<<<<<<<<<<
@@ -8867,8 +9223,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_32is_zero(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_zero", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -8885,7 +9241,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_32is_zero(st
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":61
+/* "mars_x/cython_modules/vector.pxd":67
  * # Classes for Python API
  * cdef class Vector2:
  *     cdef public double x             # <<<<<<<<<<<<<<
@@ -8917,7 +9273,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_1x___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8955,7 +9311,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_1x_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 61, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 67, __pyx_L1_error)
   __pyx_v_self->x = __pyx_t_1;
 
   /* function exit code */
@@ -8968,7 +9324,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_1x_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":62
+/* "mars_x/cython_modules/vector.pxd":68
  * cdef class Vector2:
  *     cdef public double x
  *     cdef public double y             # <<<<<<<<<<<<<<
@@ -9000,7 +9356,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_1y___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 62, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9038,7 +9394,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_1y_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 68, __pyx_L1_error)
   __pyx_v_self->y = __pyx_t_1;
 
   /* function exit code */
@@ -9458,7 +9814,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector2_36__setstate
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":391
+/* "mars_x/cython_modules/vector.pyx":434
  * 
  * cdef class Vector3:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
@@ -9507,26 +9863,26 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_1__init__(PyObject
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_x);
           if (value) { values[0] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_y);
           if (value) { values[1] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_z);
           if (value) { values[2] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 391, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 434, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -9541,24 +9897,24 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_1__init__(PyObject
       }
     }
     if (values[0]) {
-      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
     } else {
       __pyx_v_x = ((double)0.0);
     }
     if (values[1]) {
-      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
     } else {
       __pyx_v_y = ((double)0.0);
     }
     if (values[2]) {
-      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
     } else {
       __pyx_v_z = ((double)0.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 3, __pyx_nargs); __PYX_ERR(0, 391, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 3, __pyx_nargs); __PYX_ERR(0, 434, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9588,7 +9944,7 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_1__init__(PyObject
 static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3___init__(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_v_self, double __pyx_v_x, double __pyx_v_y, double __pyx_v_z) {
   int __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":392
+  /* "mars_x/cython_modules/vector.pyx":435
  * cdef class Vector3:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):
  *         self.x = x             # <<<<<<<<<<<<<<
@@ -9597,7 +9953,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3___init__(struct __
  */
   __pyx_v_self->x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":393
+  /* "mars_x/cython_modules/vector.pyx":436
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):
  *         self.x = x
  *         self.y = y             # <<<<<<<<<<<<<<
@@ -9606,7 +9962,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3___init__(struct __
  */
   __pyx_v_self->y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":394
+  /* "mars_x/cython_modules/vector.pyx":437
  *         self.x = x
  *         self.y = y
  *         self.z = z             # <<<<<<<<<<<<<<
@@ -9615,7 +9971,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3___init__(struct __
  */
   __pyx_v_self->z = __pyx_v_z;
 
-  /* "mars_x/cython_modules/vector.pyx":391
+  /* "mars_x/cython_modules/vector.pyx":434
  * 
  * cdef class Vector3:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
@@ -9628,7 +9984,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3___init__(struct __
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":396
+/* "mars_x/cython_modules/vector.pyx":439
  *         self.z = z
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -9664,7 +10020,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":397
+  /* "mars_x/cython_modules/vector.pyx":440
  * 
  *     def __repr__(self):
  *         return f"Vector3({self.x}, {self.y}, {self.z})"             # <<<<<<<<<<<<<<
@@ -9672,7 +10028,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
  *     def __add__(Vector3 self, Vector3 other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_3 = 127;
@@ -9680,9 +10036,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   __pyx_t_2 += 8;
   __Pyx_GIVEREF(__pyx_kp_u_Vector3);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Vector3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -9694,9 +10050,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -9708,9 +10064,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -9722,14 +10078,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   __pyx_t_2 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__2);
   PyTuple_SET_ITEM(__pyx_t_1, 6, __pyx_kp_u__2);
-  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_1, 7, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_1, 7, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":396
+  /* "mars_x/cython_modules/vector.pyx":439
  *         self.z = z
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -9750,7 +10106,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_2__repr__(st
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":399
+/* "mars_x/cython_modules/vector.pyx":442
  *         return f"Vector3({self.x}, {self.y}, {self.z})"
  * 
  *     def __add__(Vector3 self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -9769,7 +10125,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_5__add__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 442, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_4__add__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_other));
 
   /* function exit code */
@@ -9793,7 +10149,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_4__add__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":400
+  /* "mars_x/cython_modules/vector.pyx":443
  * 
  *     def __add__(Vector3 self, Vector3 other):
  *         return Vector3(self.x + other.x, self.y + other.y, self.z + other.z)             # <<<<<<<<<<<<<<
@@ -9801,31 +10157,31 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_4__add__(str
  *     def __sub__(Vector3 self, Vector3 other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 443, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 400, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":399
+  /* "mars_x/cython_modules/vector.pyx":442
  *         return f"Vector3({self.x}, {self.y}, {self.z})"
  * 
  *     def __add__(Vector3 self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -9847,7 +10203,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_4__add__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":402
+/* "mars_x/cython_modules/vector.pyx":445
  *         return Vector3(self.x + other.x, self.y + other.y, self.z + other.z)
  * 
  *     def __sub__(Vector3 self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -9866,7 +10222,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_7__sub__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__sub__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 402, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 445, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_6__sub__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_other));
 
   /* function exit code */
@@ -9890,7 +10246,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_6__sub__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":403
+  /* "mars_x/cython_modules/vector.pyx":446
  * 
  *     def __sub__(Vector3 self, Vector3 other):
  *         return Vector3(self.x - other.x, self.y - other.y, self.z - other.z)             # <<<<<<<<<<<<<<
@@ -9898,31 +10254,31 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_6__sub__(str
  *     def __mul__(self, value):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":402
+  /* "mars_x/cython_modules/vector.pyx":445
  *         return Vector3(self.x + other.x, self.y + other.y, self.z + other.z)
  * 
  *     def __sub__(Vector3 self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -9944,7 +10300,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_6__sub__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":405
+/* "mars_x/cython_modules/vector.pyx":448
  *         return Vector3(self.x - other.x, self.y - other.y, self.z - other.z)
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -9981,7 +10337,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":406
+  /* "mars_x/cython_modules/vector.pyx":449
  * 
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -9999,7 +10355,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":407
+    /* "mars_x/cython_modules/vector.pyx":450
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):
  *             return Vector3(self.x * value, self.y * value, self.z * value)             # <<<<<<<<<<<<<<
@@ -10007,40 +10363,40 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
  *             return Vector3(self.x * (<Vector3>value).x,
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 450, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 407, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 450, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 407, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 407, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":406
+    /* "mars_x/cython_modules/vector.pyx":449
  * 
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -10049,7 +10405,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":408
+  /* "mars_x/cython_modules/vector.pyx":451
  *         if isinstance(value, (int, float)):
  *             return Vector3(self.x * value, self.y * value, self.z * value)
  *         elif isinstance(value, Vector3):             # <<<<<<<<<<<<<<
@@ -10059,7 +10415,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
   __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_value, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); 
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":409
+    /* "mars_x/cython_modules/vector.pyx":452
  *             return Vector3(self.x * value, self.y * value, self.z * value)
  *         elif isinstance(value, Vector3):
  *             return Vector3(self.x * (<Vector3>value).x,             # <<<<<<<<<<<<<<
@@ -10067,55 +10423,55 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
  *                            self.z * (<Vector3>value).z)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->x * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->x * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
 
-    /* "mars_x/cython_modules/vector.pyx":410
+    /* "mars_x/cython_modules/vector.pyx":453
  *         elif isinstance(value, Vector3):
  *             return Vector3(self.x * (<Vector3>value).x,
  *                            self.y * (<Vector3>value).y,             # <<<<<<<<<<<<<<
  *                            self.z * (<Vector3>value).z)
  *         else:
  */
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 453, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "mars_x/cython_modules/vector.pyx":411
+    /* "mars_x/cython_modules/vector.pyx":454
  *             return Vector3(self.x * (<Vector3>value).x,
  *                            self.y * (<Vector3>value).y,
  *                            self.z * (<Vector3>value).z)             # <<<<<<<<<<<<<<
  *         else:
  *             return NotImplemented
  */
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->z * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->z * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
 
-    /* "mars_x/cython_modules/vector.pyx":409
+    /* "mars_x/cython_modules/vector.pyx":452
  *             return Vector3(self.x * value, self.y * value, self.z * value)
  *         elif isinstance(value, Vector3):
  *             return Vector3(self.x * (<Vector3>value).x,             # <<<<<<<<<<<<<<
  *                            self.y * (<Vector3>value).y,
  *                            self.z * (<Vector3>value).z)
  */
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 409, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 409, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 452, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_5)) __PYX_ERR(0, 409, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error);
     __pyx_t_6 = 0;
     __pyx_t_3 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":408
+    /* "mars_x/cython_modules/vector.pyx":451
  *         if isinstance(value, (int, float)):
  *             return Vector3(self.x * value, self.y * value, self.z * value)
  *         elif isinstance(value, Vector3):             # <<<<<<<<<<<<<<
@@ -10124,7 +10480,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":413
+  /* "mars_x/cython_modules/vector.pyx":456
  *                            self.z * (<Vector3>value).z)
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -10138,7 +10494,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":405
+  /* "mars_x/cython_modules/vector.pyx":448
  *         return Vector3(self.x - other.x, self.y - other.y, self.z - other.z)
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -10160,7 +10516,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_8__mul__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":415
+/* "mars_x/cython_modules/vector.pyx":458
  *             return NotImplemented
  * 
  *     def __truediv__(self, value):             # <<<<<<<<<<<<<<
@@ -10197,7 +10553,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__truediv__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":416
+  /* "mars_x/cython_modules/vector.pyx":459
  * 
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -10215,30 +10571,30 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":417
+    /* "mars_x/cython_modules/vector.pyx":460
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):
  *             if value == 0:             # <<<<<<<<<<<<<<
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  */
-    __pyx_t_1 = (__Pyx_PyInt_BoolEqObjC(__pyx_v_value, __pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyInt_BoolEqObjC(__pyx_v_value, __pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 460, __pyx_L1_error)
     if (unlikely(__pyx_t_1)) {
 
-      /* "mars_x/cython_modules/vector.pyx":418
+      /* "mars_x/cython_modules/vector.pyx":461
  *         if isinstance(value, (int, float)):
  *             if value == 0:
  *                 raise ZeroDivisionError("Division by zero")             # <<<<<<<<<<<<<<
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  *         elif isinstance(value, Vector3):
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 418, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 461, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __PYX_ERR(0, 418, __pyx_L1_error)
+      __PYX_ERR(0, 461, __pyx_L1_error)
 
-      /* "mars_x/cython_modules/vector.pyx":417
+      /* "mars_x/cython_modules/vector.pyx":460
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):
  *             if value == 0:             # <<<<<<<<<<<<<<
@@ -10247,7 +10603,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
  */
     }
 
-    /* "mars_x/cython_modules/vector.pyx":419
+    /* "mars_x/cython_modules/vector.pyx":462
  *             if value == 0:
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector3(self.x / value, self.y / value, self.z / value)             # <<<<<<<<<<<<<<
@@ -10255,40 +10611,40 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
  *             return Vector3(
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 419, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":416
+    /* "mars_x/cython_modules/vector.pyx":459
  * 
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -10297,7 +10653,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":420
+  /* "mars_x/cython_modules/vector.pyx":463
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  *         elif isinstance(value, Vector3):             # <<<<<<<<<<<<<<
@@ -10307,7 +10663,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
   __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_value, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); 
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":421
+    /* "mars_x/cython_modules/vector.pyx":464
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  *         elif isinstance(value, Vector3):
  *             return Vector3(             # <<<<<<<<<<<<<<
@@ -10316,7 +10672,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
  */
     __Pyx_XDECREF(__pyx_r);
 
-    /* "mars_x/cython_modules/vector.pyx":422
+    /* "mars_x/cython_modules/vector.pyx":465
  *         elif isinstance(value, Vector3):
  *             return Vector3(
  *                 self.x / (<Vector3>value).x if (<Vector3>value).x != 0 else 0,             # <<<<<<<<<<<<<<
@@ -10327,9 +10683,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->x == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 422, __pyx_L1_error)
+        __PYX_ERR(0, 465, __pyx_L1_error)
       }
-      __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->x / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 422, __pyx_L1_error)
+      __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->x / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 465, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_6 = __pyx_t_3;
       __pyx_t_3 = 0;
@@ -10338,7 +10694,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
       __pyx_t_6 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":423
+    /* "mars_x/cython_modules/vector.pyx":466
  *             return Vector3(
  *                 self.x / (<Vector3>value).x if (<Vector3>value).x != 0 else 0,
  *                 self.y / (<Vector3>value).y if (<Vector3>value).y != 0 else 0,             # <<<<<<<<<<<<<<
@@ -10349,9 +10705,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->y == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 423, __pyx_L1_error)
+        __PYX_ERR(0, 466, __pyx_L1_error)
       }
-      __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->y / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 423, __pyx_L1_error)
+      __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->y / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 466, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_3 = __pyx_t_5;
       __pyx_t_5 = 0;
@@ -10360,7 +10716,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
       __pyx_t_3 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":424
+    /* "mars_x/cython_modules/vector.pyx":467
  *                 self.x / (<Vector3>value).x if (<Vector3>value).x != 0 else 0,
  *                 self.y / (<Vector3>value).y if (<Vector3>value).y != 0 else 0,
  *                 self.z / (<Vector3>value).z if (<Vector3>value).z != 0 else 0             # <<<<<<<<<<<<<<
@@ -10371,9 +10727,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->z == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 424, __pyx_L1_error)
+        __PYX_ERR(0, 467, __pyx_L1_error)
       }
-      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->z / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
+      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->z / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 467, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_5 = __pyx_t_4;
       __pyx_t_4 = 0;
@@ -10382,32 +10738,32 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
       __pyx_t_5 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":421
+    /* "mars_x/cython_modules/vector.pyx":464
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  *         elif isinstance(value, Vector3):
  *             return Vector3(             # <<<<<<<<<<<<<<
  *                 self.x / (<Vector3>value).x if (<Vector3>value).x != 0 else 0,
  *                 self.y / (<Vector3>value).y if (<Vector3>value).y != 0 else 0,
  */
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 421, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 464, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 421, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_5)) __PYX_ERR(0, 421, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_5)) __PYX_ERR(0, 464, __pyx_L1_error);
     __pyx_t_6 = 0;
     __pyx_t_3 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 421, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 464, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":420
+    /* "mars_x/cython_modules/vector.pyx":463
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector3(self.x / value, self.y / value, self.z / value)
  *         elif isinstance(value, Vector3):             # <<<<<<<<<<<<<<
@@ -10416,7 +10772,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":427
+  /* "mars_x/cython_modules/vector.pyx":470
  *             )
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -10430,7 +10786,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":415
+  /* "mars_x/cython_modules/vector.pyx":458
  *             return NotImplemented
  * 
  *     def __truediv__(self, value):             # <<<<<<<<<<<<<<
@@ -10452,7 +10808,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_10__truediv_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":429
+/* "mars_x/cython_modules/vector.pyx":472
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -10489,7 +10845,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(s
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_13length_squared)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -10511,11 +10867,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(s
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10534,7 +10890,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(s
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":431
+  /* "mars_x/cython_modules/vector.pyx":474
  *     cpdef double length_squared(self):
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z             # <<<<<<<<<<<<<<
@@ -10544,7 +10900,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(s
   __pyx_r = (((__pyx_v_self->x * __pyx_v_self->x) + (__pyx_v_self->y * __pyx_v_self->y)) + (__pyx_v_self->z * __pyx_v_self->z));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":429
+  /* "mars_x/cython_modules/vector.pyx":472
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -10617,8 +10973,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_12length_squ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("length_squared", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -10635,7 +10991,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_12length_squ
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":433
+/* "mars_x/cython_modules/vector.pyx":476
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -10674,7 +11030,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 433, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 476, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_15magnitude)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -10696,11 +11052,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 476, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 433, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10719,17 +11075,17 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":435
+  /* "mars_x/cython_modules/vector.pyx":478
  *     cpdef double magnitude(self):
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
  *         if len_sq == 0:
  *             return 0
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 435, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 478, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":436
+  /* "mars_x/cython_modules/vector.pyx":479
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:             # <<<<<<<<<<<<<<
@@ -10739,7 +11095,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
   __pyx_t_7 = (__pyx_v_len_sq == 0.0);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":437
+    /* "mars_x/cython_modules/vector.pyx":480
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:
  *             return 0             # <<<<<<<<<<<<<<
@@ -10749,7 +11105,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":436
+    /* "mars_x/cython_modules/vector.pyx":479
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:             # <<<<<<<<<<<<<<
@@ -10758,18 +11114,18 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(struct
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":438
+  /* "mars_x/cython_modules/vector.pyx":481
  *         if len_sq == 0:
  *             return 0
  *         return len_sq * fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  * 
  *     cpdef Vector3 normalize(self):
  */
-  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 481, __pyx_L1_error)
   __pyx_r = (__pyx_v_len_sq * __pyx_t_6);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":433
+  /* "mars_x/cython_modules/vector.pyx":476
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -10842,8 +11198,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_14magnitude(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("magnitude", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 433, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -10860,7 +11216,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_14magnitude(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":440
+/* "mars_x/cython_modules/vector.pyx":483
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector3 normalize(self):             # <<<<<<<<<<<<<<
@@ -10900,7 +11256,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 483, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_17normalize)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -10923,11 +11279,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 440, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 483, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 440, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 483, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10946,18 +11302,18 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":442
+  /* "mars_x/cython_modules/vector.pyx":485
  *     cpdef Vector3 normalize(self):
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
- *         cdef double inv_len  # Move declaration to the beginning of function
+ *         cdef double inv_len
  * 
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 485, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":445
- *         cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":488
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -10966,17 +11322,17 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
   __pyx_t_7 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":446
+    /* "mars_x/cython_modules/vector.pyx":489
  * 
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  *             return Vector3(self.x * inv_len, self.y * inv_len, self.z * inv_len)
  *         return Vector3(0, 0, 0)
  */
-    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L1_error)
+    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 489, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_6;
 
-    /* "mars_x/cython_modules/vector.pyx":447
+    /* "mars_x/cython_modules/vector.pyx":490
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector3(self.x * inv_len, self.y * inv_len, self.z * inv_len)             # <<<<<<<<<<<<<<
@@ -10984,32 +11340,32 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  * 
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z * __pyx_v_inv_len)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z * __pyx_v_inv_len)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 447, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 490, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 447, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error);
     __pyx_t_1 = 0;
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_3);
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":445
- *         cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":488
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -11017,7 +11373,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":448
+  /* "mars_x/cython_modules/vector.pyx":491
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector3(self.x * inv_len, self.y * inv_len, self.z * inv_len)
  *         return Vector3(0, 0, 0)             # <<<<<<<<<<<<<<
@@ -11025,13 +11381,13 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  *     cpdef double dot(self, Vector3 other):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":440
+  /* "mars_x/cython_modules/vector.pyx":483
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector3 normalize(self):             # <<<<<<<<<<<<<<
@@ -11104,7 +11460,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_16normalize(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("normalize", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 483, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11121,7 +11477,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_16normalize(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":450
+/* "mars_x/cython_modules/vector.pyx":493
  *         return Vector3(0, 0, 0)
  * 
  *     cpdef double dot(self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -11158,7 +11514,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(struct __pyx
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 493, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_19dot)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -11180,11 +11536,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(struct __pyx
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 493, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 450, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 493, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11203,7 +11559,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(struct __pyx
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":451
+  /* "mars_x/cython_modules/vector.pyx":494
  * 
  *     cpdef double dot(self, Vector3 other):
  *         return self.x * other.x + self.y * other.y + self.z * other.z             # <<<<<<<<<<<<<<
@@ -11213,7 +11569,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(struct __pyx
   __pyx_r = (((__pyx_v_self->x * __pyx_v_other->x) + (__pyx_v_self->y * __pyx_v_other->y)) + (__pyx_v_self->z * __pyx_v_other->z));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":450
+  /* "mars_x/cython_modules/vector.pyx":493
  *         return Vector3(0, 0, 0)
  * 
  *     cpdef double dot(self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -11287,12 +11643,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 450, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 493, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 450, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 493, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -11303,7 +11659,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 450, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 493, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11317,7 +11673,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 450, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 493, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_18dot(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -11345,8 +11701,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_18dot(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dot", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 450, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector3_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 493, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 493, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -11363,7 +11719,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_18dot(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":453
+/* "mars_x/cython_modules/vector.pyx":496
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  *     cpdef Vector3 cross(self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -11399,7 +11755,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 496, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_21cross)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -11422,11 +11778,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 453, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 496, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11445,7 +11801,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":454
+  /* "mars_x/cython_modules/vector.pyx":497
  * 
  *     cpdef Vector3 cross(self, Vector3 other):
  *         return Vector3(             # <<<<<<<<<<<<<<
@@ -11454,62 +11810,62 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/vector.pyx":455
+  /* "mars_x/cython_modules/vector.pyx":498
  *     cpdef Vector3 cross(self, Vector3 other):
  *         return Vector3(
  *             self.y * other.z - self.z * other.y,             # <<<<<<<<<<<<<<
  *             self.z * other.x - self.x * other.z,
  *             self.x * other.y - self.y * other.x
  */
-  __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->y * __pyx_v_other->z) - (__pyx_v_self->z * __pyx_v_other->y))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(((__pyx_v_self->y * __pyx_v_other->z) - (__pyx_v_self->z * __pyx_v_other->y))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/vector.pyx":456
+  /* "mars_x/cython_modules/vector.pyx":499
  *         return Vector3(
  *             self.y * other.z - self.z * other.y,
  *             self.z * other.x - self.x * other.z,             # <<<<<<<<<<<<<<
  *             self.x * other.y - self.y * other.x
  *         )
  */
-  __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->z * __pyx_v_other->x) - (__pyx_v_self->x * __pyx_v_other->z))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((__pyx_v_self->z * __pyx_v_other->x) - (__pyx_v_self->x * __pyx_v_other->z))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/vector.pyx":457
+  /* "mars_x/cython_modules/vector.pyx":500
  *             self.y * other.z - self.z * other.y,
  *             self.z * other.x - self.x * other.z,
  *             self.x * other.y - self.y * other.x             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_3 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_other->y) - (__pyx_v_self->y * __pyx_v_other->x))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 457, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(((__pyx_v_self->x * __pyx_v_other->y) - (__pyx_v_self->y * __pyx_v_other->x))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/vector.pyx":454
+  /* "mars_x/cython_modules/vector.pyx":497
  * 
  *     cpdef Vector3 cross(self, Vector3 other):
  *         return Vector3(             # <<<<<<<<<<<<<<
  *             self.y * other.z - self.z * other.y,
  *             self.z * other.x - self.x * other.z,
  */
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 497, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 497, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 454, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":453
+  /* "mars_x/cython_modules/vector.pyx":496
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  *     cpdef Vector3 cross(self, Vector3 other):             # <<<<<<<<<<<<<<
@@ -11584,12 +11940,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 453, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 496, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "cross") < 0)) __PYX_ERR(0, 453, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "cross") < 0)) __PYX_ERR(0, 496, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -11600,7 +11956,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cross", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 453, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cross", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 496, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11614,7 +11970,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 453, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "other", 0))) __PYX_ERR(0, 496, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_20cross(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -11641,7 +11997,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_20cross(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cross", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_cross(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_cross(__pyx_v_self, __pyx_v_other, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11658,7 +12014,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_20cross(stru
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":460
+/* "mars_x/cython_modules/vector.pyx":503
  *         )
  * 
  *     cpdef Vector3 copy(self):             # <<<<<<<<<<<<<<
@@ -11694,7 +12050,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 503, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector3_23copy)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -11717,11 +12073,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 460, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 503, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 460, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 503, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11740,7 +12096,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":461
+  /* "mars_x/cython_modules/vector.pyx":504
  * 
  *     cpdef Vector3 copy(self):
  *         return Vector3(self.x, self.y, self.z)             # <<<<<<<<<<<<<<
@@ -11748,31 +12104,31 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  * cdef class Vector4:
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 461, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 461, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 461, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":460
+  /* "mars_x/cython_modules/vector.pyx":503
  *         )
  * 
  *     cpdef Vector3 copy(self):             # <<<<<<<<<<<<<<
@@ -11844,7 +12200,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_22copy(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11861,7 +12217,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_22copy(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":76
+/* "mars_x/cython_modules/vector.pxd":82
  * 
  * cdef class Vector3:
  *     cdef public double x             # <<<<<<<<<<<<<<
@@ -11893,7 +12249,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1x___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 76, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11931,7 +12287,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1x_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 76, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 82, __pyx_L1_error)
   __pyx_v_self->x = __pyx_t_1;
 
   /* function exit code */
@@ -11944,7 +12300,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1x_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":77
+/* "mars_x/cython_modules/vector.pxd":83
  * cdef class Vector3:
  *     cdef public double x
  *     cdef public double y             # <<<<<<<<<<<<<<
@@ -11976,7 +12332,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1y___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 77, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12014,7 +12370,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1y_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 77, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 83, __pyx_L1_error)
   __pyx_v_self->y = __pyx_t_1;
 
   /* function exit code */
@@ -12027,7 +12383,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1y_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":78
+/* "mars_x/cython_modules/vector.pxd":84
  *     cdef public double x
  *     cdef public double y
  *     cdef public double z             # <<<<<<<<<<<<<<
@@ -12059,7 +12415,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1z___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 78, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12097,7 +12453,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_1z_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 78, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 84, __pyx_L1_error)
   __pyx_v_self->z = __pyx_t_1;
 
   /* function exit code */
@@ -12524,7 +12880,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector3_26__setstate
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":464
+/* "mars_x/cython_modules/vector.pyx":507
  * 
  * cdef class Vector4:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):             # <<<<<<<<<<<<<<
@@ -12576,33 +12932,33 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_1__init__(PyObject
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_x);
           if (value) { values[0] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_y);
           if (value) { values[1] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_z);
           if (value) { values[2] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_w);
           if (value) { values[3] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 464, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 507, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -12619,29 +12975,29 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_1__init__(PyObject
       }
     }
     if (values[0]) {
-      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
     } else {
       __pyx_v_x = ((double)0.0);
     }
     if (values[1]) {
-      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
     } else {
       __pyx_v_y = ((double)0.0);
     }
     if (values[2]) {
-      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
     } else {
       __pyx_v_z = ((double)0.0);
     }
     if (values[3]) {
-      __pyx_v_w = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_w == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L3_error)
+      __pyx_v_w = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_w == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 507, __pyx_L3_error)
     } else {
       __pyx_v_w = ((double)1.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 4, __pyx_nargs); __PYX_ERR(0, 464, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 4, __pyx_nargs); __PYX_ERR(0, 507, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12671,7 +13027,7 @@ static int __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_1__init__(PyObject
 static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_v_self, double __pyx_v_x, double __pyx_v_y, double __pyx_v_z, double __pyx_v_w) {
   int __pyx_r;
 
-  /* "mars_x/cython_modules/vector.pyx":465
+  /* "mars_x/cython_modules/vector.pyx":508
  * cdef class Vector4:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):
  *         self.x = x             # <<<<<<<<<<<<<<
@@ -12680,7 +13036,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __
  */
   __pyx_v_self->x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/vector.pyx":466
+  /* "mars_x/cython_modules/vector.pyx":509
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):
  *         self.x = x
  *         self.y = y             # <<<<<<<<<<<<<<
@@ -12689,7 +13045,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __
  */
   __pyx_v_self->y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/vector.pyx":467
+  /* "mars_x/cython_modules/vector.pyx":510
  *         self.x = x
  *         self.y = y
  *         self.z = z             # <<<<<<<<<<<<<<
@@ -12698,7 +13054,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __
  */
   __pyx_v_self->z = __pyx_v_z;
 
-  /* "mars_x/cython_modules/vector.pyx":468
+  /* "mars_x/cython_modules/vector.pyx":511
  *         self.y = y
  *         self.z = z
  *         self.w = w             # <<<<<<<<<<<<<<
@@ -12707,7 +13063,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __
  */
   __pyx_v_self->w = __pyx_v_w;
 
-  /* "mars_x/cython_modules/vector.pyx":464
+  /* "mars_x/cython_modules/vector.pyx":507
  * 
  * cdef class Vector4:
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):             # <<<<<<<<<<<<<<
@@ -12720,7 +13076,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4___init__(struct __
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":470
+/* "mars_x/cython_modules/vector.pyx":513
  *         self.w = w
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -12756,7 +13112,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":471
+  /* "mars_x/cython_modules/vector.pyx":514
  * 
  *     def __repr__(self):
  *         return f"Vector4({self.x}, {self.y}, {self.z}, {self.w})"             # <<<<<<<<<<<<<<
@@ -12764,7 +13120,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
  *     def __add__(Vector4 self, Vector4 other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_3 = 127;
@@ -12772,9 +13128,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   __pyx_t_2 += 8;
   __Pyx_GIVEREF(__pyx_kp_u_Vector4);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Vector4);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -12786,9 +13142,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -12800,9 +13156,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -12814,9 +13170,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 6, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -12828,14 +13184,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   __pyx_t_2 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__2);
   PyTuple_SET_ITEM(__pyx_t_1, 8, __pyx_kp_u__2);
-  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 9, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 9, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":470
+  /* "mars_x/cython_modules/vector.pyx":513
  *         self.w = w
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -12856,7 +13212,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_2__repr__(st
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":473
+/* "mars_x/cython_modules/vector.pyx":516
  *         return f"Vector4({self.x}, {self.y}, {self.z}, {self.w})"
  * 
  *     def __add__(Vector4 self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -12875,7 +13231,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_5__add__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 473, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 516, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_4__add__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_other));
 
   /* function exit code */
@@ -12900,7 +13256,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_4__add__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":474
+  /* "mars_x/cython_modules/vector.pyx":517
  * 
  *     def __add__(Vector4 self, Vector4 other):
  *         return Vector4(self.x + other.x, self.y + other.y,             # <<<<<<<<<<<<<<
@@ -12908,52 +13264,52 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_4__add__(str
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/vector.pyx":475
+  /* "mars_x/cython_modules/vector.pyx":518
  *     def __add__(Vector4 self, Vector4 other):
  *         return Vector4(self.x + other.x, self.y + other.y,
  *                      self.z + other.z, self.w + other.w)             # <<<<<<<<<<<<<<
  * 
  *     def __sub__(Vector4 self, Vector4 other):
  */
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 475, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w + __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 475, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w + __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/vector.pyx":474
+  /* "mars_x/cython_modules/vector.pyx":517
  * 
  *     def __add__(Vector4 self, Vector4 other):
  *         return Vector4(self.x + other.x, self.y + other.y,             # <<<<<<<<<<<<<<
  *                      self.z + other.z, self.w + other.w)
  * 
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 474, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 474, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 517, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 474, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 517, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 474, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":473
+  /* "mars_x/cython_modules/vector.pyx":516
  *         return f"Vector4({self.x}, {self.y}, {self.z}, {self.w})"
  * 
  *     def __add__(Vector4 self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -12976,7 +13332,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_4__add__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":477
+/* "mars_x/cython_modules/vector.pyx":520
  *                      self.z + other.z, self.w + other.w)
  * 
  *     def __sub__(Vector4 self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -12995,7 +13351,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_7__sub__(PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__sub__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 477, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 520, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_6__sub__(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_other));
 
   /* function exit code */
@@ -13020,7 +13376,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_6__sub__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":478
+  /* "mars_x/cython_modules/vector.pyx":521
  * 
  *     def __sub__(Vector4 self, Vector4 other):
  *         return Vector4(self.x - other.x, self.y - other.y,             # <<<<<<<<<<<<<<
@@ -13028,52 +13384,52 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_6__sub__(str
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/vector.pyx":479
+  /* "mars_x/cython_modules/vector.pyx":522
  *     def __sub__(Vector4 self, Vector4 other):
  *         return Vector4(self.x - other.x, self.y - other.y,
  *                      self.z - other.z, self.w - other.w)             # <<<<<<<<<<<<<<
  * 
  *     def __mul__(self, value):
  */
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 522, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w - __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w - __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 522, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/vector.pyx":478
+  /* "mars_x/cython_modules/vector.pyx":521
  * 
  *     def __sub__(Vector4 self, Vector4 other):
  *         return Vector4(self.x - other.x, self.y - other.y,             # <<<<<<<<<<<<<<
  *                      self.z - other.z, self.w - other.w)
  * 
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 521, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 478, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 521, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 478, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 521, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":477
+  /* "mars_x/cython_modules/vector.pyx":520
  *                      self.z + other.z, self.w + other.w)
  * 
  *     def __sub__(Vector4 self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -13096,7 +13452,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_6__sub__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":481
+/* "mars_x/cython_modules/vector.pyx":524
  *                      self.z - other.z, self.w - other.w)
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -13134,7 +13490,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":482
+  /* "mars_x/cython_modules/vector.pyx":525
  * 
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -13152,7 +13508,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":483
+    /* "mars_x/cython_modules/vector.pyx":526
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):
  *             return Vector4(self.x * value, self.y * value,             # <<<<<<<<<<<<<<
@@ -13160,64 +13516,64 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
  *         elif isinstance(value, Vector4):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/vector.pyx":484
+    /* "mars_x/cython_modules/vector.pyx":527
  *         if isinstance(value, (int, float)):
  *             return Vector4(self.x * value, self.y * value,
  *                          self.z * value, self.w * value)             # <<<<<<<<<<<<<<
  *         elif isinstance(value, Vector4):
  *             return Vector4(self.x * (<Vector4>value).x,
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 527, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 527, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 527, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 527, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/vector.pyx":483
+    /* "mars_x/cython_modules/vector.pyx":526
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):
  *             return Vector4(self.x * value, self.y * value,             # <<<<<<<<<<<<<<
  *                          self.z * value, self.w * value)
  *         elif isinstance(value, Vector4):
  */
-    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 483, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 526, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 483, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 526, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 483, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 526, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 483, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 526, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
     __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 483, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 526, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_7;
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":482
+    /* "mars_x/cython_modules/vector.pyx":525
  * 
  *     def __mul__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -13226,7 +13582,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":485
+  /* "mars_x/cython_modules/vector.pyx":528
  *             return Vector4(self.x * value, self.y * value,
  *                          self.z * value, self.w * value)
  *         elif isinstance(value, Vector4):             # <<<<<<<<<<<<<<
@@ -13236,7 +13592,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
   __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_value, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); 
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":486
+    /* "mars_x/cython_modules/vector.pyx":529
  *                          self.z * value, self.w * value)
  *         elif isinstance(value, Vector4):
  *             return Vector4(self.x * (<Vector4>value).x,             # <<<<<<<<<<<<<<
@@ -13244,68 +13600,68 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
  *                          self.z * (<Vector4>value).z,
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_7 = PyFloat_FromDouble((__pyx_v_self->x * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 486, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble((__pyx_v_self->x * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 529, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
 
-    /* "mars_x/cython_modules/vector.pyx":487
+    /* "mars_x/cython_modules/vector.pyx":530
  *         elif isinstance(value, Vector4):
  *             return Vector4(self.x * (<Vector4>value).x,
  *                          self.y * (<Vector4>value).y,             # <<<<<<<<<<<<<<
  *                          self.z * (<Vector4>value).z,
  *                          self.w * (<Vector4>value).w)
  */
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 487, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 530, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "mars_x/cython_modules/vector.pyx":488
+    /* "mars_x/cython_modules/vector.pyx":531
  *             return Vector4(self.x * (<Vector4>value).x,
  *                          self.y * (<Vector4>value).y,
  *                          self.z * (<Vector4>value).z,             # <<<<<<<<<<<<<<
  *                          self.w * (<Vector4>value).w)
  *         else:
  */
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->z * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 488, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->z * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
 
-    /* "mars_x/cython_modules/vector.pyx":489
+    /* "mars_x/cython_modules/vector.pyx":532
  *                          self.y * (<Vector4>value).y,
  *                          self.z * (<Vector4>value).z,
  *                          self.w * (<Vector4>value).w)             # <<<<<<<<<<<<<<
  *         else:
  *             return NotImplemented
  */
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->w * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 489, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->w * ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->w)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
 
-    /* "mars_x/cython_modules/vector.pyx":486
+    /* "mars_x/cython_modules/vector.pyx":529
  *                          self.z * value, self.w * value)
  *         elif isinstance(value, Vector4):
  *             return Vector4(self.x * (<Vector4>value).x,             # <<<<<<<<<<<<<<
  *                          self.y * (<Vector4>value).y,
  *                          self.z * (<Vector4>value).z,
  */
-    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 486, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 529, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 486, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 529, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 486, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 529, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 486, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 529, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 486, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 529, __pyx_L1_error);
     __pyx_t_7 = 0;
     __pyx_t_3 = 0;
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 486, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 529, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":485
+    /* "mars_x/cython_modules/vector.pyx":528
  *             return Vector4(self.x * value, self.y * value,
  *                          self.z * value, self.w * value)
  *         elif isinstance(value, Vector4):             # <<<<<<<<<<<<<<
@@ -13314,7 +13670,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":491
+  /* "mars_x/cython_modules/vector.pyx":534
  *                          self.w * (<Vector4>value).w)
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -13328,7 +13684,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":481
+  /* "mars_x/cython_modules/vector.pyx":524
  *                      self.z - other.z, self.w - other.w)
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -13351,7 +13707,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_8__mul__(str
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":493
+/* "mars_x/cython_modules/vector.pyx":536
  *             return NotImplemented
  * 
  *     def __truediv__(self, value):             # <<<<<<<<<<<<<<
@@ -13389,7 +13745,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__truediv__", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":494
+  /* "mars_x/cython_modules/vector.pyx":537
  * 
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -13407,30 +13763,30 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":495
+    /* "mars_x/cython_modules/vector.pyx":538
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):
  *             if value == 0:             # <<<<<<<<<<<<<<
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector4(self.x / value, self.y / value,
  */
-    __pyx_t_1 = (__Pyx_PyInt_BoolEqObjC(__pyx_v_value, __pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 495, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyInt_BoolEqObjC(__pyx_v_value, __pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 538, __pyx_L1_error)
     if (unlikely(__pyx_t_1)) {
 
-      /* "mars_x/cython_modules/vector.pyx":496
+      /* "mars_x/cython_modules/vector.pyx":539
  *         if isinstance(value, (int, float)):
  *             if value == 0:
  *                 raise ZeroDivisionError("Division by zero")             # <<<<<<<<<<<<<<
  *             return Vector4(self.x / value, self.y / value,
  *                          self.z / value, self.w / value)
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 496, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ZeroDivisionError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 539, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __PYX_ERR(0, 496, __pyx_L1_error)
+      __PYX_ERR(0, 539, __pyx_L1_error)
 
-      /* "mars_x/cython_modules/vector.pyx":495
+      /* "mars_x/cython_modules/vector.pyx":538
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):
  *             if value == 0:             # <<<<<<<<<<<<<<
@@ -13439,7 +13795,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
  */
     }
 
-    /* "mars_x/cython_modules/vector.pyx":497
+    /* "mars_x/cython_modules/vector.pyx":540
  *             if value == 0:
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector4(self.x / value, self.y / value,             # <<<<<<<<<<<<<<
@@ -13447,64 +13803,64 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
  *         elif isinstance(value, Vector4):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/vector.pyx":498
+    /* "mars_x/cython_modules/vector.pyx":541
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector4(self.x / value, self.y / value,
  *                          self.z / value, self.w / value)             # <<<<<<<<<<<<<<
  *         elif isinstance(value, Vector4):
  *             return Vector4(
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/vector.pyx":497
+    /* "mars_x/cython_modules/vector.pyx":540
  *             if value == 0:
  *                 raise ZeroDivisionError("Division by zero")
  *             return Vector4(self.x / value, self.y / value,             # <<<<<<<<<<<<<<
  *                          self.z / value, self.w / value)
  *         elif isinstance(value, Vector4):
  */
-    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 497, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 540, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 497, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 540, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 497, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 540, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 497, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 540, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
     __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_7;
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":494
+    /* "mars_x/cython_modules/vector.pyx":537
  * 
  *     def __truediv__(self, value):
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -13513,7 +13869,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":499
+  /* "mars_x/cython_modules/vector.pyx":542
  *             return Vector4(self.x / value, self.y / value,
  *                          self.z / value, self.w / value)
  *         elif isinstance(value, Vector4):             # <<<<<<<<<<<<<<
@@ -13523,7 +13879,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
   __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_value, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); 
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":500
+    /* "mars_x/cython_modules/vector.pyx":543
  *                          self.z / value, self.w / value)
  *         elif isinstance(value, Vector4):
  *             return Vector4(             # <<<<<<<<<<<<<<
@@ -13532,7 +13888,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
  */
     __Pyx_XDECREF(__pyx_r);
 
-    /* "mars_x/cython_modules/vector.pyx":501
+    /* "mars_x/cython_modules/vector.pyx":544
  *         elif isinstance(value, Vector4):
  *             return Vector4(
  *                 self.x / (<Vector4>value).x if (<Vector4>value).x != 0 else 0,             # <<<<<<<<<<<<<<
@@ -13543,9 +13899,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->x == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 501, __pyx_L1_error)
+        __PYX_ERR(0, 544, __pyx_L1_error)
       }
-      __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->x / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
+      __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->x / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->x)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_7 = __pyx_t_3;
       __pyx_t_3 = 0;
@@ -13554,7 +13910,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
       __pyx_t_7 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":502
+    /* "mars_x/cython_modules/vector.pyx":545
  *             return Vector4(
  *                 self.x / (<Vector4>value).x if (<Vector4>value).x != 0 else 0,
  *                 self.y / (<Vector4>value).y if (<Vector4>value).y != 0 else 0,             # <<<<<<<<<<<<<<
@@ -13565,9 +13921,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->y == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 502, __pyx_L1_error)
+        __PYX_ERR(0, 545, __pyx_L1_error)
       }
-      __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->y / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_6 = PyFloat_FromDouble((__pyx_v_self->y / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->y)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 545, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_3 = __pyx_t_6;
       __pyx_t_6 = 0;
@@ -13576,7 +13932,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
       __pyx_t_3 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":503
+    /* "mars_x/cython_modules/vector.pyx":546
  *                 self.x / (<Vector4>value).x if (<Vector4>value).x != 0 else 0,
  *                 self.y / (<Vector4>value).y if (<Vector4>value).y != 0 else 0,
  *                 self.z / (<Vector4>value).z if (<Vector4>value).z != 0 else 0,             # <<<<<<<<<<<<<<
@@ -13587,9 +13943,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->z == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 503, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
       }
-      __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->z / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 503, __pyx_L1_error)
+      __pyx_t_5 = PyFloat_FromDouble((__pyx_v_self->z / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->z)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_6 = __pyx_t_5;
       __pyx_t_5 = 0;
@@ -13598,7 +13954,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
       __pyx_t_6 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":504
+    /* "mars_x/cython_modules/vector.pyx":547
  *                 self.y / (<Vector4>value).y if (<Vector4>value).y != 0 else 0,
  *                 self.z / (<Vector4>value).z if (<Vector4>value).z != 0 else 0,
  *                 self.w / (<Vector4>value).w if (<Vector4>value).w != 0 else 0             # <<<<<<<<<<<<<<
@@ -13609,9 +13965,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
     if (__pyx_t_1) {
       if (unlikely(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->w == 0)) {
         PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 504, __pyx_L1_error)
+        __PYX_ERR(0, 547, __pyx_L1_error)
       }
-      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 504, __pyx_L1_error)
+      __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w / ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_value)->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 547, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_5 = __pyx_t_4;
       __pyx_t_4 = 0;
@@ -13620,35 +13976,35 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
       __pyx_t_5 = __pyx_int_0;
     }
 
-    /* "mars_x/cython_modules/vector.pyx":500
+    /* "mars_x/cython_modules/vector.pyx":543
  *                          self.z / value, self.w / value)
  *         elif isinstance(value, Vector4):
  *             return Vector4(             # <<<<<<<<<<<<<<
  *                 self.x / (<Vector4>value).x if (<Vector4>value).x != 0 else 0,
  *                 self.y / (<Vector4>value).y if (<Vector4>value).y != 0 else 0,
  */
-    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 500, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 543, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 500, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 543, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 500, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 543, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 500, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 543, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 500, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 543, __pyx_L1_error);
     __pyx_t_7 = 0;
     __pyx_t_3 = 0;
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 500, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 543, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":499
+    /* "mars_x/cython_modules/vector.pyx":542
  *             return Vector4(self.x / value, self.y / value,
  *                          self.z / value, self.w / value)
  *         elif isinstance(value, Vector4):             # <<<<<<<<<<<<<<
@@ -13657,7 +14013,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":507
+  /* "mars_x/cython_modules/vector.pyx":550
  *             )
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -13671,7 +14027,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/vector.pyx":493
+  /* "mars_x/cython_modules/vector.pyx":536
  *             return NotImplemented
  * 
  *     def __truediv__(self, value):             # <<<<<<<<<<<<<<
@@ -13694,7 +14050,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_10__truediv_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":509
+/* "mars_x/cython_modules/vector.pyx":552
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -13731,7 +14087,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(s
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_squared); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 552, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_13length_squared)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -13753,11 +14109,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(s
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 509, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 552, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13776,7 +14132,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(s
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":511
+  /* "mars_x/cython_modules/vector.pyx":554
  *     cpdef double length_squared(self):
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w             # <<<<<<<<<<<<<<
@@ -13786,7 +14142,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(s
   __pyx_r = ((((__pyx_v_self->x * __pyx_v_self->x) + (__pyx_v_self->y * __pyx_v_self->y)) + (__pyx_v_self->z * __pyx_v_self->z)) + (__pyx_v_self->w * __pyx_v_self->w));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":509
+  /* "mars_x/cython_modules/vector.pyx":552
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
@@ -13859,8 +14215,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_12length_squ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("length_squared", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 509, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -13877,7 +14233,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_12length_squ
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":513
+/* "mars_x/cython_modules/vector.pyx":556
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -13916,7 +14272,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 513, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 556, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_15magnitude)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -13938,11 +14294,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 556, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 556, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13961,17 +14317,17 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":515
+  /* "mars_x/cython_modules/vector.pyx":558
  *     cpdef double magnitude(self):
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
  *         if len_sq == 0:
  *             return 0
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 515, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 558, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":516
+  /* "mars_x/cython_modules/vector.pyx":559
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:             # <<<<<<<<<<<<<<
@@ -13981,7 +14337,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
   __pyx_t_7 = (__pyx_v_len_sq == 0.0);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":517
+    /* "mars_x/cython_modules/vector.pyx":560
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:
  *             return 0             # <<<<<<<<<<<<<<
@@ -13991,7 +14347,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":516
+    /* "mars_x/cython_modules/vector.pyx":559
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  *         if len_sq == 0:             # <<<<<<<<<<<<<<
@@ -14000,18 +14356,18 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(struct
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":518
+  /* "mars_x/cython_modules/vector.pyx":561
  *         if len_sq == 0:
  *             return 0
  *         return len_sq * fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  * 
  *     cpdef Vector4 normalize(self):
  */
-  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 561, __pyx_L1_error)
   __pyx_r = (__pyx_v_len_sq * __pyx_t_6);
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":513
+  /* "mars_x/cython_modules/vector.pyx":556
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
@@ -14084,8 +14440,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_14magnitude(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("magnitude", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_magnitude(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 556, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 556, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -14102,7 +14458,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_14magnitude(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":520
+/* "mars_x/cython_modules/vector.pyx":563
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector4 normalize(self):             # <<<<<<<<<<<<<<
@@ -14143,7 +14499,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 563, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_17normalize)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -14166,11 +14522,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 520, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 563, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4))))) __PYX_ERR(0, 520, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4))))) __PYX_ERR(0, 563, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14189,18 +14545,18 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":522
+  /* "mars_x/cython_modules/vector.pyx":565
  *     cpdef Vector4 normalize(self):
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()             # <<<<<<<<<<<<<<
- *         cdef double inv_len  # Move declaration to the beginning of function
+ *         cdef double inv_len
  * 
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 522, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self->__pyx_vtab)->length_squared(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 565, __pyx_L1_error)
   __pyx_v_len_sq = __pyx_t_6;
 
-  /* "mars_x/cython_modules/vector.pyx":525
- *         cdef double inv_len  # Move declaration to the beginning of function
+  /* "mars_x/cython_modules/vector.pyx":568
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -14209,17 +14565,17 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
   __pyx_t_7 = (__pyx_v_len_sq > 1e-10);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/vector.pyx":526
+    /* "mars_x/cython_modules/vector.pyx":569
  * 
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)             # <<<<<<<<<<<<<<
  *             return Vector4(self.x * inv_len, self.y * inv_len,
  *                          self.z * inv_len, self.w * inv_len)
  */
-    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 526, __pyx_L1_error)
+    __pyx_t_6 = __pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt(__pyx_v_len_sq); if (unlikely(__pyx_t_6 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 569, __pyx_L1_error)
     __pyx_v_inv_len = __pyx_t_6;
 
-    /* "mars_x/cython_modules/vector.pyx":527
+    /* "mars_x/cython_modules/vector.pyx":570
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector4(self.x * inv_len, self.y * inv_len,             # <<<<<<<<<<<<<<
@@ -14227,53 +14583,53 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
  *         return Vector4(0, 0, 0, 0)
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x * __pyx_v_inv_len)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y * __pyx_v_inv_len)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "mars_x/cython_modules/vector.pyx":528
+    /* "mars_x/cython_modules/vector.pyx":571
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector4(self.x * inv_len, self.y * inv_len,
  *                          self.z * inv_len, self.w * inv_len)             # <<<<<<<<<<<<<<
  *         return Vector4(0, 0, 0, 0)
  * 
  */
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z * __pyx_v_inv_len)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 528, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z * __pyx_v_inv_len)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 571, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w * __pyx_v_inv_len)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 528, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w * __pyx_v_inv_len)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 571, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
 
-    /* "mars_x/cython_modules/vector.pyx":527
+    /* "mars_x/cython_modules/vector.pyx":570
  *         if len_sq > 1e-10:
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector4(self.x * inv_len, self.y * inv_len,             # <<<<<<<<<<<<<<
  *                          self.z * inv_len, self.w * inv_len)
  *         return Vector4(0, 0, 0, 0)
  */
-    __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 570, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_2)) __PYX_ERR(0, 527, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_3)) __PYX_ERR(0, 527, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_3)) __PYX_ERR(0, 570, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_4)) __PYX_ERR(0, 527, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_4)) __PYX_ERR(0, 570, __pyx_L1_error);
     __pyx_t_1 = 0;
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_t_4);
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":525
- *         cdef double inv_len  # Move declaration to the beginning of function
+    /* "mars_x/cython_modules/vector.pyx":568
+ *         cdef double inv_len
  * 
  *         if len_sq > 1e-10:             # <<<<<<<<<<<<<<
  *             inv_len = fast_invsqrt(len_sq)
@@ -14281,7 +14637,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":529
+  /* "mars_x/cython_modules/vector.pyx":572
  *             return Vector4(self.x * inv_len, self.y * inv_len,
  *                          self.z * inv_len, self.w * inv_len)
  *         return Vector4(0, 0, 0, 0)             # <<<<<<<<<<<<<<
@@ -14289,13 +14645,13 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
  *     cpdef double dot(self, Vector4 other):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 572, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":520
+  /* "mars_x/cython_modules/vector.pyx":563
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector4 normalize(self):             # <<<<<<<<<<<<<<
@@ -14369,7 +14725,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_16normalize(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("normalize", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14386,7 +14742,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_16normalize(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":531
+/* "mars_x/cython_modules/vector.pyx":574
  *         return Vector4(0, 0, 0, 0)
  * 
  *     cpdef double dot(self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -14423,7 +14779,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(struct __pyx
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 574, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_19dot)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -14445,11 +14801,11 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(struct __pyx
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 531, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14468,7 +14824,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(struct __pyx
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":533
+  /* "mars_x/cython_modules/vector.pyx":576
  *     cpdef double dot(self, Vector4 other):
  *         return (self.x * other.x + self.y * other.y +
  *                 self.z * other.z + self.w * other.w)             # <<<<<<<<<<<<<<
@@ -14478,7 +14834,7 @@ static double __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(struct __pyx
   __pyx_r = ((((__pyx_v_self->x * __pyx_v_other->x) + (__pyx_v_self->y * __pyx_v_other->y)) + (__pyx_v_self->z * __pyx_v_other->z)) + (__pyx_v_self->w * __pyx_v_other->w));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":531
+  /* "mars_x/cython_modules/vector.pyx":574
  *         return Vector4(0, 0, 0, 0)
  * 
  *     cpdef double dot(self, Vector4 other):             # <<<<<<<<<<<<<<
@@ -14552,12 +14908,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 531, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "dot") < 0)) __PYX_ERR(0, 574, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -14568,7 +14924,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 531, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dot", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 574, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -14582,7 +14938,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 531, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, 1, "other", 0))) __PYX_ERR(0, 574, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_18dot(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -14610,8 +14966,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_18dot(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dot", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 531, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot(__pyx_v_self, __pyx_v_other, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -14628,7 +14984,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_18dot(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":535
+/* "mars_x/cython_modules/vector.pyx":578
  *                 self.z * other.z + self.w * other.w)
  * 
  *     cpdef Vector4 copy(self):             # <<<<<<<<<<<<<<
@@ -14665,7 +15021,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 535, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_6vector_7Vector4_21copy)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -14688,11 +15044,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 535, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4))))) __PYX_ERR(0, 535, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4))))) __PYX_ERR(0, 578, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14711,7 +15067,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/vector.pyx":536
+  /* "mars_x/cython_modules/vector.pyx":579
  * 
  *     cpdef Vector4 copy(self):
  *         return Vector4(self.x, self.y, self.z, self.w)             # <<<<<<<<<<<<<<
@@ -14719,36 +15075,36 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *__pyx_f_6mars_
  *     # Convert to Vector3 (perspective division)
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 536, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 579, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 536, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 536, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 579, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 536, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 579, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":535
+  /* "mars_x/cython_modules/vector.pyx":578
  *                 self.z * other.z + self.w * other.w)
  * 
  *     cpdef Vector4 copy(self):             # <<<<<<<<<<<<<<
@@ -14821,7 +15177,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_20copy(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14838,7 +15194,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_20copy(struc
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pyx":539
+/* "mars_x/cython_modules/vector.pyx":582
  * 
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):             # <<<<<<<<<<<<<<
@@ -14900,7 +15256,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_22to_vector3
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_vector3", 1);
 
-  /* "mars_x/cython_modules/vector.pyx":540
+  /* "mars_x/cython_modules/vector.pyx":583
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):
  *         if self.w != 0:             # <<<<<<<<<<<<<<
@@ -14910,7 +15266,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_22to_vector3
   __pyx_t_1 = (__pyx_v_self->w != 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/vector.pyx":541
+    /* "mars_x/cython_modules/vector.pyx":584
  *     def to_vector3(self):
  *         if self.w != 0:
  *             return Vector3(self.x / self.w, self.y / self.w, self.z / self.w)             # <<<<<<<<<<<<<<
@@ -14919,41 +15275,41 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_22to_vector3
     __Pyx_XDECREF(__pyx_r);
     if (unlikely(__pyx_v_self->w == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 541, __pyx_L1_error)
+      __PYX_ERR(0, 584, __pyx_L1_error)
     }
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_self->w)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_self->w)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_v_self->w == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 541, __pyx_L1_error)
+      __PYX_ERR(0, 584, __pyx_L1_error)
     }
-    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_self->w)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_self->w)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (unlikely(__pyx_v_self->w == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 541, __pyx_L1_error)
+      __PYX_ERR(0, 584, __pyx_L1_error)
     }
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->z / __pyx_v_self->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->z / __pyx_v_self->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2)) __PYX_ERR(0, 584, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_4)) __PYX_ERR(0, 541, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/vector.pyx":540
+    /* "mars_x/cython_modules/vector.pyx":583
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):
  *         if self.w != 0:             # <<<<<<<<<<<<<<
@@ -14962,37 +15318,37 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_22to_vector3
  */
   }
 
-  /* "mars_x/cython_modules/vector.pyx":542
+  /* "mars_x/cython_modules/vector.pyx":585
  *         if self.w != 0:
  *             return Vector3(self.x / self.w, self.y / self.w, self.z / self.w)
  *         return Vector3(self.x, self.y, self.z)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4)) __PYX_ERR(0, 542, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5)) __PYX_ERR(0, 542, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_3)) __PYX_ERR(0, 542, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_3)) __PYX_ERR(0, 585, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_5 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/vector.pyx":539
+  /* "mars_x/cython_modules/vector.pyx":582
  * 
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):             # <<<<<<<<<<<<<<
@@ -15014,7 +15370,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_22to_vector3
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":88
+/* "mars_x/cython_modules/vector.pxd":94
  * 
  * cdef class Vector4:
  *     cdef public double x             # <<<<<<<<<<<<<<
@@ -15046,7 +15402,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1x___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 88, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15084,7 +15440,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1x_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 88, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 94, __pyx_L1_error)
   __pyx_v_self->x = __pyx_t_1;
 
   /* function exit code */
@@ -15097,7 +15453,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1x_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":89
+/* "mars_x/cython_modules/vector.pxd":95
  * cdef class Vector4:
  *     cdef public double x
  *     cdef public double y             # <<<<<<<<<<<<<<
@@ -15129,7 +15485,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1y___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 89, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15167,7 +15523,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1y_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 89, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 95, __pyx_L1_error)
   __pyx_v_self->y = __pyx_t_1;
 
   /* function exit code */
@@ -15180,7 +15536,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1y_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":90
+/* "mars_x/cython_modules/vector.pxd":96
  *     cdef public double x
  *     cdef public double y
  *     cdef public double z             # <<<<<<<<<<<<<<
@@ -15212,7 +15568,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1z___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 90, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 96, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15250,7 +15606,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1z_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 90, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 96, __pyx_L1_error)
   __pyx_v_self->z = __pyx_t_1;
 
   /* function exit code */
@@ -15263,7 +15619,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1z_2__set__(struct
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/vector.pxd":91
+/* "mars_x/cython_modules/vector.pxd":97
  *     cdef public double y
  *     cdef public double z
  *     cdef public double w             # <<<<<<<<<<<<<<
@@ -15295,7 +15651,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1w___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 91, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15333,7 +15689,7 @@ static int __pyx_pf_6mars_x_14cython_modules_6vector_7Vector4_1w_2__set__(struct
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 91, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 97, __pyx_L1_error)
   __pyx_v_self->w = __pyx_t_1;
 
   /* function exit code */
@@ -18448,8 +18804,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ZeroDivisionError = __Pyx_GetBuiltinName(__pyx_n_s_ZeroDivisionError); if (!__pyx_builtin_ZeroDivisionError) __PYX_ERR(0, 310, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_builtin_ZeroDivisionError = __Pyx_GetBuiltinName(__pyx_n_s_ZeroDivisionError); if (!__pyx_builtin_ZeroDivisionError) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 456, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -18460,47 +18816,47 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "mars_x/cython_modules/vector.pyx":310
+  /* "mars_x/cython_modules/vector.pyx":352
  *     def __truediv__(Vector2 self, double scalar):
  *         if scalar == 0:
  *             raise ZeroDivisionError("Division by zero")             # <<<<<<<<<<<<<<
  *         return Vector2(self.x / scalar, self.y / scalar)
  * 
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_Division_by_zero); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_Division_by_zero); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "mars_x/cython_modules/vector.pyx":338
+  /* "mars_x/cython_modules/vector.pyx":381
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector2(self.x * inv_len, self.y * inv_len)
  *         return Vector2(0, 0)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double dot(self, Vector2 other):
  */
-  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "mars_x/cython_modules/vector.pyx":448
+  /* "mars_x/cython_modules/vector.pyx":491
  *             inv_len = fast_invsqrt(len_sq)
  *             return Vector3(self.x * inv_len, self.y * inv_len, self.z * inv_len)
  *         return Vector3(0, 0, 0)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double dot(self, Vector3 other):
  */
-  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "mars_x/cython_modules/vector.pyx":529
+  /* "mars_x/cython_modules/vector.pyx":572
  *             return Vector4(self.x * inv_len, self.y * inv_len,
  *                          self.z * inv_len, self.w * inv_len)
  *         return Vector4(0, 0, 0, 0)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double dot(self, Vector4 other):
  */
-  __pyx_tuple__6 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 572, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
@@ -18521,104 +18877,104 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "mars_x/cython_modules/vector.pyx":316
+  /* "mars_x/cython_modules/vector.pyx":358
  *         return Vector2(-self.x, -self.y)
  * 
  *     cpdef Vector2 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector2(self.x, self.y)
  * 
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 316, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 358, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 358, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":319
+  /* "mars_x/cython_modules/vector.pyx":361
  *         return Vector2(self.x, self.y)
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y
  */
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 319, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 361, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 361, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":323
+  /* "mars_x/cython_modules/vector.pyx":365
  *         return self.x * self.x + self.y * self.y
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 323, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 365, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 365, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":330
- *         return len_sq * fast_invsqrt(len_sq)
+  /* "mars_x/cython_modules/vector.pyx":373
+ *         return 1.0 / fast_invsqrt(len_sq)
  * 
  *     cpdef Vector2 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 330, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 373, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 373, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":340
+  /* "mars_x/cython_modules/vector.pyx":383
  *         return Vector2(0, 0)
  * 
  *     cpdef double dot(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.x + self.y * other.y
  * 
  */
-  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 340, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 383, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 383, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":343
+  /* "mars_x/cython_modules/vector.pyx":386
  *         return self.x * other.x + self.y * other.y
  * 
  *     cpdef double cross(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.y - self.y * other.x
  * 
  */
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_cross, 343, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_cross, 386, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 386, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":346
+  /* "mars_x/cython_modules/vector.pyx":389
  *         return self.x * other.y - self.y * other.x
  * 
  *     cpdef double angle(self):             # <<<<<<<<<<<<<<
  *         # Returns angle in radians
  *         return atan2(self.y, self.x)
  */
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_angle, 346, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_angle, 389, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 389, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":350
+  /* "mars_x/cython_modules/vector.pyx":393
  *         return atan2(self.y, self.x)
  * 
  *     cpdef double angle_to(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         # Use dot product for cosine of angle, avoiding sqrt
  *         cdef double dot_product = self.dot(other)
  */
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_angle_to, 350, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_angle_to, 393, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 393, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":377
+  /* "mars_x/cython_modules/vector.pyx":420
  *             return acos(cos_angle)
  * 
  *     cpdef Vector2 rotate(self, double angle):             # <<<<<<<<<<<<<<
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)
  */
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_angle); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_angle); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_rotate, 377, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_rotate, 420, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 420, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":386
+  /* "mars_x/cython_modules/vector.pyx":429
  *         )
  * 
  *     cpdef bint is_zero(self):             # <<<<<<<<<<<<<<
  *         """Check if vector is approximately zero"""
  *         return self.length_squared() < 1e-10
  */
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_is_zero, 386, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_is_zero, 429, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 429, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -18641,59 +18997,59 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__26);
   __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(2, 16, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":429
+  /* "mars_x/cython_modules/vector.pyx":472
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  */
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 429, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 472, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 472, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":433
+  /* "mars_x/cython_modules/vector.pyx":476
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 433, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 476, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 476, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":440
+  /* "mars_x/cython_modules/vector.pyx":483
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector3 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 440, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 483, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 483, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":450
+  /* "mars_x/cython_modules/vector.pyx":493
  *         return Vector3(0, 0, 0)
  * 
  *     cpdef double dot(self, Vector3 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  */
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 450, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 493, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 493, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":453
+  /* "mars_x/cython_modules/vector.pyx":496
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  *     cpdef Vector3 cross(self, Vector3 other):             # <<<<<<<<<<<<<<
  *         return Vector3(
  *             self.y * other.z - self.z * other.y,
  */
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_cross, 453, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_cross, 496, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 496, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":460
+  /* "mars_x/cython_modules/vector.pyx":503
  *         )
  * 
  *     cpdef Vector3 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector3(self.x, self.y, self.z)
  * 
  */
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 460, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 503, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 503, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -18710,59 +19066,59 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(2, 16, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":509
+  /* "mars_x/cython_modules/vector.pyx":552
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  */
-  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 509, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_length_squared, 552, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 552, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":513
+  /* "mars_x/cython_modules/vector.pyx":556
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 513, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_magnitude, 556, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 556, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":520
+  /* "mars_x/cython_modules/vector.pyx":563
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector4 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 520, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_normalize, 563, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 563, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":531
+  /* "mars_x/cython_modules/vector.pyx":574
  *         return Vector4(0, 0, 0, 0)
  * 
  *     cpdef double dot(self, Vector4 other):             # <<<<<<<<<<<<<<
  *         return (self.x * other.x + self.y * other.y +
  *                 self.z * other.z + self.w * other.w)
  */
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 531, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_dot, 574, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 574, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":535
+  /* "mars_x/cython_modules/vector.pyx":578
  *                 self.z * other.z + self.w * other.w)
  * 
  *     cpdef Vector4 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector4(self.x, self.y, self.z, self.w)
  * 
  */
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 535, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_copy, 578, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 578, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/vector.pyx":539
+  /* "mars_x/cython_modules/vector.pyx":582
  * 
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):             # <<<<<<<<<<<<<<
  *         if self.w != 0:
  *             return Vector3(self.x / self.w, self.y / self.w, self.z / self.w)
  */
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_to_vector3, 539, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 539, __pyx_L1_error)
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_vector_pyx, __pyx_n_s_to_vector3, 582, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 582, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -18852,6 +19208,10 @@ static int __Pyx_modinit_function_export_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_function_export_code", 0);
   /*--- Function export code ---*/
+  if (__Pyx_ExportFunction("fast_invsqrt", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_fast_invsqrt, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("fast_sqrt", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_fast_sqrt, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("fast_sin", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_fast_sin, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("fast_cos", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_fast_cos, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("vec2_create", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_vec2_create, "struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 (double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("vec2_add", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_vec2_add, "struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 (struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("vec2_sub", (void (*)(void))__pyx_f_6mars_x_14cython_modules_6vector_vec2_sub, "struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 (struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2, struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -18912,15 +19272,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector2.rotate = (struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *(*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, double, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_rotate;
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector2.is_zero = (int (*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector2_is_zero;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector2_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(0, 291, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector2_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector2_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector2_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #else
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = &__pyx_type_6mars_x_14cython_modules_6vector_Vector2;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2->tp_print = 0;
@@ -18930,13 +19290,13 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector2_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector2_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   #endif
   __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = &__pyx_vtable_6mars_x_14cython_modules_6vector_Vector3;
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector3.length_squared = (double (*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_length_squared;
@@ -18946,15 +19306,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector3.cross = (struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *(*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_cross;
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector3.copy = (struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *(*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector3_copy;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector3_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(0, 390, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector3_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector3_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(0, 433, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector3_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #else
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = &__pyx_type_6mars_x_14cython_modules_6vector_Vector3;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3->tp_print = 0;
@@ -18964,13 +19324,13 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector3_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector3_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   #endif
   __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = &__pyx_vtable_6mars_x_14cython_modules_6vector_Vector4;
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector4.length_squared = (double (*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_length_squared;
@@ -18979,15 +19339,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector4.dot = (double (*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_dot;
   __pyx_vtable_6mars_x_14cython_modules_6vector_Vector4.copy = (struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *(*)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch))__pyx_f_6mars_x_14cython_modules_6vector_7Vector4_copy;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector4_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(0, 463, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector4_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_6vector_Vector4_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(0, 506, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_6vector_Vector4_spec, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #else
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = &__pyx_type_6mars_x_14cython_modules_6vector_Vector4;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4->tp_print = 0;
@@ -18997,13 +19357,13 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector4_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Vector4_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 463, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   #endif
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -19314,133 +19674,133 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "mars_x/cython_modules/vector.pyx":316
+  /* "mars_x/cython_modules/vector.pyx":358
  *         return Vector2(-self.x, -self.y)
  * 
  *     cpdef Vector2 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector2(self.x, self.y)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_15copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_15copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 316, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":319
+  /* "mars_x/cython_modules/vector.pyx":361
  *         return Vector2(self.x, self.y)
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_17length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_17length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":323
+  /* "mars_x/cython_modules/vector.pyx":365
  *         return self.x * self.x + self.y * self.y
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_19magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_19magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":330
- *         return len_sq * fast_invsqrt(len_sq)
+  /* "mars_x/cython_modules/vector.pyx":373
+ *         return 1.0 / fast_invsqrt(len_sq)
  * 
  *     cpdef Vector2 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_21normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_21normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":340
+  /* "mars_x/cython_modules/vector.pyx":383
  *         return Vector2(0, 0)
  * 
  *     cpdef double dot(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.x + self.y * other.y
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_23dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_23dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":343
+  /* "mars_x/cython_modules/vector.pyx":386
  *         return self.x * other.x + self.y * other.y
  * 
  *     cpdef double cross(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.y - self.y * other.x
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_25cross, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_cross, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_25cross, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_cross, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_cross, __pyx_t_2) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_cross, __pyx_t_2) < 0) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":346
+  /* "mars_x/cython_modules/vector.pyx":389
  *         return self.x * other.y - self.y * other.x
  * 
  *     cpdef double angle(self):             # <<<<<<<<<<<<<<
  *         # Returns angle in radians
  *         return atan2(self.y, self.x)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_27angle, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_angle, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_27angle, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_angle, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_angle, __pyx_t_2) < 0) __PYX_ERR(0, 346, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_angle, __pyx_t_2) < 0) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":350
+  /* "mars_x/cython_modules/vector.pyx":393
  *         return atan2(self.y, self.x)
  * 
  *     cpdef double angle_to(self, Vector2 other):             # <<<<<<<<<<<<<<
  *         # Use dot product for cosine of angle, avoiding sqrt
  *         cdef double dot_product = self.dot(other)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_29angle_to, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_angle_to, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_29angle_to, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_angle_to, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_angle_to, __pyx_t_2) < 0) __PYX_ERR(0, 350, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_angle_to, __pyx_t_2) < 0) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":377
+  /* "mars_x/cython_modules/vector.pyx":420
  *             return acos(cos_angle)
  * 
  *     cpdef Vector2 rotate(self, double angle):             # <<<<<<<<<<<<<<
- *         # Rotates the vector by angle (in radians)
- *         cdef double cs = cos(angle)
+ *         # Rotates the vector by angle (in radians) using fast approximations
+ *         cdef double cs = fast_cos(angle)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_31rotate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_rotate, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_31rotate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_rotate, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_rotate, __pyx_t_2) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_rotate, __pyx_t_2) < 0) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":386
+  /* "mars_x/cython_modules/vector.pyx":429
  *         )
  * 
  *     cpdef bint is_zero(self):             # <<<<<<<<<<<<<<
  *         """Check if vector is approximately zero"""
  *         return self.length_squared() < 1e-10
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_33is_zero, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_is_zero, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector2_33is_zero, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector2_is_zero, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_is_zero, __pyx_t_2) < 0) __PYX_ERR(0, 386, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, __pyx_n_s_is_zero, __pyx_t_2) < 0) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
@@ -19467,81 +19827,81 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
 
-  /* "mars_x/cython_modules/vector.pyx":429
+  /* "mars_x/cython_modules/vector.pyx":472
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_13length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_13length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 429, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":433
+  /* "mars_x/cython_modules/vector.pyx":476
  *         return self.x * self.x + self.y * self.y + self.z * self.z
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_15magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_15magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":440
+  /* "mars_x/cython_modules/vector.pyx":483
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector3 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_17normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_17normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 483, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 483, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":450
+  /* "mars_x/cython_modules/vector.pyx":493
  *         return Vector3(0, 0, 0)
  * 
  *     cpdef double dot(self, Vector3 other):             # <<<<<<<<<<<<<<
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_19dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_19dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 493, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 450, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 493, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":453
+  /* "mars_x/cython_modules/vector.pyx":496
  *         return self.x * other.x + self.y * other.y + self.z * other.z
  * 
  *     cpdef Vector3 cross(self, Vector3 other):             # <<<<<<<<<<<<<<
  *         return Vector3(
  *             self.y * other.z - self.z * other.y,
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_21cross, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_cross, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_21cross, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_cross, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_cross, __pyx_t_2) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_cross, __pyx_t_2) < 0) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":460
+  /* "mars_x/cython_modules/vector.pyx":503
  *         )
  * 
  *     cpdef Vector3 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector3(self.x, self.y, self.z)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_23copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector3_23copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector3_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 460, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
@@ -19568,81 +19928,81 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
 
-  /* "mars_x/cython_modules/vector.pyx":509
+  /* "mars_x/cython_modules/vector.pyx":552
  *             return NotImplemented
  * 
  *     cpdef double length_squared(self):             # <<<<<<<<<<<<<<
  *         """Return squared length of vector (faster than magnitude)"""
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_13length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_13length_squared, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_length_squared, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 509, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_length_squared, __pyx_t_2) < 0) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
-  /* "mars_x/cython_modules/vector.pyx":513
+  /* "mars_x/cython_modules/vector.pyx":556
  *         return self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
  * 
  *     cpdef double magnitude(self):             # <<<<<<<<<<<<<<
  *         """Return magnitude (length) of the vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_15magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_15magnitude, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_magnitude, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 556, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 513, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_magnitude, __pyx_t_2) < 0) __PYX_ERR(0, 556, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
-  /* "mars_x/cython_modules/vector.pyx":520
+  /* "mars_x/cython_modules/vector.pyx":563
  *         return len_sq * fast_invsqrt(len_sq)
  * 
  *     cpdef Vector4 normalize(self):             # <<<<<<<<<<<<<<
  *         """Return normalized vector using fast approximation"""
  *         cdef double len_sq = self.length_squared()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_17normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_17normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_normalize, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 520, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
-  /* "mars_x/cython_modules/vector.pyx":531
+  /* "mars_x/cython_modules/vector.pyx":574
  *         return Vector4(0, 0, 0, 0)
  * 
  *     cpdef double dot(self, Vector4 other):             # <<<<<<<<<<<<<<
  *         return (self.x * other.x + self.y * other.y +
  *                 self.z * other.z + self.w * other.w)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_19dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_19dot, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_dot, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_dot, __pyx_t_2) < 0) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
-  /* "mars_x/cython_modules/vector.pyx":535
+  /* "mars_x/cython_modules/vector.pyx":578
  *                 self.z * other.z + self.w * other.w)
  * 
  *     cpdef Vector4 copy(self):             # <<<<<<<<<<<<<<
  *         return Vector4(self.x, self.y, self.z, self.w)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_21copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_21copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_copy, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 535, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 578, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
-  /* "mars_x/cython_modules/vector.pyx":539
+  /* "mars_x/cython_modules/vector.pyx":582
  * 
  *     # Convert to Vector3 (perspective division)
  *     def to_vector3(self):             # <<<<<<<<<<<<<<
  *         if self.w != 0:
  *             return Vector3(self.x / self.w, self.y / self.w, self.z / self.w)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_23to_vector3, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_to_vector3, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 539, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_6vector_7Vector4_23to_vector3, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Vector4_to_vector3, NULL, __pyx_n_s_mars_x_cython_modules_vector, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_to_vector3, __pyx_t_2) < 0) __PYX_ERR(0, 539, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4, __pyx_n_s_to_vector3, __pyx_t_2) < 0) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
 
@@ -19936,6 +20296,19 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
 #endif
     }
     return result;
+}
+
+/* ErrOccurredWithGIL */
+static CYTHON_INLINE int __Pyx_ErrOccurredWithGIL(void) {
+  int err;
+  #ifdef WITH_THREAD
+  PyGILState_STATE _save = PyGILState_Ensure();
+  #endif
+  err = !!PyErr_Occurred();
+  #ifdef WITH_THREAD
+  PyGILState_Release(_save);
+  #endif
+  return err;
 }
 
 /* TupleAndListFromArray */
@@ -23684,6 +24057,273 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to long");
     return (long) -1;
+}
+
+/* CIntFromPy */
+static CYTHON_INLINE uint64_t __Pyx_PyInt_As_uint64_t(PyObject *x) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const uint64_t neg_one = (uint64_t) -1, const_zero = (uint64_t) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if ((sizeof(uint64_t) < sizeof(long))) {
+            __PYX_VERIFY_RETURN_INT(uint64_t, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (uint64_t) val;
+        }
+    }
+#endif
+    if (unlikely(!PyLong_Check(x))) {
+        uint64_t val;
+        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
+        if (!tmp) return (uint64_t) -1;
+        val = __Pyx_PyInt_As_uint64_t(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+    if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+        if (unlikely(__Pyx_PyLong_IsNeg(x))) {
+            goto raise_neg_overflow;
+        } else if (__Pyx_PyLong_IsCompact(x)) {
+            __PYX_VERIFY_RETURN_INT(uint64_t, __Pyx_compact_upylong, __Pyx_PyLong_CompactValueUnsigned(x))
+        } else {
+            const digit* digits = __Pyx_PyLong_Digits(x);
+            assert(__Pyx_PyLong_DigitCount(x) > 1);
+            switch (__Pyx_PyLong_DigitCount(x)) {
+                case 2:
+                    if ((8 * sizeof(uint64_t) > 1 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 2 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) >= 2 * PyLong_SHIFT)) {
+                            return (uint64_t) (((((uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if ((8 * sizeof(uint64_t) > 2 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 3 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) >= 3 * PyLong_SHIFT)) {
+                            return (uint64_t) (((((((uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if ((8 * sizeof(uint64_t) > 3 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 4 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) >= 4 * PyLong_SHIFT)) {
+                            return (uint64_t) (((((((((uint64_t)digits[3]) << PyLong_SHIFT) | (uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0]));
+                        }
+                    }
+                    break;
+            }
+        }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A7
+        if (unlikely(Py_SIZE(x) < 0)) {
+            goto raise_neg_overflow;
+        }
+#else
+        {
+            int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+            if (unlikely(result < 0))
+                return (uint64_t) -1;
+            if (unlikely(result == 1))
+                goto raise_neg_overflow;
+        }
+#endif
+        if ((sizeof(uint64_t) <= sizeof(unsigned long))) {
+            __PYX_VERIFY_RETURN_INT_EXC(uint64_t, unsigned long, PyLong_AsUnsignedLong(x))
+#ifdef HAVE_LONG_LONG
+        } else if ((sizeof(uint64_t) <= sizeof(unsigned PY_LONG_LONG))) {
+            __PYX_VERIFY_RETURN_INT_EXC(uint64_t, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+#endif
+        }
+    } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+        if (__Pyx_PyLong_IsCompact(x)) {
+            __PYX_VERIFY_RETURN_INT(uint64_t, __Pyx_compact_pylong, __Pyx_PyLong_CompactValue(x))
+        } else {
+            const digit* digits = __Pyx_PyLong_Digits(x);
+            assert(__Pyx_PyLong_DigitCount(x) > 1);
+            switch (__Pyx_PyLong_SignedDigitCount(x)) {
+                case -2:
+                    if ((8 * sizeof(uint64_t) - 1 > 1 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 2 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 2 * PyLong_SHIFT)) {
+                            return (uint64_t) (((uint64_t)-1)*(((((uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if ((8 * sizeof(uint64_t) > 1 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 2 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 2 * PyLong_SHIFT)) {
+                            return (uint64_t) ((((((uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if ((8 * sizeof(uint64_t) - 1 > 2 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 3 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 3 * PyLong_SHIFT)) {
+                            return (uint64_t) (((uint64_t)-1)*(((((((uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if ((8 * sizeof(uint64_t) > 2 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 3 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 3 * PyLong_SHIFT)) {
+                            return (uint64_t) ((((((((uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if ((8 * sizeof(uint64_t) - 1 > 3 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 4 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 4 * PyLong_SHIFT)) {
+                            return (uint64_t) (((uint64_t)-1)*(((((((((uint64_t)digits[3]) << PyLong_SHIFT) | (uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if ((8 * sizeof(uint64_t) > 3 * PyLong_SHIFT)) {
+                        if ((8 * sizeof(unsigned long) > 4 * PyLong_SHIFT)) {
+                            __PYX_VERIFY_RETURN_INT(uint64_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if ((8 * sizeof(uint64_t) - 1 > 4 * PyLong_SHIFT)) {
+                            return (uint64_t) ((((((((((uint64_t)digits[3]) << PyLong_SHIFT) | (uint64_t)digits[2]) << PyLong_SHIFT) | (uint64_t)digits[1]) << PyLong_SHIFT) | (uint64_t)digits[0])));
+                        }
+                    }
+                    break;
+            }
+        }
+#endif
+        if ((sizeof(uint64_t) <= sizeof(long))) {
+            __PYX_VERIFY_RETURN_INT_EXC(uint64_t, long, PyLong_AsLong(x))
+#ifdef HAVE_LONG_LONG
+        } else if ((sizeof(uint64_t) <= sizeof(PY_LONG_LONG))) {
+            __PYX_VERIFY_RETURN_INT_EXC(uint64_t, PY_LONG_LONG, PyLong_AsLongLong(x))
+#endif
+        }
+    }
+    {
+        uint64_t val;
+        int ret = -1;
+#if PY_VERSION_HEX >= 0x030d00A6 && !CYTHON_COMPILING_IN_LIMITED_API
+        Py_ssize_t bytes_copied = PyLong_AsNativeBytes(
+            x, &val, sizeof(val), Py_ASNATIVEBYTES_NATIVE_ENDIAN | (is_unsigned ? Py_ASNATIVEBYTES_UNSIGNED_BUFFER | Py_ASNATIVEBYTES_REJECT_NEGATIVE : 0));
+        if (unlikely(bytes_copied == -1)) {
+        } else if (unlikely(bytes_copied > (Py_ssize_t) sizeof(val))) {
+            goto raise_overflow;
+        } else {
+            ret = 0;
+        }
+#elif PY_VERSION_HEX < 0x030d0000 && !(CYTHON_COMPILING_IN_PYPY || CYTHON_COMPILING_IN_LIMITED_API) || defined(_PyLong_AsByteArray)
+        int one = 1; int is_little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&val;
+        ret = _PyLong_AsByteArray((PyLongObject *)x,
+                                    bytes, sizeof(val),
+                                    is_little, !is_unsigned);
+#else
+        PyObject *v;
+        PyObject *stepval = NULL, *mask = NULL, *shift = NULL;
+        int bits, remaining_bits, is_negative = 0;
+        int chunk_size = (sizeof(long) < 8) ? 30 : 62;
+        if (likely(PyLong_CheckExact(x))) {
+            v = __Pyx_NewRef(x);
+        } else {
+            v = PyNumber_Long(x);
+            if (unlikely(!v)) return (uint64_t) -1;
+            assert(PyLong_CheckExact(v));
+        }
+        {
+            int result = PyObject_RichCompareBool(v, Py_False, Py_LT);
+            if (unlikely(result < 0)) {
+                Py_DECREF(v);
+                return (uint64_t) -1;
+            }
+            is_negative = result == 1;
+        }
+        if (is_unsigned && unlikely(is_negative)) {
+            Py_DECREF(v);
+            goto raise_neg_overflow;
+        } else if (is_negative) {
+            stepval = PyNumber_Invert(v);
+            Py_DECREF(v);
+            if (unlikely(!stepval))
+                return (uint64_t) -1;
+        } else {
+            stepval = v;
+        }
+        v = NULL;
+        val = (uint64_t) 0;
+        mask = PyLong_FromLong((1L << chunk_size) - 1); if (unlikely(!mask)) goto done;
+        shift = PyLong_FromLong(chunk_size); if (unlikely(!shift)) goto done;
+        for (bits = 0; bits < (int) sizeof(uint64_t) * 8 - chunk_size; bits += chunk_size) {
+            PyObject *tmp, *digit;
+            long idigit;
+            digit = PyNumber_And(stepval, mask);
+            if (unlikely(!digit)) goto done;
+            idigit = PyLong_AsLong(digit);
+            Py_DECREF(digit);
+            if (unlikely(idigit < 0)) goto done;
+            val |= ((uint64_t) idigit) << bits;
+            tmp = PyNumber_Rshift(stepval, shift);
+            if (unlikely(!tmp)) goto done;
+            Py_DECREF(stepval); stepval = tmp;
+        }
+        Py_DECREF(shift); shift = NULL;
+        Py_DECREF(mask); mask = NULL;
+        {
+            long idigit = PyLong_AsLong(stepval);
+            if (unlikely(idigit < 0)) goto done;
+            remaining_bits = ((int) sizeof(uint64_t) * 8) - bits - (is_unsigned ? 0 : 1);
+            if (unlikely(idigit >= (1L << remaining_bits)))
+                goto raise_overflow;
+            val |= ((uint64_t) idigit) << bits;
+        }
+        if (!is_unsigned) {
+            if (unlikely(val & (((uint64_t) 1) << (sizeof(uint64_t) * 8 - 1))))
+                goto raise_overflow;
+            if (is_negative)
+                val = ~val;
+        }
+        ret = 0;
+    done:
+        Py_XDECREF(shift);
+        Py_XDECREF(mask);
+        Py_XDECREF(stepval);
+#endif
+        if (unlikely(ret))
+            return (uint64_t) -1;
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to uint64_t");
+    return (uint64_t) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to uint64_t");
+    return (uint64_t) -1;
 }
 
 /* CIntToPy */

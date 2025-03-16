@@ -6,6 +6,9 @@ import cython
 from libc.math cimport sin, cos, tan
 from mars_x.cython_modules.vector cimport Vector3, Vector4
 
+# Import our fast trigonometric functions
+from mars_x.cython_modules.vector cimport fast_sin, fast_cos
+
 # Define array indices for clearer access
 # row-major order: m[row][column]
 # flat array: m[row * 4 + column]
@@ -310,10 +313,10 @@ cdef class Matrix4:
     
     @staticmethod
     cdef Matrix4 rotation_x(double angle_rad):
-        """Create a rotation matrix around the X axis"""
+        """Create a rotation matrix around the X axis using fast trig functions"""
         cdef Matrix4 m = Matrix4()
-        cdef double c = cos(angle_rad)
-        cdef double s = sin(angle_rad)
+        cdef double c = fast_cos(angle_rad)
+        cdef double s = fast_sin(angle_rad)
         
         m.data[<int>M11] = c
         m.data[<int>M12] = -s
@@ -324,10 +327,10 @@ cdef class Matrix4:
     
     @staticmethod
     cdef Matrix4 rotation_y(double angle_rad):
-        """Create a rotation matrix around the Y axis"""
+        """Create a rotation matrix around the Y axis using fast trig functions"""
         cdef Matrix4 m = Matrix4()
-        cdef double c = cos(angle_rad)
-        cdef double s = sin(angle_rad)
+        cdef double c = fast_cos(angle_rad)
+        cdef double s = fast_sin(angle_rad)
         
         m.data[<int>M00] = c
         m.data[<int>M02] = s
@@ -338,10 +341,10 @@ cdef class Matrix4:
     
     @staticmethod
     cdef Matrix4 rotation_z(double angle_rad):
-        """Create a rotation matrix around the Z axis"""
+        """Create a rotation matrix around the Z axis using fast trig functions"""
         cdef Matrix4 m = Matrix4()
-        cdef double c = cos(angle_rad)
-        cdef double s = sin(angle_rad)
+        cdef double c = fast_cos(angle_rad)
+        cdef double s = fast_sin(angle_rad)
         
         m.data[<int>M00] = c
         m.data[<int>M01] = -s

@@ -1503,7 +1503,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4;
 
-/* "mars_x/cython_modules/vector.pxd":4
+/* "mars_x/cython_modules/vector.pxd":10
  * 
  * # Define Vector structs - renamed to Vec to avoid conflicts with classes
  * cdef struct Vec2:             # <<<<<<<<<<<<<<
@@ -1515,7 +1515,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 {
   double y;
 };
 
-/* "mars_x/cython_modules/vector.pxd":8
+/* "mars_x/cython_modules/vector.pxd":14
  *     double y
  * 
  * cdef struct Vec3:             # <<<<<<<<<<<<<<
@@ -1528,7 +1528,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 {
   double z;
 };
 
-/* "mars_x/cython_modules/vector.pxd":13
+/* "mars_x/cython_modules/vector.pxd":19
  *     double z
  * 
  * cdef struct Vec4:             # <<<<<<<<<<<<<<
@@ -1580,7 +1580,7 @@ struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions {
   double response_coef;
 };
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1595,7 +1595,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1611,7 +1611,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1649,7 +1649,7 @@ struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity {
 
 
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1672,7 +1672,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2;
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1691,7 +1691,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3;
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -3887,14 +3887,14 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(1, 60, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(1, 60, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(1, 75, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(1, 75, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(1, 87, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(1, 87, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(1, 66, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(1, 66, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(1, 81, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(1, 81, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(1, 93, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(1, 93, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.rigidbody"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

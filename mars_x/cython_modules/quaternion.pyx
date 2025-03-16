@@ -7,6 +7,9 @@ from libc.math cimport sin, cos, acos, sqrt
 from mars_x.cython_modules.vector cimport Vector3, Vector4
 from mars_x.cython_modules.matrix cimport Matrix4
 
+# Import our fast trigonometric functions
+from mars_x.cython_modules.vector cimport fast_sin, fast_cos
+
 cdef class Quaternion:
     """
     Quaternion class for 3D rotations
@@ -194,13 +197,13 @@ cdef class Quaternion:
         """Create a quaternion from an axis and an angle (radians)"""
         cdef Vector3 norm_axis = axis.normalize()
         cdef double half_angle = angle * 0.5
-        cdef double sin_half = sin(half_angle)
+        cdef double sin_half = fast_sin(half_angle)
         
         return Quaternion(
             norm_axis.x * sin_half,
             norm_axis.y * sin_half,
             norm_axis.z * sin_half,
-            cos(half_angle)
+            fast_cos(half_angle)
         )
     
     @staticmethod
@@ -211,12 +214,12 @@ cdef class Quaternion:
         cdef double half_y = y * 0.5
         cdef double half_z = z * 0.5
         
-        cdef double cx = cos(half_x)
-        cdef double sx = sin(half_x)
-        cdef double cy = cos(half_y)
-        cdef double sy = sin(half_y)
-        cdef double cz = cos(half_z)
-        cdef double sz = sin(half_z)
+        cdef double cx = fast_cos(half_x)
+        cdef double sx = fast_sin(half_x)
+        cdef double cy = fast_cos(half_y)
+        cdef double sy = fast_sin(half_y)
+        cdef double cz = fast_cos(half_z)
+        cdef double sz = fast_sin(half_z)
         
         # ZYX convention
         return Quaternion(
@@ -306,3 +309,28 @@ cdef class Quaternion:
             a.z * s0 + b_adj.z * s1,
             a.w * s0 + b_adj.w * s1
         ).normalize()
+    
+    @staticmethod
+    def create_identity():
+        """Public wrapper for identity()"""
+        return Quaternion.identity()
+    
+    @staticmethod
+    def create_from_axis_angle(axis, angle):
+        """Public wrapper for from_axis_angle()"""
+        return Quaternion.from_axis_angle(axis, angle)
+    
+    @staticmethod
+    def create_from_euler_angles(x, y, z):
+        """Public wrapper for from_euler_angles()"""
+        return Quaternion.from_euler_angles(x, y, z)
+    
+    @staticmethod
+    def create_from_matrix(matrix):
+        """Public wrapper for from_matrix()"""
+        return Quaternion.from_matrix(matrix)
+    
+    @staticmethod
+    def create_slerp(a, b, t):
+        """Public wrapper for slerp()"""
+        return Quaternion.slerp(a, b, t)

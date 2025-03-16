@@ -1505,7 +1505,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4;
 
-/* "mars_x/cython_modules/vector.pxd":4
+/* "mars_x/cython_modules/vector.pxd":10
  * 
  * # Define Vector structs - renamed to Vec to avoid conflicts with classes
  * cdef struct Vec2:             # <<<<<<<<<<<<<<
@@ -1517,7 +1517,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 {
   double y;
 };
 
-/* "mars_x/cython_modules/vector.pxd":8
+/* "mars_x/cython_modules/vector.pxd":14
  *     double y
  * 
  * cdef struct Vec3:             # <<<<<<<<<<<<<<
@@ -1530,7 +1530,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 {
   double z;
 };
 
-/* "mars_x/cython_modules/vector.pxd":13
+/* "mars_x/cython_modules/vector.pxd":19
  *     double z
  * 
  * cdef struct Vec4:             # <<<<<<<<<<<<<<
@@ -1570,7 +1570,7 @@ struct __pyx_opt_args_6mars_x_14cython_modules_9rigidbody_update_positions {
   double dt;
 };
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1585,7 +1585,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1601,7 +1601,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1639,7 +1639,7 @@ struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity {
 
 
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1662,7 +1662,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2;
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1681,7 +1681,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3;
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -4433,23 +4433,23 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
  *     length_sq = v.x * v.x + v.y * v.y
  * 
  *     if length_sq > 0:             # <<<<<<<<<<<<<<
- *         # Compute inverse length directly - only one sqrt and no divisions needed for components
  *         inv_length = 1.0 / sqrt(length_sq)
+ *         result.x = v.x * inv_length
  */
   __pyx_t_1 = (__pyx_v_length_sq > 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/rigidbody.pyx":62
+    /* "mars_x/cython_modules/rigidbody.pyx":61
+ * 
  *     if length_sq > 0:
- *         # Compute inverse length directly - only one sqrt and no divisions needed for components
  *         inv_length = 1.0 / sqrt(length_sq)             # <<<<<<<<<<<<<<
  *         result.x = v.x * inv_length
  *         result.y = v.y * inv_length
  */
     __pyx_v_inv_length = (1.0 / sqrt(__pyx_v_length_sq));
 
-    /* "mars_x/cython_modules/rigidbody.pyx":63
- *         # Compute inverse length directly - only one sqrt and no divisions needed for components
+    /* "mars_x/cython_modules/rigidbody.pyx":62
+ *     if length_sq > 0:
  *         inv_length = 1.0 / sqrt(length_sq)
  *         result.x = v.x * inv_length             # <<<<<<<<<<<<<<
  *         result.y = v.y * inv_length
@@ -4457,7 +4457,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
  */
     __pyx_v_result.x = (__pyx_v_v.x * __pyx_v_inv_length);
 
-    /* "mars_x/cython_modules/rigidbody.pyx":64
+    /* "mars_x/cython_modules/rigidbody.pyx":63
  *         inv_length = 1.0 / sqrt(length_sq)
  *         result.x = v.x * inv_length
  *         result.y = v.y * inv_length             # <<<<<<<<<<<<<<
@@ -4470,13 +4470,13 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
  *     length_sq = v.x * v.x + v.y * v.y
  * 
  *     if length_sq > 0:             # <<<<<<<<<<<<<<
- *         # Compute inverse length directly - only one sqrt and no divisions needed for components
  *         inv_length = 1.0 / sqrt(length_sq)
+ *         result.x = v.x * inv_length
  */
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":66
+  /* "mars_x/cython_modules/rigidbody.pyx":65
  *         result.y = v.y * inv_length
  *     else:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -4486,7 +4486,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   /*else*/ {
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":67
+    /* "mars_x/cython_modules/rigidbody.pyx":66
  *     else:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -4497,7 +4497,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":69
+  /* "mars_x/cython_modules/rigidbody.pyx":68
  *         result.y = 0
  * 
  *     return result             # <<<<<<<<<<<<<<
@@ -4520,7 +4520,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/rigidbody.pyx":72
+/* "mars_x/cython_modules/rigidbody.pyx":71
  * 
  * @cython.cdivision(True)
  * cdef Vector2D vec_direction(Vector2D v, double max_length) nogil:             # <<<<<<<<<<<<<<
@@ -4535,7 +4535,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   int __pyx_t_1;
   double __pyx_t_2;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":80
+  /* "mars_x/cython_modules/rigidbody.pyx":79
  *     cdef Vector2D result
  * 
  *     length_sq = v.x * v.x + v.y * v.y             # <<<<<<<<<<<<<<
@@ -4544,18 +4544,18 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
  */
   __pyx_v_length_sq = ((__pyx_v_v.x * __pyx_v_v.x) + (__pyx_v_v.y * __pyx_v_v.y));
 
-  /* "mars_x/cython_modules/rigidbody.pyx":82
+  /* "mars_x/cython_modules/rigidbody.pyx":81
  *     length_sq = v.x * v.x + v.y * v.y
  * 
  *     if length_sq > 0:             # <<<<<<<<<<<<<<
- *         # Remove the scaling check for maximum speed
  *         # Just return the original vector direction
+ *         result.x = v.x
  */
   __pyx_t_1 = (__pyx_v_length_sq > 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/rigidbody.pyx":85
- *         # Remove the scaling check for maximum speed
+    /* "mars_x/cython_modules/rigidbody.pyx":83
+ *     if length_sq > 0:
  *         # Just return the original vector direction
  *         result.x = v.x             # <<<<<<<<<<<<<<
  *         result.y = v.y
@@ -4564,7 +4564,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
     __pyx_t_2 = __pyx_v_v.x;
     __pyx_v_result.x = __pyx_t_2;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":86
+    /* "mars_x/cython_modules/rigidbody.pyx":84
  *         # Just return the original vector direction
  *         result.x = v.x
  *         result.y = v.y             # <<<<<<<<<<<<<<
@@ -4574,17 +4574,17 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
     __pyx_t_2 = __pyx_v_v.y;
     __pyx_v_result.y = __pyx_t_2;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":82
+    /* "mars_x/cython_modules/rigidbody.pyx":81
  *     length_sq = v.x * v.x + v.y * v.y
  * 
  *     if length_sq > 0:             # <<<<<<<<<<<<<<
- *         # Remove the scaling check for maximum speed
  *         # Just return the original vector direction
+ *         result.x = v.x
  */
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":88
+  /* "mars_x/cython_modules/rigidbody.pyx":86
  *         result.y = v.y
  *     else:
  *         result.x = 0             # <<<<<<<<<<<<<<
@@ -4594,7 +4594,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   /*else*/ {
     __pyx_v_result.x = 0.0;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":89
+    /* "mars_x/cython_modules/rigidbody.pyx":87
  *     else:
  *         result.x = 0
  *         result.y = 0             # <<<<<<<<<<<<<<
@@ -4605,7 +4605,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":91
+  /* "mars_x/cython_modules/rigidbody.pyx":89
  *         result.y = 0
  * 
  *     return result             # <<<<<<<<<<<<<<
@@ -4615,7 +4615,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":72
+  /* "mars_x/cython_modules/rigidbody.pyx":71
  * 
  * @cython.cdivision(True)
  * cdef Vector2D vec_direction(Vector2D v, double max_length) nogil:             # <<<<<<<<<<<<<<
@@ -4628,7 +4628,7 @@ static struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D __pyx_f_6mars
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/rigidbody.pyx":94
+/* "mars_x/cython_modules/rigidbody.pyx":92
  * 
  * @cython.cdivision(True)
  * cpdef void apply_force(Entity entity, Vector2 force):             # <<<<<<<<<<<<<<
@@ -4646,7 +4646,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *__pyx_v_force, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":99
+  /* "mars_x/cython_modules/rigidbody.pyx":97
  *     Force will be divided by mass to produce acceleration (F = ma).
  *     """
  *     if entity.mass == 0:             # <<<<<<<<<<<<<<
@@ -4656,7 +4656,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx
   __pyx_t_1 = (__pyx_v_entity->mass == 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/rigidbody.pyx":100
+    /* "mars_x/cython_modules/rigidbody.pyx":98
  *     """
  *     if entity.mass == 0:
  *         return             # <<<<<<<<<<<<<<
@@ -4665,7 +4665,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx
  */
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":99
+    /* "mars_x/cython_modules/rigidbody.pyx":97
  *     Force will be divided by mass to produce acceleration (F = ma).
  *     """
  *     if entity.mass == 0:             # <<<<<<<<<<<<<<
@@ -4674,7 +4674,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx
  */
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":103
+  /* "mars_x/cython_modules/rigidbody.pyx":101
  * 
  *     # F = ma, so a = F/m
  *     entity.vx += force.x / entity.mass             # <<<<<<<<<<<<<<
@@ -4683,7 +4683,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx
  */
   __pyx_v_entity->vx = (__pyx_v_entity->vx + (__pyx_v_force->x / __pyx_v_entity->mass));
 
-  /* "mars_x/cython_modules/rigidbody.pyx":104
+  /* "mars_x/cython_modules/rigidbody.pyx":102
  *     # F = ma, so a = F/m
  *     entity.vx += force.x / entity.mass
  *     entity.vy += force.y / entity.mass             # <<<<<<<<<<<<<<
@@ -4692,7 +4692,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(struct __pyx
  */
   __pyx_v_entity->vy = (__pyx_v_entity->vy + (__pyx_v_force->y / __pyx_v_entity->mass));
 
-  /* "mars_x/cython_modules/rigidbody.pyx":94
+  /* "mars_x/cython_modules/rigidbody.pyx":92
  * 
  * @cython.cdivision(True)
  * cpdef void apply_force(Entity entity, Vector2 force):             # <<<<<<<<<<<<<<
@@ -4761,7 +4761,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -4769,14 +4769,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("apply_force", 1, 2, 2, 1); __PYX_ERR(0, 94, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("apply_force", 1, 2, 2, 1); __PYX_ERR(0, 92, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "apply_force") < 0)) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "apply_force") < 0)) __PYX_ERR(0, 92, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -4789,7 +4789,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("apply_force", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("apply_force", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 92, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4803,8 +4803,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_entity), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity, 1, "entity", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_force), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "force", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_entity), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity, 1, "entity", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_force), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2, 1, "force", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_9rigidbody_2apply_force(__pyx_self, __pyx_v_entity, __pyx_v_force);
 
   /* function exit code */
@@ -4831,8 +4831,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_9rigidbody_2apply_force(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("apply_force", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(__pyx_v_entity, __pyx_v_force, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_force(__pyx_v_entity, __pyx_v_force, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4849,7 +4849,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_9rigidbody_2apply_force(CYTHO
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/rigidbody.pyx":107
+/* "mars_x/cython_modules/rigidbody.pyx":105
  * 
  * @cython.cdivision(True)
  * cpdef void apply_torque(Entity entity, double torque):             # <<<<<<<<<<<<<<
@@ -4867,7 +4867,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity, double __pyx_v_torque, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_t_1;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":112
+  /* "mars_x/cython_modules/rigidbody.pyx":110
  *     Positive values rotate clockwise, negative counter-clockwise.
  *     """
  *     if entity.mass == 0:             # <<<<<<<<<<<<<<
@@ -4877,7 +4877,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
   __pyx_t_1 = (__pyx_v_entity->mass == 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/rigidbody.pyx":113
+    /* "mars_x/cython_modules/rigidbody.pyx":111
  *     """
  *     if entity.mass == 0:
  *         return             # <<<<<<<<<<<<<<
@@ -4886,7 +4886,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
  */
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":112
+    /* "mars_x/cython_modules/rigidbody.pyx":110
  *     Positive values rotate clockwise, negative counter-clockwise.
  *     """
  *     if entity.mass == 0:             # <<<<<<<<<<<<<<
@@ -4895,7 +4895,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
  */
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":117
+  /* "mars_x/cython_modules/rigidbody.pyx":115
  *     # Simple model: angular_acceleration = torque / mass
  *     # Add to rotation (in radians)
  *     entity.rotation += torque / entity.mass             # <<<<<<<<<<<<<<
@@ -4904,7 +4904,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
  */
   __pyx_v_entity->rotation = (__pyx_v_entity->rotation + (__pyx_v_torque / __pyx_v_entity->mass));
 
-  /* "mars_x/cython_modules/rigidbody.pyx":120
+  /* "mars_x/cython_modules/rigidbody.pyx":118
  * 
  *     # Normalize rotation to 0-2 radians
  *     while entity.rotation >= 2*M_PI:             # <<<<<<<<<<<<<<
@@ -4915,7 +4915,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
     __pyx_t_1 = (__pyx_v_entity->rotation >= (2.0 * M_PI));
     if (!__pyx_t_1) break;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":121
+    /* "mars_x/cython_modules/rigidbody.pyx":119
  *     # Normalize rotation to 0-2 radians
  *     while entity.rotation >= 2*M_PI:
  *         entity.rotation -= 2*M_PI             # <<<<<<<<<<<<<<
@@ -4925,7 +4925,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
     __pyx_v_entity->rotation = (__pyx_v_entity->rotation - (2.0 * M_PI));
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":122
+  /* "mars_x/cython_modules/rigidbody.pyx":120
  *     while entity.rotation >= 2*M_PI:
  *         entity.rotation -= 2*M_PI
  *     while entity.rotation < 0.0:             # <<<<<<<<<<<<<<
@@ -4935,7 +4935,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
     __pyx_t_1 = (__pyx_v_entity->rotation < 0.0);
     if (!__pyx_t_1) break;
 
-    /* "mars_x/cython_modules/rigidbody.pyx":123
+    /* "mars_x/cython_modules/rigidbody.pyx":121
  *         entity.rotation -= 2*M_PI
  *     while entity.rotation < 0.0:
  *         entity.rotation += 2*M_PI             # <<<<<<<<<<<<<<
@@ -4943,7 +4943,7 @@ static void __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(struct __py
     __pyx_v_entity->rotation = (__pyx_v_entity->rotation + (2.0 * M_PI));
   }
 
-  /* "mars_x/cython_modules/rigidbody.pyx":107
+  /* "mars_x/cython_modules/rigidbody.pyx":105
  * 
  * @cython.cdivision(True)
  * cpdef void apply_torque(Entity entity, double torque):             # <<<<<<<<<<<<<<
@@ -5012,7 +5012,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -5020,14 +5020,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("apply_torque", 1, 2, 2, 1); __PYX_ERR(0, 107, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("apply_torque", 1, 2, 2, 1); __PYX_ERR(0, 105, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "apply_torque") < 0)) __PYX_ERR(0, 107, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "apply_torque") < 0)) __PYX_ERR(0, 105, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -5036,11 +5036,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
     }
     __pyx_v_entity = ((struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *)values[0]);
-    __pyx_v_torque = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_torque == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L3_error)
+    __pyx_v_torque = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_torque == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("apply_torque", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 107, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("apply_torque", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 105, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5054,7 +5054,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_entity), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity, 1, "entity", 0))) __PYX_ERR(0, 107, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_entity), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity, 1, "entity", 0))) __PYX_ERR(0, 105, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_9rigidbody_4apply_torque(__pyx_self, __pyx_v_entity, __pyx_v_torque);
 
   /* function exit code */
@@ -5081,8 +5081,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_9rigidbody_4apply_torque(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("apply_torque", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(__pyx_v_entity, __pyx_v_torque, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_f_6mars_x_14cython_modules_9rigidbody_apply_torque(__pyx_v_entity, __pyx_v_torque, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5969,29 +5969,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__8);
   __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_rigidbody_2, __pyx_n_s_update_positions, 31, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 31, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/rigidbody.pyx":94
+  /* "mars_x/cython_modules/rigidbody.pyx":92
  * 
  * @cython.cdivision(True)
  * cpdef void apply_force(Entity entity, Vector2 force):             # <<<<<<<<<<<<<<
  *     """
  *     Apply a force vector to an entity.
  */
-  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_entity, __pyx_n_s_force); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_entity, __pyx_n_s_force); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_rigidbody_2, __pyx_n_s_apply_force, 94, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_rigidbody_2, __pyx_n_s_apply_force, 92, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 92, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/rigidbody.pyx":107
+  /* "mars_x/cython_modules/rigidbody.pyx":105
  * 
  * @cython.cdivision(True)
  * cpdef void apply_torque(Entity entity, double torque):             # <<<<<<<<<<<<<<
  *     """
  *     Apply a torque to rotate the entity.
  */
-  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_n_s_entity, __pyx_n_s_torque); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_n_s_entity, __pyx_n_s_torque); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_rigidbody_2, __pyx_n_s_apply_torque, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_rigidbody_2, __pyx_n_s_apply_torque, 105, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 105, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Entity(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -6114,14 +6114,14 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 60, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(3, 60, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(3, 60, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(3, 75, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(3, 75, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(3, 87, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(3, 87, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(3, 66, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(3, 66, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(3, 81, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(3, 81, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(3, 93, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(3, 93, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -6471,28 +6471,28 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_update_positions, __pyx_t_2) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":94
+  /* "mars_x/cython_modules/rigidbody.pyx":92
  * 
  * @cython.cdivision(True)
  * cpdef void apply_force(Entity entity, Vector2 force):             # <<<<<<<<<<<<<<
  *     """
  *     Apply a force vector to an entity.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9rigidbody_3apply_force, 0, __pyx_n_s_apply_force, NULL, __pyx_n_s_mars_x_cython_modules_rigidbody, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9rigidbody_3apply_force, 0, __pyx_n_s_apply_force, NULL, __pyx_n_s_mars_x_cython_modules_rigidbody, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_apply_force, __pyx_t_2) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_apply_force, __pyx_t_2) < 0) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mars_x/cython_modules/rigidbody.pyx":107
+  /* "mars_x/cython_modules/rigidbody.pyx":105
  * 
  * @cython.cdivision(True)
  * cpdef void apply_torque(Entity entity, double torque):             # <<<<<<<<<<<<<<
  *     """
  *     Apply a torque to rotate the entity.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9rigidbody_5apply_torque, 0, __pyx_n_s_apply_torque, NULL, __pyx_n_s_mars_x_cython_modules_rigidbody, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9rigidbody_5apply_torque, 0, __pyx_n_s_apply_torque, NULL, __pyx_n_s_mars_x_cython_modules_rigidbody, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_apply_torque, __pyx_t_2) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_apply_torque, __pyx_t_2) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1

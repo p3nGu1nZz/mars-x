@@ -5,22 +5,63 @@
 import cython
 cimport libc.math  # type: ignore
 from libc.math cimport sin, cos, atan2, M_PI, acos, sqrt  # type: ignore
+from libc.stdint cimport int32_t, uint32_t, int64_t, uint64_t
+from libc.string cimport memcpy
 
-# Fast inverse square root approximation (Quake algorithm variant)
+# Fast inverse square root using the classic Quake III algorithm
 @cython.cdivision(True)
-cdef double fast_invsqrt(double x):
-    """Fast inverse square root approximation."""
+cdef double fast_invsqrt(double x) nogil:
+    """Fast inverse square root using the Quake III algorithm with bit manipulation."""
     if x <= 0:
         return 0.0
     
-    # Instead of binary reinterpretation trick, use Newton's method
-    # for quick approximation (more portable in Cython)
-    cdef double y = 1.0 / sqrt(x)  # Initial approximation
+    cdef double half_x = x * 0.5
+    cdef double y = x
+    cdef uint64_t i
+    # Define the magic number as a properly typed constant
+    cdef uint64_t magic_number = <uint64_t>0x5FE6EB50C7B537A9
     
-    # One Newton iteration for refinement: y = y * (1.5 - 0.5 * x * y * y)
-    y = y * (1.5 - 0.5 * x * y * y)
+    # Bit-level hack - convert to integer bits, manipulate, convert back
+    memcpy(&i, &y, sizeof(double))
+    i = magic_number - (i >> 1)  # Use the properly typed constant
+    memcpy(&y, &i, sizeof(double))
+    
+    # Newton-Raphson iterations for higher precision
+    y = y * (1.5 - (half_x * y * y))  # First iteration
+    y = y * (1.5 - (half_x * y * y))  # Second iteration for better precision
     
     return y
+
+# Fast approximation of sqrt(x) using the inverse square root
+@cython.cdivision(True)
+cdef double fast_sqrt(double x) nogil:
+    """Fast square root approximation using inverse square root."""
+    if x <= 0:
+        return 0.0
+    return x * fast_invsqrt(x)
+
+# Fast approximation for sine function - uses Taylor series approximation
+@cython.cdivision(True)
+cdef double fast_sin(double x) nogil:
+    """Fast sine approximation using polynomial."""
+    # Normalize angle to [-pi, pi]
+    cdef double two_pi = 2.0 * M_PI
+    x = x % two_pi
+    if x > M_PI:
+        x -= two_pi
+    elif x < -M_PI:
+        x += two_pi
+    
+    # Polynomial approximation (5th order)
+    cdef double x2 = x * x
+    return x * (1.0 - x2 / 6.0 + x2 * x2 / 120.0)
+
+# Fast approximation for cosine function - uses Taylor series approximation
+@cython.cdivision(True)
+cdef double fast_cos(double x) nogil:
+    """Fast cosine approximation using polynomial."""
+    # cos(x) = sin(x + pi/2)
+    return fast_sin(x + M_PI/2.0)
 
 # Vec2 functions
 cdef Vec2 vec2_create(double x, double y):
@@ -73,10 +114,10 @@ cdef Vec2 vec2_normalize(Vec2 v):
     """
     cdef double len_sq = v.x * v.x + v.y * v.y
     cdef Vec2 result
-    cdef double inv_len  # Move declaration to the beginning of function
+    cdef double inv_len
     
     if len_sq > 1e-10:  # Avoid division by near-zero
-        inv_len = fast_invsqrt(len_sq)  # Now just assignment
+        inv_len = fast_invsqrt(len_sq)  # Use our optimized function
         result.x = v.x * inv_len
         result.y = v.y * inv_len
     else:
@@ -96,8 +137,9 @@ cdef double vec2_angle(Vec2 v):
 
 cdef Vec2 vec2_rotate(Vec2 v, double angle):
     cdef Vec2 result
-    cdef double cs = cos(angle)
-    cdef double sn = sin(angle)
+    # Use our faster sine/cosine approximations
+    cdef double cs = fast_cos(angle)
+    cdef double sn = fast_sin(angle)
     result.x = v.x * cs - v.y * sn
     result.y = v.x * sn + v.y * cs
     return result
@@ -161,10 +203,10 @@ cdef Vec3 vec3_normalize(Vec3 v):
     """
     cdef double len_sq = v.x * v.x + v.y * v.y + v.z * v.z
     cdef Vec3 result
-    cdef double inv_len  # Move declaration to the beginning of function
+    cdef double inv_len
     
     if len_sq > 1e-10:
-        inv_len = fast_invsqrt(len_sq)  # Now just assignment
+        inv_len = fast_invsqrt(len_sq)  # Use our optimized function
         result.x = v.x * inv_len
         result.y = v.y * inv_len
         result.z = v.z * inv_len
@@ -248,10 +290,10 @@ cdef Vec4 vec4_normalize(Vec4 v):
     """
     cdef double len_sq = v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w
     cdef Vec4 result
-    cdef double inv_len  # Move declaration to the beginning of function
+    cdef double inv_len
     
     if len_sq > 1e-10:
-        inv_len = fast_invsqrt(len_sq)  # Now just assignment
+        inv_len = fast_invsqrt(len_sq)  # Use our optimized function
         result.x = v.x * inv_len
         result.y = v.y * inv_len
         result.z = v.z * inv_len
@@ -323,14 +365,15 @@ cdef class Vector2:
     cpdef double magnitude(self):
         """Return magnitude (length) of the vector using fast approximation"""
         cdef double len_sq = self.length_squared()
-        if len_sq == 0:
-            return 0
-        return len_sq * fast_invsqrt(len_sq)
+        if len_sq < 1e-10:
+            return 0.0
+        # Use x * 1/sqrt(x) instead of sqrt(x)
+        return 1.0 / fast_invsqrt(len_sq)
     
     cpdef Vector2 normalize(self):
         """Return normalized vector using fast approximation"""
         cdef double len_sq = self.length_squared()
-        cdef double inv_len  # Move declaration to the beginning of function
+        cdef double inv_len
         
         if len_sq > 1e-10:
             inv_len = fast_invsqrt(len_sq)
@@ -375,9 +418,9 @@ cdef class Vector2:
             return acos(cos_angle)
     
     cpdef Vector2 rotate(self, double angle):
-        # Rotates the vector by angle (in radians)
-        cdef double cs = cos(angle)
-        cdef double sn = sin(angle)
+        # Rotates the vector by angle (in radians) using fast approximations
+        cdef double cs = fast_cos(angle)
+        cdef double sn = fast_sin(angle)
         return Vector2(
             self.x * cs - self.y * sn,
             self.x * sn + self.y * cs
@@ -440,7 +483,7 @@ cdef class Vector3:
     cpdef Vector3 normalize(self):
         """Return normalized vector using fast approximation"""
         cdef double len_sq = self.length_squared()
-        cdef double inv_len  # Move declaration to the beginning of function
+        cdef double inv_len
         
         if len_sq > 1e-10:
             inv_len = fast_invsqrt(len_sq)
@@ -520,7 +563,7 @@ cdef class Vector4:
     cpdef Vector4 normalize(self):
         """Return normalized vector using fast approximation"""
         cdef double len_sq = self.length_squared()
-        cdef double inv_len  # Move declaration to the beginning of function
+        cdef double inv_len
         
         if len_sq > 1e-10:
             inv_len = fast_invsqrt(len_sq)

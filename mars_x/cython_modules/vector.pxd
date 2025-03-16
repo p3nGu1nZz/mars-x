@@ -1,5 +1,11 @@
 # cython: language_level=3
 
+# Fast math functions - simplified exception handling
+cdef double fast_invsqrt(double x) nogil
+cdef double fast_sqrt(double x) nogil
+cdef double fast_sin(double x) nogil
+cdef double fast_cos(double x) nogil
+
 # Define Vector structs - renamed to Vec to avoid conflicts with classes
 cdef struct Vec2:
     double x

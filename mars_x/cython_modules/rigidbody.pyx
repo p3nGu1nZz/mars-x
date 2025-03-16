@@ -58,7 +58,6 @@ cdef Vector2D vec_normalize(Vector2D v) nogil:
     length_sq = v.x * v.x + v.y * v.y
     
     if length_sq > 0:
-        # Compute inverse length directly - only one sqrt and no divisions needed for components
         inv_length = 1.0 / sqrt(length_sq)
         result.x = v.x * inv_length
         result.y = v.y * inv_length
@@ -80,7 +79,6 @@ cdef Vector2D vec_direction(Vector2D v, double max_length) nogil:
     length_sq = v.x * v.x + v.y * v.y
     
     if length_sq > 0:
-        # Remove the scaling check for maximum speed
         # Just return the original vector direction
         result.x = v.x
         result.y = v.y

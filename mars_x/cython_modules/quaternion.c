@@ -1507,7 +1507,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3;
 struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4;
 
-/* "mars_x/cython_modules/vector.pxd":4
+/* "mars_x/cython_modules/vector.pxd":10
  * 
  * # Define Vector structs - renamed to Vec to avoid conflicts with classes
  * cdef struct Vec2:             # <<<<<<<<<<<<<<
@@ -1519,7 +1519,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 {
   double y;
 };
 
-/* "mars_x/cython_modules/vector.pxd":8
+/* "mars_x/cython_modules/vector.pxd":14
  *     double y
  * 
  * cdef struct Vec3:             # <<<<<<<<<<<<<<
@@ -1532,7 +1532,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 {
   double z;
 };
 
-/* "mars_x/cython_modules/vector.pxd":13
+/* "mars_x/cython_modules/vector.pxd":19
  *     double z
  * 
  * cdef struct Vec4:             # <<<<<<<<<<<<<<
@@ -1546,7 +1546,7 @@ struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 {
   double w;
 };
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1561,7 +1561,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1577,7 +1577,7 @@ struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 {
 };
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1626,7 +1626,7 @@ struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion {
 
 
 
-/* "mars_x/cython_modules/vector.pxd":60
+/* "mars_x/cython_modules/vector.pxd":66
  * 
  * # Classes for Python API
  * cdef class Vector2:             # <<<<<<<<<<<<<<
@@ -1649,7 +1649,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2;
 
 
-/* "mars_x/cython_modules/vector.pxd":75
+/* "mars_x/cython_modules/vector.pxd":81
  *     cpdef bint is_zero(self)
  * 
  * cdef class Vector3:             # <<<<<<<<<<<<<<
@@ -1668,7 +1668,7 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3;
 
 
-/* "mars_x/cython_modules/vector.pxd":87
+/* "mars_x/cython_modules/vector.pxd":93
  *     cpdef Vector3 copy(self)
  * 
  * cdef class Vector4:             # <<<<<<<<<<<<<<
@@ -1713,8 +1713,8 @@ struct __pyx_vtabstruct_6mars_x_14cython_modules_6matrix_Matrix4 {
 static struct __pyx_vtabstruct_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_vtabptr_6mars_x_14cython_modules_6matrix_Matrix4;
 
 
-/* "mars_x/cython_modules/quaternion.pyx":10
- * from mars_x.cython_modules.matrix cimport Matrix4
+/* "mars_x/cython_modules/quaternion.pyx":13
+ * from mars_x.cython_modules.vector cimport fast_sin, fast_cos
  * 
  * cdef class Quaternion:             # <<<<<<<<<<<<<<
  *     """
@@ -2339,6 +2339,10 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
 
+/* GetNameInClass.proto */
+#define __Pyx_GetNameInClass(var, nmspace, name)  (var) = __Pyx__GetNameInClass(nmspace, name)
+static PyObject *__Pyx__GetNameInClass(PyObject *nmspace, PyObject *name);
+
 /* CLineInTraceback.proto */
 #ifdef CYTHON_CLINE_IN_TRACEBACK
 #define __Pyx_CLineForTraceback(tstate, c_line)  (((CYTHON_CLINE_IN_TRACEBACK)) ? c_line : 0)
@@ -2415,6 +2419,9 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 static unsigned long __Pyx_get_runtime_version(void);
 static int __Pyx_check_binary_version(unsigned long ct_version, unsigned long rt_version, int allow_newer);
 
+/* FunctionImport.proto */
+static int __Pyx_ImportFunction_3_0_12(PyObject *module, const char *funcname, void (**f)(void), const char *sig);
+
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
@@ -2433,6 +2440,8 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
 static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_slerp(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_a, struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_b, double __pyx_v_t); /* proto*/
 
 /* Module declarations from "mars_x.cython_modules.vector" */
+static double (*__pyx_f_6mars_x_14cython_modules_6vector_fast_sin)(double); /*proto*/
+static double (*__pyx_f_6mars_x_14cython_modules_6vector_fast_cos)(double); /*proto*/
 
 /* Module declarations from "mars_x.cython_modules.matrix" */
 
@@ -2450,9 +2459,13 @@ int __pyx_module_is_main_mars_x__cython_modules__quaternion = 0;
 
 /* Implementation of "mars_x.cython_modules.quaternion" */
 /* #### Code section: global_var ### */
+static PyObject *__pyx_builtin_staticmethod;
 static PyObject *__pyx_builtin_NotImplemented;
 /* #### Code section: string_decls ### */
 static const char __pyx_k_[] = ", ";
+static const char __pyx_k_a[] = "a";
+static const char __pyx_k_b[] = "b";
+static const char __pyx_k_t[] = "t";
 static const char __pyx_k_v[] = "v";
 static const char __pyx_k_w[] = "w";
 static const char __pyx_k_x[] = "x";
@@ -2461,19 +2474,22 @@ static const char __pyx_k_z[] = "z";
 static const char __pyx_k__2[] = ")";
 static const char __pyx_k__5[] = ".";
 static const char __pyx_k_gc[] = "gc";
-static const char __pyx_k__21[] = "?";
+static const char __pyx_k__30[] = "?";
 static const char __pyx_k_new[] = "__new__";
+static const char __pyx_k_axis[] = "axis";
 static const char __pyx_k_copy[] = "copy";
 static const char __pyx_k_dict[] = "__dict__";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_self[] = "self";
 static const char __pyx_k_test[] = "__test__";
+static const char __pyx_k_angle[] = "angle";
 static const char __pyx_k_state[] = "state";
 static const char __pyx_k_dict_2[] = "_dict";
 static const char __pyx_k_enable[] = "enable";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_length[] = "length";
+static const char __pyx_k_matrix[] = "matrix";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_update[] = "update";
@@ -2492,29 +2508,40 @@ static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_Quaternion_2[] = "Quaternion";
+static const char __pyx_k_create_slerp[] = "create_slerp";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
+static const char __pyx_k_staticmethod[] = "staticmethod";
 static const char __pyx_k_stringsource[] = "<stringsource>";
 static const char __pyx_k_use_setstate[] = "use_setstate";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_NotImplemented[] = "NotImplemented";
 static const char __pyx_k_rotate_vector3[] = "rotate_vector3";
 static const char __pyx_k_Quaternion_copy[] = "Quaternion.copy";
+static const char __pyx_k_create_identity[] = "create_identity";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_Quaternion_length[] = "Quaternion.length";
 static const char __pyx_k_Quaternion_inverse[] = "Quaternion.inverse";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_create_from_matrix[] = "create_from_matrix";
 static const char __pyx_k_to_rotation_matrix[] = "to_rotation_matrix";
 static const char __pyx_k_Quaternion_conjugate[] = "Quaternion.conjugate";
 static const char __pyx_k_Quaternion_normalize[] = "Quaternion.normalize";
+static const char __pyx_k_create_from_axis_angle[] = "create_from_axis_angle";
+static const char __pyx_k_Quaternion_create_slerp[] = "Quaternion.create_slerp";
 static const char __pyx_k_pyx_unpickle_Quaternion[] = "__pyx_unpickle_Quaternion";
+static const char __pyx_k_create_from_euler_angles[] = "create_from_euler_angles";
 static const char __pyx_k_Quaternion_rotate_vector3[] = "Quaternion.rotate_vector3";
 static const char __pyx_k_Quaternion___reduce_cython[] = "Quaternion.__reduce_cython__";
+static const char __pyx_k_Quaternion_create_identity[] = "Quaternion.create_identity";
 static const char __pyx_k_Quaternion___setstate_cython[] = "Quaternion.__setstate_cython__";
+static const char __pyx_k_Quaternion_create_from_matrix[] = "Quaternion.create_from_matrix";
 static const char __pyx_k_Quaternion_to_rotation_matrix[] = "Quaternion.to_rotation_matrix";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0x5da3de2, 0x5ddb5ce, 0x49feeee) = (w, x, y, z))";
+static const char __pyx_k_Quaternion_create_from_axis_angl[] = "Quaternion.create_from_axis_angle";
+static const char __pyx_k_Quaternion_create_from_euler_ang[] = "Quaternion.create_from_euler_angles";
 static const char __pyx_k_mars_x_cython_modules_quaternion[] = "mars_x\\cython_modules\\quaternion.pyx";
 static const char __pyx_k_mars_x_cython_modules_quaternion_2[] = "mars_x.cython_modules.quaternion";
 /* #### Code section: decls ### */
@@ -2531,6 +2558,11 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_18i
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_20rotate_vector3(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_v_v); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_22to_rotation_matrix(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_24copy(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity(void); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle(PyObject *__pyx_v_axis, PyObject *__pyx_v_angle); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles(PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_z); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix(PyObject *__pyx_v_matrix); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_t); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1x___get__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
 static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1x_2__set__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1y___get__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
@@ -2539,8 +2571,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1z_
 static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1z_2__set__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1w___get__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
 static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1w_2__set__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26__reduce_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28__setstate_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_36__reduce_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_38__setstate_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion___pyx_unpickle_Quaternion(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_6mars_x_14cython_modules_10quaternion_Quaternion(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
@@ -2596,18 +2628,32 @@ typedef struct {
   PyObject *__pyx_n_s_Quaternion___setstate_cython;
   PyObject *__pyx_n_s_Quaternion_conjugate;
   PyObject *__pyx_n_s_Quaternion_copy;
+  PyObject *__pyx_n_s_Quaternion_create_from_axis_angl;
+  PyObject *__pyx_n_s_Quaternion_create_from_euler_ang;
+  PyObject *__pyx_n_s_Quaternion_create_from_matrix;
+  PyObject *__pyx_n_s_Quaternion_create_identity;
+  PyObject *__pyx_n_s_Quaternion_create_slerp;
   PyObject *__pyx_n_s_Quaternion_inverse;
   PyObject *__pyx_n_s_Quaternion_length;
   PyObject *__pyx_n_s_Quaternion_normalize;
   PyObject *__pyx_n_s_Quaternion_rotate_vector3;
   PyObject *__pyx_n_s_Quaternion_to_rotation_matrix;
   PyObject *__pyx_kp_u__2;
-  PyObject *__pyx_n_s__21;
+  PyObject *__pyx_n_s__30;
   PyObject *__pyx_kp_u__5;
+  PyObject *__pyx_n_s_a;
+  PyObject *__pyx_n_s_angle;
   PyObject *__pyx_n_s_asyncio_coroutines;
+  PyObject *__pyx_n_s_axis;
+  PyObject *__pyx_n_s_b;
   PyObject *__pyx_n_s_cline_in_traceback;
   PyObject *__pyx_n_s_conjugate;
   PyObject *__pyx_n_s_copy;
+  PyObject *__pyx_n_s_create_from_axis_angle;
+  PyObject *__pyx_n_s_create_from_euler_angles;
+  PyObject *__pyx_n_s_create_from_matrix;
+  PyObject *__pyx_n_s_create_identity;
+  PyObject *__pyx_n_s_create_slerp;
   PyObject *__pyx_n_s_dict;
   PyObject *__pyx_n_s_dict_2;
   PyObject *__pyx_kp_u_disable;
@@ -2622,6 +2668,7 @@ typedef struct {
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_kp_s_mars_x_cython_modules_quaternion;
   PyObject *__pyx_n_s_mars_x_cython_modules_quaternion_2;
+  PyObject *__pyx_n_s_matrix;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_new;
   PyObject *__pyx_n_s_normalize;
@@ -2641,7 +2688,9 @@ typedef struct {
   PyObject *__pyx_n_s_setstate;
   PyObject *__pyx_n_s_setstate_cython;
   PyObject *__pyx_n_s_state;
+  PyObject *__pyx_n_s_staticmethod;
   PyObject *__pyx_kp_s_stringsource;
+  PyObject *__pyx_n_s_t;
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_n_s_to_rotation_matrix;
   PyObject *__pyx_n_s_update;
@@ -2660,9 +2709,13 @@ typedef struct {
   PyObject *__pyx_tuple__4;
   PyObject *__pyx_tuple__6;
   PyObject *__pyx_tuple__11;
-  PyObject *__pyx_tuple__15;
-  PyObject *__pyx_tuple__17;
-  PyObject *__pyx_tuple__19;
+  PyObject *__pyx_tuple__16;
+  PyObject *__pyx_tuple__18;
+  PyObject *__pyx_tuple__20;
+  PyObject *__pyx_tuple__22;
+  PyObject *__pyx_tuple__24;
+  PyObject *__pyx_tuple__26;
+  PyObject *__pyx_tuple__28;
   PyObject *__pyx_codeobj__7;
   PyObject *__pyx_codeobj__8;
   PyObject *__pyx_codeobj__9;
@@ -2670,9 +2723,14 @@ typedef struct {
   PyObject *__pyx_codeobj__12;
   PyObject *__pyx_codeobj__13;
   PyObject *__pyx_codeobj__14;
-  PyObject *__pyx_codeobj__16;
-  PyObject *__pyx_codeobj__18;
-  PyObject *__pyx_codeobj__20;
+  PyObject *__pyx_codeobj__15;
+  PyObject *__pyx_codeobj__17;
+  PyObject *__pyx_codeobj__19;
+  PyObject *__pyx_codeobj__21;
+  PyObject *__pyx_codeobj__23;
+  PyObject *__pyx_codeobj__25;
+  PyObject *__pyx_codeobj__27;
+  PyObject *__pyx_codeobj__29;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2731,18 +2789,32 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion___setstate_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_conjugate);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_copy);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_create_from_axis_angl);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_create_from_euler_ang);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_create_from_matrix);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_create_identity);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_create_slerp);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_inverse);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_length);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_normalize);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_rotate_vector3);
   Py_CLEAR(clear_module_state->__pyx_n_s_Quaternion_to_rotation_matrix);
   Py_CLEAR(clear_module_state->__pyx_kp_u__2);
-  Py_CLEAR(clear_module_state->__pyx_n_s__21);
+  Py_CLEAR(clear_module_state->__pyx_n_s__30);
   Py_CLEAR(clear_module_state->__pyx_kp_u__5);
+  Py_CLEAR(clear_module_state->__pyx_n_s_a);
+  Py_CLEAR(clear_module_state->__pyx_n_s_angle);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
+  Py_CLEAR(clear_module_state->__pyx_n_s_axis);
+  Py_CLEAR(clear_module_state->__pyx_n_s_b);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
   Py_CLEAR(clear_module_state->__pyx_n_s_conjugate);
   Py_CLEAR(clear_module_state->__pyx_n_s_copy);
+  Py_CLEAR(clear_module_state->__pyx_n_s_create_from_axis_angle);
+  Py_CLEAR(clear_module_state->__pyx_n_s_create_from_euler_angles);
+  Py_CLEAR(clear_module_state->__pyx_n_s_create_from_matrix);
+  Py_CLEAR(clear_module_state->__pyx_n_s_create_identity);
+  Py_CLEAR(clear_module_state->__pyx_n_s_create_slerp);
   Py_CLEAR(clear_module_state->__pyx_n_s_dict);
   Py_CLEAR(clear_module_state->__pyx_n_s_dict_2);
   Py_CLEAR(clear_module_state->__pyx_kp_u_disable);
@@ -2757,6 +2829,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_kp_s_mars_x_cython_modules_quaternion);
   Py_CLEAR(clear_module_state->__pyx_n_s_mars_x_cython_modules_quaternion_2);
+  Py_CLEAR(clear_module_state->__pyx_n_s_matrix);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_new);
   Py_CLEAR(clear_module_state->__pyx_n_s_normalize);
@@ -2776,7 +2849,9 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_setstate);
   Py_CLEAR(clear_module_state->__pyx_n_s_setstate_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_state);
+  Py_CLEAR(clear_module_state->__pyx_n_s_staticmethod);
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
+  Py_CLEAR(clear_module_state->__pyx_n_s_t);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_n_s_to_rotation_matrix);
   Py_CLEAR(clear_module_state->__pyx_n_s_update);
@@ -2795,9 +2870,13 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__4);
   Py_CLEAR(clear_module_state->__pyx_tuple__6);
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
-  Py_CLEAR(clear_module_state->__pyx_tuple__15);
-  Py_CLEAR(clear_module_state->__pyx_tuple__17);
-  Py_CLEAR(clear_module_state->__pyx_tuple__19);
+  Py_CLEAR(clear_module_state->__pyx_tuple__16);
+  Py_CLEAR(clear_module_state->__pyx_tuple__18);
+  Py_CLEAR(clear_module_state->__pyx_tuple__20);
+  Py_CLEAR(clear_module_state->__pyx_tuple__22);
+  Py_CLEAR(clear_module_state->__pyx_tuple__24);
+  Py_CLEAR(clear_module_state->__pyx_tuple__26);
+  Py_CLEAR(clear_module_state->__pyx_tuple__28);
   Py_CLEAR(clear_module_state->__pyx_codeobj__7);
   Py_CLEAR(clear_module_state->__pyx_codeobj__8);
   Py_CLEAR(clear_module_state->__pyx_codeobj__9);
@@ -2805,9 +2884,14 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_codeobj__12);
   Py_CLEAR(clear_module_state->__pyx_codeobj__13);
   Py_CLEAR(clear_module_state->__pyx_codeobj__14);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__16);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__18);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__20);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__15);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__17);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__21);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__23);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__25);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__27);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__29);
   return 0;
 }
 #endif
@@ -2844,18 +2928,32 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion___setstate_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_conjugate);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_copy);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_create_from_axis_angl);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_create_from_euler_ang);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_create_from_matrix);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_create_identity);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_create_slerp);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_inverse);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_length);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_normalize);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_rotate_vector3);
   Py_VISIT(traverse_module_state->__pyx_n_s_Quaternion_to_rotation_matrix);
   Py_VISIT(traverse_module_state->__pyx_kp_u__2);
-  Py_VISIT(traverse_module_state->__pyx_n_s__21);
+  Py_VISIT(traverse_module_state->__pyx_n_s__30);
   Py_VISIT(traverse_module_state->__pyx_kp_u__5);
+  Py_VISIT(traverse_module_state->__pyx_n_s_a);
+  Py_VISIT(traverse_module_state->__pyx_n_s_angle);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
+  Py_VISIT(traverse_module_state->__pyx_n_s_axis);
+  Py_VISIT(traverse_module_state->__pyx_n_s_b);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
   Py_VISIT(traverse_module_state->__pyx_n_s_conjugate);
   Py_VISIT(traverse_module_state->__pyx_n_s_copy);
+  Py_VISIT(traverse_module_state->__pyx_n_s_create_from_axis_angle);
+  Py_VISIT(traverse_module_state->__pyx_n_s_create_from_euler_angles);
+  Py_VISIT(traverse_module_state->__pyx_n_s_create_from_matrix);
+  Py_VISIT(traverse_module_state->__pyx_n_s_create_identity);
+  Py_VISIT(traverse_module_state->__pyx_n_s_create_slerp);
   Py_VISIT(traverse_module_state->__pyx_n_s_dict);
   Py_VISIT(traverse_module_state->__pyx_n_s_dict_2);
   Py_VISIT(traverse_module_state->__pyx_kp_u_disable);
@@ -2870,6 +2968,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_kp_s_mars_x_cython_modules_quaternion);
   Py_VISIT(traverse_module_state->__pyx_n_s_mars_x_cython_modules_quaternion_2);
+  Py_VISIT(traverse_module_state->__pyx_n_s_matrix);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_new);
   Py_VISIT(traverse_module_state->__pyx_n_s_normalize);
@@ -2889,7 +2988,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_setstate);
   Py_VISIT(traverse_module_state->__pyx_n_s_setstate_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_state);
+  Py_VISIT(traverse_module_state->__pyx_n_s_staticmethod);
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
+  Py_VISIT(traverse_module_state->__pyx_n_s_t);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_n_s_to_rotation_matrix);
   Py_VISIT(traverse_module_state->__pyx_n_s_update);
@@ -2908,9 +3009,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__4);
   Py_VISIT(traverse_module_state->__pyx_tuple__6);
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
-  Py_VISIT(traverse_module_state->__pyx_tuple__15);
-  Py_VISIT(traverse_module_state->__pyx_tuple__17);
-  Py_VISIT(traverse_module_state->__pyx_tuple__19);
+  Py_VISIT(traverse_module_state->__pyx_tuple__16);
+  Py_VISIT(traverse_module_state->__pyx_tuple__18);
+  Py_VISIT(traverse_module_state->__pyx_tuple__20);
+  Py_VISIT(traverse_module_state->__pyx_tuple__22);
+  Py_VISIT(traverse_module_state->__pyx_tuple__24);
+  Py_VISIT(traverse_module_state->__pyx_tuple__26);
+  Py_VISIT(traverse_module_state->__pyx_tuple__28);
   Py_VISIT(traverse_module_state->__pyx_codeobj__7);
   Py_VISIT(traverse_module_state->__pyx_codeobj__8);
   Py_VISIT(traverse_module_state->__pyx_codeobj__9);
@@ -2918,9 +3023,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_codeobj__12);
   Py_VISIT(traverse_module_state->__pyx_codeobj__13);
   Py_VISIT(traverse_module_state->__pyx_codeobj__14);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__16);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__18);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__20);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__15);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__17);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__21);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__23);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__25);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__27);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__29);
   return 0;
 }
 #endif
@@ -2975,18 +3085,32 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Quaternion___setstate_cython __pyx_mstate_global->__pyx_n_s_Quaternion___setstate_cython
 #define __pyx_n_s_Quaternion_conjugate __pyx_mstate_global->__pyx_n_s_Quaternion_conjugate
 #define __pyx_n_s_Quaternion_copy __pyx_mstate_global->__pyx_n_s_Quaternion_copy
+#define __pyx_n_s_Quaternion_create_from_axis_angl __pyx_mstate_global->__pyx_n_s_Quaternion_create_from_axis_angl
+#define __pyx_n_s_Quaternion_create_from_euler_ang __pyx_mstate_global->__pyx_n_s_Quaternion_create_from_euler_ang
+#define __pyx_n_s_Quaternion_create_from_matrix __pyx_mstate_global->__pyx_n_s_Quaternion_create_from_matrix
+#define __pyx_n_s_Quaternion_create_identity __pyx_mstate_global->__pyx_n_s_Quaternion_create_identity
+#define __pyx_n_s_Quaternion_create_slerp __pyx_mstate_global->__pyx_n_s_Quaternion_create_slerp
 #define __pyx_n_s_Quaternion_inverse __pyx_mstate_global->__pyx_n_s_Quaternion_inverse
 #define __pyx_n_s_Quaternion_length __pyx_mstate_global->__pyx_n_s_Quaternion_length
 #define __pyx_n_s_Quaternion_normalize __pyx_mstate_global->__pyx_n_s_Quaternion_normalize
 #define __pyx_n_s_Quaternion_rotate_vector3 __pyx_mstate_global->__pyx_n_s_Quaternion_rotate_vector3
 #define __pyx_n_s_Quaternion_to_rotation_matrix __pyx_mstate_global->__pyx_n_s_Quaternion_to_rotation_matrix
 #define __pyx_kp_u__2 __pyx_mstate_global->__pyx_kp_u__2
-#define __pyx_n_s__21 __pyx_mstate_global->__pyx_n_s__21
+#define __pyx_n_s__30 __pyx_mstate_global->__pyx_n_s__30
 #define __pyx_kp_u__5 __pyx_mstate_global->__pyx_kp_u__5
+#define __pyx_n_s_a __pyx_mstate_global->__pyx_n_s_a
+#define __pyx_n_s_angle __pyx_mstate_global->__pyx_n_s_angle
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
+#define __pyx_n_s_axis __pyx_mstate_global->__pyx_n_s_axis
+#define __pyx_n_s_b __pyx_mstate_global->__pyx_n_s_b
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
 #define __pyx_n_s_conjugate __pyx_mstate_global->__pyx_n_s_conjugate
 #define __pyx_n_s_copy __pyx_mstate_global->__pyx_n_s_copy
+#define __pyx_n_s_create_from_axis_angle __pyx_mstate_global->__pyx_n_s_create_from_axis_angle
+#define __pyx_n_s_create_from_euler_angles __pyx_mstate_global->__pyx_n_s_create_from_euler_angles
+#define __pyx_n_s_create_from_matrix __pyx_mstate_global->__pyx_n_s_create_from_matrix
+#define __pyx_n_s_create_identity __pyx_mstate_global->__pyx_n_s_create_identity
+#define __pyx_n_s_create_slerp __pyx_mstate_global->__pyx_n_s_create_slerp
 #define __pyx_n_s_dict __pyx_mstate_global->__pyx_n_s_dict
 #define __pyx_n_s_dict_2 __pyx_mstate_global->__pyx_n_s_dict_2
 #define __pyx_kp_u_disable __pyx_mstate_global->__pyx_kp_u_disable
@@ -3001,6 +3125,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_kp_s_mars_x_cython_modules_quaternion __pyx_mstate_global->__pyx_kp_s_mars_x_cython_modules_quaternion
 #define __pyx_n_s_mars_x_cython_modules_quaternion_2 __pyx_mstate_global->__pyx_n_s_mars_x_cython_modules_quaternion_2
+#define __pyx_n_s_matrix __pyx_mstate_global->__pyx_n_s_matrix
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_new __pyx_mstate_global->__pyx_n_s_new
 #define __pyx_n_s_normalize __pyx_mstate_global->__pyx_n_s_normalize
@@ -3020,7 +3145,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_setstate __pyx_mstate_global->__pyx_n_s_setstate
 #define __pyx_n_s_setstate_cython __pyx_mstate_global->__pyx_n_s_setstate_cython
 #define __pyx_n_s_state __pyx_mstate_global->__pyx_n_s_state
+#define __pyx_n_s_staticmethod __pyx_mstate_global->__pyx_n_s_staticmethod
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
+#define __pyx_n_s_t __pyx_mstate_global->__pyx_n_s_t
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_n_s_to_rotation_matrix __pyx_mstate_global->__pyx_n_s_to_rotation_matrix
 #define __pyx_n_s_update __pyx_mstate_global->__pyx_n_s_update
@@ -3039,9 +3166,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__4 __pyx_mstate_global->__pyx_tuple__4
 #define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
-#define __pyx_tuple__15 __pyx_mstate_global->__pyx_tuple__15
-#define __pyx_tuple__17 __pyx_mstate_global->__pyx_tuple__17
-#define __pyx_tuple__19 __pyx_mstate_global->__pyx_tuple__19
+#define __pyx_tuple__16 __pyx_mstate_global->__pyx_tuple__16
+#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
+#define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
+#define __pyx_tuple__22 __pyx_mstate_global->__pyx_tuple__22
+#define __pyx_tuple__24 __pyx_mstate_global->__pyx_tuple__24
+#define __pyx_tuple__26 __pyx_mstate_global->__pyx_tuple__26
+#define __pyx_tuple__28 __pyx_mstate_global->__pyx_tuple__28
 #define __pyx_codeobj__7 __pyx_mstate_global->__pyx_codeobj__7
 #define __pyx_codeobj__8 __pyx_mstate_global->__pyx_codeobj__8
 #define __pyx_codeobj__9 __pyx_mstate_global->__pyx_codeobj__9
@@ -3049,12 +3180,17 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
 #define __pyx_codeobj__13 __pyx_mstate_global->__pyx_codeobj__13
 #define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
-#define __pyx_codeobj__16 __pyx_mstate_global->__pyx_codeobj__16
-#define __pyx_codeobj__18 __pyx_mstate_global->__pyx_codeobj__18
-#define __pyx_codeobj__20 __pyx_mstate_global->__pyx_codeobj__20
+#define __pyx_codeobj__15 __pyx_mstate_global->__pyx_codeobj__15
+#define __pyx_codeobj__17 __pyx_mstate_global->__pyx_codeobj__17
+#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
+#define __pyx_codeobj__21 __pyx_mstate_global->__pyx_codeobj__21
+#define __pyx_codeobj__23 __pyx_mstate_global->__pyx_codeobj__23
+#define __pyx_codeobj__25 __pyx_mstate_global->__pyx_codeobj__25
+#define __pyx_codeobj__27 __pyx_mstate_global->__pyx_codeobj__27
+#define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
 /* #### Code section: module_code ### */
 
-/* "mars_x/cython_modules/quaternion.pyx":14
+/* "mars_x/cython_modules/quaternion.pyx":17
  *     Quaternion class for 3D rotations
  *     """
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):             # <<<<<<<<<<<<<<
@@ -3110,33 +3246,33 @@ static int __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_1__init__
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_x);
           if (value) { values[0] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_y);
           if (value) { values[1] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_z);
           if (value) { values[2] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_VARARGS(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_w);
           if (value) { values[3] = __Pyx_Arg_NewRef_VARARGS(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 14, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 17, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -3153,29 +3289,29 @@ static int __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_1__init__
       }
     }
     if (values[0]) {
-      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+      __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     } else {
       __pyx_v_x = ((double)0.0);
     }
     if (values[1]) {
-      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+      __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     } else {
       __pyx_v_y = ((double)0.0);
     }
     if (values[2]) {
-      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+      __pyx_v_z = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     } else {
       __pyx_v_z = ((double)0.0);
     }
     if (values[3]) {
-      __pyx_v_w = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_w == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+      __pyx_v_w = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_w == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     } else {
       __pyx_v_w = ((double)1.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 4, __pyx_nargs); __PYX_ERR(0, 14, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 4, __pyx_nargs); __PYX_ERR(0, 17, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3205,7 +3341,7 @@ static int __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_1__init__
 static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, double __pyx_v_x, double __pyx_v_y, double __pyx_v_z, double __pyx_v_w) {
   int __pyx_r;
 
-  /* "mars_x/cython_modules/quaternion.pyx":16
+  /* "mars_x/cython_modules/quaternion.pyx":19
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):
  *         """Initialize quaternion with given components, defaults to identity"""
  *         self.x = x             # <<<<<<<<<<<<<<
@@ -3214,7 +3350,7 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(
  */
   __pyx_v_self->x = __pyx_v_x;
 
-  /* "mars_x/cython_modules/quaternion.pyx":17
+  /* "mars_x/cython_modules/quaternion.pyx":20
  *         """Initialize quaternion with given components, defaults to identity"""
  *         self.x = x
  *         self.y = y             # <<<<<<<<<<<<<<
@@ -3223,7 +3359,7 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(
  */
   __pyx_v_self->y = __pyx_v_y;
 
-  /* "mars_x/cython_modules/quaternion.pyx":18
+  /* "mars_x/cython_modules/quaternion.pyx":21
  *         self.x = x
  *         self.y = y
  *         self.z = z             # <<<<<<<<<<<<<<
@@ -3232,7 +3368,7 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(
  */
   __pyx_v_self->z = __pyx_v_z;
 
-  /* "mars_x/cython_modules/quaternion.pyx":19
+  /* "mars_x/cython_modules/quaternion.pyx":22
  *         self.y = y
  *         self.z = z
  *         self.w = w             # <<<<<<<<<<<<<<
@@ -3241,7 +3377,7 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(
  */
   __pyx_v_self->w = __pyx_v_w;
 
-  /* "mars_x/cython_modules/quaternion.pyx":14
+  /* "mars_x/cython_modules/quaternion.pyx":17
  *     Quaternion class for 3D rotations
  *     """
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0, double w=1.0):             # <<<<<<<<<<<<<<
@@ -3254,7 +3390,7 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion___init__(
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":21
+/* "mars_x/cython_modules/quaternion.pyx":24
  *         self.w = w
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -3294,7 +3430,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":23
+  /* "mars_x/cython_modules/quaternion.pyx":26
  *     def __repr__(self):
  *         """String representation"""
  *         return f"Quaternion({self.x}, {self.y}, {self.z}, {self.w})"             # <<<<<<<<<<<<<<
@@ -3302,7 +3438,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
  *     def __add__(Quaternion self, Quaternion other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_3 = 127;
@@ -3310,9 +3446,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   __pyx_t_2 += 11;
   __Pyx_GIVEREF(__pyx_kp_u_Quaternion);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Quaternion);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -3324,9 +3460,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -3338,9 +3474,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -3352,9 +3488,9 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   __pyx_t_2 += 2;
   __Pyx_GIVEREF(__pyx_kp_u_);
   PyTuple_SET_ITEM(__pyx_t_1, 6, __pyx_kp_u_);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
@@ -3366,14 +3502,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   __pyx_t_2 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__2);
   PyTuple_SET_ITEM(__pyx_t_1, 8, __pyx_kp_u__2);
-  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 9, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 9, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":21
+  /* "mars_x/cython_modules/quaternion.pyx":24
  *         self.w = w
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -3394,7 +3530,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_2__
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":25
+/* "mars_x/cython_modules/quaternion.pyx":28
  *         return f"Quaternion({self.x}, {self.y}, {self.z}, {self.w})"
  * 
  *     def __add__(Quaternion self, Quaternion other):             # <<<<<<<<<<<<<<
@@ -3413,7 +3549,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_5__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, 1, "other", 0))) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, 1, "other", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_4__add__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_other));
 
   /* function exit code */
@@ -3438,7 +3574,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_4__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":26
+  /* "mars_x/cython_modules/quaternion.pyx":29
  * 
  *     def __add__(Quaternion self, Quaternion other):
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -3447,75 +3583,75 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_4__
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":27
+  /* "mars_x/cython_modules/quaternion.pyx":30
  *     def __add__(Quaternion self, Quaternion other):
  *         return Quaternion(
  *             self.x + other.x,             # <<<<<<<<<<<<<<
  *             self.y + other.y,
  *             self.z + other.z,
  */
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x + __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":28
+  /* "mars_x/cython_modules/quaternion.pyx":31
  *         return Quaternion(
  *             self.x + other.x,
  *             self.y + other.y,             # <<<<<<<<<<<<<<
  *             self.z + other.z,
  *             self.w + other.w
  */
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y + __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/quaternion.pyx":29
+  /* "mars_x/cython_modules/quaternion.pyx":32
  *             self.x + other.x,
  *             self.y + other.y,
  *             self.z + other.z,             # <<<<<<<<<<<<<<
  *             self.w + other.w
  *         )
  */
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z + __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":30
+  /* "mars_x/cython_modules/quaternion.pyx":33
  *             self.y + other.y,
  *             self.z + other.z,
  *             self.w + other.w             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w + __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w + __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":26
+  /* "mars_x/cython_modules/quaternion.pyx":29
  * 
  *     def __add__(Quaternion self, Quaternion other):
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             self.x + other.x,
  *             self.y + other.y,
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":25
+  /* "mars_x/cython_modules/quaternion.pyx":28
  *         return f"Quaternion({self.x}, {self.y}, {self.z}, {self.w})"
  * 
  *     def __add__(Quaternion self, Quaternion other):             # <<<<<<<<<<<<<<
@@ -3538,7 +3674,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_4__
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":33
+/* "mars_x/cython_modules/quaternion.pyx":36
  *         )
  * 
  *     def __sub__(Quaternion self, Quaternion other):             # <<<<<<<<<<<<<<
@@ -3557,7 +3693,7 @@ static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_7__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__sub__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, 1, "other", 0))) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, 1, "other", 0))) __PYX_ERR(0, 36, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_6__sub__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self), ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_other));
 
   /* function exit code */
@@ -3582,7 +3718,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_6__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":34
+  /* "mars_x/cython_modules/quaternion.pyx":37
  * 
  *     def __sub__(Quaternion self, Quaternion other):
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -3591,75 +3727,75 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_6__
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":35
+  /* "mars_x/cython_modules/quaternion.pyx":38
  *     def __sub__(Quaternion self, Quaternion other):
  *         return Quaternion(
  *             self.x - other.x,             # <<<<<<<<<<<<<<
  *             self.y - other.y,
  *             self.z - other.z,
  */
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x - __pyx_v_other->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":36
+  /* "mars_x/cython_modules/quaternion.pyx":39
  *         return Quaternion(
  *             self.x - other.x,
  *             self.y - other.y,             # <<<<<<<<<<<<<<
  *             self.z - other.z,
  *             self.w - other.w
  */
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y - __pyx_v_other->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/quaternion.pyx":37
+  /* "mars_x/cython_modules/quaternion.pyx":40
  *             self.x - other.x,
  *             self.y - other.y,
  *             self.z - other.z,             # <<<<<<<<<<<<<<
  *             self.w - other.w
  *         )
  */
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z - __pyx_v_other->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":38
+  /* "mars_x/cython_modules/quaternion.pyx":41
  *             self.y - other.y,
  *             self.z - other.z,
  *             self.w - other.w             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w - __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w - __pyx_v_other->w)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":34
+  /* "mars_x/cython_modules/quaternion.pyx":37
  * 
  *     def __sub__(Quaternion self, Quaternion other):
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             self.x - other.x,
  *             self.y - other.y,
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":33
+  /* "mars_x/cython_modules/quaternion.pyx":36
  *         )
  * 
  *     def __sub__(Quaternion self, Quaternion other):             # <<<<<<<<<<<<<<
@@ -3682,7 +3818,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_6__
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":41
+/* "mars_x/cython_modules/quaternion.pyx":44
  *         )
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -3725,7 +3861,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":51
+  /* "mars_x/cython_modules/quaternion.pyx":54
  *         cdef Quaternion q
  * 
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -3743,7 +3879,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":52
+    /* "mars_x/cython_modules/quaternion.pyx":55
  * 
  *         if isinstance(value, (int, float)):
  *             return Quaternion(             # <<<<<<<<<<<<<<
@@ -3752,87 +3888,87 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
  */
     __Pyx_XDECREF(__pyx_r);
 
-    /* "mars_x/cython_modules/quaternion.pyx":53
+    /* "mars_x/cython_modules/quaternion.pyx":56
  *         if isinstance(value, (int, float)):
  *             return Quaternion(
  *                 self.x * value,             # <<<<<<<<<<<<<<
  *                 self.y * value,
  *                 self.z * value,
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":54
+    /* "mars_x/cython_modules/quaternion.pyx":57
  *             return Quaternion(
  *                 self.x * value,
  *                 self.y * value,             # <<<<<<<<<<<<<<
  *                 self.z * value,
  *                 self.w * value
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":55
+    /* "mars_x/cython_modules/quaternion.pyx":58
  *                 self.x * value,
  *                 self.y * value,
  *                 self.z * value,             # <<<<<<<<<<<<<<
  *                 self.w * value
  *             )
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":56
+    /* "mars_x/cython_modules/quaternion.pyx":59
  *                 self.y * value,
  *                 self.z * value,
  *                 self.w * value             # <<<<<<<<<<<<<<
  *             )
  *         # Quaternion-quaternion multiplication (composition of rotations)
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Multiply(__pyx_t_3, __pyx_v_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 59, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":52
+    /* "mars_x/cython_modules/quaternion.pyx":55
  * 
  *         if isinstance(value, (int, float)):
  *             return Quaternion(             # <<<<<<<<<<<<<<
  *                 self.x * value,
  *                 self.y * value,
  */
-    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 52, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_7)) __PYX_ERR(0, 55, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
     __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 55, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_7;
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":51
+    /* "mars_x/cython_modules/quaternion.pyx":54
  *         cdef Quaternion q
  * 
  *         if isinstance(value, (int, float)):             # <<<<<<<<<<<<<<
@@ -3841,7 +3977,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":59
+  /* "mars_x/cython_modules/quaternion.pyx":62
  *             )
  *         # Quaternion-quaternion multiplication (composition of rotations)
  *         elif isinstance(value, Quaternion):             # <<<<<<<<<<<<<<
@@ -3851,7 +3987,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
   __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_value, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion); 
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":61
+    /* "mars_x/cython_modules/quaternion.pyx":64
  *         elif isinstance(value, Quaternion):
  *             # We've already declared q above, so here we just assign to it
  *             q = <Quaternion>value             # <<<<<<<<<<<<<<
@@ -3863,7 +3999,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
     __pyx_v_q = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":64
+    /* "mars_x/cython_modules/quaternion.pyx":67
  * 
  *             # Hamilton product
  *             return Quaternion(             # <<<<<<<<<<<<<<
@@ -3872,75 +4008,75 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
  */
     __Pyx_XDECREF(__pyx_r);
 
-    /* "mars_x/cython_modules/quaternion.pyx":65
+    /* "mars_x/cython_modules/quaternion.pyx":68
  *             # Hamilton product
  *             return Quaternion(
  *                 self.w * q.x + self.x * q.w + self.y * q.z - self.z * q.y,             # <<<<<<<<<<<<<<
  *                 self.w * q.y - self.x * q.z + self.y * q.w + self.z * q.x,
  *                 self.w * q.z + self.x * q.y - self.y * q.x + self.z * q.w,
  */
-    __pyx_t_7 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->x) + (__pyx_v_self->x * __pyx_v_q->w)) + (__pyx_v_self->y * __pyx_v_q->z)) - (__pyx_v_self->z * __pyx_v_q->y))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->x) + (__pyx_v_self->x * __pyx_v_q->w)) + (__pyx_v_self->y * __pyx_v_q->z)) - (__pyx_v_self->z * __pyx_v_q->y))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
 
-    /* "mars_x/cython_modules/quaternion.pyx":66
+    /* "mars_x/cython_modules/quaternion.pyx":69
  *             return Quaternion(
  *                 self.w * q.x + self.x * q.w + self.y * q.z - self.z * q.y,
  *                 self.w * q.y - self.x * q.z + self.y * q.w + self.z * q.x,             # <<<<<<<<<<<<<<
  *                 self.w * q.z + self.x * q.y - self.y * q.x + self.z * q.w,
  *                 self.w * q.w - self.x * q.x - self.y * q.y - self.z * q.z
  */
-    __pyx_t_3 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->y) - (__pyx_v_self->x * __pyx_v_q->z)) + (__pyx_v_self->y * __pyx_v_q->w)) + (__pyx_v_self->z * __pyx_v_q->x))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->y) - (__pyx_v_self->x * __pyx_v_q->z)) + (__pyx_v_self->y * __pyx_v_q->w)) + (__pyx_v_self->z * __pyx_v_q->x))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "mars_x/cython_modules/quaternion.pyx":67
+    /* "mars_x/cython_modules/quaternion.pyx":70
  *                 self.w * q.x + self.x * q.w + self.y * q.z - self.z * q.y,
  *                 self.w * q.y - self.x * q.z + self.y * q.w + self.z * q.x,
  *                 self.w * q.z + self.x * q.y - self.y * q.x + self.z * q.w,             # <<<<<<<<<<<<<<
  *                 self.w * q.w - self.x * q.x - self.y * q.y - self.z * q.z
  *             )
  */
-    __pyx_t_6 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->z) + (__pyx_v_self->x * __pyx_v_q->y)) - (__pyx_v_self->y * __pyx_v_q->x)) + (__pyx_v_self->z * __pyx_v_q->w))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->z) + (__pyx_v_self->x * __pyx_v_q->y)) - (__pyx_v_self->y * __pyx_v_q->x)) + (__pyx_v_self->z * __pyx_v_q->w))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
 
-    /* "mars_x/cython_modules/quaternion.pyx":68
+    /* "mars_x/cython_modules/quaternion.pyx":71
  *                 self.w * q.y - self.x * q.z + self.y * q.w + self.z * q.x,
  *                 self.w * q.z + self.x * q.y - self.y * q.x + self.z * q.w,
  *                 self.w * q.w - self.x * q.x - self.y * q.y - self.z * q.z             # <<<<<<<<<<<<<<
  *             )
  *         else:
  */
-    __pyx_t_5 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->w) - (__pyx_v_self->x * __pyx_v_q->x)) - (__pyx_v_self->y * __pyx_v_q->y)) - (__pyx_v_self->z * __pyx_v_q->z))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(((((__pyx_v_self->w * __pyx_v_q->w) - (__pyx_v_self->x * __pyx_v_q->x)) - (__pyx_v_self->y * __pyx_v_q->y)) - (__pyx_v_self->z * __pyx_v_q->z))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
 
-    /* "mars_x/cython_modules/quaternion.pyx":64
+    /* "mars_x/cython_modules/quaternion.pyx":67
  * 
  *             # Hamilton product
  *             return Quaternion(             # <<<<<<<<<<<<<<
  *                 self.w * q.x + self.x * q.w + self.y * q.z - self.z * q.y,
  *                 self.w * q.y - self.x * q.z + self.y * q.w + self.z * q.x,
  */
-    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 64, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error);
     __pyx_t_7 = 0;
     __pyx_t_3 = 0;
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":59
+    /* "mars_x/cython_modules/quaternion.pyx":62
  *             )
  *         # Quaternion-quaternion multiplication (composition of rotations)
  *         elif isinstance(value, Quaternion):             # <<<<<<<<<<<<<<
@@ -3949,7 +4085,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":71
+  /* "mars_x/cython_modules/quaternion.pyx":74
  *             )
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -3963,7 +4099,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
     goto __pyx_L0;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":41
+  /* "mars_x/cython_modules/quaternion.pyx":44
  *         )
  * 
  *     def __mul__(self, value):             # <<<<<<<<<<<<<<
@@ -3987,7 +4123,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_8__
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":73
+/* "mars_x/cython_modules/quaternion.pyx":76
  *             return NotImplemented
  * 
  *     def __eq__(self, other):             # <<<<<<<<<<<<<<
@@ -4027,7 +4163,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":75
+  /* "mars_x/cython_modules/quaternion.pyx":78
  *     def __eq__(self, other):
  *         """Equality check"""
  *         if not isinstance(other, Quaternion):             # <<<<<<<<<<<<<<
@@ -4038,7 +4174,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":76
+    /* "mars_x/cython_modules/quaternion.pyx":79
  *         """Equality check"""
  *         if not isinstance(other, Quaternion):
  *             return False             # <<<<<<<<<<<<<<
@@ -4050,7 +4186,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":75
+    /* "mars_x/cython_modules/quaternion.pyx":78
  *     def __eq__(self, other):
  *         """Equality check"""
  *         if not isinstance(other, Quaternion):             # <<<<<<<<<<<<<<
@@ -4059,7 +4195,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":77
+  /* "mars_x/cython_modules/quaternion.pyx":80
  *         if not isinstance(other, Quaternion):
  *             return False
  *         cdef Quaternion q = <Quaternion>other             # <<<<<<<<<<<<<<
@@ -4071,7 +4207,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_v_q = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":78
+  /* "mars_x/cython_modules/quaternion.pyx":81
  *             return False
  *         cdef Quaternion q = <Quaternion>other
  *         return (             # <<<<<<<<<<<<<<
@@ -4080,7 +4216,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":79
+  /* "mars_x/cython_modules/quaternion.pyx":82
  *         cdef Quaternion q = <Quaternion>other
  *         return (
  *             abs(self.x - q.x) < 1e-9 and             # <<<<<<<<<<<<<<
@@ -4090,14 +4226,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_t_2 = (fabs((__pyx_v_self->x - __pyx_v_q->x)) < 1e-9);
   if (__pyx_t_2) {
   } else {
-    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":80
+  /* "mars_x/cython_modules/quaternion.pyx":83
  *         return (
  *             abs(self.x - q.x) < 1e-9 and
  *             abs(self.y - q.y) < 1e-9 and             # <<<<<<<<<<<<<<
@@ -4107,14 +4243,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_t_2 = (fabs((__pyx_v_self->y - __pyx_v_q->y)) < 1e-9);
   if (__pyx_t_2) {
   } else {
-    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":81
+  /* "mars_x/cython_modules/quaternion.pyx":84
  *             abs(self.x - q.x) < 1e-9 and
  *             abs(self.y - q.y) < 1e-9 and
  *             abs(self.z - q.z) < 1e-9 and             # <<<<<<<<<<<<<<
@@ -4124,14 +4260,14 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_t_2 = (fabs((__pyx_v_self->z - __pyx_v_q->z)) < 1e-9);
   if (__pyx_t_2) {
   } else {
-    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":82
+  /* "mars_x/cython_modules/quaternion.pyx":85
  *             abs(self.y - q.y) < 1e-9 and
  *             abs(self.z - q.z) < 1e-9 and
  *             abs(self.w - q.w) < 1e-9             # <<<<<<<<<<<<<<
@@ -4139,7 +4275,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
  * 
  */
   __pyx_t_2 = (fabs((__pyx_v_self->w - __pyx_v_q->w)) < 1e-9);
-  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = __pyx_t_4;
   __pyx_t_4 = 0;
@@ -4148,7 +4284,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":73
+  /* "mars_x/cython_modules/quaternion.pyx":76
  *             return NotImplemented
  * 
  *     def __eq__(self, other):             # <<<<<<<<<<<<<<
@@ -4169,7 +4305,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_10_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":85
+/* "mars_x/cython_modules/quaternion.pyx":88
  *         )
  * 
  *     cpdef double length(self):             # <<<<<<<<<<<<<<
@@ -4206,7 +4342,7 @@ static double __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_13length)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -4228,11 +4364,11 @@ static double __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4251,7 +4387,7 @@ static double __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":87
+  /* "mars_x/cython_modules/quaternion.pyx":90
  *     cpdef double length(self):
  *         """Get the length (magnitude) of the quaternion"""
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)             # <<<<<<<<<<<<<<
@@ -4261,7 +4397,7 @@ static double __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(
   __pyx_r = sqrt(((((__pyx_v_self->x * __pyx_v_self->x) + (__pyx_v_self->y * __pyx_v_self->y)) + (__pyx_v_self->z * __pyx_v_self->z)) + (__pyx_v_self->w * __pyx_v_self->w)));
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":85
+  /* "mars_x/cython_modules/quaternion.pyx":88
  *         )
  * 
  *     cpdef double length(self):             # <<<<<<<<<<<<<<
@@ -4334,8 +4470,8 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_12l
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("length", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_length(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -4352,7 +4488,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_12l
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":89
+/* "mars_x/cython_modules/quaternion.pyx":92
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  * 
  *     cpdef Quaternion normalize(self):             # <<<<<<<<<<<<<<
@@ -4392,7 +4528,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_normalize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_15normalize)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -4415,11 +4551,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 89, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 92, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4438,17 +4574,17 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":91
+  /* "mars_x/cython_modules/quaternion.pyx":94
  *     cpdef Quaternion normalize(self):
  *         """Return a normalized quaternion (unit quaternion)"""
  *         cdef double len_val = self.length()             # <<<<<<<<<<<<<<
  *         if len_val < 1e-10:
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length is too close to zero
  */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->length(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_6 = ((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->length(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L1_error)
   __pyx_v_len_val = __pyx_t_6;
 
-  /* "mars_x/cython_modules/quaternion.pyx":92
+  /* "mars_x/cython_modules/quaternion.pyx":95
  *         """Return a normalized quaternion (unit quaternion)"""
  *         cdef double len_val = self.length()
  *         if len_val < 1e-10:             # <<<<<<<<<<<<<<
@@ -4458,7 +4594,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_7 = (__pyx_v_len_val < 1e-10);
   if (__pyx_t_7) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":93
+    /* "mars_x/cython_modules/quaternion.pyx":96
  *         cdef double len_val = self.length()
  *         if len_val < 1e-10:
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length is too close to zero             # <<<<<<<<<<<<<<
@@ -4466,13 +4602,13 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *         return Quaternion(
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":92
+    /* "mars_x/cython_modules/quaternion.pyx":95
  *         """Return a normalized quaternion (unit quaternion)"""
  *         cdef double len_val = self.length()
  *         if len_val < 1e-10:             # <<<<<<<<<<<<<<
@@ -4481,7 +4617,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":95
+  /* "mars_x/cython_modules/quaternion.pyx":98
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length is too close to zero
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -4490,7 +4626,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":96
+  /* "mars_x/cython_modules/quaternion.pyx":99
  * 
  *         return Quaternion(
  *             self.x / len_val,             # <<<<<<<<<<<<<<
@@ -4499,12 +4635,12 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   if (unlikely(__pyx_v_len_val == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 96, __pyx_L1_error)
+    __PYX_ERR(0, 99, __pyx_L1_error)
   }
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_len_val)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->x / __pyx_v_len_val)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":97
+  /* "mars_x/cython_modules/quaternion.pyx":100
  *         return Quaternion(
  *             self.x / len_val,
  *             self.y / len_val,             # <<<<<<<<<<<<<<
@@ -4513,12 +4649,12 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   if (unlikely(__pyx_v_len_val == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 97, __pyx_L1_error)
+    __PYX_ERR(0, 100, __pyx_L1_error)
   }
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_len_val)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->y / __pyx_v_len_val)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/quaternion.pyx":98
+  /* "mars_x/cython_modules/quaternion.pyx":101
  *             self.x / len_val,
  *             self.y / len_val,
  *             self.z / len_val,             # <<<<<<<<<<<<<<
@@ -4527,12 +4663,12 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   if (unlikely(__pyx_v_len_val == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 98, __pyx_L1_error)
+    __PYX_ERR(0, 101, __pyx_L1_error)
   }
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z / __pyx_v_len_val)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_self->z / __pyx_v_len_val)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":99
+  /* "mars_x/cython_modules/quaternion.pyx":102
  *             self.y / len_val,
  *             self.z / len_val,
  *             self.w / len_val             # <<<<<<<<<<<<<<
@@ -4541,40 +4677,40 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   if (unlikely(__pyx_v_len_val == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 99, __pyx_L1_error)
+    __PYX_ERR(0, 102, __pyx_L1_error)
   }
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w / __pyx_v_len_val)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w / __pyx_v_len_val)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":95
+  /* "mars_x/cython_modules/quaternion.pyx":98
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length is too close to zero
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             self.x / len_val,
  *             self.y / len_val,
  */
-  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":89
+  /* "mars_x/cython_modules/quaternion.pyx":92
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  * 
  *     cpdef Quaternion normalize(self):             # <<<<<<<<<<<<<<
@@ -4648,7 +4784,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_14n
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("normalize", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_normalize(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4665,7 +4801,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_14n
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":102
+/* "mars_x/cython_modules/quaternion.pyx":105
  *         )
  * 
  *     cpdef Quaternion conjugate(self):             # <<<<<<<<<<<<<<
@@ -4702,7 +4838,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_conjugate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_conjugate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_17conjugate)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -4725,11 +4861,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 102, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 105, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4748,7 +4884,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":104
+  /* "mars_x/cython_modules/quaternion.pyx":107
  *     cpdef Quaternion conjugate(self):
  *         """Return the conjugate of this quaternion"""
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)             # <<<<<<<<<<<<<<
@@ -4756,36 +4892,36 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *     cpdef Quaternion inverse(self):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_self->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_self->y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble((-__pyx_v_self->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((-__pyx_v_self->z)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":102
+  /* "mars_x/cython_modules/quaternion.pyx":105
  *         )
  * 
  *     cpdef Quaternion conjugate(self):             # <<<<<<<<<<<<<<
@@ -4859,7 +4995,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_16c
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("conjugate", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_conjugate(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_conjugate(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4876,7 +5012,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_16c
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":106
+/* "mars_x/cython_modules/quaternion.pyx":109
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  * 
  *     cpdef Quaternion inverse(self):             # <<<<<<<<<<<<<<
@@ -4916,7 +5052,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_inverse); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_inverse); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_19inverse)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -4939,11 +5075,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 106, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 109, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4962,7 +5098,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":111
+  /* "mars_x/cython_modules/quaternion.pyx":114
  *             self.x * self.x +
  *             self.y * self.y +
  *             self.z * self.z +             # <<<<<<<<<<<<<<
@@ -4971,7 +5107,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_len_sq = ((((__pyx_v_self->x * __pyx_v_self->x) + (__pyx_v_self->y * __pyx_v_self->y)) + (__pyx_v_self->z * __pyx_v_self->z)) + (__pyx_v_self->w * __pyx_v_self->w));
 
-  /* "mars_x/cython_modules/quaternion.pyx":115
+  /* "mars_x/cython_modules/quaternion.pyx":118
  *         )
  * 
  *         if len_sq < 1e-10:             # <<<<<<<<<<<<<<
@@ -4981,7 +5117,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_6 = (__pyx_v_len_sq < 1e-10);
   if (__pyx_t_6) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":116
+    /* "mars_x/cython_modules/quaternion.pyx":119
  * 
  *         if len_sq < 1e-10:
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length squared is too small             # <<<<<<<<<<<<<<
@@ -4989,13 +5125,13 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *         cdef double inv_len_sq = 1.0 / len_sq
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":115
+    /* "mars_x/cython_modules/quaternion.pyx":118
  *         )
  * 
  *         if len_sq < 1e-10:             # <<<<<<<<<<<<<<
@@ -5004,7 +5140,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":118
+  /* "mars_x/cython_modules/quaternion.pyx":121
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length squared is too small
  * 
  *         cdef double inv_len_sq = 1.0 / len_sq             # <<<<<<<<<<<<<<
@@ -5013,11 +5149,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   if (unlikely(__pyx_v_len_sq == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 118, __pyx_L1_error)
+    __PYX_ERR(0, 121, __pyx_L1_error)
   }
   __pyx_v_inv_len_sq = (1.0 / __pyx_v_len_sq);
 
-  /* "mars_x/cython_modules/quaternion.pyx":120
+  /* "mars_x/cython_modules/quaternion.pyx":123
  *         cdef double inv_len_sq = 1.0 / len_sq
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -5026,75 +5162,75 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":121
+  /* "mars_x/cython_modules/quaternion.pyx":124
  * 
  *         return Quaternion(
  *             -self.x * inv_len_sq,             # <<<<<<<<<<<<<<
  *             -self.y * inv_len_sq,
  *             -self.z * inv_len_sq,
  */
-  __pyx_t_1 = PyFloat_FromDouble(((-__pyx_v_self->x) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(((-__pyx_v_self->x) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":122
+  /* "mars_x/cython_modules/quaternion.pyx":125
  *         return Quaternion(
  *             -self.x * inv_len_sq,
  *             -self.y * inv_len_sq,             # <<<<<<<<<<<<<<
  *             -self.z * inv_len_sq,
  *              self.w * inv_len_sq
  */
-  __pyx_t_2 = PyFloat_FromDouble(((-__pyx_v_self->y) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((-__pyx_v_self->y) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/quaternion.pyx":123
+  /* "mars_x/cython_modules/quaternion.pyx":126
  *             -self.x * inv_len_sq,
  *             -self.y * inv_len_sq,
  *             -self.z * inv_len_sq,             # <<<<<<<<<<<<<<
  *              self.w * inv_len_sq
  *         )
  */
-  __pyx_t_3 = PyFloat_FromDouble(((-__pyx_v_self->z) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(((-__pyx_v_self->z) * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":124
+  /* "mars_x/cython_modules/quaternion.pyx":127
  *             -self.y * inv_len_sq,
  *             -self.z * inv_len_sq,
  *              self.w * inv_len_sq             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_self->w * __pyx_v_inv_len_sq)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":120
+  /* "mars_x/cython_modules/quaternion.pyx":123
  *         cdef double inv_len_sq = 1.0 / len_sq
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             -self.x * inv_len_sq,
  *             -self.y * inv_len_sq,
  */
-  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 3, __pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 3, __pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":106
+  /* "mars_x/cython_modules/quaternion.pyx":109
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  * 
  *     cpdef Quaternion inverse(self):             # <<<<<<<<<<<<<<
@@ -5168,7 +5304,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_18i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("inverse", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_inverse(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_inverse(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5185,7 +5321,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_18i
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":127
+/* "mars_x/cython_modules/quaternion.pyx":130
  *         )
  * 
  *     cpdef Vector3 rotate_vector3(self, Vector3 v):             # <<<<<<<<<<<<<<
@@ -5224,7 +5360,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rotate_vector3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rotate_vector3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_21rotate_vector3)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -5247,11 +5383,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_v)};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 127, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 130, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5270,68 +5406,68 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":130
+  /* "mars_x/cython_modules/quaternion.pyx":133
  *         """Rotate a 3D vector using this quaternion"""
  *         # Pure quaternion from the vector
  *         cdef Quaternion vq = Quaternion(v.x, v.y, v.z, 0)             # <<<<<<<<<<<<<<
  * 
  *         # q * v * q^-1 (quaternion sandwich)
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_v->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_v->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_v->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_v->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_int_0)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_int_0)) __PYX_ERR(0, 133, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_vq = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":133
+  /* "mars_x/cython_modules/quaternion.pyx":136
  * 
  *         # q * v * q^-1 (quaternion sandwich)
  *         cdef Quaternion q_inv = self.conjugate()  # For unit quaternions, conjugate == inverse             # <<<<<<<<<<<<<<
  *         cdef Quaternion result = self * vq * q_inv
  * 
  */
-  __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->conjugate(__pyx_v_self, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->conjugate(__pyx_v_self, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_q_inv = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":134
+  /* "mars_x/cython_modules/quaternion.pyx":137
  *         # q * v * q^-1 (quaternion sandwich)
  *         cdef Quaternion q_inv = self.conjugate()  # For unit quaternions, conjugate == inverse
  *         cdef Quaternion result = self * vq * q_inv             # <<<<<<<<<<<<<<
  * 
  *         return Vector3(result.x, result.y, result.z)
  */
-  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_vq)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_vq)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_q_inv)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_q_inv)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 137, __pyx_L1_error)
   __pyx_v_result = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":136
+  /* "mars_x/cython_modules/quaternion.pyx":139
  *         cdef Quaternion result = self * vq * q_inv
  * 
  *         return Vector3(result.x, result.y, result.z)             # <<<<<<<<<<<<<<
@@ -5339,31 +5475,31 @@ static struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *__pyx_f_6mars_
  *     cpdef Matrix4 to_rotation_matrix(self):
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_result->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_result->x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_result->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_result->y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_result->z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_result->z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":127
+  /* "mars_x/cython_modules/quaternion.pyx":130
  *         )
  * 
  *     cpdef Vector3 rotate_vector3(self, Vector3 v):             # <<<<<<<<<<<<<<
@@ -5442,12 +5578,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "rotate_vector3") < 0)) __PYX_ERR(0, 127, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "rotate_vector3") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -5458,7 +5594,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("rotate_vector3", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 127, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("rotate_vector3", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 130, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5472,7 +5608,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_v), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "v", 0))) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_v), __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3, 1, "v", 0))) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_20rotate_vector3(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self), __pyx_v_v);
 
   /* function exit code */
@@ -5499,7 +5635,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_20r
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate_vector3", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_rotate_vector3(__pyx_v_self, __pyx_v_v, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_rotate_vector3(__pyx_v_self, __pyx_v_v, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5516,7 +5652,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_20r
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":138
+/* "mars_x/cython_modules/quaternion.pyx":141
  *         return Vector3(result.x, result.y, result.z)
  * 
  *     cpdef Matrix4 to_rotation_matrix(self):             # <<<<<<<<<<<<<<
@@ -5563,7 +5699,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_rotation_matrix); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_rotation_matrix); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_23to_rotation_matrix)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -5586,11 +5722,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6matrix_Matrix4))))) __PYX_ERR(0, 138, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_6matrix_Matrix4))))) __PYX_ERR(0, 141, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5609,31 +5745,31 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":140
+  /* "mars_x/cython_modules/quaternion.pyx":143
  *     cpdef Matrix4 to_rotation_matrix(self):
  *         """Convert this quaternion to a rotation matrix"""
  *         cdef Matrix4 m = Matrix4()             # <<<<<<<<<<<<<<
  * 
  *         # Normalize the quaternion to ensure it represents a valid rotation
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6matrix_Matrix4)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_6matrix_Matrix4)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_m = ((struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":143
+  /* "mars_x/cython_modules/quaternion.pyx":146
  * 
  *         # Normalize the quaternion to ensure it represents a valid rotation
  *         cdef Quaternion q = self.normalize()             # <<<<<<<<<<<<<<
  * 
  *         cdef double xx = q.x * q.x
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->normalize(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self->__pyx_vtab)->normalize(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_q = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":145
+  /* "mars_x/cython_modules/quaternion.pyx":148
  *         cdef Quaternion q = self.normalize()
  * 
  *         cdef double xx = q.x * q.x             # <<<<<<<<<<<<<<
@@ -5642,7 +5778,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_xx = (__pyx_v_q->x * __pyx_v_q->x);
 
-  /* "mars_x/cython_modules/quaternion.pyx":146
+  /* "mars_x/cython_modules/quaternion.pyx":149
  * 
  *         cdef double xx = q.x * q.x
  *         cdef double xy = q.x * q.y             # <<<<<<<<<<<<<<
@@ -5651,7 +5787,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_xy = (__pyx_v_q->x * __pyx_v_q->y);
 
-  /* "mars_x/cython_modules/quaternion.pyx":147
+  /* "mars_x/cython_modules/quaternion.pyx":150
  *         cdef double xx = q.x * q.x
  *         cdef double xy = q.x * q.y
  *         cdef double xz = q.x * q.z             # <<<<<<<<<<<<<<
@@ -5660,7 +5796,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_xz = (__pyx_v_q->x * __pyx_v_q->z);
 
-  /* "mars_x/cython_modules/quaternion.pyx":148
+  /* "mars_x/cython_modules/quaternion.pyx":151
  *         cdef double xy = q.x * q.y
  *         cdef double xz = q.x * q.z
  *         cdef double xw = q.x * q.w             # <<<<<<<<<<<<<<
@@ -5669,7 +5805,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_xw = (__pyx_v_q->x * __pyx_v_q->w);
 
-  /* "mars_x/cython_modules/quaternion.pyx":150
+  /* "mars_x/cython_modules/quaternion.pyx":153
  *         cdef double xw = q.x * q.w
  * 
  *         cdef double yy = q.y * q.y             # <<<<<<<<<<<<<<
@@ -5678,7 +5814,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_yy = (__pyx_v_q->y * __pyx_v_q->y);
 
-  /* "mars_x/cython_modules/quaternion.pyx":151
+  /* "mars_x/cython_modules/quaternion.pyx":154
  * 
  *         cdef double yy = q.y * q.y
  *         cdef double yz = q.y * q.z             # <<<<<<<<<<<<<<
@@ -5687,7 +5823,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_yz = (__pyx_v_q->y * __pyx_v_q->z);
 
-  /* "mars_x/cython_modules/quaternion.pyx":152
+  /* "mars_x/cython_modules/quaternion.pyx":155
  *         cdef double yy = q.y * q.y
  *         cdef double yz = q.y * q.z
  *         cdef double yw = q.y * q.w             # <<<<<<<<<<<<<<
@@ -5696,7 +5832,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_yw = (__pyx_v_q->y * __pyx_v_q->w);
 
-  /* "mars_x/cython_modules/quaternion.pyx":154
+  /* "mars_x/cython_modules/quaternion.pyx":157
  *         cdef double yw = q.y * q.w
  * 
  *         cdef double zz = q.z * q.z             # <<<<<<<<<<<<<<
@@ -5705,7 +5841,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_zz = (__pyx_v_q->z * __pyx_v_q->z);
 
-  /* "mars_x/cython_modules/quaternion.pyx":155
+  /* "mars_x/cython_modules/quaternion.pyx":158
  * 
  *         cdef double zz = q.z * q.z
  *         cdef double zw = q.z * q.w             # <<<<<<<<<<<<<<
@@ -5714,7 +5850,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   __pyx_v_zw = (__pyx_v_q->z * __pyx_v_q->w);
 
-  /* "mars_x/cython_modules/quaternion.pyx":158
+  /* "mars_x/cython_modules/quaternion.pyx":161
  * 
  *         # Row 0
  *         m.data[0] = 1 - 2 * (yy + zz)             # <<<<<<<<<<<<<<
@@ -5723,7 +5859,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[0]) = (1.0 - (2.0 * (__pyx_v_yy + __pyx_v_zz)));
 
-  /* "mars_x/cython_modules/quaternion.pyx":159
+  /* "mars_x/cython_modules/quaternion.pyx":162
  *         # Row 0
  *         m.data[0] = 1 - 2 * (yy + zz)
  *         m.data[1] = 2 * (xy - zw)             # <<<<<<<<<<<<<<
@@ -5732,7 +5868,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[1]) = (2.0 * (__pyx_v_xy - __pyx_v_zw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":160
+  /* "mars_x/cython_modules/quaternion.pyx":163
  *         m.data[0] = 1 - 2 * (yy + zz)
  *         m.data[1] = 2 * (xy - zw)
  *         m.data[2] = 2 * (xz + yw)             # <<<<<<<<<<<<<<
@@ -5741,7 +5877,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[2]) = (2.0 * (__pyx_v_xz + __pyx_v_yw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":161
+  /* "mars_x/cython_modules/quaternion.pyx":164
  *         m.data[1] = 2 * (xy - zw)
  *         m.data[2] = 2 * (xz + yw)
  *         m.data[3] = 0             # <<<<<<<<<<<<<<
@@ -5750,7 +5886,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[3]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":164
+  /* "mars_x/cython_modules/quaternion.pyx":167
  * 
  *         # Row 1
  *         m.data[4] = 2 * (xy + zw)             # <<<<<<<<<<<<<<
@@ -5759,7 +5895,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[4]) = (2.0 * (__pyx_v_xy + __pyx_v_zw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":165
+  /* "mars_x/cython_modules/quaternion.pyx":168
  *         # Row 1
  *         m.data[4] = 2 * (xy + zw)
  *         m.data[5] = 1 - 2 * (xx + zz)             # <<<<<<<<<<<<<<
@@ -5768,7 +5904,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[5]) = (1.0 - (2.0 * (__pyx_v_xx + __pyx_v_zz)));
 
-  /* "mars_x/cython_modules/quaternion.pyx":166
+  /* "mars_x/cython_modules/quaternion.pyx":169
  *         m.data[4] = 2 * (xy + zw)
  *         m.data[5] = 1 - 2 * (xx + zz)
  *         m.data[6] = 2 * (yz - xw)             # <<<<<<<<<<<<<<
@@ -5777,7 +5913,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[6]) = (2.0 * (__pyx_v_yz - __pyx_v_xw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":167
+  /* "mars_x/cython_modules/quaternion.pyx":170
  *         m.data[5] = 1 - 2 * (xx + zz)
  *         m.data[6] = 2 * (yz - xw)
  *         m.data[7] = 0             # <<<<<<<<<<<<<<
@@ -5786,7 +5922,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[7]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":170
+  /* "mars_x/cython_modules/quaternion.pyx":173
  * 
  *         # Row 2
  *         m.data[8] = 2 * (xz - yw)             # <<<<<<<<<<<<<<
@@ -5795,7 +5931,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[8]) = (2.0 * (__pyx_v_xz - __pyx_v_yw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":171
+  /* "mars_x/cython_modules/quaternion.pyx":174
  *         # Row 2
  *         m.data[8] = 2 * (xz - yw)
  *         m.data[9] = 2 * (yz + xw)             # <<<<<<<<<<<<<<
@@ -5804,7 +5940,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[9]) = (2.0 * (__pyx_v_yz + __pyx_v_xw));
 
-  /* "mars_x/cython_modules/quaternion.pyx":172
+  /* "mars_x/cython_modules/quaternion.pyx":175
  *         m.data[8] = 2 * (xz - yw)
  *         m.data[9] = 2 * (yz + xw)
  *         m.data[10] = 1 - 2 * (xx + yy)             # <<<<<<<<<<<<<<
@@ -5813,7 +5949,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[10]) = (1.0 - (2.0 * (__pyx_v_xx + __pyx_v_yy)));
 
-  /* "mars_x/cython_modules/quaternion.pyx":173
+  /* "mars_x/cython_modules/quaternion.pyx":176
  *         m.data[9] = 2 * (yz + xw)
  *         m.data[10] = 1 - 2 * (xx + yy)
  *         m.data[11] = 0             # <<<<<<<<<<<<<<
@@ -5822,7 +5958,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[11]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":176
+  /* "mars_x/cython_modules/quaternion.pyx":179
  * 
  *         # Row 3
  *         m.data[12] = 0             # <<<<<<<<<<<<<<
@@ -5831,7 +5967,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[12]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":177
+  /* "mars_x/cython_modules/quaternion.pyx":180
  *         # Row 3
  *         m.data[12] = 0
  *         m.data[13] = 0             # <<<<<<<<<<<<<<
@@ -5840,7 +5976,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[13]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":178
+  /* "mars_x/cython_modules/quaternion.pyx":181
  *         m.data[12] = 0
  *         m.data[13] = 0
  *         m.data[14] = 0             # <<<<<<<<<<<<<<
@@ -5849,7 +5985,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[14]) = 0.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":179
+  /* "mars_x/cython_modules/quaternion.pyx":182
  *         m.data[13] = 0
  *         m.data[14] = 0
  *         m.data[15] = 1             # <<<<<<<<<<<<<<
@@ -5858,7 +5994,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
  */
   (__pyx_v_m->data[15]) = 1.0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":181
+  /* "mars_x/cython_modules/quaternion.pyx":184
  *         m.data[15] = 1
  * 
  *         return m             # <<<<<<<<<<<<<<
@@ -5870,7 +6006,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *__pyx_f_6mars_
   __pyx_r = __pyx_v_m;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":138
+  /* "mars_x/cython_modules/quaternion.pyx":141
  *         return Vector3(result.x, result.y, result.z)
  * 
  *     cpdef Matrix4 to_rotation_matrix(self):             # <<<<<<<<<<<<<<
@@ -5945,7 +6081,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_22t
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_rotation_matrix", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_to_rotation_matrix(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_to_rotation_matrix(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5962,7 +6098,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_22t
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":183
+/* "mars_x/cython_modules/quaternion.pyx":186
  *         return m
  * 
  *     cpdef Quaternion copy(self):             # <<<<<<<<<<<<<<
@@ -5999,7 +6135,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_25copy)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -6022,11 +6158,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 183, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 186, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6045,7 +6181,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     #endif
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":185
+  /* "mars_x/cython_modules/quaternion.pyx":188
  *     cpdef Quaternion copy(self):
  *         """Create a copy of this quaternion"""
  *         return Quaternion(self.x, self.y, self.z, self.w)             # <<<<<<<<<<<<<<
@@ -6053,36 +6189,36 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *     @staticmethod
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->w); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_3)) __PYX_ERR(0, 188, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_4)) __PYX_ERR(0, 188, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":183
+  /* "mars_x/cython_modules/quaternion.pyx":186
  *         return m
  * 
  *     cpdef Quaternion copy(self):             # <<<<<<<<<<<<<<
@@ -6156,7 +6292,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_24c
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6173,7 +6309,7 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_24c
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":188
+/* "mars_x/cython_modules/quaternion.pyx":191
  * 
  *     @staticmethod
  *     cdef Quaternion identity():             # <<<<<<<<<<<<<<
@@ -6190,7 +6326,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("identity", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":190
+  /* "mars_x/cython_modules/quaternion.pyx":193
  *     cdef Quaternion identity():
  *         """Create an identity quaternion (no rotation)"""
  *         return Quaternion(0, 0, 0, 1)             # <<<<<<<<<<<<<<
@@ -6198,13 +6334,13 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *     @staticmethod
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":188
+  /* "mars_x/cython_modules/quaternion.pyx":191
  * 
  *     @staticmethod
  *     cdef Quaternion identity():             # <<<<<<<<<<<<<<
@@ -6223,7 +6359,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":193
+/* "mars_x/cython_modules/quaternion.pyx":196
  * 
  *     @staticmethod
  *     cdef Quaternion from_axis_angle(Vector3 axis, double angle):             # <<<<<<<<<<<<<<
@@ -6238,47 +6374,49 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
+  double __pyx_t_2;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_axis_angle", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":195
+  /* "mars_x/cython_modules/quaternion.pyx":198
  *     cdef Quaternion from_axis_angle(Vector3 axis, double angle):
  *         """Create a quaternion from an axis and an angle (radians)"""
  *         cdef Vector3 norm_axis = axis.normalize()             # <<<<<<<<<<<<<<
  *         cdef double half_angle = angle * 0.5
- *         cdef double sin_half = sin(half_angle)
+ *         cdef double sin_half = fast_sin(half_angle)
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_axis->__pyx_vtab)->normalize(__pyx_v_axis, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_axis->__pyx_vtab)->normalize(__pyx_v_axis, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_norm_axis = ((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":196
+  /* "mars_x/cython_modules/quaternion.pyx":199
  *         """Create a quaternion from an axis and an angle (radians)"""
  *         cdef Vector3 norm_axis = axis.normalize()
  *         cdef double half_angle = angle * 0.5             # <<<<<<<<<<<<<<
- *         cdef double sin_half = sin(half_angle)
+ *         cdef double sin_half = fast_sin(half_angle)
  * 
  */
   __pyx_v_half_angle = (__pyx_v_angle * 0.5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":197
+  /* "mars_x/cython_modules/quaternion.pyx":200
  *         cdef Vector3 norm_axis = axis.normalize()
  *         cdef double half_angle = angle * 0.5
- *         cdef double sin_half = sin(half_angle)             # <<<<<<<<<<<<<<
+ *         cdef double sin_half = fast_sin(half_angle)             # <<<<<<<<<<<<<<
  * 
  *         return Quaternion(
  */
-  __pyx_v_sin_half = sin(__pyx_v_half_angle);
+  __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_half_angle); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_v_sin_half = __pyx_t_2;
 
-  /* "mars_x/cython_modules/quaternion.pyx":199
- *         cdef double sin_half = sin(half_angle)
+  /* "mars_x/cython_modules/quaternion.pyx":202
+ *         cdef double sin_half = fast_sin(half_angle)
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             norm_axis.x * sin_half,
@@ -6286,75 +6424,76 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":200
+  /* "mars_x/cython_modules/quaternion.pyx":203
  * 
  *         return Quaternion(
  *             norm_axis.x * sin_half,             # <<<<<<<<<<<<<<
  *             norm_axis.y * sin_half,
  *             norm_axis.z * sin_half,
  */
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_norm_axis->x * __pyx_v_sin_half)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_norm_axis->x * __pyx_v_sin_half)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":201
+  /* "mars_x/cython_modules/quaternion.pyx":204
  *         return Quaternion(
  *             norm_axis.x * sin_half,
  *             norm_axis.y * sin_half,             # <<<<<<<<<<<<<<
  *             norm_axis.z * sin_half,
- *             cos(half_angle)
+ *             fast_cos(half_angle)
  */
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_norm_axis->y * __pyx_v_sin_half)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_norm_axis->y * __pyx_v_sin_half)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":202
+  /* "mars_x/cython_modules/quaternion.pyx":205
  *             norm_axis.x * sin_half,
  *             norm_axis.y * sin_half,
  *             norm_axis.z * sin_half,             # <<<<<<<<<<<<<<
- *             cos(half_angle)
+ *             fast_cos(half_angle)
  *         )
  */
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_norm_axis->z * __pyx_v_sin_half)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_norm_axis->z * __pyx_v_sin_half)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":203
+  /* "mars_x/cython_modules/quaternion.pyx":206
  *             norm_axis.y * sin_half,
  *             norm_axis.z * sin_half,
- *             cos(half_angle)             # <<<<<<<<<<<<<<
+ *             fast_cos(half_angle)             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = PyFloat_FromDouble(cos(__pyx_v_half_angle)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_half_angle); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":199
- *         cdef double sin_half = sin(half_angle)
+  /* "mars_x/cython_modules/quaternion.pyx":202
+ *         cdef double sin_half = fast_sin(half_angle)
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             norm_axis.x * sin_half,
  *             norm_axis.y * sin_half,
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 199, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 199, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 202, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_5);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_5)) __PYX_ERR(0, 202, __pyx_L1_error);
   __pyx_t_1 = 0;
-  __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_5);
+  __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":193
+  /* "mars_x/cython_modules/quaternion.pyx":196
  * 
  *     @staticmethod
  *     cdef Quaternion from_axis_angle(Vector3 axis, double angle):             # <<<<<<<<<<<<<<
@@ -6365,10 +6504,10 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.from_axis_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -6378,7 +6517,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":207
+/* "mars_x/cython_modules/quaternion.pyx":210
  * 
  *     @staticmethod
  *     cdef Quaternion from_euler_angles(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -6398,17 +6537,18 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   double __pyx_v_sz;
   struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
+  double __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_euler_angles", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":210
+  /* "mars_x/cython_modules/quaternion.pyx":213
  *         """Create a quaternion from Euler angles (radians)"""
  *         # Convert Euler angles to quaternion using the ZYX convention
  *         cdef double half_x = x * 0.5             # <<<<<<<<<<<<<<
@@ -6417,7 +6557,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_half_x = (__pyx_v_x * 0.5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":211
+  /* "mars_x/cython_modules/quaternion.pyx":214
  *         # Convert Euler angles to quaternion using the ZYX convention
  *         cdef double half_x = x * 0.5
  *         cdef double half_y = y * 0.5             # <<<<<<<<<<<<<<
@@ -6426,70 +6566,76 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_half_y = (__pyx_v_y * 0.5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":212
+  /* "mars_x/cython_modules/quaternion.pyx":215
  *         cdef double half_x = x * 0.5
  *         cdef double half_y = y * 0.5
  *         cdef double half_z = z * 0.5             # <<<<<<<<<<<<<<
  * 
- *         cdef double cx = cos(half_x)
+ *         cdef double cx = fast_cos(half_x)
  */
   __pyx_v_half_z = (__pyx_v_z * 0.5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":214
+  /* "mars_x/cython_modules/quaternion.pyx":217
  *         cdef double half_z = z * 0.5
  * 
- *         cdef double cx = cos(half_x)             # <<<<<<<<<<<<<<
- *         cdef double sx = sin(half_x)
- *         cdef double cy = cos(half_y)
+ *         cdef double cx = fast_cos(half_x)             # <<<<<<<<<<<<<<
+ *         cdef double sx = fast_sin(half_x)
+ *         cdef double cy = fast_cos(half_y)
  */
-  __pyx_v_cx = cos(__pyx_v_half_x);
-
-  /* "mars_x/cython_modules/quaternion.pyx":215
- * 
- *         cdef double cx = cos(half_x)
- *         cdef double sx = sin(half_x)             # <<<<<<<<<<<<<<
- *         cdef double cy = cos(half_y)
- *         cdef double sy = sin(half_y)
- */
-  __pyx_v_sx = sin(__pyx_v_half_x);
-
-  /* "mars_x/cython_modules/quaternion.pyx":216
- *         cdef double cx = cos(half_x)
- *         cdef double sx = sin(half_x)
- *         cdef double cy = cos(half_y)             # <<<<<<<<<<<<<<
- *         cdef double sy = sin(half_y)
- *         cdef double cz = cos(half_z)
- */
-  __pyx_v_cy = cos(__pyx_v_half_y);
-
-  /* "mars_x/cython_modules/quaternion.pyx":217
- *         cdef double sx = sin(half_x)
- *         cdef double cy = cos(half_y)
- *         cdef double sy = sin(half_y)             # <<<<<<<<<<<<<<
- *         cdef double cz = cos(half_z)
- *         cdef double sz = sin(half_z)
- */
-  __pyx_v_sy = sin(__pyx_v_half_y);
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_half_x); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_v_cx = __pyx_t_1;
 
   /* "mars_x/cython_modules/quaternion.pyx":218
- *         cdef double cy = cos(half_y)
- *         cdef double sy = sin(half_y)
- *         cdef double cz = cos(half_z)             # <<<<<<<<<<<<<<
- *         cdef double sz = sin(half_z)
  * 
+ *         cdef double cx = fast_cos(half_x)
+ *         cdef double sx = fast_sin(half_x)             # <<<<<<<<<<<<<<
+ *         cdef double cy = fast_cos(half_y)
+ *         cdef double sy = fast_sin(half_y)
  */
-  __pyx_v_cz = cos(__pyx_v_half_z);
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_half_x); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_v_sx = __pyx_t_1;
 
   /* "mars_x/cython_modules/quaternion.pyx":219
- *         cdef double sy = sin(half_y)
- *         cdef double cz = cos(half_z)
- *         cdef double sz = sin(half_z)             # <<<<<<<<<<<<<<
+ *         cdef double cx = fast_cos(half_x)
+ *         cdef double sx = fast_sin(half_x)
+ *         cdef double cy = fast_cos(half_y)             # <<<<<<<<<<<<<<
+ *         cdef double sy = fast_sin(half_y)
+ *         cdef double cz = fast_cos(half_z)
+ */
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_half_y); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_v_cy = __pyx_t_1;
+
+  /* "mars_x/cython_modules/quaternion.pyx":220
+ *         cdef double sx = fast_sin(half_x)
+ *         cdef double cy = fast_cos(half_y)
+ *         cdef double sy = fast_sin(half_y)             # <<<<<<<<<<<<<<
+ *         cdef double cz = fast_cos(half_z)
+ *         cdef double sz = fast_sin(half_z)
+ */
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_half_y); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_v_sy = __pyx_t_1;
+
+  /* "mars_x/cython_modules/quaternion.pyx":221
+ *         cdef double cy = fast_cos(half_y)
+ *         cdef double sy = fast_sin(half_y)
+ *         cdef double cz = fast_cos(half_z)             # <<<<<<<<<<<<<<
+ *         cdef double sz = fast_sin(half_z)
+ * 
+ */
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_cos(__pyx_v_half_z); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_v_cz = __pyx_t_1;
+
+  /* "mars_x/cython_modules/quaternion.pyx":222
+ *         cdef double sy = fast_sin(half_y)
+ *         cdef double cz = fast_cos(half_z)
+ *         cdef double sz = fast_sin(half_z)             # <<<<<<<<<<<<<<
  * 
  *         # ZYX convention
  */
-  __pyx_v_sz = sin(__pyx_v_half_z);
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_6vector_fast_sin(__pyx_v_half_z); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_v_sz = __pyx_t_1;
 
-  /* "mars_x/cython_modules/quaternion.pyx":222
+  /* "mars_x/cython_modules/quaternion.pyx":225
  * 
  *         # ZYX convention
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -6498,75 +6644,75 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":223
+  /* "mars_x/cython_modules/quaternion.pyx":226
  *         # ZYX convention
  *         return Quaternion(
  *             cx * cy * sz - sx * sy * cz,             # <<<<<<<<<<<<<<
  *             cx * sy * cz + sx * cy * sz,
  *             sx * cy * cz - cx * sy * sz,
  */
-  __pyx_t_1 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_cy) * __pyx_v_sz) - ((__pyx_v_sx * __pyx_v_sy) * __pyx_v_cz))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_cy) * __pyx_v_sz) - ((__pyx_v_sx * __pyx_v_sy) * __pyx_v_cz))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
 
-  /* "mars_x/cython_modules/quaternion.pyx":224
+  /* "mars_x/cython_modules/quaternion.pyx":227
  *         return Quaternion(
  *             cx * cy * sz - sx * sy * cz,
  *             cx * sy * cz + sx * cy * sz,             # <<<<<<<<<<<<<<
  *             sx * cy * cz - cx * sy * sz,
  *             cx * cy * cz + sx * sy * sz
  */
-  __pyx_t_2 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_sy) * __pyx_v_cz) + ((__pyx_v_sx * __pyx_v_cy) * __pyx_v_sz))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_sy) * __pyx_v_cz) + ((__pyx_v_sx * __pyx_v_cy) * __pyx_v_sz))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
 
-  /* "mars_x/cython_modules/quaternion.pyx":225
+  /* "mars_x/cython_modules/quaternion.pyx":228
  *             cx * cy * sz - sx * sy * cz,
  *             cx * sy * cz + sx * cy * sz,
  *             sx * cy * cz - cx * sy * sz,             # <<<<<<<<<<<<<<
  *             cx * cy * cz + sx * sy * sz
  *         )
  */
-  __pyx_t_3 = PyFloat_FromDouble((((__pyx_v_sx * __pyx_v_cy) * __pyx_v_cz) - ((__pyx_v_cx * __pyx_v_sy) * __pyx_v_sz))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyFloat_FromDouble((((__pyx_v_sx * __pyx_v_cy) * __pyx_v_cz) - ((__pyx_v_cx * __pyx_v_sy) * __pyx_v_sz))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":226
+  /* "mars_x/cython_modules/quaternion.pyx":229
  *             cx * sy * cz + sx * cy * sz,
  *             sx * cy * cz - cx * sy * sz,
  *             cx * cy * cz + sx * sy * sz             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_cy) * __pyx_v_cz) + ((__pyx_v_sx * __pyx_v_sy) * __pyx_v_sz))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyFloat_FromDouble((((__pyx_v_cx * __pyx_v_cy) * __pyx_v_cz) + ((__pyx_v_sx * __pyx_v_sy) * __pyx_v_sz))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":222
+  /* "mars_x/cython_modules/quaternion.pyx":225
  * 
  *         # ZYX convention
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             cx * cy * sz - sx * sy * cz,
  *             cx * sy * cz + sx * cy * sz,
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error);
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error);
-  __pyx_t_1 = 0;
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_5);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_5)) __PYX_ERR(0, 225, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_5);
+  __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":207
+  /* "mars_x/cython_modules/quaternion.pyx":210
  * 
  *     @staticmethod
  *     cdef Quaternion from_euler_angles(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -6576,11 +6722,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.from_euler_angles", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -6589,7 +6735,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":230
+/* "mars_x/cython_modules/quaternion.pyx":233
  * 
  *     @staticmethod
  *     cdef Quaternion from_matrix(Matrix4 m):             # <<<<<<<<<<<<<<
@@ -6619,7 +6765,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_matrix", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":232
+  /* "mars_x/cython_modules/quaternion.pyx":235
  *     cdef Quaternion from_matrix(Matrix4 m):
  *         """Create a quaternion from a rotation matrix"""
  *         cdef double trace = m.data[0] + m.data[5] + m.data[10]             # <<<<<<<<<<<<<<
@@ -6628,7 +6774,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_trace = (((__pyx_v_m->data[0]) + (__pyx_v_m->data[5])) + (__pyx_v_m->data[10]));
 
-  /* "mars_x/cython_modules/quaternion.pyx":235
+  /* "mars_x/cython_modules/quaternion.pyx":238
  *         cdef double x, y, z, w, s
  * 
  *         if trace > 0:             # <<<<<<<<<<<<<<
@@ -6638,7 +6784,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_1 = (__pyx_v_trace > 0.0);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":237
+    /* "mars_x/cython_modules/quaternion.pyx":240
  *         if trace > 0:
  *             # Trace is positive
  *             s = 0.5 / sqrt(trace + 1.0)             # <<<<<<<<<<<<<<
@@ -6648,11 +6794,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = sqrt((__pyx_v_trace + 1.0));
     if (unlikely(__pyx_t_2 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 237, __pyx_L1_error)
+      __PYX_ERR(0, 240, __pyx_L1_error)
     }
     __pyx_v_s = (0.5 / __pyx_t_2);
 
-    /* "mars_x/cython_modules/quaternion.pyx":238
+    /* "mars_x/cython_modules/quaternion.pyx":241
  *             # Trace is positive
  *             s = 0.5 / sqrt(trace + 1.0)
  *             w = 0.25 / s             # <<<<<<<<<<<<<<
@@ -6661,11 +6807,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 238, __pyx_L1_error)
+      __PYX_ERR(0, 241, __pyx_L1_error)
     }
     __pyx_v_w = (0.25 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":239
+    /* "mars_x/cython_modules/quaternion.pyx":242
  *             s = 0.5 / sqrt(trace + 1.0)
  *             w = 0.25 / s
  *             x = (m.data[9] - m.data[6]) * s             # <<<<<<<<<<<<<<
@@ -6674,7 +6820,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_x = (((__pyx_v_m->data[9]) - (__pyx_v_m->data[6])) * __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":240
+    /* "mars_x/cython_modules/quaternion.pyx":243
  *             w = 0.25 / s
  *             x = (m.data[9] - m.data[6]) * s
  *             y = (m.data[2] - m.data[8]) * s             # <<<<<<<<<<<<<<
@@ -6683,7 +6829,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_y = (((__pyx_v_m->data[2]) - (__pyx_v_m->data[8])) * __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":241
+    /* "mars_x/cython_modules/quaternion.pyx":244
  *             x = (m.data[9] - m.data[6]) * s
  *             y = (m.data[2] - m.data[8]) * s
  *             z = (m.data[4] - m.data[1]) * s             # <<<<<<<<<<<<<<
@@ -6692,7 +6838,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_z = (((__pyx_v_m->data[4]) - (__pyx_v_m->data[1])) * __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":235
+    /* "mars_x/cython_modules/quaternion.pyx":238
  *         cdef double x, y, z, w, s
  * 
  *         if trace > 0:             # <<<<<<<<<<<<<<
@@ -6702,7 +6848,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":242
+  /* "mars_x/cython_modules/quaternion.pyx":245
  *             y = (m.data[2] - m.data[8]) * s
  *             z = (m.data[4] - m.data[1]) * s
  *         elif m.data[0] > m.data[5] and m.data[0] > m.data[10]:             # <<<<<<<<<<<<<<
@@ -6720,7 +6866,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":244
+    /* "mars_x/cython_modules/quaternion.pyx":247
  *         elif m.data[0] > m.data[5] and m.data[0] > m.data[10]:
  *             # Element [0][0] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[0] - m.data[5] - m.data[10])             # <<<<<<<<<<<<<<
@@ -6729,7 +6875,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_s = (2.0 * sqrt((((1.0 + (__pyx_v_m->data[0])) - (__pyx_v_m->data[5])) - (__pyx_v_m->data[10]))));
 
-    /* "mars_x/cython_modules/quaternion.pyx":245
+    /* "mars_x/cython_modules/quaternion.pyx":248
  *             # Element [0][0] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[0] - m.data[5] - m.data[10])
  *             w = (m.data[9] - m.data[6]) / s             # <<<<<<<<<<<<<<
@@ -6739,11 +6885,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[9]) - (__pyx_v_m->data[6]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 245, __pyx_L1_error)
+      __PYX_ERR(0, 248, __pyx_L1_error)
     }
     __pyx_v_w = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":246
+    /* "mars_x/cython_modules/quaternion.pyx":249
  *             s = 2.0 * sqrt(1.0 + m.data[0] - m.data[5] - m.data[10])
  *             w = (m.data[9] - m.data[6]) / s
  *             x = 0.25 * s             # <<<<<<<<<<<<<<
@@ -6752,7 +6898,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_x = (0.25 * __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":247
+    /* "mars_x/cython_modules/quaternion.pyx":250
  *             w = (m.data[9] - m.data[6]) / s
  *             x = 0.25 * s
  *             y = (m.data[1] + m.data[4]) / s             # <<<<<<<<<<<<<<
@@ -6762,11 +6908,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[1]) + (__pyx_v_m->data[4]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 247, __pyx_L1_error)
+      __PYX_ERR(0, 250, __pyx_L1_error)
     }
     __pyx_v_y = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":248
+    /* "mars_x/cython_modules/quaternion.pyx":251
  *             x = 0.25 * s
  *             y = (m.data[1] + m.data[4]) / s
  *             z = (m.data[2] + m.data[8]) / s             # <<<<<<<<<<<<<<
@@ -6776,11 +6922,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[2]) + (__pyx_v_m->data[8]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 248, __pyx_L1_error)
+      __PYX_ERR(0, 251, __pyx_L1_error)
     }
     __pyx_v_z = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":242
+    /* "mars_x/cython_modules/quaternion.pyx":245
  *             y = (m.data[2] - m.data[8]) * s
  *             z = (m.data[4] - m.data[1]) * s
  *         elif m.data[0] > m.data[5] and m.data[0] > m.data[10]:             # <<<<<<<<<<<<<<
@@ -6790,7 +6936,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":249
+  /* "mars_x/cython_modules/quaternion.pyx":252
  *             y = (m.data[1] + m.data[4]) / s
  *             z = (m.data[2] + m.data[8]) / s
  *         elif m.data[5] > m.data[10]:             # <<<<<<<<<<<<<<
@@ -6800,7 +6946,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_1 = ((__pyx_v_m->data[5]) > (__pyx_v_m->data[10]));
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":251
+    /* "mars_x/cython_modules/quaternion.pyx":254
  *         elif m.data[5] > m.data[10]:
  *             # Element [1][1] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[5] - m.data[0] - m.data[10])             # <<<<<<<<<<<<<<
@@ -6809,7 +6955,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_s = (2.0 * sqrt((((1.0 + (__pyx_v_m->data[5])) - (__pyx_v_m->data[0])) - (__pyx_v_m->data[10]))));
 
-    /* "mars_x/cython_modules/quaternion.pyx":252
+    /* "mars_x/cython_modules/quaternion.pyx":255
  *             # Element [1][1] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[5] - m.data[0] - m.data[10])
  *             w = (m.data[2] - m.data[8]) / s             # <<<<<<<<<<<<<<
@@ -6819,11 +6965,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[2]) - (__pyx_v_m->data[8]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 252, __pyx_L1_error)
+      __PYX_ERR(0, 255, __pyx_L1_error)
     }
     __pyx_v_w = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":253
+    /* "mars_x/cython_modules/quaternion.pyx":256
  *             s = 2.0 * sqrt(1.0 + m.data[5] - m.data[0] - m.data[10])
  *             w = (m.data[2] - m.data[8]) / s
  *             x = (m.data[1] + m.data[4]) / s             # <<<<<<<<<<<<<<
@@ -6833,11 +6979,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[1]) + (__pyx_v_m->data[4]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 253, __pyx_L1_error)
+      __PYX_ERR(0, 256, __pyx_L1_error)
     }
     __pyx_v_x = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":254
+    /* "mars_x/cython_modules/quaternion.pyx":257
  *             w = (m.data[2] - m.data[8]) / s
  *             x = (m.data[1] + m.data[4]) / s
  *             y = 0.25 * s             # <<<<<<<<<<<<<<
@@ -6846,7 +6992,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_y = (0.25 * __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":255
+    /* "mars_x/cython_modules/quaternion.pyx":258
  *             x = (m.data[1] + m.data[4]) / s
  *             y = 0.25 * s
  *             z = (m.data[6] + m.data[9]) / s             # <<<<<<<<<<<<<<
@@ -6856,11 +7002,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[6]) + (__pyx_v_m->data[9]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 255, __pyx_L1_error)
+      __PYX_ERR(0, 258, __pyx_L1_error)
     }
     __pyx_v_z = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":249
+    /* "mars_x/cython_modules/quaternion.pyx":252
  *             y = (m.data[1] + m.data[4]) / s
  *             z = (m.data[2] + m.data[8]) / s
  *         elif m.data[5] > m.data[10]:             # <<<<<<<<<<<<<<
@@ -6870,7 +7016,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     goto __pyx_L3;
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":258
+  /* "mars_x/cython_modules/quaternion.pyx":261
  *         else:
  *             # Element [2][2] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[10] - m.data[0] - m.data[5])             # <<<<<<<<<<<<<<
@@ -6880,7 +7026,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   /*else*/ {
     __pyx_v_s = (2.0 * sqrt((((1.0 + (__pyx_v_m->data[10])) - (__pyx_v_m->data[0])) - (__pyx_v_m->data[5]))));
 
-    /* "mars_x/cython_modules/quaternion.pyx":259
+    /* "mars_x/cython_modules/quaternion.pyx":262
  *             # Element [2][2] is largest
  *             s = 2.0 * sqrt(1.0 + m.data[10] - m.data[0] - m.data[5])
  *             w = (m.data[4] - m.data[1]) / s             # <<<<<<<<<<<<<<
@@ -6890,11 +7036,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[4]) - (__pyx_v_m->data[1]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 259, __pyx_L1_error)
+      __PYX_ERR(0, 262, __pyx_L1_error)
     }
     __pyx_v_w = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":260
+    /* "mars_x/cython_modules/quaternion.pyx":263
  *             s = 2.0 * sqrt(1.0 + m.data[10] - m.data[0] - m.data[5])
  *             w = (m.data[4] - m.data[1]) / s
  *             x = (m.data[2] + m.data[8]) / s             # <<<<<<<<<<<<<<
@@ -6904,11 +7050,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[2]) + (__pyx_v_m->data[8]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 260, __pyx_L1_error)
+      __PYX_ERR(0, 263, __pyx_L1_error)
     }
     __pyx_v_x = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":261
+    /* "mars_x/cython_modules/quaternion.pyx":264
  *             w = (m.data[4] - m.data[1]) / s
  *             x = (m.data[2] + m.data[8]) / s
  *             y = (m.data[6] + m.data[9]) / s             # <<<<<<<<<<<<<<
@@ -6918,11 +7064,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
     __pyx_t_2 = ((__pyx_v_m->data[6]) + (__pyx_v_m->data[9]));
     if (unlikely(__pyx_v_s == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 261, __pyx_L1_error)
+      __PYX_ERR(0, 264, __pyx_L1_error)
     }
     __pyx_v_y = (__pyx_t_2 / __pyx_v_s);
 
-    /* "mars_x/cython_modules/quaternion.pyx":262
+    /* "mars_x/cython_modules/quaternion.pyx":265
  *             x = (m.data[2] + m.data[8]) / s
  *             y = (m.data[6] + m.data[9]) / s
  *             z = 0.25 * s             # <<<<<<<<<<<<<<
@@ -6933,7 +7079,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   }
   __pyx_L3:;
 
-  /* "mars_x/cython_modules/quaternion.pyx":264
+  /* "mars_x/cython_modules/quaternion.pyx":267
  *             z = 0.25 * s
  * 
  *         return Quaternion(x, y, z, w)             # <<<<<<<<<<<<<<
@@ -6941,36 +7087,36 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  *     @staticmethod
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_z); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_z); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_w); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_w); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_5)) __PYX_ERR(0, 264, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_6)) __PYX_ERR(0, 267, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_7)) __PYX_ERR(0, 264, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_7)) __PYX_ERR(0, 267, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_5 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_7);
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":230
+  /* "mars_x/cython_modules/quaternion.pyx":233
  * 
  *     @staticmethod
  *     cdef Quaternion from_matrix(Matrix4 m):             # <<<<<<<<<<<<<<
@@ -6993,7 +7139,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/quaternion.pyx":267
+/* "mars_x/cython_modules/quaternion.pyx":270
  * 
  *     @staticmethod
  *     cdef Quaternion slerp(Quaternion a, Quaternion b, double t):             # <<<<<<<<<<<<<<
@@ -7024,7 +7170,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("slerp", 1);
 
-  /* "mars_x/cython_modules/quaternion.pyx":270
+  /* "mars_x/cython_modules/quaternion.pyx":273
  *         """Spherical linear interpolation between two quaternions"""
  *         # Clamp t to range [0, 1]
  *         t = max(0.0, min(t, 1.0))             # <<<<<<<<<<<<<<
@@ -7049,7 +7195,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   }
   __pyx_v_t = __pyx_t_2;
 
-  /* "mars_x/cython_modules/quaternion.pyx":273
+  /* "mars_x/cython_modules/quaternion.pyx":276
  * 
  *         # Make sure we take the shortest path
  *         cdef double dot = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w             # <<<<<<<<<<<<<<
@@ -7058,42 +7204,42 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_dot = ((((__pyx_v_a->x * __pyx_v_b->x) + (__pyx_v_a->y * __pyx_v_b->y)) + (__pyx_v_a->z * __pyx_v_b->z)) + (__pyx_v_a->w * __pyx_v_b->w));
 
-  /* "mars_x/cython_modules/quaternion.pyx":274
+  /* "mars_x/cython_modules/quaternion.pyx":277
  *         # Make sure we take the shortest path
  *         cdef double dot = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
  *         cdef Quaternion b_adj = Quaternion(b.x, b.y, b.z, b.w)             # <<<<<<<<<<<<<<
  * 
  *         # If dot product is negative, negate one quaternion to take shortest path
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_b->x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_b->x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_b->y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_b->y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_b->z); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_b->z); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_b->w); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_b->w); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6)) __PYX_ERR(0, 274, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6)) __PYX_ERR(0, 277, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_t_7)) __PYX_ERR(0, 277, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 3, __pyx_t_8)) __PYX_ERR(0, 274, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 3, __pyx_t_8)) __PYX_ERR(0, 277, __pyx_L1_error);
   __pyx_t_5 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
   __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_v_b_adj = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":277
+  /* "mars_x/cython_modules/quaternion.pyx":280
  * 
  *         # If dot product is negative, negate one quaternion to take shortest path
  *         if dot < 0:             # <<<<<<<<<<<<<<
@@ -7103,7 +7249,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_4 = (__pyx_v_dot < 0.0);
   if (__pyx_t_4) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":278
+    /* "mars_x/cython_modules/quaternion.pyx":281
  *         # If dot product is negative, negate one quaternion to take shortest path
  *         if dot < 0:
  *             b_adj.x = -b.x             # <<<<<<<<<<<<<<
@@ -7112,7 +7258,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_b_adj->x = (-__pyx_v_b->x);
 
-    /* "mars_x/cython_modules/quaternion.pyx":279
+    /* "mars_x/cython_modules/quaternion.pyx":282
  *         if dot < 0:
  *             b_adj.x = -b.x
  *             b_adj.y = -b.y             # <<<<<<<<<<<<<<
@@ -7121,7 +7267,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_b_adj->y = (-__pyx_v_b->y);
 
-    /* "mars_x/cython_modules/quaternion.pyx":280
+    /* "mars_x/cython_modules/quaternion.pyx":283
  *             b_adj.x = -b.x
  *             b_adj.y = -b.y
  *             b_adj.z = -b.z             # <<<<<<<<<<<<<<
@@ -7130,7 +7276,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_b_adj->z = (-__pyx_v_b->z);
 
-    /* "mars_x/cython_modules/quaternion.pyx":281
+    /* "mars_x/cython_modules/quaternion.pyx":284
  *             b_adj.y = -b.y
  *             b_adj.z = -b.z
  *             b_adj.w = -b.w             # <<<<<<<<<<<<<<
@@ -7139,7 +7285,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_b_adj->w = (-__pyx_v_b->w);
 
-    /* "mars_x/cython_modules/quaternion.pyx":282
+    /* "mars_x/cython_modules/quaternion.pyx":285
  *             b_adj.z = -b.z
  *             b_adj.w = -b.w
  *             dot = -dot             # <<<<<<<<<<<<<<
@@ -7148,7 +7294,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __pyx_v_dot = (-__pyx_v_dot);
 
-    /* "mars_x/cython_modules/quaternion.pyx":277
+    /* "mars_x/cython_modules/quaternion.pyx":280
  * 
  *         # If dot product is negative, negate one quaternion to take shortest path
  *         if dot < 0:             # <<<<<<<<<<<<<<
@@ -7157,7 +7303,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":285
+  /* "mars_x/cython_modules/quaternion.pyx":288
  * 
  *         # Clamp dot product to valid domain of acos
  *         dot = max(-1.0, min(dot, 1.0))             # <<<<<<<<<<<<<<
@@ -7182,7 +7328,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   }
   __pyx_v_dot = __pyx_t_1;
 
-  /* "mars_x/cython_modules/quaternion.pyx":287
+  /* "mars_x/cython_modules/quaternion.pyx":290
  *         dot = max(-1.0, min(dot, 1.0))
  * 
  *         cdef double theta = acos(dot)             # <<<<<<<<<<<<<<
@@ -7191,7 +7337,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_theta = acos(__pyx_v_dot);
 
-  /* "mars_x/cython_modules/quaternion.pyx":288
+  /* "mars_x/cython_modules/quaternion.pyx":291
  * 
  *         cdef double theta = acos(dot)
  *         cdef double sin_theta = sin(theta)             # <<<<<<<<<<<<<<
@@ -7200,7 +7346,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __pyx_v_sin_theta = sin(__pyx_v_theta);
 
-  /* "mars_x/cython_modules/quaternion.pyx":291
+  /* "mars_x/cython_modules/quaternion.pyx":294
  * 
  *         # If angle is very small, do linear interpolation
  *         if sin_theta < 1e-6:             # <<<<<<<<<<<<<<
@@ -7210,7 +7356,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_4 = (__pyx_v_sin_theta < 1e-6);
   if (__pyx_t_4) {
 
-    /* "mars_x/cython_modules/quaternion.pyx":292
+    /* "mars_x/cython_modules/quaternion.pyx":295
  *         # If angle is very small, do linear interpolation
  *         if sin_theta < 1e-6:
  *             return Quaternion(             # <<<<<<<<<<<<<<
@@ -7219,86 +7365,86 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
 
-    /* "mars_x/cython_modules/quaternion.pyx":293
+    /* "mars_x/cython_modules/quaternion.pyx":296
  *         if sin_theta < 1e-6:
  *             return Quaternion(
  *                 a.x * (1.0 - t) + b_adj.x * t,             # <<<<<<<<<<<<<<
  *                 a.y * (1.0 - t) + b_adj.y * t,
  *                 a.z * (1.0 - t) + b_adj.z * t,
  */
-    __pyx_t_8 = PyFloat_FromDouble(((__pyx_v_a->x * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->x * __pyx_v_t))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 293, __pyx_L1_error)
+    __pyx_t_8 = PyFloat_FromDouble(((__pyx_v_a->x * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->x * __pyx_v_t))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 296, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
 
-    /* "mars_x/cython_modules/quaternion.pyx":294
+    /* "mars_x/cython_modules/quaternion.pyx":297
  *             return Quaternion(
  *                 a.x * (1.0 - t) + b_adj.x * t,
  *                 a.y * (1.0 - t) + b_adj.y * t,             # <<<<<<<<<<<<<<
  *                 a.z * (1.0 - t) + b_adj.z * t,
  *                 a.w * (1.0 - t) + b_adj.w * t
  */
-    __pyx_t_9 = PyFloat_FromDouble(((__pyx_v_a->y * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->y * __pyx_v_t))); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(((__pyx_v_a->y * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->y * __pyx_v_t))); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
 
-    /* "mars_x/cython_modules/quaternion.pyx":295
+    /* "mars_x/cython_modules/quaternion.pyx":298
  *                 a.x * (1.0 - t) + b_adj.x * t,
  *                 a.y * (1.0 - t) + b_adj.y * t,
  *                 a.z * (1.0 - t) + b_adj.z * t,             # <<<<<<<<<<<<<<
  *                 a.w * (1.0 - t) + b_adj.w * t
  *             ).normalize()
  */
-    __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_a->z * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->z * __pyx_v_t))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_a->z * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->z * __pyx_v_t))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 298, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
 
-    /* "mars_x/cython_modules/quaternion.pyx":296
+    /* "mars_x/cython_modules/quaternion.pyx":299
  *                 a.y * (1.0 - t) + b_adj.y * t,
  *                 a.z * (1.0 - t) + b_adj.z * t,
  *                 a.w * (1.0 - t) + b_adj.w * t             # <<<<<<<<<<<<<<
  *             ).normalize()
  * 
  */
-    __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_a->w * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->w * __pyx_v_t))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 296, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_a->w * (1.0 - __pyx_v_t)) + (__pyx_v_b_adj->w * __pyx_v_t))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
 
-    /* "mars_x/cython_modules/quaternion.pyx":292
+    /* "mars_x/cython_modules/quaternion.pyx":295
  *         # If angle is very small, do linear interpolation
  *         if sin_theta < 1e-6:
  *             return Quaternion(             # <<<<<<<<<<<<<<
  *                 a.x * (1.0 - t) + b_adj.x * t,
  *                 a.y * (1.0 - t) + b_adj.y * t,
  */
-    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_8);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8)) __PYX_ERR(0, 292, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8)) __PYX_ERR(0, 295, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_9);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_9)) __PYX_ERR(0, 292, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_9)) __PYX_ERR(0, 295, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_7)) __PYX_ERR(0, 292, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_6)) __PYX_ERR(0, 295, __pyx_L1_error);
     __pyx_t_8 = 0;
     __pyx_t_9 = 0;
     __pyx_t_7 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":297
+    /* "mars_x/cython_modules/quaternion.pyx":300
  *                 a.z * (1.0 - t) + b_adj.z * t,
  *                 a.w * (1.0 - t) + b_adj.w * t
  *             ).normalize()             # <<<<<<<<<<<<<<
  * 
  *         # Calculate slerp coefficients
  */
-    __pyx_t_5 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_6)->__pyx_vtab)->normalize(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_6), 0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L1_error)
+    __pyx_t_5 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_6)->__pyx_vtab)->normalize(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_6), 0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_5);
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/quaternion.pyx":291
+    /* "mars_x/cython_modules/quaternion.pyx":294
  * 
  *         # If angle is very small, do linear interpolation
  *         if sin_theta < 1e-6:             # <<<<<<<<<<<<<<
@@ -7307,7 +7453,7 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   }
 
-  /* "mars_x/cython_modules/quaternion.pyx":300
+  /* "mars_x/cython_modules/quaternion.pyx":303
  * 
  *         # Calculate slerp coefficients
  *         cdef double s0 = sin((1.0 - t) * theta) / sin_theta             # <<<<<<<<<<<<<<
@@ -7317,11 +7463,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_1 = sin(((1.0 - __pyx_v_t) * __pyx_v_theta));
   if (unlikely(__pyx_v_sin_theta == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 300, __pyx_L1_error)
+    __PYX_ERR(0, 303, __pyx_L1_error)
   }
   __pyx_v_s0 = (__pyx_t_1 / __pyx_v_sin_theta);
 
-  /* "mars_x/cython_modules/quaternion.pyx":301
+  /* "mars_x/cython_modules/quaternion.pyx":304
  *         # Calculate slerp coefficients
  *         cdef double s0 = sin((1.0 - t) * theta) / sin_theta
  *         cdef double s1 = sin(t * theta) / sin_theta             # <<<<<<<<<<<<<<
@@ -7331,11 +7477,11 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_t_1 = sin((__pyx_v_t * __pyx_v_theta));
   if (unlikely(__pyx_v_sin_theta == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 301, __pyx_L1_error)
+    __PYX_ERR(0, 304, __pyx_L1_error)
   }
   __pyx_v_s1 = (__pyx_t_1 / __pyx_v_sin_theta);
 
-  /* "mars_x/cython_modules/quaternion.pyx":303
+  /* "mars_x/cython_modules/quaternion.pyx":306
  *         cdef double s1 = sin(t * theta) / sin_theta
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
@@ -7344,83 +7490,86 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
 
-  /* "mars_x/cython_modules/quaternion.pyx":304
+  /* "mars_x/cython_modules/quaternion.pyx":307
  * 
  *         return Quaternion(
  *             a.x * s0 + b_adj.x * s1,             # <<<<<<<<<<<<<<
  *             a.y * s0 + b_adj.y * s1,
  *             a.z * s0 + b_adj.z * s1,
  */
-  __pyx_t_5 = PyFloat_FromDouble(((__pyx_v_a->x * __pyx_v_s0) + (__pyx_v_b_adj->x * __pyx_v_s1))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(((__pyx_v_a->x * __pyx_v_s0) + (__pyx_v_b_adj->x * __pyx_v_s1))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "mars_x/cython_modules/quaternion.pyx":305
+  /* "mars_x/cython_modules/quaternion.pyx":308
  *         return Quaternion(
  *             a.x * s0 + b_adj.x * s1,
  *             a.y * s0 + b_adj.y * s1,             # <<<<<<<<<<<<<<
  *             a.z * s0 + b_adj.z * s1,
  *             a.w * s0 + b_adj.w * s1
  */
-  __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_a->y * __pyx_v_s0) + (__pyx_v_b_adj->y * __pyx_v_s1))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(((__pyx_v_a->y * __pyx_v_s0) + (__pyx_v_b_adj->y * __pyx_v_s1))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "mars_x/cython_modules/quaternion.pyx":306
+  /* "mars_x/cython_modules/quaternion.pyx":309
  *             a.x * s0 + b_adj.x * s1,
  *             a.y * s0 + b_adj.y * s1,
  *             a.z * s0 + b_adj.z * s1,             # <<<<<<<<<<<<<<
  *             a.w * s0 + b_adj.w * s1
  *         ).normalize()
  */
-  __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_a->z * __pyx_v_s0) + (__pyx_v_b_adj->z * __pyx_v_s1))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(((__pyx_v_a->z * __pyx_v_s0) + (__pyx_v_b_adj->z * __pyx_v_s1))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "mars_x/cython_modules/quaternion.pyx":307
+  /* "mars_x/cython_modules/quaternion.pyx":310
  *             a.y * s0 + b_adj.y * s1,
  *             a.z * s0 + b_adj.z * s1,
  *             a.w * s0 + b_adj.w * s1             # <<<<<<<<<<<<<<
  *         ).normalize()
+ * 
  */
-  __pyx_t_9 = PyFloat_FromDouble(((__pyx_v_a->w * __pyx_v_s0) + (__pyx_v_b_adj->w * __pyx_v_s1))); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 307, __pyx_L1_error)
+  __pyx_t_9 = PyFloat_FromDouble(((__pyx_v_a->w * __pyx_v_s0) + (__pyx_v_b_adj->w * __pyx_v_s1))); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
 
-  /* "mars_x/cython_modules/quaternion.pyx":303
+  /* "mars_x/cython_modules/quaternion.pyx":306
  *         cdef double s1 = sin(t * theta) / sin_theta
  * 
  *         return Quaternion(             # <<<<<<<<<<<<<<
  *             a.x * s0 + b_adj.x * s1,
  *             a.y * s0 + b_adj.y * s1,
  */
-  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5)) __PYX_ERR(0, 306, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_6)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_6)) __PYX_ERR(0, 306, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_7)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_7)) __PYX_ERR(0, 306, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_9)) __PYX_ERR(0, 303, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_9)) __PYX_ERR(0, 306, __pyx_L1_error);
   __pyx_t_5 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
   __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":308
+  /* "mars_x/cython_modules/quaternion.pyx":311
  *             a.z * s0 + b_adj.z * s1,
  *             a.w * s0 + b_adj.w * s1
  *         ).normalize()             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
  */
-  __pyx_t_8 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_9)->__pyx_vtab)->normalize(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_9), 0)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 308, __pyx_L1_error)
+  __pyx_t_8 = ((PyObject *)((struct __pyx_vtabstruct_6mars_x_14cython_modules_10quaternion_Quaternion *)((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_9)->__pyx_vtab)->normalize(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_9), 0)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_r = ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_t_8);
   __pyx_t_8 = 0;
   goto __pyx_L0;
 
-  /* "mars_x/cython_modules/quaternion.pyx":267
+  /* "mars_x/cython_modules/quaternion.pyx":270
  * 
  *     @staticmethod
  *     cdef Quaternion slerp(Quaternion a, Quaternion b, double t):             # <<<<<<<<<<<<<<
@@ -7440,6 +7589,773 @@ static struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v_b_adj);
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/quaternion.pyx":313
+ *         ).normalize()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_identity():
+ *         """Public wrapper for identity()"""
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity, "Public wrapper for identity()");
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity = {"create_identity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("create_identity (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) {
+    __Pyx_RaiseArgtupleInvalid("create_identity", 1, 0, 0, __pyx_nargs); return NULL;}
+  if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "create_identity", 0))) return NULL;
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity();
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity(void) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("create_identity", 1);
+
+  /* "mars_x/cython_modules/quaternion.pyx":316
+ *     def create_identity():
+ *         """Public wrapper for identity()"""
+ *         return Quaternion.identity()             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_identity()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/quaternion.pyx":313
+ *         ).normalize()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_identity():
+ *         """Public wrapper for identity()"""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_identity", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/quaternion.pyx":318
+ *         return Quaternion.identity()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_axis_angle(axis, angle):
+ *         """Public wrapper for from_axis_angle()"""
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle, "Public wrapper for from_axis_angle()");
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle = {"create_from_axis_angle", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_axis = 0;
+  PyObject *__pyx_v_angle = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[2] = {0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("create_from_axis_angle (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_axis,&__pyx_n_s_angle,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_axis)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_angle)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("create_from_axis_angle", 1, 2, 2, 1); __PYX_ERR(0, 318, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "create_from_axis_angle") < 0)) __PYX_ERR(0, 318, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 2)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+    }
+    __pyx_v_axis = values[0];
+    __pyx_v_angle = values[1];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("create_from_axis_angle", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 318, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_axis_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle(__pyx_v_axis, __pyx_v_angle);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle(PyObject *__pyx_v_axis, PyObject *__pyx_v_angle) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("create_from_axis_angle", 1);
+
+  /* "mars_x/cython_modules/quaternion.pyx":321
+ *     def create_from_axis_angle(axis, angle):
+ *         """Public wrapper for from_axis_angle()"""
+ *         return Quaternion.from_axis_angle(axis, angle)             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+ */
+  __Pyx_XDECREF(__pyx_r);
+  if (!(likely(((__pyx_v_axis) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_axis, __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3))))) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_angle); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_from_axis_angle(((struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *)__pyx_v_axis), __pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/quaternion.pyx":318
+ *         return Quaternion.identity()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_axis_angle(axis, angle):
+ *         """Public wrapper for from_axis_angle()"""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_axis_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/quaternion.pyx":323
+ *         return Quaternion.from_axis_angle(axis, angle)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_euler_angles(x, y, z):
+ *         """Public wrapper for from_euler_angles()"""
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles, "Public wrapper for from_euler_angles()");
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles = {"create_from_euler_angles", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_x = 0;
+  PyObject *__pyx_v_y = 0;
+  PyObject *__pyx_v_z = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("create_from_euler_angles (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_x,&__pyx_n_s_y,&__pyx_n_s_z,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_x)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 323, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_y)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 323, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("create_from_euler_angles", 1, 3, 3, 1); __PYX_ERR(0, 323, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_z)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 323, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("create_from_euler_angles", 1, 3, 3, 2); __PYX_ERR(0, 323, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "create_from_euler_angles") < 0)) __PYX_ERR(0, 323, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 3)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+    }
+    __pyx_v_x = values[0];
+    __pyx_v_y = values[1];
+    __pyx_v_z = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("create_from_euler_angles", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 323, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_euler_angles", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles(__pyx_v_x, __pyx_v_y, __pyx_v_z);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles(PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_z) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  double __pyx_t_2;
+  double __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("create_from_euler_angles", 1);
+
+  /* "mars_x/cython_modules/quaternion.pyx":326
+ *     def create_from_euler_angles(x, y, z):
+ *         """Public wrapper for from_euler_angles()"""
+ *         return Quaternion.from_euler_angles(x, y, z)             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_y); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_z); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_from_euler_angles(__pyx_t_1, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_r = __pyx_t_4;
+  __pyx_t_4 = 0;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/quaternion.pyx":323
+ *         return Quaternion.from_axis_angle(axis, angle)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_euler_angles(x, y, z):
+ *         """Public wrapper for from_euler_angles()"""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_euler_angles", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/quaternion.pyx":328
+ *         return Quaternion.from_euler_angles(x, y, z)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_matrix(matrix):
+ *         """Public wrapper for from_matrix()"""
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix, "Public wrapper for from_matrix()");
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix = {"create_from_matrix", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_matrix = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("create_from_matrix (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_matrix,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_matrix)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "create_from_matrix") < 0)) __PYX_ERR(0, 328, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+    }
+    __pyx_v_matrix = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("create_from_matrix", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 328, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix(__pyx_v_matrix);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix(PyObject *__pyx_v_matrix) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("create_from_matrix", 1);
+
+  /* "mars_x/cython_modules/quaternion.pyx":331
+ *     def create_from_matrix(matrix):
+ *         """Public wrapper for from_matrix()"""
+ *         return Quaternion.from_matrix(matrix)             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+ */
+  __Pyx_XDECREF(__pyx_r);
+  if (!(likely(((__pyx_v_matrix) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_matrix, __pyx_ptype_6mars_x_14cython_modules_6matrix_Matrix4))))) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_from_matrix(((struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *)__pyx_v_matrix))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/quaternion.pyx":328
+ *         return Quaternion.from_euler_angles(x, y, z)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_matrix(matrix):
+ *         """Public wrapper for from_matrix()"""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_from_matrix", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mars_x/cython_modules/quaternion.pyx":333
+ *         return Quaternion.from_matrix(matrix)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_slerp(a, b, t):
+ *         """Public wrapper for slerp()"""
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp, "Public wrapper for slerp()");
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp = {"create_slerp", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_a = 0;
+  PyObject *__pyx_v_b = 0;
+  PyObject *__pyx_v_t = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("create_slerp (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_a,&__pyx_n_s_b,&__pyx_n_s_t,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_a)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_b)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("create_slerp", 1, 3, 3, 1); __PYX_ERR(0, 333, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_t)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("create_slerp", 1, 3, 3, 2); __PYX_ERR(0, 333, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "create_slerp") < 0)) __PYX_ERR(0, 333, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 3)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+    }
+    __pyx_v_a = values[0];
+    __pyx_v_b = values[1];
+    __pyx_v_t = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("create_slerp", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 333, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_slerp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp(__pyx_v_a, __pyx_v_b, __pyx_v_t);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_t) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("create_slerp", 1);
+
+  /* "mars_x/cython_modules/quaternion.pyx":336
+ *     def create_slerp(a, b, t):
+ *         """Public wrapper for slerp()"""
+ *         return Quaternion.slerp(a, b, t)             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  if (!(likely(((__pyx_v_a) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_a, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (!(likely(((__pyx_v_b) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_b, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion))))) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_t); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_slerp(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_a), ((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_b), __pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/quaternion.pyx":333
+ *         return Quaternion.from_matrix(matrix)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_slerp(a, b, t):
+ *         """Public wrapper for slerp()"""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("mars_x.cython_modules.quaternion.Quaternion.create_slerp", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -7783,15 +8699,15 @@ static int __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_1w_2__set
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7816,14 +8732,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26__reduce_cython__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_36__reduce_cython__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26__reduce_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self) {
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_36__reduce_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -8063,15 +8979,15 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_26_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -8145,7 +9061,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28__setstate_cython__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_38__setstate_cython__(((struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   {
@@ -8158,7 +9074,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_28__setstate_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6mars_x_14cython_modules_10quaternion_10Quaternion_38__setstate_cython__(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8877,8 +9793,13 @@ static PyObject *__pyx_specialmethod___pyx_pw_6mars_x_14cython_modules_10quatern
 
 static PyMethodDef __pyx_methods_6mars_x_14cython_modules_10quaternion_Quaternion[] = {
   {"__repr__", (PyCFunction)__pyx_specialmethod___pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_3__repr__, METH_NOARGS|METH_COEXIST, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_2__repr__},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"create_identity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_26create_identity},
+  {"create_from_axis_angle", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_28create_from_axis_angle},
+  {"create_from_euler_angles", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_30create_from_euler_angles},
+  {"create_from_matrix", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_32create_from_matrix},
+  {"create_slerp", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_34create_slerp},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -9086,18 +10007,32 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Quaternion___setstate_cython, __pyx_k_Quaternion___setstate_cython, sizeof(__pyx_k_Quaternion___setstate_cython), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_conjugate, __pyx_k_Quaternion_conjugate, sizeof(__pyx_k_Quaternion_conjugate), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_copy, __pyx_k_Quaternion_copy, sizeof(__pyx_k_Quaternion_copy), 0, 0, 1, 1},
+    {&__pyx_n_s_Quaternion_create_from_axis_angl, __pyx_k_Quaternion_create_from_axis_angl, sizeof(__pyx_k_Quaternion_create_from_axis_angl), 0, 0, 1, 1},
+    {&__pyx_n_s_Quaternion_create_from_euler_ang, __pyx_k_Quaternion_create_from_euler_ang, sizeof(__pyx_k_Quaternion_create_from_euler_ang), 0, 0, 1, 1},
+    {&__pyx_n_s_Quaternion_create_from_matrix, __pyx_k_Quaternion_create_from_matrix, sizeof(__pyx_k_Quaternion_create_from_matrix), 0, 0, 1, 1},
+    {&__pyx_n_s_Quaternion_create_identity, __pyx_k_Quaternion_create_identity, sizeof(__pyx_k_Quaternion_create_identity), 0, 0, 1, 1},
+    {&__pyx_n_s_Quaternion_create_slerp, __pyx_k_Quaternion_create_slerp, sizeof(__pyx_k_Quaternion_create_slerp), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_inverse, __pyx_k_Quaternion_inverse, sizeof(__pyx_k_Quaternion_inverse), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_length, __pyx_k_Quaternion_length, sizeof(__pyx_k_Quaternion_length), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_normalize, __pyx_k_Quaternion_normalize, sizeof(__pyx_k_Quaternion_normalize), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_rotate_vector3, __pyx_k_Quaternion_rotate_vector3, sizeof(__pyx_k_Quaternion_rotate_vector3), 0, 0, 1, 1},
     {&__pyx_n_s_Quaternion_to_rotation_matrix, __pyx_k_Quaternion_to_rotation_matrix, sizeof(__pyx_k_Quaternion_to_rotation_matrix), 0, 0, 1, 1},
     {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
-    {&__pyx_n_s__21, __pyx_k__21, sizeof(__pyx_k__21), 0, 0, 1, 1},
+    {&__pyx_n_s__30, __pyx_k__30, sizeof(__pyx_k__30), 0, 0, 1, 1},
     {&__pyx_kp_u__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 1, 0, 0},
+    {&__pyx_n_s_a, __pyx_k_a, sizeof(__pyx_k_a), 0, 0, 1, 1},
+    {&__pyx_n_s_angle, __pyx_k_angle, sizeof(__pyx_k_angle), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
+    {&__pyx_n_s_axis, __pyx_k_axis, sizeof(__pyx_k_axis), 0, 0, 1, 1},
+    {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
     {&__pyx_n_s_conjugate, __pyx_k_conjugate, sizeof(__pyx_k_conjugate), 0, 0, 1, 1},
     {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
+    {&__pyx_n_s_create_from_axis_angle, __pyx_k_create_from_axis_angle, sizeof(__pyx_k_create_from_axis_angle), 0, 0, 1, 1},
+    {&__pyx_n_s_create_from_euler_angles, __pyx_k_create_from_euler_angles, sizeof(__pyx_k_create_from_euler_angles), 0, 0, 1, 1},
+    {&__pyx_n_s_create_from_matrix, __pyx_k_create_from_matrix, sizeof(__pyx_k_create_from_matrix), 0, 0, 1, 1},
+    {&__pyx_n_s_create_identity, __pyx_k_create_identity, sizeof(__pyx_k_create_identity), 0, 0, 1, 1},
+    {&__pyx_n_s_create_slerp, __pyx_k_create_slerp, sizeof(__pyx_k_create_slerp), 0, 0, 1, 1},
     {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
     {&__pyx_n_s_dict_2, __pyx_k_dict_2, sizeof(__pyx_k_dict_2), 0, 0, 1, 1},
     {&__pyx_kp_u_disable, __pyx_k_disable, sizeof(__pyx_k_disable), 0, 1, 0, 0},
@@ -9112,6 +10047,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_k_mars_x_cython_modules_quaternion, sizeof(__pyx_k_mars_x_cython_modules_quaternion), 0, 0, 1, 0},
     {&__pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_k_mars_x_cython_modules_quaternion_2, sizeof(__pyx_k_mars_x_cython_modules_quaternion_2), 0, 0, 1, 1},
+    {&__pyx_n_s_matrix, __pyx_k_matrix, sizeof(__pyx_k_matrix), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
     {&__pyx_n_s_normalize, __pyx_k_normalize, sizeof(__pyx_k_normalize), 0, 0, 1, 1},
@@ -9131,7 +10067,9 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
     {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
     {&__pyx_n_s_state, __pyx_k_state, sizeof(__pyx_k_state), 0, 0, 1, 1},
+    {&__pyx_n_s_staticmethod, __pyx_k_staticmethod, sizeof(__pyx_k_staticmethod), 0, 0, 1, 1},
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
+    {&__pyx_n_s_t, __pyx_k_t, sizeof(__pyx_k_t), 0, 0, 1, 1},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
     {&__pyx_n_s_to_rotation_matrix, __pyx_k_to_rotation_matrix, sizeof(__pyx_k_to_rotation_matrix), 0, 0, 1, 1},
     {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
@@ -9147,7 +10085,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 74, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -9158,14 +10097,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "mars_x/cython_modules/quaternion.pyx":93
+  /* "mars_x/cython_modules/quaternion.pyx":96
  *         cdef double len_val = self.length()
  *         if len_val < 1e-10:
  *             return Quaternion(0, 0, 0, 1)  # Return identity if length is too close to zero             # <<<<<<<<<<<<<<
  * 
  *         return Quaternion(
  */
-  __pyx_tuple__3 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
@@ -9180,84 +10119,141 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "mars_x/cython_modules/quaternion.pyx":85
+  /* "mars_x/cython_modules/quaternion.pyx":88
  *         )
  * 
  *     cpdef double length(self):             # <<<<<<<<<<<<<<
  *         """Get the length (magnitude) of the quaternion"""
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_length, 85, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_length, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 88, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":89
+  /* "mars_x/cython_modules/quaternion.pyx":92
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  * 
  *     cpdef Quaternion normalize(self):             # <<<<<<<<<<<<<<
  *         """Return a normalized quaternion (unit quaternion)"""
  *         cdef double len_val = self.length()
  */
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_normalize, 89, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_normalize, 92, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 92, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":102
+  /* "mars_x/cython_modules/quaternion.pyx":105
  *         )
  * 
  *     cpdef Quaternion conjugate(self):             # <<<<<<<<<<<<<<
  *         """Return the conjugate of this quaternion"""
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  */
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_conjugate, 102, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_conjugate, 105, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 105, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":106
+  /* "mars_x/cython_modules/quaternion.pyx":109
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  * 
  *     cpdef Quaternion inverse(self):             # <<<<<<<<<<<<<<
  *         """Return the inverse of this quaternion"""
  *         cdef double len_sq = (
  */
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_inverse, 106, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_inverse, 109, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 109, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":127
+  /* "mars_x/cython_modules/quaternion.pyx":130
  *         )
  * 
  *     cpdef Vector3 rotate_vector3(self, Vector3 v):             # <<<<<<<<<<<<<<
  *         """Rotate a 3D vector using this quaternion"""
  *         # Pure quaternion from the vector
  */
-  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_v); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_v); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_rotate_vector3, 127, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_rotate_vector3, 130, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 130, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":138
+  /* "mars_x/cython_modules/quaternion.pyx":141
  *         return Vector3(result.x, result.y, result.z)
  * 
  *     cpdef Matrix4 to_rotation_matrix(self):             # <<<<<<<<<<<<<<
  *         """Convert this quaternion to a rotation matrix"""
  *         cdef Matrix4 m = Matrix4()
  */
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_to_rotation_matrix, 138, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_to_rotation_matrix, 141, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 141, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/quaternion.pyx":183
+  /* "mars_x/cython_modules/quaternion.pyx":186
  *         return m
  * 
  *     cpdef Quaternion copy(self):             # <<<<<<<<<<<<<<
  *         """Create a copy of this quaternion"""
  *         return Quaternion(self.x, self.y, self.z, self.w)
  */
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_copy, 183, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_copy, 186, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 186, __pyx_L1_error)
+
+  /* "mars_x/cython_modules/quaternion.pyx":313
+ *         ).normalize()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_identity():
+ *         """Public wrapper for identity()"""
+ */
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_create_identity, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 313, __pyx_L1_error)
+
+  /* "mars_x/cython_modules/quaternion.pyx":318
+ *         return Quaternion.identity()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_axis_angle(axis, angle):
+ *         """Public wrapper for from_axis_angle()"""
+ */
+  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_axis, __pyx_n_s_angle); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_create_from_axis_angle, 318, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 318, __pyx_L1_error)
+
+  /* "mars_x/cython_modules/quaternion.pyx":323
+ *         return Quaternion.from_axis_angle(axis, angle)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_euler_angles(x, y, z):
+ *         """Public wrapper for from_euler_angles()"""
+ */
+  __pyx_tuple__18 = PyTuple_Pack(3, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_create_from_euler_angles, 323, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 323, __pyx_L1_error)
+
+  /* "mars_x/cython_modules/quaternion.pyx":328
+ *         return Quaternion.from_euler_angles(x, y, z)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_matrix(matrix):
+ *         """Public wrapper for from_matrix()"""
+ */
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_n_s_matrix); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_create_from_matrix, 328, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 328, __pyx_L1_error)
+
+  /* "mars_x/cython_modules/quaternion.pyx":333
+ *         return Quaternion.from_matrix(matrix)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_slerp(a, b, t):
+ *         """Public wrapper for slerp()"""
+ */
+  __pyx_tuple__22 = PyTuple_Pack(3, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_t); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_quaternion, __pyx_n_s_create_slerp, 333, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 333, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_tuple__15 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -9265,20 +10261,20 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_Quaternion__set_state(self, __pyx_state)
  */
-  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(2, 16, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Quaternion(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__19 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Quaternion, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Quaternion, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -9358,15 +10354,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_6mars_x_14cython_modules_10quaternion_Quaternion.from_matrix = (struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *(*)(struct __pyx_obj_6mars_x_14cython_modules_6matrix_Matrix4 *))__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_from_matrix;
   __pyx_vtable_6mars_x_14cython_modules_10quaternion_Quaternion.slerp = (struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *(*)(struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *, struct __pyx_obj_6mars_x_14cython_modules_10quaternion_Quaternion *, double))__pyx_f_6mars_x_14cython_modules_10quaternion_10Quaternion_slerp;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_10quaternion_Quaternion_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion)) __PYX_ERR(0, 10, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_10quaternion_Quaternion_spec, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6mars_x_14cython_modules_10quaternion_Quaternion_spec, NULL); if (unlikely(!__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6mars_x_14cython_modules_10quaternion_Quaternion_spec, __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #else
   __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion = &__pyx_type_6mars_x_14cython_modules_10quaternion_Quaternion;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion->tp_print = 0;
@@ -9378,7 +10374,7 @@ static int __Pyx_modinit_type_init_code(void) {
   #endif
   #if CYTHON_UPDATE_DESCRIPTOR_DOC
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 10, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 13, __pyx_L1_error)
     if (__Pyx_IS_TYPE(wrapper, &PyWrapperDescr_Type)) {
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion___init__.doc = __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion___init__;
@@ -9388,7 +10384,7 @@ static int __Pyx_modinit_type_init_code(void) {
   #endif
   #if CYTHON_UPDATE_DESCRIPTOR_DOC
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__repr__"); if (unlikely(!wrapper)) __PYX_ERR(0, 10, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__repr__"); if (unlikely(!wrapper)) __PYX_ERR(0, 13, __pyx_L1_error)
     if (__Pyx_IS_TYPE(wrapper, &PyWrapperDescr_Type)) {
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_2__repr__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_2__repr__.doc = __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_2__repr__;
@@ -9398,7 +10394,7 @@ static int __Pyx_modinit_type_init_code(void) {
   #endif
   #if CYTHON_UPDATE_DESCRIPTOR_DOC
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__mul__"); if (unlikely(!wrapper)) __PYX_ERR(0, 10, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__mul__"); if (unlikely(!wrapper)) __PYX_ERR(0, 13, __pyx_L1_error)
     if (__Pyx_IS_TYPE(wrapper, &PyWrapperDescr_Type)) {
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_8__mul__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_8__mul__.doc = __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_8__mul__;
@@ -9408,7 +10404,7 @@ static int __Pyx_modinit_type_init_code(void) {
   #endif
   #if CYTHON_UPDATE_DESCRIPTOR_DOC
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__eq__"); if (unlikely(!wrapper)) __PYX_ERR(0, 10, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, "__eq__"); if (unlikely(!wrapper)) __PYX_ERR(0, 13, __pyx_L1_error)
     if (__Pyx_IS_TYPE(wrapper, &PyWrapperDescr_Type)) {
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_10__eq__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6mars_x_14cython_modules_10quaternion_10Quaternion_10__eq__.doc = __pyx_doc_6mars_x_14cython_modules_10quaternion_10Quaternion_10__eq__;
@@ -9416,13 +10412,13 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_vtabptr_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_vtabptr_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Quaternion_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Quaternion_2, (PyObject *) __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #endif
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -9439,14 +10435,14 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 60, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(3, 60, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(3, 60, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(3, 75, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(3, 75, __pyx_L1_error)
-  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(3, 87, __pyx_L1_error)
-  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(3, 87, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(3, 66, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(3, 66, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(3, 81, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(3, 81, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(3, 93, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(3, 93, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.matrix"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9471,10 +10467,23 @@ static int __Pyx_modinit_variable_import_code(void) {
 
 static int __Pyx_modinit_function_import_code(void) {
   __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_function_import_code", 0);
   /*--- Function import code ---*/
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (!__pyx_t_1) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_ImportFunction_3_0_12(__pyx_t_1, "fast_sin", (void (**)(void))&__pyx_f_6mars_x_14cython_modules_6vector_fast_sin, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ImportFunction_3_0_12(__pyx_t_1, "fast_cos", (void (**)(void))&__pyx_f_6mars_x_14cython_modules_6vector_fast_cos, "double (double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_RefNannyFinishContext();
+  return -1;
 }
 
 
@@ -9640,6 +10649,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_quaternion(PyObject *__pyx_pyinit_
   #endif
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -9749,101 +10759,206 @@ if (!__Pyx_RefNanny) {
   if (unlikely((__Pyx_modinit_type_init_code() < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
   if (unlikely((__Pyx_modinit_type_import_code() < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
   (void)__Pyx_modinit_variable_import_code();
-  (void)__Pyx_modinit_function_import_code();
+  if (unlikely((__Pyx_modinit_function_import_code() < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Execution code ---*/
   #if defined(__Pyx_Generator_USED) || defined(__Pyx_Coroutine_USED)
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "mars_x/cython_modules/quaternion.pyx":85
+  /* "mars_x/cython_modules/quaternion.pyx":88
  *         )
  * 
  *     cpdef double length(self):             # <<<<<<<<<<<<<<
  *         """Get the length (magnitude) of the quaternion"""
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_13length, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_length, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_13length, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_length, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_length, __pyx_t_2) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_length, __pyx_t_2) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":89
+  /* "mars_x/cython_modules/quaternion.pyx":92
  *         return sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w)
  * 
  *     cpdef Quaternion normalize(self):             # <<<<<<<<<<<<<<
  *         """Return a normalized quaternion (unit quaternion)"""
  *         cdef double len_val = self.length()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_15normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_normalize, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_15normalize, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_normalize, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_normalize, __pyx_t_2) < 0) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":102
+  /* "mars_x/cython_modules/quaternion.pyx":105
  *         )
  * 
  *     cpdef Quaternion conjugate(self):             # <<<<<<<<<<<<<<
  *         """Return the conjugate of this quaternion"""
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_17conjugate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_conjugate, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_17conjugate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_conjugate, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_conjugate, __pyx_t_2) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_conjugate, __pyx_t_2) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":106
+  /* "mars_x/cython_modules/quaternion.pyx":109
  *         return Quaternion(-self.x, -self.y, -self.z, self.w)
  * 
  *     cpdef Quaternion inverse(self):             # <<<<<<<<<<<<<<
  *         """Return the inverse of this quaternion"""
  *         cdef double len_sq = (
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_19inverse, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_inverse, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_19inverse, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_inverse, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_inverse, __pyx_t_2) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_inverse, __pyx_t_2) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":127
+  /* "mars_x/cython_modules/quaternion.pyx":130
  *         )
  * 
  *     cpdef Vector3 rotate_vector3(self, Vector3 v):             # <<<<<<<<<<<<<<
  *         """Rotate a 3D vector using this quaternion"""
  *         # Pure quaternion from the vector
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_21rotate_vector3, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_rotate_vector3, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_21rotate_vector3, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_rotate_vector3, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_rotate_vector3, __pyx_t_2) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_rotate_vector3, __pyx_t_2) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":138
+  /* "mars_x/cython_modules/quaternion.pyx":141
  *         return Vector3(result.x, result.y, result.z)
  * 
  *     cpdef Matrix4 to_rotation_matrix(self):             # <<<<<<<<<<<<<<
  *         """Convert this quaternion to a rotation matrix"""
  *         cdef Matrix4 m = Matrix4()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_23to_rotation_matrix, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_to_rotation_matrix, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_23to_rotation_matrix, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_to_rotation_matrix, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_to_rotation_matrix, __pyx_t_2) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_to_rotation_matrix, __pyx_t_2) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
-  /* "mars_x/cython_modules/quaternion.pyx":183
+  /* "mars_x/cython_modules/quaternion.pyx":186
  *         return m
  * 
  *     cpdef Quaternion copy(self):             # <<<<<<<<<<<<<<
  *         """Create a copy of this quaternion"""
  *         return Quaternion(self.x, self.y, self.z, self.w)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_25copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_copy, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_25copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_copy, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+
+  /* "mars_x/cython_modules/quaternion.pyx":313
+ *         ).normalize()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_identity():
+ *         """Public wrapper for identity()"""
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_27create_identity, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_create_identity, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_identity, __pyx_t_2) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_identity); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_identity, __pyx_t_3) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+
+  /* "mars_x/cython_modules/quaternion.pyx":318
+ *         return Quaternion.identity()
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_axis_angle(axis, angle):
+ *         """Public wrapper for from_axis_angle()"""
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_29create_from_axis_angle, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_create_from_axis_angl, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_axis_angle, __pyx_t_3) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_axis_angle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_axis_angle, __pyx_t_2) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+
+  /* "mars_x/cython_modules/quaternion.pyx":323
+ *         return Quaternion.from_axis_angle(axis, angle)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_euler_angles(x, y, z):
+ *         """Public wrapper for from_euler_angles()"""
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_31create_from_euler_angles, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_create_from_euler_ang, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_euler_angles, __pyx_t_2) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_euler_angles); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_euler_angles, __pyx_t_3) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+
+  /* "mars_x/cython_modules/quaternion.pyx":328
+ *         return Quaternion.from_euler_angles(x, y, z)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_from_matrix(matrix):
+ *         """Public wrapper for from_matrix()"""
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_33create_from_matrix, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_create_from_matrix, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_matrix, __pyx_t_3) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_from_matrix, __pyx_t_2) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+
+  /* "mars_x/cython_modules/quaternion.pyx":333
+ *         return Quaternion.from_matrix(matrix)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def create_slerp(a, b, t):
+ *         """Public wrapper for slerp()"""
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_35create_slerp, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion_create_slerp, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_slerp, __pyx_t_2) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_slerp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_staticmethod, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_create_slerp, __pyx_t_3) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
   /* "(tree fragment)":1
@@ -9851,10 +10966,10 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_27__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion___reduce_cython, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_37__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion___reduce_cython, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
   /* "(tree fragment)":16
@@ -9863,10 +10978,10 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_Quaternion__set_state(self, __pyx_state)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_29__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion___setstate_cython, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_10Quaternion_39__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Quaternion___setstate_cython, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_6mars_x_14cython_modules_10quaternion_Quaternion);
 
   /* "(tree fragment)":1
@@ -9874,26 +10989,27 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_1__pyx_unpickle_Quaternion, 0, __pyx_n_s_pyx_unpickle_Quaternion, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Quaternion, __pyx_t_2) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_10quaternion_1__pyx_unpickle_Quaternion, 0, __pyx_n_s_pyx_unpickle_Quaternion, NULL, __pyx_n_s_mars_x_cython_modules_quaternion_2, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Quaternion, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "mars_x/cython_modules/quaternion.pyx":1
  * # cython: language_level=3             # <<<<<<<<<<<<<<
  * # cython: boundscheck=False
  * # cython: wraparound=False
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /*--- Wrapped vars code ---*/
 
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init mars_x.cython_modules.quaternion", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -13266,6 +14382,29 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
+/* GetNameInClass */
+static PyObject *__Pyx__GetNameInClass(PyObject *nmspace, PyObject *name) {
+    PyObject *result;
+    PyObject *dict;
+    assert(PyType_Check(nmspace));
+#if CYTHON_USE_TYPE_SLOTS
+    dict = ((PyTypeObject*)nmspace)->tp_dict;
+    Py_XINCREF(dict);
+#else
+    dict = PyObject_GetAttr(nmspace, __pyx_n_s_dict);
+#endif
+    if (likely(dict)) {
+        result = PyObject_GetItem(dict, name);
+        Py_DECREF(dict);
+        if (result) {
+            return result;
+        }
+    }
+    PyErr_Clear();
+    __Pyx_GetModuleGlobalNameUncached(result, name);
+    return result;
+}
+
 /* CLineInTraceback */
 #ifndef CYTHON_CLINE_IN_TRACEBACK
 static int __Pyx_CLineForTraceback(PyThreadState *tstate, int c_line) {
@@ -13953,7 +15092,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__21);
+        name = __Pyx_NewRef(__pyx_n_s__30);
     }
     return name;
 }
@@ -14388,6 +15527,44 @@ static int __Pyx_check_binary_version(unsigned long ct_version, unsigned long rt
         return PyErr_WarnEx(NULL, message, 1);
     }
 }
+
+/* FunctionImport */
+#ifndef __PYX_HAVE_RT_ImportFunction_3_0_12
+#define __PYX_HAVE_RT_ImportFunction_3_0_12
+static int __Pyx_ImportFunction_3_0_12(PyObject *module, const char *funcname, void (**f)(void), const char *sig) {
+    PyObject *d = 0;
+    PyObject *cobj = 0;
+    union {
+        void (*fp)(void);
+        void *p;
+    } tmp;
+    d = PyObject_GetAttrString(module, (char *)"__pyx_capi__");
+    if (!d)
+        goto bad;
+    cobj = PyDict_GetItemString(d, funcname);
+    if (!cobj) {
+        PyErr_Format(PyExc_ImportError,
+            "%.200s does not export expected C function %.200s",
+                PyModule_GetName(module), funcname);
+        goto bad;
+    }
+    if (!PyCapsule_IsValid(cobj, sig)) {
+        PyErr_Format(PyExc_TypeError,
+            "C function %.200s.%.200s has wrong signature (expected %.500s, got %.500s)",
+             PyModule_GetName(module), funcname, sig, PyCapsule_GetName(cobj));
+        goto bad;
+    }
+    tmp.p = PyCapsule_GetPointer(cobj, sig);
+    *f = tmp.fp;
+    if (!(*f))
+        goto bad;
+    Py_DECREF(d);
+    return 0;
+bad:
+    Py_XDECREF(d);
+    return -1;
+}
+#endif
 
 /* InitStrings */
 #if PY_MAJOR_VERSION >= 3
