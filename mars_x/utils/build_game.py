@@ -111,22 +111,79 @@ def build_game():
             print("Installing Cython...")
             subprocess.run([str(python_exe), "-m", "pip", "install", "cython"], check=True)
             
-        cython_dirs = ["mars_x/engine", "mars_x/game"]
+        # Compile the cython_modules first - this is critical
+        print("Compiling critical Cython modules...")
+        cython_critical_modules = [
+            "mars_x/cython_modules/vector.pyx",
+            "mars_x/cython_modules/collision.pyx",
+            "mars_x/cython_modules/rigidbody.pyx",
+            "mars_x/cython_modules/matrix.pyx",
+            "mars_x/cython_modules/quaternion.pyx"
+        ]
         
-        for cython_dir in cython_dirs:
-            dir_path = PROJECT_ROOT / cython_dir
-            if dir_path.exists():
-                pyx_files = list(dir_path.glob("**/*.pyx"))
-                if pyx_files:
-                    for pyx_file in pyx_files:
-                        print(f"Compiling {pyx_file}")
-                        subprocess.run([
-                            str(python_exe), "-m", "cython", 
-                            "-3", "--cplus", str(pyx_file)
-                        ], check=True)
-                        build_files_count += 1
-                else:
-                    print(f"No .pyx files found in {dir_path}")
+        # First, Cythonize the modules
+        for pyx_file in cython_critical_modules:
+            if os.path.exists(os.path.join(PROJECT_ROOT, pyx_file)):
+                print(f"Cythonizing {pyx_file}")
+                subprocess.run([
+                    str(python_exe), "-m", "cython", 
+                    "-3", "--cplus", os.path.join(PROJECT_ROOT, pyx_file)
+                ], check=True)
+                build_files_count += 1
+        
+        # Then, build them with setuptools
+        setup_script = """
+import os
+import sys
+from setuptools import setup, Extension
+from Cython.Build import cythonize
+
+extensions = [
+    Extension("mars_x.cython_modules.vector", ["mars_x/cython_modules/vector.pyx"]),
+    Extension("mars_x.cython_modules.collision", ["mars_x/cython_modules/collision.pyx"]),
+    Extension("mars_x.cython_modules.rigidbody", ["mars_x/cython_modules/rigidbody.pyx"]),
+    Extension("mars_x.cython_modules.matrix", ["mars_x/cython_modules/matrix.pyx"]),
+    Extension("mars_x.cython_modules.quaternion", ["mars_x/cython_modules/quaternion.pyx"])
+]
+
+setup(
+    name="mars_x_cython_modules",
+    ext_modules=cythonize(
+        extensions,
+        compiler_directives={
+            'language_level': 3,
+            'boundscheck': False,
+            'wraparound': False
+        }
+    ),
+)
+"""
+        
+        # Write setup script to a temporary file
+        setup_path = os.path.join(PROJECT_ROOT, "temp_cython_setup.py")
+        with open(setup_path, "w") as f:
+            f.write(setup_script)
+        
+        # Run setup script to build extensions
+        print("Building Cython extensions...")
+        subprocess.run([
+            str(python_exe), setup_path, "build_ext", "--inplace"
+        ], check=True)
+        
+        # Identify compiled binary modules to include in PyInstaller
+        cython_binaries = []
+        cython_dir = PROJECT_ROOT / "mars_x" / "cython_modules"
+        
+        # Find all compiled binary modules (.pyd on Windows, .so on other platforms)
+        binary_extensions = ['.pyd'] if os.name == 'nt' else ['.so']
+        for ext in binary_extensions:
+            for binary_file in cython_dir.glob(f"*{ext}"):
+                rel_path = os.path.relpath(binary_file, PROJECT_ROOT)
+                # This is critical: We need the destination to be the same directory structure
+                destination = os.path.dirname(rel_path)
+                cython_binaries.append((str(binary_file), destination))
+                print(f"Found Cython binary: {binary_file} -> {destination}")
+        
     except subprocess.CalledProcessError as e:
         print(f"Error compiling Cython modules: {e}")
         sys.exit(1)
@@ -261,13 +318,14 @@ print(f"FOUND_DLLS:{{target_dir}}")
                 print(f"Failed to download SDL2 DLLs: {e}")
                 
         # Create a better runtime hook file for SDL2
-        runtime_hooks_dir = PROJECT_ROOT / "build" / "hooks"
+        runtime_hooks_dir = PROJECT_ROOT / "mars_x" / "hooks"
         if not runtime_hooks_dir.exists():
             os.makedirs(runtime_hooks_dir)
             
         sdl2_hook_file = runtime_hooks_dir / "hook-sdl2.py"
-        with open(sdl2_hook_file, "w") as f:
-            f.write("""
+        if not sdl2_hook_file.exists():
+            with open(sdl2_hook_file, "w") as f:
+                f.write("""
 # SDL2 runtime hook for PyInstaller
 import os
 import sys
@@ -293,6 +351,49 @@ if getattr(sys, 'frozen', False):
 # Do not import sdl2 here - it will be imported by the application
 """)
 
+        # Create a better runtime hook file for Cython modules
+        cython_hook_file = runtime_hooks_dir / "hook-cython_modules.py"
+        
+        # Only create it if it doesn't exist already
+        if not cython_hook_file.exists():
+            with open(cython_hook_file, "w") as f:
+                f.write("""
+# Cython modules runtime hook for PyInstaller
+import os
+import sys
+import importlib.util
+
+def load_cython_module(module_name, module_path):
+    try:
+        spec = importlib.util.spec_from_file_location(module_name, module_path)
+        if spec:
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[module_name] = module
+            spec.loader.exec_module(module)
+            return True
+    except Exception as e:
+        print(f"Error loading {module_name} from {module_path}: {e}")
+    return False
+
+if getattr(sys, 'frozen', False):
+    # We're running in a PyInstaller bundle
+    root_path = sys._MEIPASS
+    
+    # Try to load Cython modules directly from their binary locations
+    cython_modules_path = os.path.join(root_path, "mars_x", "cython_modules")
+    if os.path.exists(cython_modules_path):
+        print(f"Found Cython modules directory: {cython_modules_path}")
+        
+        # Make sure mars_x is in sys.modules
+        if 'mars_x' not in sys.modules:
+            import mars_x
+            
+        # Make sure mars_x.cython_modules is in sys.modules
+        if 'mars_x.cython_modules' not in sys.modules:
+            import types
+            sys.modules['mars_x.cython_modules'] = types.ModuleType('mars_x.cython_modules')
+""")
+
         # Add binary-specific options
         binaries = []
         
@@ -304,6 +405,11 @@ if getattr(sys, 'frozen', False):
                     binaries.append((dll_path, '.'))
                     print(f"Adding SDL2 binary: {dll_path}")
         
+        # Add all Cython binaries to the PyInstaller command
+        for src, dst in cython_binaries:
+            binaries.append((src, dst))
+            print(f"Adding Cython binary: {src} -> {dst}")
+
         # Create spec file if needed
         spec_file = PROJECT_ROOT / "mars_x.spec"
         if not spec_file.exists():
@@ -325,11 +431,17 @@ if getattr(sys, 'frozen', False):
                 "--console",  # Show console window for debugging
                 "--add-data", resources_arg,
                 "--runtime-hook", str(sdl2_hook_file),
+                "--runtime-hook", str(cython_hook_file),
                 "--hidden-import", "sdl2.dll",
                 "--hidden-import", "sdl2.sdlttf",
                 "--hidden-import", "sdl2.sdlimage",
                 "--hidden-import", "sdl2.sdlmixer",
                 "--hidden-import", "ctypes",  # Added ctypes which is needed
+                "--hidden-import", "mars_x.cython_modules.rigidbody",
+                "--hidden-import", "mars_x.cython_modules.vector", 
+                "--hidden-import", "mars_x.cython_modules.collision",
+                "--hidden-import", "mars_x.cython_modules.matrix",
+                "--hidden-import", "mars_x.cython_modules.quaternion",
             ]
             
             # Add all binaries

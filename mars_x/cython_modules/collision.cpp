@@ -1481,7 +1481,8 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "mars_x\\\\cython_modules\\\\collision.pyx",
-  "mars_x\\\\cython_modules\\\\physics.pxd",
+  "mars_x\\\\cython_modules\\\\vector.pxd",
+  "mars_x\\\\cython_modules\\\\rigidbody.pxd",
 };
 /* #### Code section: utility_code_proto_before_types ### */
 /* ForceInitThreads.proto */
@@ -1494,16 +1495,147 @@ static const char *__pyx_f[] = {
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
-struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity;
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2;
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3;
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4;
+struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity;
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2;
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3;
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4;
 
-/* "mars_x/cython_modules/physics.pxd":3
- * # cython: language_level=3
+/* "mars_x/cython_modules/vector.pxd":4
+ * 
+ * # Define Vector structs - renamed to Vec to avoid conflicts with classes
+ * cdef struct Vec2:             # <<<<<<<<<<<<<<
+ *     double x
+ *     double y
+ */
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec2 {
+  double x;
+  double y;
+};
+
+/* "mars_x/cython_modules/vector.pxd":8
+ *     double y
+ * 
+ * cdef struct Vec3:             # <<<<<<<<<<<<<<
+ *     double x
+ *     double y
+ */
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec3 {
+  double x;
+  double y;
+  double z;
+};
+
+/* "mars_x/cython_modules/vector.pxd":13
+ *     double z
+ * 
+ * cdef struct Vec4:             # <<<<<<<<<<<<<<
+ *     double x
+ *     double y
+ */
+struct __pyx_t_6mars_x_14cython_modules_6vector_Vec4 {
+  double x;
+  double y;
+  double z;
+  double w;
+};
+struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D;
+struct __pyx_opt_args_6mars_x_14cython_modules_9rigidbody_update_positions;
+
+/* "mars_x/cython_modules/rigidbody.pxd":7
+ * 
+ * # Vector struct declaration
+ * cdef struct Vector2D:             # <<<<<<<<<<<<<<
+ *     double x
+ *     double y
+ */
+struct __pyx_t_6mars_x_14cython_modules_9rigidbody_Vector2D {
+  double x;
+  double y;
+};
+
+/* "mars_x/cython_modules/rigidbody.pxd":22
+ * 
+ * # Function declarations
+ * cpdef void update_positions(list entities, double dt=*)             # <<<<<<<<<<<<<<
+ * cpdef void apply_force(Entity entity, Vector2 force)
+ * cpdef void apply_torque(Entity entity, double torque)
+ */
+struct __pyx_opt_args_6mars_x_14cython_modules_9rigidbody_update_positions {
+  int __pyx_n;
+  double dt;
+};
+struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions;
+
+/* "mars_x/cython_modules/collision.pxd":6
+ * 
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2)
+ * cpdef void resolve_collisions(list entities, double response_coef=*)             # <<<<<<<<<<<<<<
+ * cdef void _handle_collision(Entity entity1, Entity entity2, double response_coef)
+ */
+struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions {
+  int __pyx_n;
+  double response_coef;
+};
+
+/* "mars_x/cython_modules/vector.pxd":60
+ * 
+ * # Classes for Python API
+ * cdef class Vector2:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtab;
+  double x;
+  double y;
+};
+
+
+/* "mars_x/cython_modules/vector.pxd":75
+ *     cpdef bint is_zero(self)
+ * 
+ * cdef class Vector3:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtab;
+  double x;
+  double y;
+  double z;
+};
+
+
+/* "mars_x/cython_modules/vector.pxd":87
+ *     cpdef Vector3 copy(self)
+ * 
+ * cdef class Vector4:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *__pyx_vtab;
+  double x;
+  double y;
+  double z;
+  double w;
+};
+
+
+/* "mars_x/cython_modules/rigidbody.pxd":11
+ *     double y
  * 
  * cdef class Entity:             # <<<<<<<<<<<<<<
  *     cdef public double x
  *     cdef public double y
  */
-struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity {
+struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity {
   PyObject_HEAD
   double x;
   double y;
@@ -1515,6 +1647,66 @@ struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity {
   double radius;
 };
 
+
+
+/* "mars_x/cython_modules/vector.pxd":60
+ * 
+ * # Classes for Python API
+ * cdef class Vector2:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+
+struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 {
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *(*copy)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*length_squared)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*magnitude)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *(*normalize)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*dot)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*cross)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*angle)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  double (*angle_to)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *(*rotate)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, double, int __pyx_skip_dispatch);
+  int (*is_zero)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2 *, int __pyx_skip_dispatch);
+};
+static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2;
+
+
+/* "mars_x/cython_modules/vector.pxd":75
+ *     cpdef bint is_zero(self)
+ * 
+ * cdef class Vector3:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+
+struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 {
+  double (*length_squared)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+  double (*magnitude)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *(*normalize)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+  double (*dot)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *(*cross)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *(*copy)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3 *, int __pyx_skip_dispatch);
+};
+static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3;
+
+
+/* "mars_x/cython_modules/vector.pxd":87
+ *     cpdef Vector3 copy(self)
+ * 
+ * cdef class Vector4:             # <<<<<<<<<<<<<<
+ *     cdef public double x
+ *     cdef public double y
+ */
+
+struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 {
+  double (*length_squared)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch);
+  double (*magnitude)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *(*normalize)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch);
+  double (*dot)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch);
+  struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *(*copy)(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4 *, int __pyx_skip_dispatch);
+};
+static struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4 *__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4;
 /* #### Code section: utility_code_proto ### */
 
 /* --- Runtime support code (head) --- */
@@ -1738,33 +1930,14 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject *const *kwvalues
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,
     const char* function_name);
 
-/* GetAttr3.proto */
-static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *, PyObject *, PyObject *);
-
-/* GetItemInt.proto */
-#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) :\
-    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) :\
-               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
-#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
-    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
-    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
-                                                     int is_list, int wraparound, int boundscheck);
-
 /* ExtTypeTest.proto */
 static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+
+/* ArgTypeTest.proto */
+#define __Pyx_ArgTypeTest(obj, type, none_allowed, name, exact)\
+    ((likely(__Pyx_IS_TYPE(obj, type) | (none_allowed && (obj == Py_None)))) ? 1 :\
+        __Pyx__ArgTypeTest(obj, type, name, exact))
+static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
 
 /* TypeImport.proto */
 #ifndef __PYX_HAVE_RT_ImportType_proto_3_0_12
@@ -1784,6 +1957,9 @@ enum __Pyx_ImportType_CheckSize_3_0_12 {
 };
 static PyTypeObject *__Pyx_ImportType_3_0_12(PyObject* module, const char *module_name, const char *class_name, size_t size, size_t alignment, enum __Pyx_ImportType_CheckSize_3_0_12 check_size);
 #endif
+
+/* GetVTable.proto */
+static void* __Pyx_GetVtable(PyTypeObject *type);
 
 /* IncludeStructmemberH.proto */
 #include <structmember.h>
@@ -2046,7 +2222,9 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* #### Code section: module_declarations ### */
 
-/* Module declarations from "mars_x.cython_modules.physics" */
+/* Module declarations from "mars_x.cython_modules.vector" */
+
+/* Module declarations from "mars_x.cython_modules.rigidbody" */
 
 /* Module declarations from "cython" */
 
@@ -2054,7 +2232,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from "mars_x.cython_modules.collision" */
 static int __pyx_f_6mars_x_14cython_modules_9collision_check_collision(double, double, double, double, double, double, int __pyx_skip_dispatch); /*proto*/
-static void __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *, struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *, double); /*proto*/
+static void __pyx_f_6mars_x_14cython_modules_9collision_resolve_collisions(PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions *__pyx_optional_args); /*proto*/
+static void __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *, struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *, double); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "mars_x.cython_modules.collision"
@@ -2065,16 +2244,7 @@ int __pyx_module_is_main_mars_x__cython_modules__collision = 0;
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_range;
 /* #### Code section: string_decls ### */
-static const char __pyx_k_i[] = "i";
-static const char __pyx_k_j[] = "j";
-static const char __pyx_k_n[] = "n";
-static const char __pyx_k_x[] = "x";
-static const char __pyx_k_y[] = "y";
-static const char __pyx_k__5[] = "?";
-static const char __pyx_k_dx[] = "dx";
-static const char __pyx_k_dy[] = "dy";
-static const char __pyx_k_r1[] = "r1";
-static const char __pyx_k_r2[] = "r2";
+static const char __pyx_k__6[] = "?";
 static const char __pyx_k_x1[] = "x1";
 static const char __pyx_k_x2[] = "x2";
 static const char __pyx_k_y1[] = "y1";
@@ -2083,11 +2253,10 @@ static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_range[] = "range";
-static const char __pyx_k_radius[] = "radius";
 static const char __pyx_k_radius1[] = "radius1";
 static const char __pyx_k_radius2[] = "radius2";
 static const char __pyx_k_entities[] = "entities";
-static const char __pyx_k_distance_sq[] = "distance_sq";
+static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_response_coef[] = "response_coef";
 static const char __pyx_k_check_collision[] = "check_collision";
@@ -2097,8 +2266,8 @@ static const char __pyx_k_resolve_collisions[] = "resolve_collisions";
 static const char __pyx_k_mars_x_cython_modules_collision[] = "mars_x\\cython_modules\\collision.pyx";
 static const char __pyx_k_mars_x_cython_modules_collision_2[] = "mars_x.cython_modules.collision";
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_check_collision(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_x1, double __pyx_v_y1, double __pyx_v_r1, double __pyx_v_x2, double __pyx_v_y2, double __pyx_v_r2); /* proto */
-static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_entities); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_check_collision(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_x1, double __pyx_v_y1, double __pyx_v_radius1, double __pyx_v_x2, double __pyx_v_y2, double __pyx_v_radius2); /* proto */
+static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_entities, double __pyx_v_response_coef); /* proto */
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 typedef struct {
@@ -2128,47 +2297,43 @@ typedef struct {
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
-  PyTypeObject *__pyx_ptype_6mars_x_14cython_modules_7physics_Entity;
+  PyTypeObject *__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2;
+  PyTypeObject *__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3;
+  PyTypeObject *__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4;
+  #if CYTHON_USE_MODULE_STATE
+  #endif
+  PyTypeObject *__pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity;
   #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
-  PyObject *__pyx_n_s__5;
+  PyObject *__pyx_n_s__6;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_check_collision;
   PyObject *__pyx_n_s_cline_in_traceback;
-  PyObject *__pyx_n_s_distance_sq;
-  PyObject *__pyx_n_s_dx;
-  PyObject *__pyx_n_s_dy;
   PyObject *__pyx_n_s_entities;
-  PyObject *__pyx_n_s_i;
   PyObject *__pyx_n_s_is_coroutine;
-  PyObject *__pyx_n_s_j;
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_kp_s_mars_x_cython_modules_collision;
   PyObject *__pyx_n_s_mars_x_cython_modules_collision_2;
-  PyObject *__pyx_n_s_n;
   PyObject *__pyx_n_s_name;
-  PyObject *__pyx_n_s_r1;
-  PyObject *__pyx_n_s_r2;
-  PyObject *__pyx_n_u_radius;
+  PyObject *__pyx_n_s_pyx_vtable;
   PyObject *__pyx_n_s_radius1;
   PyObject *__pyx_n_s_radius2;
   PyObject *__pyx_n_s_range;
   PyObject *__pyx_n_s_resolve_collisions;
   PyObject *__pyx_n_s_response_coef;
   PyObject *__pyx_n_s_test;
-  PyObject *__pyx_n_s_x;
   PyObject *__pyx_n_s_x1;
   PyObject *__pyx_n_s_x2;
-  PyObject *__pyx_n_s_y;
   PyObject *__pyx_n_s_y1;
   PyObject *__pyx_n_s_y2;
-  PyObject *__pyx_float_1_0;
+  PyObject *__pyx_float_0_8;
   PyObject *__pyx_tuple_;
   PyObject *__pyx_tuple__3;
+  PyObject *__pyx_tuple__5;
   PyObject *__pyx_codeobj__2;
   PyObject *__pyx_codeobj__4;
 } __pyx_mstate;
@@ -2213,41 +2378,35 @@ static int __pyx_m_clear(PyObject *m) {
   #ifdef __Pyx_FusedFunction_USED
   Py_CLEAR(clear_module_state->__pyx_FusedFunctionType);
   #endif
-  Py_CLEAR(clear_module_state->__pyx_ptype_6mars_x_14cython_modules_7physics_Entity);
-  Py_CLEAR(clear_module_state->__pyx_n_s__5);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity);
+  Py_CLEAR(clear_module_state->__pyx_n_s__6);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_check_collision);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
-  Py_CLEAR(clear_module_state->__pyx_n_s_distance_sq);
-  Py_CLEAR(clear_module_state->__pyx_n_s_dx);
-  Py_CLEAR(clear_module_state->__pyx_n_s_dy);
   Py_CLEAR(clear_module_state->__pyx_n_s_entities);
-  Py_CLEAR(clear_module_state->__pyx_n_s_i);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
-  Py_CLEAR(clear_module_state->__pyx_n_s_j);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_kp_s_mars_x_cython_modules_collision);
   Py_CLEAR(clear_module_state->__pyx_n_s_mars_x_cython_modules_collision_2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_n);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
-  Py_CLEAR(clear_module_state->__pyx_n_s_r1);
-  Py_CLEAR(clear_module_state->__pyx_n_s_r2);
-  Py_CLEAR(clear_module_state->__pyx_n_u_radius);
+  Py_CLEAR(clear_module_state->__pyx_n_s_pyx_vtable);
   Py_CLEAR(clear_module_state->__pyx_n_s_radius1);
   Py_CLEAR(clear_module_state->__pyx_n_s_radius2);
   Py_CLEAR(clear_module_state->__pyx_n_s_range);
   Py_CLEAR(clear_module_state->__pyx_n_s_resolve_collisions);
   Py_CLEAR(clear_module_state->__pyx_n_s_response_coef);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
-  Py_CLEAR(clear_module_state->__pyx_n_s_x);
   Py_CLEAR(clear_module_state->__pyx_n_s_x1);
   Py_CLEAR(clear_module_state->__pyx_n_s_x2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_y);
   Py_CLEAR(clear_module_state->__pyx_n_s_y1);
   Py_CLEAR(clear_module_state->__pyx_n_s_y2);
-  Py_CLEAR(clear_module_state->__pyx_float_1_0);
+  Py_CLEAR(clear_module_state->__pyx_float_0_8);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
   Py_CLEAR(clear_module_state->__pyx_tuple__3);
+  Py_CLEAR(clear_module_state->__pyx_tuple__5);
   Py_CLEAR(clear_module_state->__pyx_codeobj__2);
   Py_CLEAR(clear_module_state->__pyx_codeobj__4);
   return 0;
@@ -2270,41 +2429,35 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   #ifdef __Pyx_FusedFunction_USED
   Py_VISIT(traverse_module_state->__pyx_FusedFunctionType);
   #endif
-  Py_VISIT(traverse_module_state->__pyx_ptype_6mars_x_14cython_modules_7physics_Entity);
-  Py_VISIT(traverse_module_state->__pyx_n_s__5);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity);
+  Py_VISIT(traverse_module_state->__pyx_n_s__6);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_check_collision);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
-  Py_VISIT(traverse_module_state->__pyx_n_s_distance_sq);
-  Py_VISIT(traverse_module_state->__pyx_n_s_dx);
-  Py_VISIT(traverse_module_state->__pyx_n_s_dy);
   Py_VISIT(traverse_module_state->__pyx_n_s_entities);
-  Py_VISIT(traverse_module_state->__pyx_n_s_i);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
-  Py_VISIT(traverse_module_state->__pyx_n_s_j);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_kp_s_mars_x_cython_modules_collision);
   Py_VISIT(traverse_module_state->__pyx_n_s_mars_x_cython_modules_collision_2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_n);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
-  Py_VISIT(traverse_module_state->__pyx_n_s_r1);
-  Py_VISIT(traverse_module_state->__pyx_n_s_r2);
-  Py_VISIT(traverse_module_state->__pyx_n_u_radius);
+  Py_VISIT(traverse_module_state->__pyx_n_s_pyx_vtable);
   Py_VISIT(traverse_module_state->__pyx_n_s_radius1);
   Py_VISIT(traverse_module_state->__pyx_n_s_radius2);
   Py_VISIT(traverse_module_state->__pyx_n_s_range);
   Py_VISIT(traverse_module_state->__pyx_n_s_resolve_collisions);
   Py_VISIT(traverse_module_state->__pyx_n_s_response_coef);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
-  Py_VISIT(traverse_module_state->__pyx_n_s_x);
   Py_VISIT(traverse_module_state->__pyx_n_s_x1);
   Py_VISIT(traverse_module_state->__pyx_n_s_x2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_y);
   Py_VISIT(traverse_module_state->__pyx_n_s_y1);
   Py_VISIT(traverse_module_state->__pyx_n_s_y2);
-  Py_VISIT(traverse_module_state->__pyx_float_1_0);
+  Py_VISIT(traverse_module_state->__pyx_float_0_8);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
   Py_VISIT(traverse_module_state->__pyx_tuple__3);
+  Py_VISIT(traverse_module_state->__pyx_tuple__5);
   Py_VISIT(traverse_module_state->__pyx_codeobj__2);
   Py_VISIT(traverse_module_state->__pyx_codeobj__4);
   return 0;
@@ -2337,58 +2490,127 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
-#define __pyx_ptype_6mars_x_14cython_modules_7physics_Entity __pyx_mstate_global->__pyx_ptype_6mars_x_14cython_modules_7physics_Entity
+#define __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 __pyx_mstate_global->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2
+#define __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 __pyx_mstate_global->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3
+#define __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 __pyx_mstate_global->__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4
+#if CYTHON_USE_MODULE_STATE
+#endif
+#define __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity __pyx_mstate_global->__pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity
 #if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
-#define __pyx_n_s__5 __pyx_mstate_global->__pyx_n_s__5
+#define __pyx_n_s__6 __pyx_mstate_global->__pyx_n_s__6
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_check_collision __pyx_mstate_global->__pyx_n_s_check_collision
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
-#define __pyx_n_s_distance_sq __pyx_mstate_global->__pyx_n_s_distance_sq
-#define __pyx_n_s_dx __pyx_mstate_global->__pyx_n_s_dx
-#define __pyx_n_s_dy __pyx_mstate_global->__pyx_n_s_dy
 #define __pyx_n_s_entities __pyx_mstate_global->__pyx_n_s_entities
-#define __pyx_n_s_i __pyx_mstate_global->__pyx_n_s_i
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
-#define __pyx_n_s_j __pyx_mstate_global->__pyx_n_s_j
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_kp_s_mars_x_cython_modules_collision __pyx_mstate_global->__pyx_kp_s_mars_x_cython_modules_collision
 #define __pyx_n_s_mars_x_cython_modules_collision_2 __pyx_mstate_global->__pyx_n_s_mars_x_cython_modules_collision_2
-#define __pyx_n_s_n __pyx_mstate_global->__pyx_n_s_n
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
-#define __pyx_n_s_r1 __pyx_mstate_global->__pyx_n_s_r1
-#define __pyx_n_s_r2 __pyx_mstate_global->__pyx_n_s_r2
-#define __pyx_n_u_radius __pyx_mstate_global->__pyx_n_u_radius
+#define __pyx_n_s_pyx_vtable __pyx_mstate_global->__pyx_n_s_pyx_vtable
 #define __pyx_n_s_radius1 __pyx_mstate_global->__pyx_n_s_radius1
 #define __pyx_n_s_radius2 __pyx_mstate_global->__pyx_n_s_radius2
 #define __pyx_n_s_range __pyx_mstate_global->__pyx_n_s_range
 #define __pyx_n_s_resolve_collisions __pyx_mstate_global->__pyx_n_s_resolve_collisions
 #define __pyx_n_s_response_coef __pyx_mstate_global->__pyx_n_s_response_coef
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
-#define __pyx_n_s_x __pyx_mstate_global->__pyx_n_s_x
 #define __pyx_n_s_x1 __pyx_mstate_global->__pyx_n_s_x1
 #define __pyx_n_s_x2 __pyx_mstate_global->__pyx_n_s_x2
-#define __pyx_n_s_y __pyx_mstate_global->__pyx_n_s_y
 #define __pyx_n_s_y1 __pyx_mstate_global->__pyx_n_s_y1
 #define __pyx_n_s_y2 __pyx_mstate_global->__pyx_n_s_y2
-#define __pyx_float_1_0 __pyx_mstate_global->__pyx_float_1_0
+#define __pyx_float_0_8 __pyx_mstate_global->__pyx_float_0_8
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
 #define __pyx_tuple__3 __pyx_mstate_global->__pyx_tuple__3
+#define __pyx_tuple__5 __pyx_mstate_global->__pyx_tuple__5
 #define __pyx_codeobj__2 __pyx_mstate_global->__pyx_codeobj__2
 #define __pyx_codeobj__4 __pyx_mstate_global->__pyx_codeobj__4
 /* #### Code section: module_code ### */
 
-/* "mars_x/cython_modules/collision.pyx":10
- * from mars_x.cython_modules.physics cimport Entity
+/* "mars_x/cython_modules/collision.pyx":12
  * 
- * @cython.cdivision(True)             # <<<<<<<<<<<<<<
- * def check_collision(double x1, double y1, double r1, double x2, double y2, double r2):
- *     """Check collision between two circular objects"""
+ * @cython.cdivision(True)
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2):             # <<<<<<<<<<<<<<
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1
  */
+
+static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_1check_collision(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static int __pyx_f_6mars_x_14cython_modules_9collision_check_collision(double __pyx_v_x1, double __pyx_v_y1, double __pyx_v_radius1, double __pyx_v_x2, double __pyx_v_y2, double __pyx_v_radius2, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  double __pyx_v_dx;
+  double __pyx_v_dy;
+  double __pyx_v_distance_sq;
+  double __pyx_v_combined_radius;
+  int __pyx_r;
+
+  /* "mars_x/cython_modules/collision.pyx":14
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2):
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1             # <<<<<<<<<<<<<<
+ *     cdef double dy = y2 - y1
+ *     cdef double distance_sq = dx * dx + dy * dy
+ */
+  __pyx_v_dx = (__pyx_v_x2 - __pyx_v_x1);
+
+  /* "mars_x/cython_modules/collision.pyx":15
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1
+ *     cdef double dy = y2 - y1             # <<<<<<<<<<<<<<
+ *     cdef double distance_sq = dx * dx + dy * dy
+ *     cdef double combined_radius = radius1 + radius2
+ */
+  __pyx_v_dy = (__pyx_v_y2 - __pyx_v_y1);
+
+  /* "mars_x/cython_modules/collision.pyx":16
+ *     cdef double dx = x2 - x1
+ *     cdef double dy = y2 - y1
+ *     cdef double distance_sq = dx * dx + dy * dy             # <<<<<<<<<<<<<<
+ *     cdef double combined_radius = radius1 + radius2
+ * 
+ */
+  __pyx_v_distance_sq = ((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy));
+
+  /* "mars_x/cython_modules/collision.pyx":17
+ *     cdef double dy = y2 - y1
+ *     cdef double distance_sq = dx * dx + dy * dy
+ *     cdef double combined_radius = radius1 + radius2             # <<<<<<<<<<<<<<
+ * 
+ *     return distance_sq <= combined_radius * combined_radius
+ */
+  __pyx_v_combined_radius = (__pyx_v_radius1 + __pyx_v_radius2);
+
+  /* "mars_x/cython_modules/collision.pyx":19
+ *     cdef double combined_radius = radius1 + radius2
+ * 
+ *     return distance_sq <= combined_radius * combined_radius             # <<<<<<<<<<<<<<
+ * 
+ * @cython.cdivision(True)
+ */
+  __pyx_r = (__pyx_v_distance_sq <= (__pyx_v_combined_radius * __pyx_v_combined_radius));
+  goto __pyx_L0;
+
+  /* "mars_x/cython_modules/collision.pyx":12
+ * 
+ * @cython.cdivision(True)
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2):             # <<<<<<<<<<<<<<
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_1check_collision(PyObject *__pyx_self, 
@@ -2398,7 +2620,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_9collision_check_collision, "Check collision between two circular objects");
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_9collision_check_collision, "Check if two circular objects are colliding.");
 static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_9collision_1check_collision = {"check_collision", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_9collision_1check_collision, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_9collision_check_collision};
 static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_1check_collision(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2409,10 +2631,10 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ) {
   double __pyx_v_x1;
   double __pyx_v_y1;
-  double __pyx_v_r1;
+  double __pyx_v_radius1;
   double __pyx_v_x2;
   double __pyx_v_y2;
-  double __pyx_v_r2;
+  double __pyx_v_radius2;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -2433,7 +2655,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_x1,&__pyx_n_s_y1,&__pyx_n_s_r1,&__pyx_n_s_x2,&__pyx_n_s_y2,&__pyx_n_s_r2,0};
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_x1,&__pyx_n_s_y1,&__pyx_n_s_radius1,&__pyx_n_s_x2,&__pyx_n_s_y2,&__pyx_n_s_radius2,0};
     if (__pyx_kwds) {
       Py_ssize_t kw_args;
       switch (__pyx_nargs) {
@@ -2459,7 +2681,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -2467,19 +2689,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 1); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 1); __PYX_ERR(0, 12, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_r1)) != 0)) {
+        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_radius1)) != 0)) {
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 2); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 2); __PYX_ERR(0, 12, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -2487,9 +2709,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 3); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 3); __PYX_ERR(0, 12, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
@@ -2497,24 +2719,24 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[4]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 4); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 4); __PYX_ERR(0, 12, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
-        if (likely((values[5] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_r2)) != 0)) {
+        if (likely((values[5] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_radius2)) != 0)) {
           (void)__Pyx_Arg_NewRef_FASTCALL(values[5]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 5); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, 5); __PYX_ERR(0, 12, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "check_collision") < 0)) __PYX_ERR(0, 10, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "check_collision") < 0)) __PYX_ERR(0, 12, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 6)) {
       goto __pyx_L5_argtuple_error;
@@ -2526,16 +2748,16 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[4] = __Pyx_Arg_FASTCALL(__pyx_args, 4);
       values[5] = __Pyx_Arg_FASTCALL(__pyx_args, 5);
     }
-    __pyx_v_x1 = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_y1 = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_r1 = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_r1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_x2 = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_x2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_y2 = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_y2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_r2 = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_r2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    __pyx_v_x1 = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_y1 = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_radius1 = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_radius1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_x2 = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_x2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_y2 = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_y2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_radius2 = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_radius2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 10, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("check_collision", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 12, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2549,7 +2771,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6mars_x_14cython_modules_9collision_check_collision(__pyx_self, __pyx_v_x1, __pyx_v_y1, __pyx_v_r1, __pyx_v_x2, __pyx_v_y2, __pyx_v_r2);
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_9collision_check_collision(__pyx_self, __pyx_v_x1, __pyx_v_y1, __pyx_v_radius1, __pyx_v_x2, __pyx_v_y2, __pyx_v_radius2);
 
   /* function exit code */
   {
@@ -2562,70 +2784,26 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_check_collision(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_x1, double __pyx_v_y1, double __pyx_v_r1, double __pyx_v_x2, double __pyx_v_y2, double __pyx_v_r2) {
-  double __pyx_v_distance_sq;
-  double __pyx_v_dx;
-  double __pyx_v_dy;
+static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_check_collision(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_x1, double __pyx_v_y1, double __pyx_v_radius1, double __pyx_v_x2, double __pyx_v_y2, double __pyx_v_radius2) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("check_collision", 1);
-
-  /* "mars_x/cython_modules/collision.pyx":15
- *     cdef:
- *         double distance_sq
- *         double dx = x2 - x1             # <<<<<<<<<<<<<<
- *         double dy = y2 - y1
- * 
- */
-  __pyx_v_dx = (__pyx_v_x2 - __pyx_v_x1);
-
-  /* "mars_x/cython_modules/collision.pyx":16
- *         double distance_sq
- *         double dx = x2 - x1
- *         double dy = y2 - y1             # <<<<<<<<<<<<<<
- * 
- *     # Squared distance (avoids costly square root)
- */
-  __pyx_v_dy = (__pyx_v_y2 - __pyx_v_y1);
-
-  /* "mars_x/cython_modules/collision.pyx":19
- * 
- *     # Squared distance (avoids costly square root)
- *     distance_sq = dx * dx + dy * dy             # <<<<<<<<<<<<<<
- * 
- *     # If distance squared is less than the squared sum of radii, there's a collision
- */
-  __pyx_v_distance_sq = ((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy));
-
-  /* "mars_x/cython_modules/collision.pyx":22
- * 
- *     # If distance squared is less than the squared sum of radii, there's a collision
- *     return distance_sq <= (r1 + r2) * (r1 + r2)             # <<<<<<<<<<<<<<
- * 
- * def resolve_collisions(entities):
- */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_distance_sq <= ((__pyx_v_r1 + __pyx_v_r2) * (__pyx_v_r1 + __pyx_v_r2)))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_1 = __pyx_f_6mars_x_14cython_modules_9collision_check_collision(__pyx_v_x1, __pyx_v_y1, __pyx_v_radius1, __pyx_v_x2, __pyx_v_y2, __pyx_v_radius2, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
-
-  /* "mars_x/cython_modules/collision.pyx":10
- * from mars_x.cython_modules.physics cimport Entity
- * 
- * @cython.cdivision(True)             # <<<<<<<<<<<<<<
- * def check_collision(double x1, double y1, double r1, double x2, double y2, double r2):
- *     """Check collision between two circular objects"""
- */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("mars_x.cython_modules.collision.check_collision", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2634,13 +2812,275 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_check_collision(CY
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/collision.pyx":24
- *     return distance_sq <= (r1 + r2) * (r1 + r2)
+/* "mars_x/cython_modules/collision.pyx":22
  * 
- * def resolve_collisions(entities):             # <<<<<<<<<<<<<<
- *     """Resolve all collisions between entities"""
- *     cdef:
+ * @cython.cdivision(True)
+ * cpdef void resolve_collisions(list entities, double response_coef=0.8):             # <<<<<<<<<<<<<<
+ *     """
+ *     Detect and resolve collisions between all entities in the list.
  */
+
+static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_3resolve_collisions(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static void __pyx_f_6mars_x_14cython_modules_9collision_resolve_collisions(PyObject *__pyx_v_entities, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions *__pyx_optional_args) {
+  double __pyx_v_response_coef = ((double)0.8);
+  int __pyx_v_i;
+  int __pyx_v_j;
+  int __pyx_v_n;
+  struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity1 = 0;
+  struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity2 = 0;
+  double __pyx_v_dx;
+  double __pyx_v_dy;
+  double __pyx_v_distance_sq;
+  double __pyx_v_combined_radius;
+  __Pyx_RefNannyDeclarations
+  Py_ssize_t __pyx_t_1;
+  int __pyx_t_2;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("resolve_collisions", 1);
+  if (__pyx_optional_args) {
+    if (__pyx_optional_args->__pyx_n > 0) {
+      __pyx_v_response_coef = __pyx_optional_args->response_coef;
+    }
+  }
+
+  /* "mars_x/cython_modules/collision.pyx":35
+ *         double mass_sum, inv_mass_sum
+ * 
+ *     n = len(entities)             # <<<<<<<<<<<<<<
+ * 
+ *     for i in range(n):
+ */
+  if (unlikely(__pyx_v_entities == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 35, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_PyList_GET_SIZE(__pyx_v_entities); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_v_n = __pyx_t_1;
+
+  /* "mars_x/cython_modules/collision.pyx":37
+ *     n = len(entities)
+ * 
+ *     for i in range(n):             # <<<<<<<<<<<<<<
+ *         entity1 = entities[i]
+ *         if not entity1.active:
+ */
+  __pyx_t_2 = __pyx_v_n;
+  __pyx_t_3 = __pyx_t_2;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
+
+    /* "mars_x/cython_modules/collision.pyx":38
+ * 
+ *     for i in range(n):
+ *         entity1 = entities[i]             # <<<<<<<<<<<<<<
+ *         if not entity1.active:
+ *             continue
+ */
+    if (unlikely(__pyx_v_entities == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 38, __pyx_L1_error)
+    }
+    if (!(likely(((PyList_GET_ITEM(__pyx_v_entities, __pyx_v_i)) == Py_None) || likely(__Pyx_TypeTest(PyList_GET_ITEM(__pyx_v_entities, __pyx_v_i), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity))))) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_5 = PyList_GET_ITEM(__pyx_v_entities, __pyx_v_i);
+    __Pyx_INCREF(__pyx_t_5);
+    __Pyx_XDECREF_SET(__pyx_v_entity1, ((struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *)__pyx_t_5));
+    __pyx_t_5 = 0;
+
+    /* "mars_x/cython_modules/collision.pyx":39
+ *     for i in range(n):
+ *         entity1 = entities[i]
+ *         if not entity1.active:             # <<<<<<<<<<<<<<
+ *             continue
+ * 
+ */
+    __pyx_t_6 = (!__pyx_v_entity1->active);
+    if (__pyx_t_6) {
+
+      /* "mars_x/cython_modules/collision.pyx":40
+ *         entity1 = entities[i]
+ *         if not entity1.active:
+ *             continue             # <<<<<<<<<<<<<<
+ * 
+ *         for j in range(i+1, n):
+ */
+      goto __pyx_L3_continue;
+
+      /* "mars_x/cython_modules/collision.pyx":39
+ *     for i in range(n):
+ *         entity1 = entities[i]
+ *         if not entity1.active:             # <<<<<<<<<<<<<<
+ *             continue
+ * 
+ */
+    }
+
+    /* "mars_x/cython_modules/collision.pyx":42
+ *             continue
+ * 
+ *         for j in range(i+1, n):             # <<<<<<<<<<<<<<
+ *             entity2 = entities[j]
+ *             if not entity2.active:
+ */
+    __pyx_t_7 = __pyx_v_n;
+    __pyx_t_8 = __pyx_t_7;
+    for (__pyx_t_9 = (__pyx_v_i + 1); __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+      __pyx_v_j = __pyx_t_9;
+
+      /* "mars_x/cython_modules/collision.pyx":43
+ * 
+ *         for j in range(i+1, n):
+ *             entity2 = entities[j]             # <<<<<<<<<<<<<<
+ *             if not entity2.active:
+ *                 continue
+ */
+      if (unlikely(__pyx_v_entities == Py_None)) {
+        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+        __PYX_ERR(0, 43, __pyx_L1_error)
+      }
+      if (!(likely(((PyList_GET_ITEM(__pyx_v_entities, __pyx_v_j)) == Py_None) || likely(__Pyx_TypeTest(PyList_GET_ITEM(__pyx_v_entities, __pyx_v_j), __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity))))) __PYX_ERR(0, 43, __pyx_L1_error)
+      __pyx_t_5 = PyList_GET_ITEM(__pyx_v_entities, __pyx_v_j);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_XDECREF_SET(__pyx_v_entity2, ((struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *)__pyx_t_5));
+      __pyx_t_5 = 0;
+
+      /* "mars_x/cython_modules/collision.pyx":44
+ *         for j in range(i+1, n):
+ *             entity2 = entities[j]
+ *             if not entity2.active:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+      __pyx_t_6 = (!__pyx_v_entity2->active);
+      if (__pyx_t_6) {
+
+        /* "mars_x/cython_modules/collision.pyx":45
+ *             entity2 = entities[j]
+ *             if not entity2.active:
+ *                 continue             # <<<<<<<<<<<<<<
+ * 
+ *             # Check for collision
+ */
+        goto __pyx_L6_continue;
+
+        /* "mars_x/cython_modules/collision.pyx":44
+ *         for j in range(i+1, n):
+ *             entity2 = entities[j]
+ *             if not entity2.active:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+      }
+
+      /* "mars_x/cython_modules/collision.pyx":48
+ * 
+ *             # Check for collision
+ *             dx = entity2.x - entity1.x             # <<<<<<<<<<<<<<
+ *             dy = entity2.y - entity1.y
+ *             distance_sq = dx*dx + dy*dy
+ */
+      __pyx_v_dx = (__pyx_v_entity2->x - __pyx_v_entity1->x);
+
+      /* "mars_x/cython_modules/collision.pyx":49
+ *             # Check for collision
+ *             dx = entity2.x - entity1.x
+ *             dy = entity2.y - entity1.y             # <<<<<<<<<<<<<<
+ *             distance_sq = dx*dx + dy*dy
+ * 
+ */
+      __pyx_v_dy = (__pyx_v_entity2->y - __pyx_v_entity1->y);
+
+      /* "mars_x/cython_modules/collision.pyx":50
+ *             dx = entity2.x - entity1.x
+ *             dy = entity2.y - entity1.y
+ *             distance_sq = dx*dx + dy*dy             # <<<<<<<<<<<<<<
+ * 
+ *             # Combined radius
+ */
+      __pyx_v_distance_sq = ((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy));
+
+      /* "mars_x/cython_modules/collision.pyx":53
+ * 
+ *             # Combined radius
+ *             combined_radius = entity1.radius + entity2.radius             # <<<<<<<<<<<<<<
+ * 
+ *             # Skip if not colliding
+ */
+      __pyx_v_combined_radius = (__pyx_v_entity1->radius + __pyx_v_entity2->radius);
+
+      /* "mars_x/cython_modules/collision.pyx":56
+ * 
+ *             # Skip if not colliding
+ *             if distance_sq > combined_radius * combined_radius:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+      __pyx_t_6 = (__pyx_v_distance_sq > (__pyx_v_combined_radius * __pyx_v_combined_radius));
+      if (__pyx_t_6) {
+
+        /* "mars_x/cython_modules/collision.pyx":57
+ *             # Skip if not colliding
+ *             if distance_sq > combined_radius * combined_radius:
+ *                 continue             # <<<<<<<<<<<<<<
+ * 
+ *             # Handle collision
+ */
+        goto __pyx_L6_continue;
+
+        /* "mars_x/cython_modules/collision.pyx":56
+ * 
+ *             # Skip if not colliding
+ *             if distance_sq > combined_radius * combined_radius:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+      }
+
+      /* "mars_x/cython_modules/collision.pyx":60
+ * 
+ *             # Handle collision
+ *             _handle_collision(entity1, entity2, response_coef)             # <<<<<<<<<<<<<<
+ * 
+ * @cython.cdivision(True)
+ */
+      __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(__pyx_v_entity1, __pyx_v_entity2, __pyx_v_response_coef); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+      __pyx_L6_continue:;
+    }
+    __pyx_L3_continue:;
+  }
+
+  /* "mars_x/cython_modules/collision.pyx":22
+ * 
+ * @cython.cdivision(True)
+ * cpdef void resolve_collisions(list entities, double response_coef=0.8):             # <<<<<<<<<<<<<<
+ *     """
+ *     Detect and resolve collisions between all entities in the list.
+ */
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("mars_x.cython_modules.collision.resolve_collisions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_entity1);
+  __Pyx_XDECREF((PyObject *)__pyx_v_entity2);
+  __Pyx_RefNannyFinishContext();
+}
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_3resolve_collisions(PyObject *__pyx_self, 
@@ -2650,7 +3090,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_9collision_2resolve_collisions, "Resolve all collisions between entities");
+PyDoc_STRVAR(__pyx_doc_6mars_x_14cython_modules_9collision_2resolve_collisions, "\n    Detect and resolve collisions between all entities in the list.\n    response_coef controls the elasticity of collisions (0.0 = inelastic, 1.0 = elastic)\n    ");
 static PyMethodDef __pyx_mdef_6mars_x_14cython_modules_9collision_3resolve_collisions = {"resolve_collisions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6mars_x_14cython_modules_9collision_3resolve_collisions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6mars_x_14cython_modules_9collision_2resolve_collisions};
 static PyObject *__pyx_pw_6mars_x_14cython_modules_9collision_3resolve_collisions(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2660,11 +3100,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
   PyObject *__pyx_v_entities = 0;
+  double __pyx_v_response_coef;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
+  PyObject* values[2] = {0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2680,10 +3121,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_entities,0};
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_entities,&__pyx_n_s_response_coef,0};
     if (__pyx_kwds) {
       Py_ssize_t kw_args;
       switch (__pyx_nargs) {
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
         case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
         CYTHON_FALLTHROUGH;
         case  0: break;
@@ -2696,23 +3139,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_response_coef);
+          if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
+        }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "resolve_collisions") < 0)) __PYX_ERR(0, 24, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "resolve_collisions") < 0)) __PYX_ERR(0, 22, __pyx_L3_error)
       }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+      switch (__pyx_nargs) {
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
-    __pyx_v_entities = values[0];
+    __pyx_v_entities = ((PyObject*)values[0]);
+    if (values[1]) {
+      __pyx_v_response_coef = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_response_coef == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
+    } else {
+      __pyx_v_response_coef = ((double)0.8);
+    }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("resolve_collisions", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 24, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("resolve_collisions", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 22, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2726,9 +3185,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(__pyx_self, __pyx_v_entities);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_entities), (&PyList_Type), 1, "entities", 1))) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_r = __pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(__pyx_self, __pyx_v_entities, __pyx_v_response_coef);
 
   /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
   {
     Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -2739,205 +3203,28 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_entities) {
-  int __pyx_v_i;
-  int __pyx_v_j;
-  int __pyx_v_n;
-  double __pyx_v_response_coef;
-  double __pyx_v_radius1;
-  double __pyx_v_radius2;
+static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collisions(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_entities, double __pyx_v_response_coef) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  Py_ssize_t __pyx_t_1;
-  int __pyx_t_2;
-  int __pyx_t_3;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  int __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  double __pyx_t_10;
-  double __pyx_t_11;
-  double __pyx_t_12;
-  double __pyx_t_13;
-  int __pyx_t_14;
+  struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("resolve_collisions", 1);
-
-  /* "mars_x/cython_modules/collision.pyx":28
- *     cdef:
- *         int i, j
- *         int n = len(entities)             # <<<<<<<<<<<<<<
- *         double response_coef = 0.8  # Coefficient of restitution
- *         double radius1, radius2  # We need to get radius from entities
- */
-  __pyx_t_1 = PyObject_Length(__pyx_v_entities); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 28, __pyx_L1_error)
-  __pyx_v_n = __pyx_t_1;
-
-  /* "mars_x/cython_modules/collision.pyx":29
- *         int i, j
- *         int n = len(entities)
- *         double response_coef = 0.8  # Coefficient of restitution             # <<<<<<<<<<<<<<
- *         double radius1, radius2  # We need to get radius from entities
- * 
- */
-  __pyx_v_response_coef = 0.8;
-
-  /* "mars_x/cython_modules/collision.pyx":32
- *         double radius1, radius2  # We need to get radius from entities
- * 
- *     for i in range(n):             # <<<<<<<<<<<<<<
- *         for j in range(i+1, n):
- *             # Using a 'radius' attribute that would need to be added to Entity
- */
-  __pyx_t_2 = __pyx_v_n;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-
-    /* "mars_x/cython_modules/collision.pyx":33
- * 
- *     for i in range(n):
- *         for j in range(i+1, n):             # <<<<<<<<<<<<<<
- *             # Using a 'radius' attribute that would need to be added to Entity
- *             radius1 = getattr(entities[i], 'radius', 1.0)
- */
-    __pyx_t_5 = __pyx_v_n;
-    __pyx_t_6 = __pyx_t_5;
-    for (__pyx_t_7 = (__pyx_v_i + 1); __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
-      __pyx_v_j = __pyx_t_7;
-
-      /* "mars_x/cython_modules/collision.pyx":35
- *         for j in range(i+1, n):
- *             # Using a 'radius' attribute that would need to be added to Entity
- *             radius1 = getattr(entities[i], 'radius', 1.0)             # <<<<<<<<<<<<<<
- *             radius2 = getattr(entities[j], 'radius', 1.0)
- * 
- */
-      __pyx_t_8 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 35, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_9 = __Pyx_GetAttr3(__pyx_t_8, __pyx_n_u_radius, __pyx_float_1_0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 35, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 35, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_v_radius1 = __pyx_t_10;
-
-      /* "mars_x/cython_modules/collision.pyx":36
- *             # Using a 'radius' attribute that would need to be added to Entity
- *             radius1 = getattr(entities[i], 'radius', 1.0)
- *             radius2 = getattr(entities[j], 'radius', 1.0)             # <<<<<<<<<<<<<<
- * 
- *             if check_collision(entities[i].x, entities[i].y, radius1,
- */
-      __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 36, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_8 = __Pyx_GetAttr3(__pyx_t_9, __pyx_n_u_radius, __pyx_float_1_0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 36, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_v_radius2 = __pyx_t_10;
-
-      /* "mars_x/cython_modules/collision.pyx":38
- *             radius2 = getattr(entities[j], 'radius', 1.0)
- * 
- *             if check_collision(entities[i].x, entities[i].y, radius1,             # <<<<<<<<<<<<<<
- *                               entities[j].x, entities[j].y, radius2):
- *                 # Collision found, calculate response
- */
-      __pyx_t_8 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_x); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_y); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-
-      /* "mars_x/cython_modules/collision.pyx":39
- * 
- *             if check_collision(entities[i].x, entities[i].y, radius1,
- *                               entities[j].x, entities[j].y, radius2):             # <<<<<<<<<<<<<<
- *                 # Collision found, calculate response
- *                 _handle_collision(entities[i], entities[j], response_coef)
- */
-      __pyx_t_8 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_x); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_y); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-
-      /* "mars_x/cython_modules/collision.pyx":38
- *             radius2 = getattr(entities[j], 'radius', 1.0)
- * 
- *             if check_collision(entities[i].x, entities[i].y, radius1,             # <<<<<<<<<<<<<<
- *                               entities[j].x, entities[j].y, radius2):
- *                 # Collision found, calculate response
- */
-      __pyx_t_14 = __pyx_f_6mars_x_14cython_modules_9collision_check_collision(__pyx_t_10, __pyx_t_11, __pyx_v_radius1, __pyx_t_12, __pyx_t_13, __pyx_v_radius2, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-      if (__pyx_t_14) {
-
-        /* "mars_x/cython_modules/collision.pyx":41
- *                               entities[j].x, entities[j].y, radius2):
- *                 # Collision found, calculate response
- *                 _handle_collision(entities[i], entities[j], response_coef)             # <<<<<<<<<<<<<<
- * 
- * @cython.cdivision(True)
- */
-        __pyx_t_8 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 41, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_6mars_x_14cython_modules_7physics_Entity))))) __PYX_ERR(0, 41, __pyx_L1_error)
-        __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_entities, __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 41, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_6mars_x_14cython_modules_7physics_Entity))))) __PYX_ERR(0, 41, __pyx_L1_error)
-        __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(((struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *)__pyx_t_8), ((struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *)__pyx_t_9), __pyx_v_response_coef); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-
-        /* "mars_x/cython_modules/collision.pyx":38
- *             radius2 = getattr(entities[j], 'radius', 1.0)
- * 
- *             if check_collision(entities[i].x, entities[i].y, radius1,             # <<<<<<<<<<<<<<
- *                               entities[j].x, entities[j].y, radius2):
- *                 # Collision found, calculate response
- */
-      }
-    }
-  }
-
-  /* "mars_x/cython_modules/collision.pyx":24
- *     return distance_sq <= (r1 + r2) * (r1 + r2)
- * 
- * def resolve_collisions(entities):             # <<<<<<<<<<<<<<
- *     """Resolve all collisions between entities"""
- *     cdef:
- */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1.__pyx_n = 1;
+  __pyx_t_1.response_coef = __pyx_v_response_coef;
+  __pyx_f_6mars_x_14cython_modules_9collision_resolve_collisions(__pyx_v_entities, 0, &__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("mars_x.cython_modules.collision.resolve_collisions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2946,234 +3233,494 @@ static PyObject *__pyx_pf_6mars_x_14cython_modules_9collision_2resolve_collision
   return __pyx_r;
 }
 
-/* "mars_x/cython_modules/collision.pyx":44
+/* "mars_x/cython_modules/collision.pyx":63
  * 
  * @cython.cdivision(True)
- * cdef void _handle_collision(Entity entity1, Entity entity2, double restitution):             # <<<<<<<<<<<<<<
- *     """Handle collision response between two entities"""
+ * cdef void _handle_collision(Entity entity1, Entity entity2, double response_coef):             # <<<<<<<<<<<<<<
+ *     """Handle collision response between two entities."""
  *     cdef:
  */
 
-static void __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *__pyx_v_entity1, struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *__pyx_v_entity2, double __pyx_v_restitution) {
+static void __pyx_f_6mars_x_14cython_modules_9collision__handle_collision(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity1, struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *__pyx_v_entity2, double __pyx_v_response_coef) {
   double __pyx_v_dx;
   double __pyx_v_dy;
+  double __pyx_v_distance_sq;
   double __pyx_v_distance;
+  double __pyx_v_overlap;
   double __pyx_v_nx;
   double __pyx_v_ny;
-  double __pyx_v_dvx;
-  double __pyx_v_dvy;
-  double __pyx_v_vnorm;
-  double __pyx_v_impulse;
-  double __pyx_v_im1;
-  double __pyx_v_im2;
+  double __pyx_v_total_mass;
+  double __pyx_v_entity1_ratio;
+  double __pyx_v_entity2_ratio;
+  double __pyx_v_rvx;
+  double __pyx_v_rvy;
+  double __pyx_v_vel_along_normal;
+  double __pyx_v_impulse_scalar;
+  double __pyx_v_impulse_x;
+  double __pyx_v_impulse_y;
+  double __pyx_v_dot;
   int __pyx_t_1;
+  int __pyx_t_2;
 
-  /* "mars_x/cython_modules/collision.pyx":47
- *     """Handle collision response between two entities"""
+  /* "mars_x/cython_modules/collision.pyx":66
+ *     """Handle collision response between two entities."""
  *     cdef:
  *         double dx = entity2.x - entity1.x             # <<<<<<<<<<<<<<
  *         double dy = entity2.y - entity1.y
- *         double distance = sqrt(dx * dx + dy * dy)
+ *         double distance_sq = dx*dx + dy*dy
  */
   __pyx_v_dx = (__pyx_v_entity2->x - __pyx_v_entity1->x);
 
-  /* "mars_x/cython_modules/collision.pyx":48
+  /* "mars_x/cython_modules/collision.pyx":67
  *     cdef:
  *         double dx = entity2.x - entity1.x
  *         double dy = entity2.y - entity1.y             # <<<<<<<<<<<<<<
- *         double distance = sqrt(dx * dx + dy * dy)
- *         double nx, ny  # Normalized collision normal
+ *         double distance_sq = dx*dx + dy*dy
+ *         double distance
  */
   __pyx_v_dy = (__pyx_v_entity2->y - __pyx_v_entity1->y);
 
-  /* "mars_x/cython_modules/collision.pyx":49
+  /* "mars_x/cython_modules/collision.pyx":68
  *         double dx = entity2.x - entity1.x
  *         double dy = entity2.y - entity1.y
- *         double distance = sqrt(dx * dx + dy * dy)             # <<<<<<<<<<<<<<
- *         double nx, ny  # Normalized collision normal
- * 
+ *         double distance_sq = dx*dx + dy*dy             # <<<<<<<<<<<<<<
+ *         double distance
+ *         double overlap
  */
-  __pyx_v_distance = sqrt(((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy)));
+  __pyx_v_distance_sq = ((__pyx_v_dx * __pyx_v_dx) + (__pyx_v_dy * __pyx_v_dy));
 
-  /* "mars_x/cython_modules/collision.pyx":53
+  /* "mars_x/cython_modules/collision.pyx":81
  * 
- *         # Relative velocity
- *         double dvx = entity2.vx - entity1.vx             # <<<<<<<<<<<<<<
- *         double dvy = entity2.vy - entity1.vy
- * 
+ *     # Skip if entities are at the exact same position to avoid division by zero
+ *     if distance_sq < 0.0001:             # <<<<<<<<<<<<<<
+ *         # Push entities apart slightly to prevent overlap
+ *         entity1.x -= 0.1
  */
-  __pyx_v_dvx = (__pyx_v_entity2->vx - __pyx_v_entity1->vx);
-
-  /* "mars_x/cython_modules/collision.pyx":54
- *         # Relative velocity
- *         double dvx = entity2.vx - entity1.vx
- *         double dvy = entity2.vy - entity1.vy             # <<<<<<<<<<<<<<
- * 
- *         # Relative velocity along collision normal
- */
-  __pyx_v_dvy = (__pyx_v_entity2->vy - __pyx_v_entity1->vy);
-
-  /* "mars_x/cython_modules/collision.pyx":61
- *         # Impulse scalar
- *         double impulse
- *         double im1 = 1.0 / entity1.mass  # Inverse mass             # <<<<<<<<<<<<<<
- *         double im2 = 1.0 / entity2.mass  # Inverse mass
- * 
- */
-  __pyx_v_im1 = (1.0 / __pyx_v_entity1->mass);
-
-  /* "mars_x/cython_modules/collision.pyx":62
- *         double impulse
- *         double im1 = 1.0 / entity1.mass  # Inverse mass
- *         double im2 = 1.0 / entity2.mass  # Inverse mass             # <<<<<<<<<<<<<<
- * 
- *     # Avoid division by zero
- */
-  __pyx_v_im2 = (1.0 / __pyx_v_entity2->mass);
-
-  /* "mars_x/cython_modules/collision.pyx":65
- * 
- *     # Avoid division by zero
- *     if distance == 0:             # <<<<<<<<<<<<<<
- *         nx = 0
- *         ny = 1
- */
-  __pyx_t_1 = (__pyx_v_distance == 0.0);
+  __pyx_t_1 = (__pyx_v_distance_sq < 0.0001);
   if (__pyx_t_1) {
 
-    /* "mars_x/cython_modules/collision.pyx":66
- *     # Avoid division by zero
- *     if distance == 0:
- *         nx = 0             # <<<<<<<<<<<<<<
- *         ny = 1
- *     else:
+    /* "mars_x/cython_modules/collision.pyx":83
+ *     if distance_sq < 0.0001:
+ *         # Push entities apart slightly to prevent overlap
+ *         entity1.x -= 0.1             # <<<<<<<<<<<<<<
+ *         entity2.x += 0.1
+ *         return
  */
-    __pyx_v_nx = 0.0;
+    __pyx_v_entity1->x = (__pyx_v_entity1->x - 0.1);
 
-    /* "mars_x/cython_modules/collision.pyx":67
- *     if distance == 0:
- *         nx = 0
- *         ny = 1             # <<<<<<<<<<<<<<
- *     else:
- *         nx = dx / distance
- */
-    __pyx_v_ny = 1.0;
-
-    /* "mars_x/cython_modules/collision.pyx":65
- * 
- *     # Avoid division by zero
- *     if distance == 0:             # <<<<<<<<<<<<<<
- *         nx = 0
- *         ny = 1
- */
-    goto __pyx_L3;
-  }
-
-  /* "mars_x/cython_modules/collision.pyx":69
- *         ny = 1
- *     else:
- *         nx = dx / distance             # <<<<<<<<<<<<<<
- *         ny = dy / distance
- * 
- */
-  /*else*/ {
-    __pyx_v_nx = (__pyx_v_dx / __pyx_v_distance);
-
-    /* "mars_x/cython_modules/collision.pyx":70
- *     else:
- *         nx = dx / distance
- *         ny = dy / distance             # <<<<<<<<<<<<<<
- * 
- *     # Relative velocity along normal
- */
-    __pyx_v_ny = (__pyx_v_dy / __pyx_v_distance);
-  }
-  __pyx_L3:;
-
-  /* "mars_x/cython_modules/collision.pyx":73
- * 
- *     # Relative velocity along normal
- *     vnorm = dvx * nx + dvy * ny             # <<<<<<<<<<<<<<
- * 
- *     # If objects are moving apart, don't apply impulse
- */
-  __pyx_v_vnorm = ((__pyx_v_dvx * __pyx_v_nx) + (__pyx_v_dvy * __pyx_v_ny));
-
-  /* "mars_x/cython_modules/collision.pyx":76
- * 
- *     # If objects are moving apart, don't apply impulse
- *     if vnorm > 0:             # <<<<<<<<<<<<<<
+    /* "mars_x/cython_modules/collision.pyx":84
+ *         # Push entities apart slightly to prevent overlap
+ *         entity1.x -= 0.1
+ *         entity2.x += 0.1             # <<<<<<<<<<<<<<
  *         return
  * 
  */
-  __pyx_t_1 = (__pyx_v_vnorm > 0.0);
-  if (__pyx_t_1) {
+    __pyx_v_entity2->x = (__pyx_v_entity2->x + 0.1);
 
-    /* "mars_x/cython_modules/collision.pyx":77
- *     # If objects are moving apart, don't apply impulse
- *     if vnorm > 0:
+    /* "mars_x/cython_modules/collision.pyx":85
+ *         entity1.x -= 0.1
+ *         entity2.x += 0.1
  *         return             # <<<<<<<<<<<<<<
  * 
- *     # Calculate impulse scalar
+ *     distance = sqrt(distance_sq)
  */
     goto __pyx_L0;
 
-    /* "mars_x/cython_modules/collision.pyx":76
+    /* "mars_x/cython_modules/collision.pyx":81
  * 
- *     # If objects are moving apart, don't apply impulse
- *     if vnorm > 0:             # <<<<<<<<<<<<<<
- *         return
- * 
+ *     # Skip if entities are at the exact same position to avoid division by zero
+ *     if distance_sq < 0.0001:             # <<<<<<<<<<<<<<
+ *         # Push entities apart slightly to prevent overlap
+ *         entity1.x -= 0.1
  */
   }
 
-  /* "mars_x/cython_modules/collision.pyx":80
+  /* "mars_x/cython_modules/collision.pyx":87
+ *         return
  * 
- *     # Calculate impulse scalar
- *     impulse = -(1.0 + restitution) * vnorm / (im1 + im2)             # <<<<<<<<<<<<<<
+ *     distance = sqrt(distance_sq)             # <<<<<<<<<<<<<<
+ *     overlap = entity1.radius + entity2.radius - distance
+ *     nx = dx / distance  # Normalized x direction
+ */
+  __pyx_v_distance = sqrt(__pyx_v_distance_sq);
+
+  /* "mars_x/cython_modules/collision.pyx":88
  * 
- *     # Apply impulse
+ *     distance = sqrt(distance_sq)
+ *     overlap = entity1.radius + entity2.radius - distance             # <<<<<<<<<<<<<<
+ *     nx = dx / distance  # Normalized x direction
+ *     ny = dy / distance  # Normalized y direction
  */
-  __pyx_v_impulse = (((-(1.0 + __pyx_v_restitution)) * __pyx_v_vnorm) / (__pyx_v_im1 + __pyx_v_im2));
+  __pyx_v_overlap = ((__pyx_v_entity1->radius + __pyx_v_entity2->radius) - __pyx_v_distance);
 
-  /* "mars_x/cython_modules/collision.pyx":83
+  /* "mars_x/cython_modules/collision.pyx":89
+ *     distance = sqrt(distance_sq)
+ *     overlap = entity1.radius + entity2.radius - distance
+ *     nx = dx / distance  # Normalized x direction             # <<<<<<<<<<<<<<
+ *     ny = dy / distance  # Normalized y direction
  * 
- *     # Apply impulse
- *     entity1.vx -= impulse * nx * im1             # <<<<<<<<<<<<<<
- *     entity1.vy -= impulse * ny * im1
- *     entity2.vx += impulse * nx * im2
  */
-  __pyx_v_entity1->vx = (__pyx_v_entity1->vx - ((__pyx_v_impulse * __pyx_v_nx) * __pyx_v_im1));
+  __pyx_v_nx = (__pyx_v_dx / __pyx_v_distance);
 
-  /* "mars_x/cython_modules/collision.pyx":84
- *     # Apply impulse
- *     entity1.vx -= impulse * nx * im1
- *     entity1.vy -= impulse * ny * im1             # <<<<<<<<<<<<<<
- *     entity2.vx += impulse * nx * im2
- *     entity2.vy += impulse * ny * im2
+  /* "mars_x/cython_modules/collision.pyx":90
+ *     overlap = entity1.radius + entity2.radius - distance
+ *     nx = dx / distance  # Normalized x direction
+ *     ny = dy / distance  # Normalized y direction             # <<<<<<<<<<<<<<
+ * 
+ *     # Separate the entities to avoid overlap
  */
-  __pyx_v_entity1->vy = (__pyx_v_entity1->vy - ((__pyx_v_impulse * __pyx_v_ny) * __pyx_v_im1));
+  __pyx_v_ny = (__pyx_v_dy / __pyx_v_distance);
 
-  /* "mars_x/cython_modules/collision.pyx":85
- *     entity1.vx -= impulse * nx * im1
- *     entity1.vy -= impulse * ny * im1
- *     entity2.vx += impulse * nx * im2             # <<<<<<<<<<<<<<
- *     entity2.vy += impulse * ny * im2
+  /* "mars_x/cython_modules/collision.pyx":93
+ * 
+ *     # Separate the entities to avoid overlap
+ *     if entity1.mass > 0 and entity2.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Both entities have finite mass
+ *         total_mass = entity1.mass + entity2.mass
  */
-  __pyx_v_entity2->vx = (__pyx_v_entity2->vx + ((__pyx_v_impulse * __pyx_v_nx) * __pyx_v_im2));
+  __pyx_t_2 = (__pyx_v_entity1->mass > 0.0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L5_bool_binop_done;
+  }
+  __pyx_t_2 = (__pyx_v_entity2->mass > 0.0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L5_bool_binop_done:;
+  if (__pyx_t_1) {
 
-  /* "mars_x/cython_modules/collision.pyx":86
- *     entity1.vy -= impulse * ny * im1
- *     entity2.vx += impulse * nx * im2
- *     entity2.vy += impulse * ny * im2             # <<<<<<<<<<<<<<
+    /* "mars_x/cython_modules/collision.pyx":95
+ *     if entity1.mass > 0 and entity2.mass > 0:
+ *         # Both entities have finite mass
+ *         total_mass = entity1.mass + entity2.mass             # <<<<<<<<<<<<<<
+ *         entity1_ratio = entity2.mass / total_mass
+ *         entity2_ratio = entity1.mass / total_mass
  */
-  __pyx_v_entity2->vy = (__pyx_v_entity2->vy + ((__pyx_v_impulse * __pyx_v_ny) * __pyx_v_im2));
+    __pyx_v_total_mass = (__pyx_v_entity1->mass + __pyx_v_entity2->mass);
 
-  /* "mars_x/cython_modules/collision.pyx":44
+    /* "mars_x/cython_modules/collision.pyx":96
+ *         # Both entities have finite mass
+ *         total_mass = entity1.mass + entity2.mass
+ *         entity1_ratio = entity2.mass / total_mass             # <<<<<<<<<<<<<<
+ *         entity2_ratio = entity1.mass / total_mass
+ * 
+ */
+    __pyx_v_entity1_ratio = (__pyx_v_entity2->mass / __pyx_v_total_mass);
+
+    /* "mars_x/cython_modules/collision.pyx":97
+ *         total_mass = entity1.mass + entity2.mass
+ *         entity1_ratio = entity2.mass / total_mass
+ *         entity2_ratio = entity1.mass / total_mass             # <<<<<<<<<<<<<<
+ * 
+ *         entity1.x -= nx * overlap * entity1_ratio
+ */
+    __pyx_v_entity2_ratio = (__pyx_v_entity1->mass / __pyx_v_total_mass);
+
+    /* "mars_x/cython_modules/collision.pyx":99
+ *         entity2_ratio = entity1.mass / total_mass
+ * 
+ *         entity1.x -= nx * overlap * entity1_ratio             # <<<<<<<<<<<<<<
+ *         entity1.y -= ny * overlap * entity1_ratio
+ *         entity2.x += nx * overlap * entity2_ratio
+ */
+    __pyx_v_entity1->x = (__pyx_v_entity1->x - ((__pyx_v_nx * __pyx_v_overlap) * __pyx_v_entity1_ratio));
+
+    /* "mars_x/cython_modules/collision.pyx":100
+ * 
+ *         entity1.x -= nx * overlap * entity1_ratio
+ *         entity1.y -= ny * overlap * entity1_ratio             # <<<<<<<<<<<<<<
+ *         entity2.x += nx * overlap * entity2_ratio
+ *         entity2.y += ny * overlap * entity2_ratio
+ */
+    __pyx_v_entity1->y = (__pyx_v_entity1->y - ((__pyx_v_ny * __pyx_v_overlap) * __pyx_v_entity1_ratio));
+
+    /* "mars_x/cython_modules/collision.pyx":101
+ *         entity1.x -= nx * overlap * entity1_ratio
+ *         entity1.y -= ny * overlap * entity1_ratio
+ *         entity2.x += nx * overlap * entity2_ratio             # <<<<<<<<<<<<<<
+ *         entity2.y += ny * overlap * entity2_ratio
+ * 
+ */
+    __pyx_v_entity2->x = (__pyx_v_entity2->x + ((__pyx_v_nx * __pyx_v_overlap) * __pyx_v_entity2_ratio));
+
+    /* "mars_x/cython_modules/collision.pyx":102
+ *         entity1.y -= ny * overlap * entity1_ratio
+ *         entity2.x += nx * overlap * entity2_ratio
+ *         entity2.y += ny * overlap * entity2_ratio             # <<<<<<<<<<<<<<
+ * 
+ *         # Calculate relative velocity
+ */
+    __pyx_v_entity2->y = (__pyx_v_entity2->y + ((__pyx_v_ny * __pyx_v_overlap) * __pyx_v_entity2_ratio));
+
+    /* "mars_x/cython_modules/collision.pyx":105
+ * 
+ *         # Calculate relative velocity
+ *         rvx = entity2.vx - entity1.vx             # <<<<<<<<<<<<<<
+ *         rvy = entity2.vy - entity1.vy
+ * 
+ */
+    __pyx_v_rvx = (__pyx_v_entity2->vx - __pyx_v_entity1->vx);
+
+    /* "mars_x/cython_modules/collision.pyx":106
+ *         # Calculate relative velocity
+ *         rvx = entity2.vx - entity1.vx
+ *         rvy = entity2.vy - entity1.vy             # <<<<<<<<<<<<<<
+ * 
+ *         # Calculate velocity along the normal
+ */
+    __pyx_v_rvy = (__pyx_v_entity2->vy - __pyx_v_entity1->vy);
+
+    /* "mars_x/cython_modules/collision.pyx":109
+ * 
+ *         # Calculate velocity along the normal
+ *         vel_along_normal = rvx * nx + rvy * ny             # <<<<<<<<<<<<<<
+ * 
+ *         # Do not resolve if velocities are separating
+ */
+    __pyx_v_vel_along_normal = ((__pyx_v_rvx * __pyx_v_nx) + (__pyx_v_rvy * __pyx_v_ny));
+
+    /* "mars_x/cython_modules/collision.pyx":112
+ * 
+ *         # Do not resolve if velocities are separating
+ *         if vel_along_normal > 0:             # <<<<<<<<<<<<<<
+ *             return
+ * 
+ */
+    __pyx_t_1 = (__pyx_v_vel_along_normal > 0.0);
+    if (__pyx_t_1) {
+
+      /* "mars_x/cython_modules/collision.pyx":113
+ *         # Do not resolve if velocities are separating
+ *         if vel_along_normal > 0:
+ *             return             # <<<<<<<<<<<<<<
+ * 
+ *         # Calculate impulse scalar
+ */
+      goto __pyx_L0;
+
+      /* "mars_x/cython_modules/collision.pyx":112
+ * 
+ *         # Do not resolve if velocities are separating
+ *         if vel_along_normal > 0:             # <<<<<<<<<<<<<<
+ *             return
+ * 
+ */
+    }
+
+    /* "mars_x/cython_modules/collision.pyx":116
+ * 
+ *         # Calculate impulse scalar
+ *         impulse_scalar = -(1 + response_coef) * vel_along_normal             # <<<<<<<<<<<<<<
+ *         impulse_scalar /= (1/entity1.mass) + (1/entity2.mass)
+ * 
+ */
+    __pyx_v_impulse_scalar = ((-(1.0 + __pyx_v_response_coef)) * __pyx_v_vel_along_normal);
+
+    /* "mars_x/cython_modules/collision.pyx":117
+ *         # Calculate impulse scalar
+ *         impulse_scalar = -(1 + response_coef) * vel_along_normal
+ *         impulse_scalar /= (1/entity1.mass) + (1/entity2.mass)             # <<<<<<<<<<<<<<
+ * 
+ *         # Apply impulse
+ */
+    __pyx_v_impulse_scalar = (__pyx_v_impulse_scalar / ((1.0 / __pyx_v_entity1->mass) + (1.0 / __pyx_v_entity2->mass)));
+
+    /* "mars_x/cython_modules/collision.pyx":120
+ * 
+ *         # Apply impulse
+ *         impulse_x = impulse_scalar * nx             # <<<<<<<<<<<<<<
+ *         impulse_y = impulse_scalar * ny
+ * 
+ */
+    __pyx_v_impulse_x = (__pyx_v_impulse_scalar * __pyx_v_nx);
+
+    /* "mars_x/cython_modules/collision.pyx":121
+ *         # Apply impulse
+ *         impulse_x = impulse_scalar * nx
+ *         impulse_y = impulse_scalar * ny             # <<<<<<<<<<<<<<
+ * 
+ *         entity1.vx -= impulse_x / entity1.mass
+ */
+    __pyx_v_impulse_y = (__pyx_v_impulse_scalar * __pyx_v_ny);
+
+    /* "mars_x/cython_modules/collision.pyx":123
+ *         impulse_y = impulse_scalar * ny
+ * 
+ *         entity1.vx -= impulse_x / entity1.mass             # <<<<<<<<<<<<<<
+ *         entity1.vy -= impulse_y / entity1.mass
+ *         entity2.vx += impulse_x / entity2.mass
+ */
+    __pyx_v_entity1->vx = (__pyx_v_entity1->vx - (__pyx_v_impulse_x / __pyx_v_entity1->mass));
+
+    /* "mars_x/cython_modules/collision.pyx":124
+ * 
+ *         entity1.vx -= impulse_x / entity1.mass
+ *         entity1.vy -= impulse_y / entity1.mass             # <<<<<<<<<<<<<<
+ *         entity2.vx += impulse_x / entity2.mass
+ *         entity2.vy += impulse_y / entity2.mass
+ */
+    __pyx_v_entity1->vy = (__pyx_v_entity1->vy - (__pyx_v_impulse_y / __pyx_v_entity1->mass));
+
+    /* "mars_x/cython_modules/collision.pyx":125
+ *         entity1.vx -= impulse_x / entity1.mass
+ *         entity1.vy -= impulse_y / entity1.mass
+ *         entity2.vx += impulse_x / entity2.mass             # <<<<<<<<<<<<<<
+ *         entity2.vy += impulse_y / entity2.mass
+ * 
+ */
+    __pyx_v_entity2->vx = (__pyx_v_entity2->vx + (__pyx_v_impulse_x / __pyx_v_entity2->mass));
+
+    /* "mars_x/cython_modules/collision.pyx":126
+ *         entity1.vy -= impulse_y / entity1.mass
+ *         entity2.vx += impulse_x / entity2.mass
+ *         entity2.vy += impulse_y / entity2.mass             # <<<<<<<<<<<<<<
+ * 
+ *     elif entity1.mass > 0:
+ */
+    __pyx_v_entity2->vy = (__pyx_v_entity2->vy + (__pyx_v_impulse_y / __pyx_v_entity2->mass));
+
+    /* "mars_x/cython_modules/collision.pyx":93
+ * 
+ *     # Separate the entities to avoid overlap
+ *     if entity1.mass > 0 and entity2.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Both entities have finite mass
+ *         total_mass = entity1.mass + entity2.mass
+ */
+    goto __pyx_L4;
+  }
+
+  /* "mars_x/cython_modules/collision.pyx":128
+ *         entity2.vy += impulse_y / entity2.mass
+ * 
+ *     elif entity1.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Only entity1 has mass (entity2 is immovable)
+ *         entity1.x -= nx * overlap
+ */
+  __pyx_t_1 = (__pyx_v_entity1->mass > 0.0);
+  if (__pyx_t_1) {
+
+    /* "mars_x/cython_modules/collision.pyx":130
+ *     elif entity1.mass > 0:
+ *         # Only entity1 has mass (entity2 is immovable)
+ *         entity1.x -= nx * overlap             # <<<<<<<<<<<<<<
+ *         entity1.y -= ny * overlap
+ * 
+ */
+    __pyx_v_entity1->x = (__pyx_v_entity1->x - (__pyx_v_nx * __pyx_v_overlap));
+
+    /* "mars_x/cython_modules/collision.pyx":131
+ *         # Only entity1 has mass (entity2 is immovable)
+ *         entity1.x -= nx * overlap
+ *         entity1.y -= ny * overlap             # <<<<<<<<<<<<<<
+ * 
+ *         # Simple reflection
+ */
+    __pyx_v_entity1->y = (__pyx_v_entity1->y - (__pyx_v_ny * __pyx_v_overlap));
+
+    /* "mars_x/cython_modules/collision.pyx":134
+ * 
+ *         # Simple reflection
+ *         dot = entity1.vx * nx + entity1.vy * ny             # <<<<<<<<<<<<<<
+ *         entity1.vx = response_coef * (entity1.vx - 2 * dot * nx)
+ *         entity1.vy = response_coef * (entity1.vy - 2 * dot * ny)
+ */
+    __pyx_v_dot = ((__pyx_v_entity1->vx * __pyx_v_nx) + (__pyx_v_entity1->vy * __pyx_v_ny));
+
+    /* "mars_x/cython_modules/collision.pyx":135
+ *         # Simple reflection
+ *         dot = entity1.vx * nx + entity1.vy * ny
+ *         entity1.vx = response_coef * (entity1.vx - 2 * dot * nx)             # <<<<<<<<<<<<<<
+ *         entity1.vy = response_coef * (entity1.vy - 2 * dot * ny)
+ * 
+ */
+    __pyx_v_entity1->vx = (__pyx_v_response_coef * (__pyx_v_entity1->vx - ((2.0 * __pyx_v_dot) * __pyx_v_nx)));
+
+    /* "mars_x/cython_modules/collision.pyx":136
+ *         dot = entity1.vx * nx + entity1.vy * ny
+ *         entity1.vx = response_coef * (entity1.vx - 2 * dot * nx)
+ *         entity1.vy = response_coef * (entity1.vy - 2 * dot * ny)             # <<<<<<<<<<<<<<
+ * 
+ *     elif entity2.mass > 0:
+ */
+    __pyx_v_entity1->vy = (__pyx_v_response_coef * (__pyx_v_entity1->vy - ((2.0 * __pyx_v_dot) * __pyx_v_ny)));
+
+    /* "mars_x/cython_modules/collision.pyx":128
+ *         entity2.vy += impulse_y / entity2.mass
+ * 
+ *     elif entity1.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Only entity1 has mass (entity2 is immovable)
+ *         entity1.x -= nx * overlap
+ */
+    goto __pyx_L4;
+  }
+
+  /* "mars_x/cython_modules/collision.pyx":138
+ *         entity1.vy = response_coef * (entity1.vy - 2 * dot * ny)
+ * 
+ *     elif entity2.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Only entity2 has mass (entity1 is immovable)
+ *         entity2.x += nx * overlap
+ */
+  __pyx_t_1 = (__pyx_v_entity2->mass > 0.0);
+  if (__pyx_t_1) {
+
+    /* "mars_x/cython_modules/collision.pyx":140
+ *     elif entity2.mass > 0:
+ *         # Only entity2 has mass (entity1 is immovable)
+ *         entity2.x += nx * overlap             # <<<<<<<<<<<<<<
+ *         entity2.y += ny * overlap
+ * 
+ */
+    __pyx_v_entity2->x = (__pyx_v_entity2->x + (__pyx_v_nx * __pyx_v_overlap));
+
+    /* "mars_x/cython_modules/collision.pyx":141
+ *         # Only entity2 has mass (entity1 is immovable)
+ *         entity2.x += nx * overlap
+ *         entity2.y += ny * overlap             # <<<<<<<<<<<<<<
+ * 
+ *         # Simple reflection
+ */
+    __pyx_v_entity2->y = (__pyx_v_entity2->y + (__pyx_v_ny * __pyx_v_overlap));
+
+    /* "mars_x/cython_modules/collision.pyx":144
+ * 
+ *         # Simple reflection
+ *         dot = entity2.vx * nx + entity2.vy * ny             # <<<<<<<<<<<<<<
+ *         entity2.vx = response_coef * (entity2.vx - 2 * dot * nx)
+ *         entity2.vy = response_coef * (entity2.vy - 2 * dot * ny)
+ */
+    __pyx_v_dot = ((__pyx_v_entity2->vx * __pyx_v_nx) + (__pyx_v_entity2->vy * __pyx_v_ny));
+
+    /* "mars_x/cython_modules/collision.pyx":145
+ *         # Simple reflection
+ *         dot = entity2.vx * nx + entity2.vy * ny
+ *         entity2.vx = response_coef * (entity2.vx - 2 * dot * nx)             # <<<<<<<<<<<<<<
+ *         entity2.vy = response_coef * (entity2.vy - 2 * dot * ny)
+ */
+    __pyx_v_entity2->vx = (__pyx_v_response_coef * (__pyx_v_entity2->vx - ((2.0 * __pyx_v_dot) * __pyx_v_nx)));
+
+    /* "mars_x/cython_modules/collision.pyx":146
+ *         dot = entity2.vx * nx + entity2.vy * ny
+ *         entity2.vx = response_coef * (entity2.vx - 2 * dot * nx)
+ *         entity2.vy = response_coef * (entity2.vy - 2 * dot * ny)             # <<<<<<<<<<<<<<
+ */
+    __pyx_v_entity2->vy = (__pyx_v_response_coef * (__pyx_v_entity2->vy - ((2.0 * __pyx_v_dot) * __pyx_v_ny)));
+
+    /* "mars_x/cython_modules/collision.pyx":138
+ *         entity1.vy = response_coef * (entity1.vy - 2 * dot * ny)
+ * 
+ *     elif entity2.mass > 0:             # <<<<<<<<<<<<<<
+ *         # Only entity2 has mass (entity1 is immovable)
+ *         entity2.x += nx * overlap
+ */
+  }
+  __pyx_L4:;
+
+  /* "mars_x/cython_modules/collision.pyx":63
  * 
  * @cython.cdivision(True)
- * cdef void _handle_collision(Entity entity1, Entity entity2, double restitution):             # <<<<<<<<<<<<<<
- *     """Handle collision response between two entities"""
+ * cdef void _handle_collision(Entity entity1, Entity entity2, double response_coef):             # <<<<<<<<<<<<<<
+ *     """Handle collision response between two entities."""
  *     cdef:
  */
 
@@ -3197,35 +3744,25 @@ static PyMethodDef __pyx_methods[] = {
 
 static int __Pyx_CreateStringTabAndInitStrings(void) {
   __Pyx_StringTabEntry __pyx_string_tab[] = {
-    {&__pyx_n_s__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 0, 1, 1},
+    {&__pyx_n_s__6, __pyx_k__6, sizeof(__pyx_k__6), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_check_collision, __pyx_k_check_collision, sizeof(__pyx_k_check_collision), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-    {&__pyx_n_s_distance_sq, __pyx_k_distance_sq, sizeof(__pyx_k_distance_sq), 0, 0, 1, 1},
-    {&__pyx_n_s_dx, __pyx_k_dx, sizeof(__pyx_k_dx), 0, 0, 1, 1},
-    {&__pyx_n_s_dy, __pyx_k_dy, sizeof(__pyx_k_dy), 0, 0, 1, 1},
     {&__pyx_n_s_entities, __pyx_k_entities, sizeof(__pyx_k_entities), 0, 0, 1, 1},
-    {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
-    {&__pyx_n_s_j, __pyx_k_j, sizeof(__pyx_k_j), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_kp_s_mars_x_cython_modules_collision, __pyx_k_mars_x_cython_modules_collision, sizeof(__pyx_k_mars_x_cython_modules_collision), 0, 0, 1, 0},
     {&__pyx_n_s_mars_x_cython_modules_collision_2, __pyx_k_mars_x_cython_modules_collision_2, sizeof(__pyx_k_mars_x_cython_modules_collision_2), 0, 0, 1, 1},
-    {&__pyx_n_s_n, __pyx_k_n, sizeof(__pyx_k_n), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
-    {&__pyx_n_s_r1, __pyx_k_r1, sizeof(__pyx_k_r1), 0, 0, 1, 1},
-    {&__pyx_n_s_r2, __pyx_k_r2, sizeof(__pyx_k_r2), 0, 0, 1, 1},
-    {&__pyx_n_u_radius, __pyx_k_radius, sizeof(__pyx_k_radius), 0, 1, 0, 1},
+    {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
     {&__pyx_n_s_radius1, __pyx_k_radius1, sizeof(__pyx_k_radius1), 0, 0, 1, 1},
     {&__pyx_n_s_radius2, __pyx_k_radius2, sizeof(__pyx_k_radius2), 0, 0, 1, 1},
     {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
     {&__pyx_n_s_resolve_collisions, __pyx_k_resolve_collisions, sizeof(__pyx_k_resolve_collisions), 0, 0, 1, 1},
     {&__pyx_n_s_response_coef, __pyx_k_response_coef, sizeof(__pyx_k_response_coef), 0, 0, 1, 1},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-    {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
     {&__pyx_n_s_x1, __pyx_k_x1, sizeof(__pyx_k_x1), 0, 0, 1, 1},
     {&__pyx_n_s_x2, __pyx_k_x2, sizeof(__pyx_k_x2), 0, 0, 1, 1},
-    {&__pyx_n_s_y, __pyx_k_y, sizeof(__pyx_k_y), 0, 0, 1, 1},
     {&__pyx_n_s_y1, __pyx_k_y1, sizeof(__pyx_k_y1), 0, 0, 1, 1},
     {&__pyx_n_s_y2, __pyx_k_y2, sizeof(__pyx_k_y2), 0, 0, 1, 1},
     {0, 0, 0, 0, 0, 0, 0}
@@ -3234,7 +3771,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 37, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3245,29 +3782,32 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "mars_x/cython_modules/collision.pyx":10
- * from mars_x.cython_modules.physics cimport Entity
+  /* "mars_x/cython_modules/collision.pyx":12
  * 
- * @cython.cdivision(True)             # <<<<<<<<<<<<<<
- * def check_collision(double x1, double y1, double r1, double x2, double y2, double r2):
- *     """Check collision between two circular objects"""
+ * @cython.cdivision(True)
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2):             # <<<<<<<<<<<<<<
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1
  */
-  __pyx_tuple_ = PyTuple_Pack(9, __pyx_n_s_x1, __pyx_n_s_y1, __pyx_n_s_r1, __pyx_n_s_x2, __pyx_n_s_y2, __pyx_n_s_r2, __pyx_n_s_distance_sq, __pyx_n_s_dx, __pyx_n_s_dy); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(6, __pyx_n_s_x1, __pyx_n_s_y1, __pyx_n_s_radius1, __pyx_n_s_x2, __pyx_n_s_y2, __pyx_n_s_radius2); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_collision, __pyx_n_s_check_collision, 10, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_collision, __pyx_n_s_check_collision, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 12, __pyx_L1_error)
 
-  /* "mars_x/cython_modules/collision.pyx":24
- *     return distance_sq <= (r1 + r2) * (r1 + r2)
+  /* "mars_x/cython_modules/collision.pyx":22
  * 
- * def resolve_collisions(entities):             # <<<<<<<<<<<<<<
- *     """Resolve all collisions between entities"""
- *     cdef:
+ * @cython.cdivision(True)
+ * cpdef void resolve_collisions(list entities, double response_coef=0.8):             # <<<<<<<<<<<<<<
+ *     """
+ *     Detect and resolve collisions between all entities in the list.
  */
-  __pyx_tuple__3 = PyTuple_Pack(7, __pyx_n_s_entities, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_n, __pyx_n_s_response_coef, __pyx_n_s_radius1, __pyx_n_s_radius2); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_n_s_entities, __pyx_n_s_response_coef); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_collision, __pyx_n_s_resolve_collisions, 24, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_mars_x_cython_modules_collision, __pyx_n_s_resolve_collisions, 22, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_float_0_8); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3278,7 +3818,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_CreateStringTabAndInitStrings() < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  __pyx_float_1_0 = PyFloat_FromDouble(1.0); if (unlikely(!__pyx_float_1_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_8 = PyFloat_FromDouble(0.8); if (unlikely(!__pyx_float_0_8)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3322,8 +3862,8 @@ static int __Pyx_modinit_function_export_code(void) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_function_export_code", 0);
   /*--- Function export code ---*/
   if (__Pyx_ExportFunction("check_collision", (void (*)(void))__pyx_f_6mars_x_14cython_modules_9collision_check_collision, "int (double, double, double, double, double, double, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("resolve_collisions", (void (*)(void))__pyx_f_6mars_x_14cython_modules_9collision_resolve_collisions, "void (PyObject *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_handle_collision", (void (*)(void))__pyx_f_6mars_x_14cython_modules_9collision__handle_collision, "void (struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *, struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity *, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("resolve_collisions", (void (*)(void))__pyx_f_6mars_x_14cython_modules_9collision_resolve_collisions, "void (PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_6mars_x_14cython_modules_9collision_resolve_collisions *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_handle_collision", (void (*)(void))__pyx_f_6mars_x_14cython_modules_9collision__handle_collision, "void (struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *, struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity *, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3347,9 +3887,18 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.physics"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.vector"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_6mars_x_14cython_modules_7physics_Entity = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.physics", "Entity", sizeof(struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_7physics_Entity),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_7physics_Entity) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector2 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector2", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector2),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2) __PYX_ERR(1, 60, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector2*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector2); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector2)) __PYX_ERR(1, 60, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector3 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector3", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector3),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3) __PYX_ERR(1, 75, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector3*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector3); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector3)) __PYX_ERR(1, 75, __pyx_L1_error)
+  __pyx_ptype_6mars_x_14cython_modules_6vector_Vector4 = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.vector", "Vector4", sizeof(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_6vector_Vector4),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4) __PYX_ERR(1, 87, __pyx_L1_error)
+  __pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4 = (struct __pyx_vtabstruct_6mars_x_14cython_modules_6vector_Vector4*)__Pyx_GetVtable(__pyx_ptype_6mars_x_14cython_modules_6vector_Vector4); if (unlikely(!__pyx_vtabptr_6mars_x_14cython_modules_6vector_Vector4)) __PYX_ERR(1, 87, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule("mars_x.cython_modules.rigidbody"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity = __Pyx_ImportType_3_0_12(__pyx_t_1, "mars_x.cython_modules.rigidbody", "Entity", sizeof(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity), __PYX_GET_STRUCT_ALIGNMENT_3_0_12(struct __pyx_obj_6mars_x_14cython_modules_9rigidbody_Entity),__Pyx_ImportType_CheckSize_Warn_3_0_12); if (!__pyx_ptype_6mars_x_14cython_modules_9rigidbody_Entity) __PYX_ERR(2, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -3653,28 +4202,29 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "mars_x/cython_modules/collision.pyx":10
- * from mars_x.cython_modules.physics cimport Entity
+  /* "mars_x/cython_modules/collision.pyx":12
  * 
- * @cython.cdivision(True)             # <<<<<<<<<<<<<<
- * def check_collision(double x1, double y1, double r1, double x2, double y2, double r2):
- *     """Check collision between two circular objects"""
+ * @cython.cdivision(True)
+ * cpdef bint check_collision(double x1, double y1, double radius1, double x2, double y2, double radius2):             # <<<<<<<<<<<<<<
+ *     """Check if two circular objects are colliding."""
+ *     cdef double dx = x2 - x1
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9collision_1check_collision, 0, __pyx_n_s_check_collision, NULL, __pyx_n_s_mars_x_cython_modules_collision_2, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9collision_1check_collision, 0, __pyx_n_s_check_collision, NULL, __pyx_n_s_mars_x_cython_modules_collision_2, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_collision, __pyx_t_2) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_collision, __pyx_t_2) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mars_x/cython_modules/collision.pyx":24
- *     return distance_sq <= (r1 + r2) * (r1 + r2)
+  /* "mars_x/cython_modules/collision.pyx":22
  * 
- * def resolve_collisions(entities):             # <<<<<<<<<<<<<<
- *     """Resolve all collisions between entities"""
- *     cdef:
+ * @cython.cdivision(True)
+ * cpdef void resolve_collisions(list entities, double response_coef=0.8):             # <<<<<<<<<<<<<<
+ *     """
+ *     Detect and resolve collisions between all entities in the list.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9collision_3resolve_collisions, 0, __pyx_n_s_resolve_collisions, NULL, __pyx_n_s_mars_x_cython_modules_collision_2, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6mars_x_14cython_modules_9collision_3resolve_collisions, 0, __pyx_n_s_resolve_collisions, NULL, __pyx_n_s_mars_x_cython_modules_collision_2, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_resolve_collisions, __pyx_t_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__5);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_resolve_collisions, __pyx_t_2) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "mars_x/cython_modules/collision.pyx":1
@@ -4335,133 +4885,6 @@ bad:
     return -1;
 }
 
-/* GetAttr3 */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d00A1
-static PyObject *__Pyx_GetAttr3Default(PyObject *d) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (unlikely(!__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        return NULL;
-    __Pyx_PyErr_Clear();
-    Py_INCREF(d);
-    return d;
-}
-#endif
-static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *o, PyObject *n, PyObject *d) {
-    PyObject *r;
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d00A1
-    int res = PyObject_GetOptionalAttr(o, n, &r);
-    return (res != 0) ? r : __Pyx_NewRef(d);
-#else
-  #if CYTHON_USE_TYPE_SLOTS
-    if (likely(PyString_Check(n))) {
-        r = __Pyx_PyObject_GetAttrStrNoError(o, n);
-        if (unlikely(!r) && likely(!PyErr_Occurred())) {
-            r = __Pyx_NewRef(d);
-        }
-        return r;
-    }
-  #endif
-    r = PyObject_GetAttr(o, n);
-    return (likely(r)) ? r : __Pyx_GetAttr3Default(d);
-#endif
-}
-
-/* GetItemInt */
-static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
-    PyObject *r;
-    if (unlikely(!j)) return NULL;
-    r = PyObject_GetItem(o, j);
-    Py_DECREF(j);
-    return r;
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              CYTHON_NCP_UNUSED int wraparound,
-                                                              CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    Py_ssize_t wrapped_i = i;
-    if (wraparound & unlikely(i < 0)) {
-        wrapped_i += PyList_GET_SIZE(o);
-    }
-    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyList_GET_SIZE(o)))) {
-        PyObject *r = PyList_GET_ITEM(o, wrapped_i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              CYTHON_NCP_UNUSED int wraparound,
-                                                              CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    Py_ssize_t wrapped_i = i;
-    if (wraparound & unlikely(i < 0)) {
-        wrapped_i += PyTuple_GET_SIZE(o);
-    }
-    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyTuple_GET_SIZE(o)))) {
-        PyObject *r = PyTuple_GET_ITEM(o, wrapped_i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, int is_list,
-                                                     CYTHON_NCP_UNUSED int wraparound,
-                                                     CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
-    if (is_list || PyList_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
-        if ((!boundscheck) || (likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o))))) {
-            PyObject *r = PyList_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    }
-    else if (PyTuple_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
-        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyTuple_GET_SIZE(o)))) {
-            PyObject *r = PyTuple_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    } else {
-        PyMappingMethods *mm = Py_TYPE(o)->tp_as_mapping;
-        PySequenceMethods *sm = Py_TYPE(o)->tp_as_sequence;
-        if (mm && mm->mp_subscript) {
-            PyObject *r, *key = PyInt_FromSsize_t(i);
-            if (unlikely(!key)) return NULL;
-            r = mm->mp_subscript(o, key);
-            Py_DECREF(key);
-            return r;
-        }
-        if (likely(sm && sm->sq_item)) {
-            if (wraparound && unlikely(i < 0) && likely(sm->sq_length)) {
-                Py_ssize_t l = sm->sq_length(o);
-                if (likely(l >= 0)) {
-                    i += l;
-                } else {
-                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
-                        return NULL;
-                    PyErr_Clear();
-                }
-            }
-            return sm->sq_item(o, i);
-        }
-    }
-#else
-    if (is_list || !PyMapping_Check(o)) {
-        return PySequence_GetItem(o, i);
-    }
-#endif
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-}
-
 /* ExtTypeTest */
 static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
     __Pyx_TypeName obj_type_name;
@@ -4479,6 +4902,33 @@ static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
                  obj_type_name, type_name);
     __Pyx_DECREF_TypeName(obj_type_name);
     __Pyx_DECREF_TypeName(type_name);
+    return 0;
+}
+
+/* ArgTypeTest */
+static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)
+{
+    __Pyx_TypeName type_name;
+    __Pyx_TypeName obj_type_name;
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    else if (exact) {
+        #if PY_MAJOR_VERSION == 2
+        if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
+        #endif
+    }
+    else {
+        if (likely(__Pyx_TypeCheck(obj, type))) return 1;
+    }
+    type_name = __Pyx_PyType_GetName(type);
+    obj_type_name = __Pyx_PyType_GetName(Py_TYPE(obj));
+    PyErr_Format(PyExc_TypeError,
+        "Argument '%.200s' has incorrect type (expected " __Pyx_FMT_TYPENAME
+        ", got " __Pyx_FMT_TYPENAME ")", name, type_name, obj_type_name);
+    __Pyx_DECREF_TypeName(type_name);
+    __Pyx_DECREF_TypeName(obj_type_name);
     return 0;
 }
 
@@ -4561,6 +5011,26 @@ bad:
     return NULL;
 }
 #endif
+
+/* GetVTable */
+static void* __Pyx_GetVtable(PyTypeObject *type) {
+    void* ptr;
+#if CYTHON_COMPILING_IN_LIMITED_API
+    PyObject *ob = PyObject_GetAttr((PyObject *)type, __pyx_n_s_pyx_vtable);
+#else
+    PyObject *ob = PyObject_GetItem(type->tp_dict, __pyx_n_s_pyx_vtable);
+#endif
+    if (!ob)
+        goto bad;
+    ptr = PyCapsule_GetPointer(ob, 0);
+    if (!ptr && !PyErr_Occurred())
+        PyErr_SetString(PyExc_RuntimeError, "invalid vtable found for imported type");
+    Py_DECREF(ob);
+    return ptr;
+bad:
+    Py_XDECREF(ob);
+    return NULL;
+}
 
 /* FixUpExtensionType */
 #if CYTHON_USE_TYPE_SPECS
@@ -6599,7 +7069,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__5);
+        name = __Pyx_NewRef(__pyx_n_s__6);
     }
     return name;
 }

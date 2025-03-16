@@ -1,5 +1,9 @@
 """
-Mars-X utility modules
+Mars-X Utilities Package.
+
+This package contains various utility modules and helper functions used
+throughout the Mars-X project, including constants, setup helpers, and
+other common functionality.
 """
 
 from .constants import (

@@ -9,19 +9,19 @@ class InputManager:
         self.mouse_y = 0
         self.mouse_buttons = {}
         
-        # Add handling for game actions
+        # Add handling for game actions - remove arrow key movements for simplicity
         self.actions = {
-            'move_forward': False,
-            'move_backward': False,
-            'move_left': False,
-            'move_right': False,
+            'move_forward': False,  # W key
+            'move_backward': False, # S key
+            'move_left': False,     # A key
+            'move_right': False,    # D key
             'jump': False,
             'fire': False,
             'toggle_fullscreen': False,
             'quit': False
         }
         
-        # Key mappings for game actions (can be customized later)
+        # Key mappings for game actions - remove arrow key mappings
         self.key_mappings = {
             'move_forward': sdl2.SDLK_w,
             'move_backward': sdl2.SDLK_s,
@@ -30,6 +30,7 @@ class InputManager:
             'jump': sdl2.SDLK_SPACE,
             'fire': sdl2.SDLK_LCTRL,
             'toggle_fullscreen': sdl2.SDLK_F11,
+            'quit': sdl2.SDLK_ESCAPE
         }
         
         # Track which keys were just pressed this frame (for one-time actions)
@@ -48,6 +49,12 @@ class InputManager:
             if self.event.type in (sdl2.SDL_MOUSEMOTION, sdl2.SDL_MOUSEBUTTONDOWN, sdl2.SDL_MOUSEBUTTONUP):
                 self.mouse_x = self.event.motion.x
                 self.mouse_y = self.event.motion.y
+                logging.debug(f"Mouse position: ({self.mouse_x}, {self.mouse_y})")
+            
+            # Handle window events
+            if self.event.type == sdl2.SDL_WINDOWEVENT:
+                if self.event.window.event == sdl2.SDL_WINDOWEVENT_RESIZED:
+                    logging.info(f"Window resized to {self.event.window.data1}x{self.event.window.data2}")
             
             # Update mouse button state
             if self.event.type == sdl2.SDL_MOUSEBUTTONDOWN:
@@ -55,11 +62,15 @@ class InputManager:
                 logging.debug(f"Mouse button {self.event.button.button} pressed")
             elif self.event.type == sdl2.SDL_MOUSEBUTTONUP:
                 self.mouse_buttons[self.event.button.button] = False
+                logging.debug(f"Mouse button {self.event.button.button} released")
                 
             # Process key presses and update action states
             if self.event.type == sdl2.SDL_KEYDOWN:
-                for action, key in self.key_mappings.items():
-                    if self.event.key.keysym.sym == key:
+                key = self.event.key.keysym.sym
+                logging.debug(f"Key pressed: {key}")
+                
+                for action, mapped_key in self.key_mappings.items():
+                    if key == mapped_key:
                         # For continuous actions
                         self.actions[action] = True
                         
@@ -70,14 +81,19 @@ class InputManager:
                 
             # Process key releases
             elif self.event.type == sdl2.SDL_KEYUP:
-                for action, key in self.key_mappings.items():
-                    if self.event.key.keysym.sym == key:
+                key = self.event.key.keysym.sym
+                logging.debug(f"Key released: {key}")
+                
+                for action, mapped_key in self.key_mappings.items():
+                    if key == mapped_key:
                         self.actions[action] = False
+                        logging.debug(f"Action '{action}' deactivated")
             
             # Handle window close event (X button)
             if self.event.type == sdl2.SDL_QUIT:
                 self.actions['quit'] = True
                 quit_requested = True
+                logging.debug("Quit requested via window close")
         
         # Update keyboard state
         self.keys = sdl2.SDL_GetKeyboardState(None)
@@ -87,8 +103,8 @@ class InputManager:
             quit_requested = True
             
         # Log active movement actions for debugging
-        if any(self.actions[a] for a in ['move_forward', 'move_backward', 'move_left', 'move_right']):
-            active_moves = [a for a in ['move_forward', 'move_backward', 'move_left', 'move_right'] if self.actions[a]]
+        active_moves = [a for a in ['move_forward', 'move_backward', 'move_left', 'move_right'] if self.actions[a]]
+        if active_moves:
             logging.debug(f"Movement actions: {', '.join(active_moves)}")
             
         return quit_requested
