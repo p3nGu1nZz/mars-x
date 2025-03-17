@@ -131,9 +131,9 @@ def build_game():
                 ], check=True)
                 build_files_count += 1
         
-        # Then, build them with setuptools
-        setup_script = """
-import os
+        # Build Cython modules directly without creating a temporary file
+        print("Building Cython extensions...")
+        cython_build_cmd = """
 import sys
 from setuptools import setup, Extension
 from Cython.Build import cythonize
@@ -146,6 +146,8 @@ extensions = [
     Extension("mars_x.cython_modules.quaternion", ["mars_x/cython_modules/quaternion.pyx"])
 ]
 
+sys.argv = [sys.argv[0], 'build_ext', '--inplace']
+
 setup(
     name="mars_x_cython_modules",
     ext_modules=cythonize(
@@ -155,20 +157,11 @@ setup(
             'boundscheck': False,
             'wraparound': False
         }
-    ),
+    )
 )
 """
-        
-        # Write setup script to a temporary file
-        setup_path = os.path.join(PROJECT_ROOT, "temp_cython_setup.py")
-        with open(setup_path, "w") as f:
-            f.write(setup_script)
-        
-        # Run setup script to build extensions
-        print("Building Cython extensions...")
-        subprocess.run([
-            str(python_exe), setup_path, "build_ext", "--inplace"
-        ], check=True)
+        # Run the Cython build command directly
+        subprocess.run([str(python_exe), "-c", cython_build_cmd], check=True)
         
         # Identify compiled binary modules to include in PyInstaller
         cython_binaries = []
@@ -306,7 +299,7 @@ print(f"FOUND_DLLS:{{target_dir}}")
                 for line in dll_result.stdout.splitlines():
                     line = line.strip()
                     if line.startswith("FOUND_DLLS:"):
-                        sdl2_dll_path = line[11:].strip()  # Fixed from .trip() to .strip()
+                        sdl2_dll_path = line[11:].strip()
                         print(f"Created SDL2 DLL directory: {sdl2_dll_path}")
                         # Get the DLLs in the directory
                         if os.path.exists(sdl2_dll_path):
@@ -410,8 +403,8 @@ if getattr(sys, 'frozen', False):
             binaries.append((src, dst))
             print(f"Adding Cython binary: {src} -> {dst}")
 
-        # Create spec file if needed
-        spec_file = PROJECT_ROOT / "mars_x.spec"
+        # Create spec file in the BUILD_DIR instead of project root
+        spec_file = BUILD_DIR / "mars-x.spec"
         if not spec_file.exists():
             # Handle resources path correctly
             resources_path = str(resources_dir)
@@ -427,6 +420,7 @@ if getattr(sys, 'frozen', False):
                 str(python_exe), "-m", "PyInstaller",
                 "--name=mars-x",
                 "--onefile",
+                "--specpath", str(BUILD_DIR),  # Specify spec file location
                 # Change --windowed to --console to see output
                 "--console",  # Show console window for debugging
                 "--add-data", resources_arg,
@@ -456,9 +450,10 @@ if getattr(sys, 'frozen', False):
             print(" ".join(pyinstaller_cmd))
             subprocess.run(pyinstaller_cmd, check=True)
         else:
-            # Use existing spec file
+            # Use existing spec file from the build directory
+            print(f"Using existing spec file: {spec_file}")
             subprocess.run(
-                [str(python_exe), "-m", "PyInstaller", "mars_x.spec"],
+                [str(python_exe), "-m", "PyInstaller", str(spec_file)],
                 check=True
             )
         

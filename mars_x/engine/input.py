@@ -18,6 +18,7 @@ class InputManager:
             'jump': False,
             'fire': False,
             'toggle_fullscreen': False,
+            'open_settings': False, # Add a new action for opening settings
             'quit': False
         }
         
@@ -30,7 +31,8 @@ class InputManager:
             'jump': sdl2.SDLK_SPACE,
             'fire': sdl2.SDLK_LCTRL,
             'toggle_fullscreen': sdl2.SDLK_F11,
-            'quit': sdl2.SDLK_ESCAPE
+            'open_settings': sdl2.SDLK_ESCAPE,  # Map Escape to open_settings instead of quit
+            'quit': None  # Remove the direct key mapping for quit
         }
         
         # Track which keys were just pressed this frame (for one-time actions)
@@ -98,7 +100,7 @@ class InputManager:
         # Update keyboard state
         self.keys = sdl2.SDL_GetKeyboardState(None)
         
-        # Check if quit was requested by any method
+        # Check if quit was requested by any method - now only window close triggers this
         if self.actions['quit']:
             quit_requested = True
             
